@@ -30,4 +30,23 @@ public class EmailService {
             throw new MailAuthenticationException(e);
         }
     }
+    public StatusEmail sendEmail(String email, String assunto, String mensagem) {
+        String emailRemetente = "8balls.integratedproject@gmail.com";
+
+        try {
+            SimpleMailMessage message = new SimpleMailMessage();
+            message.setFrom(emailRemetente);
+            message.setTo(email);
+            message.setSubject(assunto);
+            message.setText(mensagem);
+            emailSender.send(message);
+
+            return StatusEmail.SENT;
+
+        }catch (MailAuthenticationException e){
+            throw new MailAuthenticationException(e);
+        }
+    }
+
+
 }

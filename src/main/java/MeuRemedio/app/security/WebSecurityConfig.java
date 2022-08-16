@@ -26,19 +26,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 "/style/**","/assets/**","/script/**", "/images/**", "/languages/**"
         );
     }
-    /*@Override //Método para não bloquear as páginas Staticas
-    public void configure (WebSecurity web) {
-        web.ignoring().antMatchers("/static/**", "/template/**",
-                "/style/**","/assets/**","/script/**", "/images/**"
-        );
 
-    }*/
 
     @Override
     public void configure (HttpSecurity http) throws Exception {
         http.csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/login", "/cadastro", "/").permitAll()
+                .antMatchers("/login", "/cadastro", "/", "/enviarEmail").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()

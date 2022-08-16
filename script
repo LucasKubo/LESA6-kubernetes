@@ -1,0 +1,21 @@
+echo 'Quais os arquivos mais modificados do projeto'
+  git log --pretty=format: --name-only | sort | uniq -c | sort -rg | head -10
+
+echo 'Quantidade de commits por desenvolvedor'
+        git shortlog -sn --no-merges
+
+echo 'Quando foi o primeiro e último commit'
+        git log --date=relative --reverse --format="Primeiro commit: %ad" | head -n1 && git log --date=relative --format="Ultimo commit: %ad" | head -n1
+
+echo 'Quantos commits este repositório já teve'
+      git log --pretty=oneline | wc -l
+
+echo 'Quantidade de commits por mês'
+        git log --reverse --date-order --format="%cd" --date=iso-local \
+            | cut -d- -f1-2 \
+            | uniq -c \
+            | column -t \
+            | perl -pwe 's{\s+}{\t}'
+
+echo 'Quantidade de linhas que cada autor alterou no projeto'
+    git ls-files | xargs -n1 git blame --line-porcelain | sed -n 's/^author //p' | sort -f | uniq -ic | sort -nr

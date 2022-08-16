@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.sql.SQLException;
+import java.util.List;
 
 @Controller
 public class RemedioController {
@@ -84,9 +85,11 @@ public class RemedioController {
         Usuario usuarioID = new Usuario();
         usuarioID.setId(userSessionService.returnIdUsuarioLogado());
 
-        Iterable<Remedio> remedio = remedioRepository.findAllByUsuario(usuarioID);
+        List <Remedio> remedio = remedioRepository.findAllByUsuario(usuarioID);
+        for (Remedio r: remedio) {
+            System.out.printf(r.getRM_Nome());
+        }
         model.addAttribute("remedio", remedio);
-
         return "ListaRemedios";
     }
 
@@ -124,12 +127,13 @@ public class RemedioController {
              return templateError();
         } else {
             Remedio remedio = remedioRepository.findById(id);
+
             remedio.setRM_Nome(RM_Nome);
             remedio.setRM_Dosagem(RM_Dosagem);
             remedio.setRM_UnidadeDosagem(RM_UnidadeDosagem);
             remedio.setRM_RetiradoSus(auxRetiradoSUS);
-            remedioRepository.save(remedio);
 
+            remedioRepository.save(remedio);
             return "redirect:/remedios";
         }
     }

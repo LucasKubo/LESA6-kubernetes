@@ -70,7 +70,6 @@
                                        name="username"
                                        aria-describedby="emailHelp"
                                        placeholder="email@exemplo.com" required>
-
                             </div>
                             <div class="form-group">
                                 <label th:text="#{loginlabel.password}"></label>
@@ -81,12 +80,12 @@
                             <div class="form-group">
 
                                 <button th:text="#{loginlogin.text}" id="cadastrar" name="action" class="formulario-button" type="submit"></button>
-                                <p><a th:text="#{loginforget.password}" style="font-size:12px" href="/"></a></p>
+                                <p><a th:text="#{loginforget.password}" id="recuperar_senha" style="font-size:12px" href="/enviarEmail"></a></p>
                                 <div class="line-break">
                                     <span th:text="#{loginor.text}">
                                     </span>
                                 </div>
-                                <p th:text="#{loginunsigned.text}"> </p> <p> <a th:text="#{loginsingup.text}" href="/cadastro"></a></p>
+                                <p th:text="#{loginunsigned.text}"> </p><p><a th:text="#{loginsingup.text}" href="/cadastro"></a></p>
                             </div>
                             <label th:text="#{logininvalid.text}" th:if="${param.error}" class="alert alert-error">
                             </label>
@@ -96,8 +95,6 @@
                     </div>
                 </div>
             </div>
-        
-
 
         <!-- Estes scripts tratam dos arquivos .jsp correspondentes a cada página html -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>

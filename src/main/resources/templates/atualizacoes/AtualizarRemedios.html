@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <link rel="icon" href="/static/images/icon.svg"/>
+    <link rel="icon" href="/images/icon.svg"/>
 
     <title th:text="#{cadtitle.text}"></title>
 
@@ -27,42 +27,46 @@
 </head>
 <body>
 <div class="wrapper conta-lg">
-    <!-- Menu bolado  -->
-    <nav th:replace="~{MenuLateral :: menuLateral}"></nav>
-    <div id="content">
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <div class="container-fluid">
+    
+<!-- Menu bolado  -->
+<nav th:replace="~{MenuLateral :: menuLateral}"></nav>
 
-                <button type="button" id="sidebarCollapse" class="btn btn-info">
-                    <i class="fas fa-align-left"></i>
-                    <span>Menu</span>
-                </button>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
 
-                <a href="/home" class="navbar-brand text-center col-09" >
-                    <img alt="Brand" src="/images/icon.svg" class="img-responsive text-center">
-                </a>
+        <button type="button" id="sidebarCollapse" class="btn btn-info">
+            <i class="fas fa-align-left"></i>
+            <span>Menu</span>
+        </button>
 
-            </div>
-        </nav>
+        <a href="/home" class="navbar-brand text-center col-09" >
+            <img alt="Brand" src="/images/icon.svg" class="img-responsive text-center">
+        </a>
 
+    </div>
 
-        <div class="modal-overlay text-center">
+</nav>
 
+</div>
+<div class="modal-overlay text-center">
     <div class="modal">
         <div class="text-center" id="form">
             <!--<img class="formulario-icon-cadastro" src="/assets/img/cadastro-form-icon.svg" alt="Ícone Meu Remédio"> -->
-            <h2 class='form-h2' th:text="#{cadremform.title}"></h2>
+            <h2 class='form-h2' th:text="#{Attremform.title}"></h2>
             <form method="post" name="formCadastroRM">
                 <div class="input-group">
                     <label th:text="#{cadremform.remedy}" class="sr-only" for="RM_Nome"></label>
-                    <input th:placeholder="#{cadremplaceholder.remedy}" type="text" id="RM_Nome" name="RM_Nome"
+                    <input th:value="${remedio.RM_Nome}"
+                           type="text"
+                           id="RM_Nome"
+                           name="RM_Nome"
+                           required="required"
                     />
                 </div>
                 <div class="input-group">
                     <label th:text="#{cadremform.dosage}" class="sr-only" for="RM_Dosagem"></label>
-
-                    <input th:placeholder="#{cadremplaceholder.dosage}"
-                           type="number"
+                    <input th:value="${remedio.RM_Dosagem}"
+                           type="text"
                            id="RM_Dosagem"
                            name="RM_Dosagem"
                            onMouseOver="mensagemDosagem()"
@@ -72,30 +76,30 @@
                 </div>
                 <small><span id="mensagemDosagem" class="help"></span></small>
 
-                        <label class="sr-only"> Unidade de medida </label>
-                        <select id="RM_UnidadeDosagem" class="form-control"
-                                name="RM_UnidadeDosagem"
-                                required="required"
-                        >
-                            <option value ="mg" th:text="#{cadremform.miligram}"></option>
-                            <option value ="g" th:text="#{cadremform.gram}"></option>
-                            <option value ="ml" th:text="#{cadremform.mililiter}"></option>
-                            <option value ="ui" th:text="#{cadremform.internationalunits}"></option>
-                            <option value ="gts" th:text="#{cadremform.gotas}"></option>
-                        </select>
-
+                <label class="sr-only"> Unidade de medida </label>
+                <select id="RM_UnidadeDosagem" class="form-control"
+                        name="RM_UnidadeDosagem"
+                        required="required"
+                >
+                    <option value ="mg" th:text="#{cadremform.miligram}"></option>
+                    <option value ="g" th:text="#{cadremform.gram}"></option>
+                    <option value ="ml" th:text="#{cadremform.mililiter}"></option>
+                    <option value ="ui" th:text="#{cadremform.internationalunits}"></option>
+                    <option value ="gts" th:text="#{cadremform.gotas}"></option>
+                </select>
+                <small><span id="mensagemUnidade" class="help"></span></small>
 
                 <div class="input-group-radio">
                     <small><strong th:text="#{cadremform.susremedy}" class="sus-medicine" ></strong></small>
                     <!--<label th:text="#{cadremform.susremedy}" class="sr-only" for="RM_RetiradoSus"></label>-->
                     <div class="radio-container">
-                        <input class="radio-yes" th:text="#{cadremform.radioyes}" type="radio" id="RM_RetiradoSus" value="Sim" name="RM_RetiradoSus" required=""/>
-                        <input class="radio-no" th:text="#{cadremform.radiono}" type="radio" id="RM_RetiradoSusNo" value="Não" name="RM_RetiradoSus"required=""/>
+                        <input class="radio-yes" th:text="#{cadremform.radioyes}" th:checked="${remedio.RM_RetiradoSus}" type="radio" id="RM_RetiradoSus" value="Sim" name="RM_RetiradoSus"/>
+                        <input class="radio-no" th:text="#{cadremform.radiono}"  th:checked="${!remedio.RM_RetiradoSus}" type="radio" id="RM_RetiradoSusNo" value="Não" name="RM_RetiradoSus"/>
                     </div>
                 </div>
                 <div class="input-group actions">
                     <a th:text="#{cadremform.cancel}" id="cancelar" href="/remedios" class="button cancel"></a>
-                    <button  th:text="#{cadremform.submit}" name="action" id="confirmar"  class="button save" type="submit"></button>
+                    <button  th:text="#{cadremform.submit}" name="action" id="confirmar" class="button save" type="submit"></button>
                 </div>
             </form>
         </div>
@@ -103,7 +107,6 @@
 </div>
 
 <div class="overlay"></div>
-
 <!-- Scripts da página -->
 <!-- jQuery CDN - Slim version (=without AJAX) -->
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
@@ -115,9 +118,7 @@
 <script src="/script/cadastroRemedio.jsp"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
 <script src="/script/bootstrap-multiselect.js"></script>
-    </div>
-</div>
-</body>
+
 <script type="text/javascript">
     $(document).ready(function () {
         $('#RM_UnidadeDosagem')
@@ -130,4 +131,6 @@
         inline: true
     });
 </script>
+
+</body>
 </html>
