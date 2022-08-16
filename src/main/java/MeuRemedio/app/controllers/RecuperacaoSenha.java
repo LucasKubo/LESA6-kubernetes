@@ -26,15 +26,13 @@ public class RecuperacaoSenha {
 
     @RequestMapping(value = "/enviarEmail", method = RequestMethod.GET)
     public String receberEmail(){
-        /*Remover a linha 30, é somente para teste*/
-        envioEmailController.emailRecuperarSenha("eric.jscabral@gmail.com", codigo());
+        /*Remover a linha 30, somente para teste ela*/
+        envioEmailController.emailRecuperarSenha("eric.jin300@gmail.com", codigo());
         return "EmailRecuperacao";
     }
     @RequestMapping(value = "/recuperar_senha", method = RequestMethod.GET)
     public String atualizarSenha(){
-        if (!validateAuthentication.auth()) {
-            return "CadastroUsuario";
-        }
+
         return "RecuperarSenha";
     }
 
