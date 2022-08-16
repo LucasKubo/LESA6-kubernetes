@@ -31,7 +31,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     public void configure (HttpSecurity http) throws Exception {
         http.csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/login", "/cadastro", "/", "/enviarEmail","recuperar_senha").permitAll()
+                .antMatchers("/login", "/cadastro", "/", "/enviarEmail","/recuperar_senha").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
