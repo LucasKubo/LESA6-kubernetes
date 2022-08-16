@@ -52,6 +52,7 @@ public class AgendamentoController {
 
         List <Agendamento> agendamentos = agendamentoRepository.findAllByUsuarioID(userSessionService.returnIdUsuarioLogado());
         model.addAttribute("agendamento", agendamentos);
+
         List<IntervaloDias> intervaloDias = new ArrayList<>();
         for (Agendamento agendamento : agendamentos) {
             Optional<IntervaloDias> intervalo = intervaloDiasRepository.findById(agendamento.getId());
@@ -72,7 +73,6 @@ public class AgendamentoController {
         Usuario usuarioID = new Usuario();
         usuarioID.setId(userSessionService.returnIdUsuarioLogado());
         List <Remedio> remedio  = remedioRepository.findAllByUsuario(usuarioID);
-
         model.addAttribute("remedio", remedio);
         return "CadastroAgendamento";
     }
@@ -88,6 +88,7 @@ public class AgendamentoController {
         if(intervaloDias != null){
             IntervaloDias intervalo = new IntervaloDias(AG_DataInicio,AG_horaInicio,AG_DataFinal,AG_Periodicidade,
                     remedios, userSessionService.returnIdUsuarioLogado(), intervaloDias);
+
             intervaloDiasRepository.save(intervalo);
         } else {
             Agendamento agendamento = new Agendamento(AG_DataInicio, AG_horaInicio, AG_DataFinal, AG_Periodicidade,
@@ -111,15 +112,20 @@ public class AgendamentoController {
     public String atualizarRemedio(@PathVariable("id") long id, Model model) {
         if (!verificarPorId(id)) {
             return templateError();
+
         } else {
             Usuario usuarioID = new Usuario();
             usuarioID.setId(userSessionService.returnIdUsuarioLogado());
+
             Iterable <Remedio> remedio = remedioRepository.findAllByUsuario(usuarioID);
             model.addAttribute("remedio", remedio);
+
             Agendamento agendamento = agendamentoRepository.findById(id);
             model.addAttribute("agendamento", agendamento);
+
             Optional<IntervaloDias> intervaloDias = intervaloDiasRepository.findById(id);
             model.addAttribute("intervaloDias", intervaloDias);
+
             return "AtualizarAgendamento";
         }
     }
@@ -131,7 +137,7 @@ public class AgendamentoController {
                                             @RequestParam("AG_HoraInicio") String AG_horaInicio,
                                             @RequestParam("AG_DataFinal")  String AG_DataFinal ,
                                             @RequestParam("AG_Periodicidade") long AG_Periodicidade,
-                                             @RequestParam(value = "intervaloDias", required = false) Long intervaloDias){
+                                            @RequestParam(value = "intervaloDias", required = false) Long intervaloDias){
         if (!verificarPorId(id)) {
             return remedioController.
                     templateError();
@@ -140,46 +146,59 @@ public class AgendamentoController {
         Optional<IntervaloDias> intervaloExiste = intervaloDiasRepository.findById(id);
         if (intervaloExiste.isPresent() && intervaloDias == null){
             IntervaloDias agendamento = intervaloExiste.get();
+
             agendamento.setRemedio(remedios);
             agendamento.setDataInicio(AG_DataInicio);
             agendamento.setHoraInicio(AG_horaInicio);
             agendamento.setDataFinal(AG_DataFinal);
             agendamento.setPeriodicidade(AG_Periodicidade);
             agendamento.setIntervaloDias(0);
+
             intervaloDiasRepository.save(agendamento);
-        } else if (intervaloExiste.isPresent() && intervaloDias != null){
-            IntervaloDias atualizarIntervalo = intervaloExiste.get();
-            atualizarIntervalo.setId(id);
-            atualizarIntervalo.setRemedio(remedios);
-            atualizarIntervalo.setDataInicio(AG_DataInicio);
-            atualizarIntervalo.setHoraInicio(AG_horaInicio);
-            atualizarIntervalo.setDataFinal(AG_DataFinal);
-            atualizarIntervalo.setPeriodicidade(AG_Periodicidade);
-            atualizarIntervalo.setIntervaloDias(intervaloDias);
-            intervaloDiasRepository.save(atualizarIntervalo);
-        } else if (intervaloDias == null){
-            Agendamento agendamento = agendamentoRepository.findById(id);
-            agendamento.setRemedio(remedios);
-            agendamento.setDataInicio(AG_DataInicio);
-            agendamento.setHoraInicio(AG_horaInicio);
-            agendamento.setDataFinal(AG_DataFinal);
-            agendamento.setPeriodicidade(AG_Periodicidade);
-            agendamentoRepository.save(agendamento);
+
+        } else
+            if (intervaloExiste.isPresent() && intervaloDias != null){
+                IntervaloDias atualizarIntervalo = intervaloExiste.get();
+
+                atualizarIntervalo.setId(id);
+                atualizarIntervalo.setRemedio(remedios);
+                atualizarIntervalo.setDataInicio(AG_DataInicio);
+                atualizarIntervalo.setHoraInicio(AG_horaInicio);
+                atualizarIntervalo.setDataFinal(AG_DataFinal);
+                atualizarIntervalo.setPeriodicidade(AG_Periodicidade);
+                atualizarIntervalo.setIntervaloDias(intervaloDias);
+
+                intervaloDiasRepository.save(atualizarIntervalo);
+        } else
+            if (intervaloDias == null){
+                Agendamento agendamento = agendamentoRepository.findById(id);
+
+                agendamento.setRemedio(remedios);
+                agendamento.setDataInicio(AG_DataInicio);
+                agendamento.setHoraInicio(AG_horaInicio);
+                agendamento.setDataFinal(AG_DataFinal);
+                agendamento.setPeriodicidade(AG_Periodicidade);
+
+                agendamentoRepository.save(agendamento);
         } else {
             IntervaloDias adicionarIntervalo = new IntervaloDias(AG_DataInicio, AG_horaInicio, AG_DataFinal, AG_Periodicidade,
                     remedios, userSessionService.returnIdUsuarioLogado(), intervaloDias);
+
             adicionarIntervalo.setId(id);
             agendamentoRepository.deleteById(id);
+
             intervaloDiasRepository.save(adicionarIntervalo);
         }
+
             return REDIRECT;
-        }
+    }
+
+
     public boolean verificarPorId (long id ) {
-        return agendamentoRepository.existsById(id); //Falso se não achar o ID do remédio
+        return agendamentoRepository.existsById(id); // retorna false se não achar o ID do remédio
     }
 
     public String templateError(){
         return "TemplateError";
     }
-
 }

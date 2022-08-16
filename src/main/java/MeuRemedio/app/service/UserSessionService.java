@@ -25,6 +25,7 @@ public class UserSessionService {
     public String returnUsernameUsuario(){
         Authentication authentication = authenticationFacade.getAuthentication();
         username = authentication.getName();
+
         return username;
     }
 

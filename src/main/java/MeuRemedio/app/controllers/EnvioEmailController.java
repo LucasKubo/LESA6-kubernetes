@@ -17,14 +17,12 @@ public class EnvioEmailController {
     @Autowired
     EmailService emailService;
 
-    @RequestMapping(value = "/recuperar_senha", method = RequestMethod.POST)
-    public void emailRecuperarSenha (Usuario usuario){
-        String link = "https://meuremedioapp.herokuapp.com/cadastro";
-        String msgRecuperacao = usuario.getNome() + " " + usuario.getSobrenome();
-        String assunto = MensagemEmail.RECUPERACAO_SENHA.getDescricao();
-        String mensagem = msgRecuperacao + MensagemEmail.RECUPERACAO_MENSAGEM.getDescricao() + link;
 
-        emailService.sendEmail(usuario, assunto, mensagem );
+    public void emailRecuperarSenha (String email, String codigo){
+        String assunto = MensagemEmail.RECUPERACAO_SENHA.getDescricao();
+        String mensagem = MensagemEmail.RECUPERACAO_MENSAGEM.getDescricao() + codigo ;
+
+       emailService.sendEmail(email, assunto, mensagem );
     }
 
     public void emailConfirmCadastro (Usuario usuario){
