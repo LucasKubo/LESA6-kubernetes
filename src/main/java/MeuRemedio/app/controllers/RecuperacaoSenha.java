@@ -3,6 +3,7 @@ package MeuRemedio.app.controllers;
 import MeuRemedio.app.controllers.EnvioEmailController;
 import MeuRemedio.app.models.usuarios.Usuario;
 import MeuRemedio.app.repository.UsuarioRepository;
+import MeuRemedio.app.service.utils.ValidateAuthentication;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -20,10 +21,20 @@ public class RecuperacaoSenha {
     @Autowired
     private UsuarioRepository usuarioRepository;
 
+    @Autowired
+    ValidateAuthentication validateAuthentication;
+
     @RequestMapping(value = "/enviarEmail", method = RequestMethod.GET)
     public String receberEmail(){
         envioEmailController.emailRecuperarSenha("guilherme.logus@gmail.com", codigo());
         return "EmailRecuperacao";
+    }
+    @RequestMapping(value = "/recuperar_senha", method = RequestMethod.GET)
+    public String atualizarSenha(){
+        if (!validateAuthentication.auth()) {
+            return "CadastroUsuario";
+        }
+        return "RecuperarSenha";
     }
 
     @RequestMapping(value = "/enviarEmail", method = RequestMethod.POST)
