@@ -31,7 +31,7 @@ public class UsuarioController {
     public String telaCadasUsuario() {
 
         if (!validateAuthentication.auth()){
-            return "CadastroUsuario";
+            return "cadastros/CadastroUsuario";
         }
         return REDIRECT;
     }
@@ -41,11 +41,12 @@ public class UsuarioController {
                                    @RequestParam("US_Email") String email, @RequestParam("US_Senha") String senha,
                                    @RequestParam("US_DataNascimento") String dataNascimento, @RequestParam("US_Sexo") String sexo) {
 
-        if (usuarioRepository.findByEmail(email) != null) {
+        String emailLowerCase = email.toLowerCase();
+        if (usuarioRepository.findByEmail(emailLowerCase) != null) {
             return "redirect:/cadastro?emailExistente";
         }
 
-        Usuario usuarioCadastro = new Usuario(nome, sobrenome, email,
+        Usuario usuarioCadastro = new Usuario(nome, sobrenome, emailLowerCase,
                 new BCryptPasswordEncoder().encode(senha), dataNascimento, sexo);
 
         usuarioRepository.save(usuarioCadastro);
@@ -59,7 +60,7 @@ public class UsuarioController {
         Usuario usuarioLogado = usuarioRepository.findByEmail(EmailUsuarioLogado);
         model.addAttribute("usuario",usuarioLogado);
 
-        return "AtualizarUsuario";
+        return "atualizacoes/AtualizarUsuario";
     }
 
     @RequestMapping(value = "/atualizar_usuario", method = RequestMethod.POST)

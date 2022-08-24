@@ -48,7 +48,7 @@ public class RemedioController {
         if (!validateAuthentication.auth()) {
             return "Login";
         }
-        return "CadastroRemedios";
+        return "cadastros/CadastroRemedios";
     }
 
     @RequestMapping(value = "/remedios_cadastro", method = RequestMethod.POST)
@@ -92,7 +92,7 @@ public class RemedioController {
             System.out.printf(r.getRM_Nome());
         }
         model.addAttribute("remedio", remedio);
-        return "ListaRemedios";
+        return "listas/ListaRemedios";
     }
 
     @RequestMapping(value = "/deletar_remedio/{id}")
@@ -110,7 +110,7 @@ public class RemedioController {
         } else {
             Remedio remedio = remedioRepository.findById(id);
             model.addAttribute("remedio", remedio);
-            return "AtualizarRemedios";
+            return "atualizacoes/AtualizarRemedios";
         }
     }
 

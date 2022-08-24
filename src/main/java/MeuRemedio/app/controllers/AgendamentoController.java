@@ -61,7 +61,7 @@ public class AgendamentoController {
             }
         }
         model.addAttribute("intervaloDias", intervaloDias);
-        return "ListaAgendamentos";
+        return "listas/ListaAgendamentos";
     }
 
     @RequestMapping(value = "/cadastro_agendamentos")
@@ -74,7 +74,7 @@ public class AgendamentoController {
         usuarioID.setId(userSessionService.returnIdUsuarioLogado());
         List <Remedio> remedio  = remedioRepository.findAllByUsuario(usuarioID);
         model.addAttribute("remedio", remedio);
-        return "CadastroAgendamento";
+        return "cadastros/CadastroAgendamento";
     }
 
     @RequestMapping(value = "/cadastro_agendamentos", method = RequestMethod.POST)
@@ -126,7 +126,7 @@ public class AgendamentoController {
             Optional<IntervaloDias> intervaloDias = intervaloDiasRepository.findById(id);
             model.addAttribute("intervaloDias", intervaloDias);
 
-            return "AtualizarAgendamento";
+            return "atualizacoes/AtualizarAgendamento";
         }
     }
 
