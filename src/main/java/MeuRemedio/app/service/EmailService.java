@@ -47,6 +47,4 @@ public class EmailService {
             throw new MailAuthenticationException(e);
         }
     }
-
-
 }
