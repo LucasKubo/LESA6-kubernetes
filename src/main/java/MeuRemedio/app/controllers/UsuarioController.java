@@ -50,7 +50,7 @@ public class UsuarioController {
                 new BCryptPasswordEncoder().encode(senha), dataNascimento, sexo);
 
         usuarioRepository.save(usuarioCadastro);
-        emailCadastro.emailConfirmCadastro(usuarioCadastro);
+       // emailCadastro.emailConfirmCadastro(usuarioCadastro);
 
         return "redirect:/login";
     }
