@@ -24,36 +24,37 @@ public class RecuperacaoSenha {
     @Autowired
     ValidateAuthentication validateAuthentication;
 
+    protected String emailUsuario;
     @RequestMapping(value = "/enviarEmail", method = RequestMethod.GET)
     public String receberEmail(){
         /*Remover a linha 30, somente para teste ela*/
-        envioEmailController.emailRecuperarSenha("eric.jin300@gmail.com", codigo());
+       // envioEmailController.emailRecuperarSenha("eric.jin300@gmail.com", codigo());
         return "EmailRecuperacao";
     }
     @RequestMapping(value = "/recuperar_senha", method = RequestMethod.GET)
     public String atualizarSenha(){
-
         return "RecuperarSenha";
     }
 
     @RequestMapping(value = "/enviarEmail", method = RequestMethod.POST)
     public String receberEmail (@RequestParam("US_Email") String email) {
        envioEmailController.emailRecuperarSenha(email, codigo());
+       emailUsuario = email;
 
-       return email;
+       return "redirect:/login";
     }
 
     @RequestMapping(value = "/recuperar_senha", method = RequestMethod.POST)
     public String atualizarSenha(@RequestParam("US_Codigo") String codigo, @RequestParam("US_Senha") String senha){
 
-        if (codigo.equals(codigo())){
-           Usuario usuario = usuarioRepository.findByEmail(receberEmail());
+      ///  if (codigo.equals(codigo())){
+           Usuario usuario = usuarioRepository.findByEmail(emailUsuario);
            usuario.setSenha(new BCryptPasswordEncoder().encode(senha));
            usuarioRepository.save(usuario);
 
-           return "/";
-        }
-        return "RecuperarSenha";
+           return "redirect:/login";
+    //    }
+      //  return "RecuperarSenha";
     }
 
     public String codigo (){
