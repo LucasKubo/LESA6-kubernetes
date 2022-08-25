@@ -21,8 +21,6 @@ public class RecuperacaoSenha {
     @Autowired
     private UsuarioRepository usuarioRepository;
 
-    @Autowired
-    ValidateAuthentication validateAuthentication;
 
     protected String emailUsuario;
     @RequestMapping(value = "/enviarEmail", method = RequestMethod.GET)
@@ -45,15 +43,15 @@ public class RecuperacaoSenha {
     }
 
     @RequestMapping(value = "/recuperar_senha", method = RequestMethod.POST)
-    public String atualizarSenha(@RequestParam("US_Codigo") String codigo, @RequestParam("US_Senha") String senha){
+    public String atualizarSenha(@RequestParam(value = "US_Codigo", required = false) String codigo, @RequestParam("US_Senha") String senha){
 
-      ///  if (codigo.equals(codigo())){
+      ///if (codigo.equals(codigo())){
            Usuario usuario = usuarioRepository.findByEmail(emailUsuario);
            usuario.setSenha(new BCryptPasswordEncoder().encode(senha));
            usuarioRepository.save(usuario);
 
            return "redirect:/login";
-    //    }
+    //   }
       //  return "RecuperarSenha";
     }
 
