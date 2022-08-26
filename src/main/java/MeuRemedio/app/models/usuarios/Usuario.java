@@ -42,7 +42,7 @@ public class Usuario implements UserDetails {
 
     @Column(name = "US_DataNascimento", nullable = false)
     @NotNull @NotEmpty @NotBlank
-    private String dataNascimento;
+    private String      dataNascimento;
 
     @Column(name = "US_Sexo", nullable = false)
     @NotNull @NotBlank @NotEmpty
@@ -50,7 +50,12 @@ public class Usuario implements UserDetails {
 
     @Column(name = "Criado_em")
     @NotNull
-    private LocalDate Criado_em;
+    private LocalDate criadoEm;
+
+    @Column(name = "verification_code", length = 64)
+    private String verificationCode;
+
+    private boolean enabled;
 
     @OneToMany
     @JoinColumn(name = "USUARIO_FK_US_ID")
@@ -69,7 +74,7 @@ public class Usuario implements UserDetails {
         this.senha = senha;
         this.dataNascimento = dataNascimento;
         this.sexo = sexo;
-        this.Criado_em = LocalDate.now();
+        this.criadoEm = LocalDate.now();
        // this.remedios = remedios;
         this.gasto = gasto;
     }
@@ -86,7 +91,7 @@ public class Usuario implements UserDetails {
         this.senha = senha;
         this.dataNascimento = dataNascimento;
         this.sexo = sexo;
-        this.Criado_em = LocalDate.now();
+        this.criadoEm = LocalDate.now();
 
     }
 
@@ -128,6 +133,6 @@ public class Usuario implements UserDetails {
 
     @Override
     public boolean isEnabled() {
-        return true;
+        return this.enabled;
     }
 }

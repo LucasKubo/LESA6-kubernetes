@@ -5,10 +5,15 @@ import MeuRemedio.app.models.remedios.Remedio;
 import MeuRemedio.app.models.usuarios.Usuario;
 import MeuRemedio.app.service.EmailService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import javax.mail.MessagingException;
+import javax.mail.internet.MimeMessage;
+import java.io.UnsupportedEncodingException;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -16,7 +21,8 @@ import java.util.List;
 public class EnvioEmailController {
     @Autowired
     EmailService emailService;
-
+    @Autowired
+    JavaMailSender mailSender;
 
     public void emailRecuperarSenha (String email, String codigo){
         String assunto = MensagemEmail.RECUPERACAO_SENHA.getDescricao();
@@ -57,5 +63,35 @@ public class EnvioEmailController {
                 "! Agora são " + horaFormatada + " e já está na hora de tomar os seus remédios: \n" + remediosString;
 
         emailService.sendEmail(usuario, assunto, msg);
+    }
+
+    public void emailValidacaoCadastro(Usuario user, String siteURL)
+            throws MessagingException, UnsupportedEncodingException {
+        String toAddress = user.getEmail();
+        String fromAddress = "8balls.integratedproject@gmail.com";
+        String senderName = "Meu Remédio";
+        String subject = "Please verify your registration";
+        String content = "Prezado [[name]],<br>"
+                + "Por favor, clique no link abaixo para verificar seu registro:<br>"
+                + "<h3><a href=\"[[URL]]\" target=\"_self\">VERIFICAR</a></h3>"
+                + "Obrigado,<br>"
+                + "Meu Remédio.";
+
+        MimeMessage message = mailSender.createMimeMessage();
+        MimeMessageHelper helper = new MimeMessageHelper(message);
+
+        helper.setFrom(fromAddress, senderName);
+        helper.setTo(toAddress);
+        helper.setSubject(subject);
+
+        content = content.replace("[[name]]", user.getNome());
+        String verifyURL = siteURL + "/verificar_cadastro?code=" + user.getVerificationCode();
+
+        content = content.replace("[[URL]]", verifyURL);
+
+        helper.setText(content, true);
+
+        mailSender.send(message);
+
     }
 }
