@@ -24,8 +24,8 @@ public class DataConfiguration {
             return driver;
         } catch (Exception e) {
             throw new IllegalStateException("Erro de conexão com o banco" + e);
-        }
-    }
+       }
+   }
 
     @Bean
     public JpaVendorAdapter JpaVendorAdapter() {

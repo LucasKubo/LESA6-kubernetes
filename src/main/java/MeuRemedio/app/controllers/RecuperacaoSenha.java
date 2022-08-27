@@ -2,6 +2,8 @@ package MeuRemedio.app.controllers;
 
 import MeuRemedio.app.controllers.EnvioEmailController;
 import MeuRemedio.app.models.usuarios.Usuario;
+import MeuRemedio.app.models.usuarios.Usuario_code;
+import MeuRemedio.app.repository.UserCodeRepository;
 import MeuRemedio.app.repository.UsuarioRepository;
 import MeuRemedio.app.service.utils.ValidateAuthentication;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.Objects;
 import java.util.Random;
 
 @Controller
@@ -20,6 +23,8 @@ public class RecuperacaoSenha {
     EnvioEmailController envioEmailController;
     @Autowired
     private UsuarioRepository usuarioRepository;
+    @Autowired
+    UserCodeRepository usuarioCode;
 
 
     protected String emailUsuario;
@@ -36,31 +41,42 @@ public class RecuperacaoSenha {
 
     @RequestMapping(value = "/enviarEmail", method = RequestMethod.POST)
     public String receberEmail (@RequestParam("US_Email") String email) {
-       envioEmailController.emailRecuperarSenha(email, codigo());
-       emailUsuario = email;
+       try{
+           emailUsuario = email;
+           Usuario_code user = new Usuario_code(email, codigo());
+           usuarioCode.save(user);
 
-       return "redirect:/login";
+           Usuario_code userEmail = usuarioCode.findByEmail(email);
+           envioEmailController.emailRecuperarSenha(userEmail.getEmail(), userEmail.getCodigo());
+
+           return "redirect:/login";
+
+       }catch (Exception e){
+           return "TemplateError";
+       }
     }
 
     @RequestMapping(value = "/recuperar_senha", method = RequestMethod.POST)
-    public String atualizarSenha(@RequestParam(value = "US_Codigo", required = false) String codigo, @RequestParam("US_Senha") String senha){
+    public String atualizarSenha (@RequestParam("US_codigo") String codigo, @RequestParam("US_Senha") String senha){
+        Usuario_code userCodigo = usuarioCode.findByCodigo(codigo);
 
-      ///if (codigo.equals(codigo())){
-           Usuario usuario = usuarioRepository.findByEmail(emailUsuario);
+      if (Objects.nonNull(userCodigo) ){
+           Usuario usuario = usuarioRepository.findByEmail(userCodigo.getEmail());
            usuario.setSenha(new BCryptPasswordEncoder().encode(senha));
            usuarioRepository.save(usuario);
+           usuarioCode.deleteByCodigo(codigo);
 
            return "redirect:/login";
-    //   }
-      //  return "RecuperarSenha";
+       }
+            return "RecuperarSenha";
     }
 
     public String codigo (){
-        int[] codigo = new int [4];
+        int[] codigo = new int [8];
         Random random = new Random();
         String codValidacao= "";
 
-        for (int i = 0; i < 4; i ++ ){
+        for (int i = 0; i < 8; i ++ ){
             codigo[i] = random. nextInt(10);
             codValidacao += "" + codigo[i];
         }

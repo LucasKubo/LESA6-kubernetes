@@ -26,7 +26,7 @@ public class UsuarioService {
         return false;
     }
 
-    public void cadastrar(Usuario usuario, HttpServletRequest request) throws MessagingException, UnsupportedEncodingException {
+    public void cadastrar (Usuario usuario, HttpServletRequest request) throws MessagingException, UnsupportedEncodingException {
         String randomCode = RandomString.make(64);
         usuario.setVerificationCode(randomCode);
         usuario.setEnabled(false);
