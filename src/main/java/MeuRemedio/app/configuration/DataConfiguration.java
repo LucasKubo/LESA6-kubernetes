@@ -14,6 +14,8 @@ import javax.sql.DataSource;
 public class DataConfiguration {
 
 
+
+
 //    @Bean //Metodo para base de dados locais
 //    public DataSource datasource() {
 //        try {
