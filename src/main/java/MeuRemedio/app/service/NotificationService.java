@@ -11,6 +11,7 @@ import MeuRemedio.app.repository.IntervaloDiasRepository;
 import MeuRemedio.app.repository.RecorrenciaRepository;
 import lombok.var;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
@@ -44,7 +45,8 @@ public class NotificationService {
 
     final String ZONEID = "America/Sao_Paulo";
 
-    @Scheduled(fixedRate = 60000)
+    @Scheduled(cron = "* */5 * * * *", zone = ZONEID)
+    @Async
     public void enviarNotificacao(){
 
         final var horaAgora = LocalTime.parse(LocalTime.now(ZoneId.of(ZONEID)).format(horaFormatada()));
