@@ -64,7 +64,7 @@ public class RecuperacaoSenha {
            Usuario usuario = usuarioRepository.findByEmail(userCodigo.getEmail());
            usuario.setSenha(new BCryptPasswordEncoder().encode(senha));
            usuarioRepository.save(usuario);
-          // usuarioCode.deleteBy (codigo);
+           usuarioCode.delete(userCodigo);
 
            return "redirect:/login";
        }
