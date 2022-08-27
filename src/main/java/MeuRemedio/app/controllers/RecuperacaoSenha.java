@@ -71,6 +71,7 @@ public class RecuperacaoSenha {
             return "RecuperarSenha";
     }
 
+    //Teste
     public String codigo (){
         int[] codigo = new int [8];
         Random random = new Random();
