@@ -44,15 +44,15 @@ public class RecuperacaoSenha {
 
     @RequestMapping(value = "/recuperar_senha", method = RequestMethod.POST)
     public String atualizarSenha(@RequestParam(value = "US_Codigo", required = false) String codigo, @RequestParam("US_Senha") String senha){
-
-      ///if (codigo.equals(codigo())){
+    //Ta chamando de novo e gerando novamente um código dentro do if
+      if (codigo.equals(codigo())){
            Usuario usuario = usuarioRepository.findByEmail(emailUsuario);
            usuario.setSenha(new BCryptPasswordEncoder().encode(senha));
            usuarioRepository.save(usuario);
 
            return "redirect:/login";
-    //   }
-      //  return "RecuperarSenha";
+       }
+            return "RecuperarSenha";
     }
 
     public String codigo (){
