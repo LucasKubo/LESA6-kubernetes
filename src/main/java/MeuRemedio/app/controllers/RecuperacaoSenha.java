@@ -57,7 +57,7 @@ public class RecuperacaoSenha {
     }
 
     @RequestMapping(value = "/recuperar_senha", method = RequestMethod.POST)
-    public String atualizarSenha (@RequestParam("US_codigo") String codigo, @RequestParam("US_Senha") String senha){
+    public String atualizarSenha (@RequestParam("US_Codigo") String codigo, @RequestParam("US_Senha") String senha){
         Usuario_code userCodigo = usuarioCode.findByCodigo(codigo);
 
       if (Objects.nonNull(userCodigo) ){
