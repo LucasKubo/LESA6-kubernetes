@@ -2,6 +2,7 @@ package MeuRemedio.app.enums;
 
 public enum MensagemEmail {
         /*Assunto dos E-MAILs enviados*/
+        CADASTRO_VALIDACAO("Verifique seu registro no Meu Remédio"),
         CADASTRO_REALIZADO("Cadastro realizado"),
         RECUPERACAO_SENHA("Recuperação de senha"),
 
