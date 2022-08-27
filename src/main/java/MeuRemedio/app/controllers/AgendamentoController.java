@@ -7,8 +7,10 @@ import MeuRemedio.app.models.usuarios.Usuario;
 import MeuRemedio.app.repository.AgendamentoRepository;
 import MeuRemedio.app.repository.IntervaloDiasRepository;
 import MeuRemedio.app.repository.RemedioRepository;
+import MeuRemedio.app.service.CalculaHorariosNotificacao;
 import MeuRemedio.app.service.UserSessionService;
 import MeuRemedio.app.service.utils.ValidateAuthentication;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,6 +24,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import java.util.*;
 
 @Controller
+@RequiredArgsConstructor
 public class AgendamentoController {
     @Autowired
     ValidateAuthentication validateAuthentication;
@@ -40,6 +43,8 @@ public class AgendamentoController {
 
     @Autowired
     UserSessionService userSessionService;
+
+    private final CalculaHorariosNotificacao calculaHorariosNotificacao;
 
     final String REDIRECT="redirect:/agendamentos";
 
@@ -85,18 +90,24 @@ public class AgendamentoController {
                                        @RequestParam("AG_Periodicidade") long AG_Periodicidade,
                                        @RequestParam(value = "intervaloDias", required = false) Long intervaloDias){
 
+        Agendamento id;
         if(intervaloDias != null){
             IntervaloDias intervalo = new IntervaloDias(AG_DataInicio,AG_horaInicio,AG_DataFinal,AG_Periodicidade,
                     remedios, userSessionService.returnIdUsuarioLogado(), intervaloDias);
 
-            intervaloDiasRepository.save(intervalo);
+            id = intervaloDiasRepository.save(intervalo);
         } else {
             Agendamento agendamento = new Agendamento(AG_DataInicio, AG_horaInicio, AG_DataFinal, AG_Periodicidade,
                     remedios, userSessionService.returnIdUsuarioLogado());
 
-            agendamentoRepository.save(agendamento);
+            id = agendamentoRepository.save(agendamento);
         }
+        salvarHorariosAgendamentos(id);
         return REDIRECT;
+    }
+
+    public void salvarHorariosAgendamentos(Agendamento id){
+        calculaHorariosNotificacao.calcular(id);
     }
 
 

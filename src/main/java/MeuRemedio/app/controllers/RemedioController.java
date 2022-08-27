@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Objects;
 
 @Controller
 public class RemedioController {
@@ -34,7 +35,8 @@ public class RemedioController {
     @Autowired
     RemedioRepository remedioRepository;
 
-
+    @Autowired
+    AgendamentoController agendamentoController;
     @Autowired
     ValidateAuthentication validateAuthentication;
 
@@ -53,7 +55,13 @@ public class RemedioController {
 
     @RequestMapping(value = "/remedios_cadastro", method = RequestMethod.POST)
     public String CadastroRemedio(@RequestParam("RM_Nome") String RM_Nome, @RequestParam("RM_Dosagem") String RM_Dosagem,
-                                  @RequestParam("RM_UnidadeDosagem") String RM_UnidadeDosagem, @RequestParam("RM_RetiradoSus") String RM_RetiradoSus) throws SQLException {
+                                  @RequestParam("RM_UnidadeDosagem") String RM_UnidadeDosagem, @RequestParam("RM_RetiradoSus") String RM_RetiradoSus,
+                                  @RequestParam(value = "AG_Remedios", required = false) List<Remedio> remedios,
+                                  @RequestParam(value = "AG_DataInicio", required = false)  String AG_DataInicio,
+                                  @RequestParam(value = "AG_HoraInicio", required = false) String AG_horaInicio,
+                                  @RequestParam(value = "AG_DataFinal", required = false)  String AG_DataFinal ,
+                                  @RequestParam(value = "AG_Periodicidade", required = false) long AG_Periodicidade,
+                                  @RequestParam(value = "intervaloDias", required = false) Long intervaloDias) throws Exception {
 
         boolean auxRetiradoSUS;
 
@@ -64,18 +72,25 @@ public class RemedioController {
             throw new SQLException("Erro ao retornar ID do usuário ");
         }
 
-        if (RM_RetiradoSus.equals("Sim")) {
-            auxRetiradoSUS = true;
-        } else {
-            auxRetiradoSUS = false;
-        }
+        auxRetiradoSUS = RM_RetiradoSus.equals("Sim");
         Remedio remedio = new Remedio(RM_Nome, RM_Dosagem, RM_UnidadeDosagem, auxRetiradoSUS, usuarioID);
 
         remedioRepository.save(remedio);
+        cadastrarAgendamento(remedios, AG_DataInicio, AG_horaInicio, AG_DataFinal, AG_Periodicidade, intervaloDias);
         Usuario us = usuarioRepository.findByEmail(userSessionService.returnUsernameUsuario());
         emailController.emailCadastroRemedio(us, remedio);
 
         return REDIRECT;
+    }
+
+    public void cadastrarAgendamento(List<Remedio> remedios, String AG_DataInicio, String AG_horaInicio,
+                                     String AG_DataFinal, long AG_Periodicidade, Long intervaloDias) throws Exception {
+
+        if(Objects.isNull(remedios) || Objects.isNull(AG_DataInicio) || Objects.isNull(AG_horaInicio) ||
+                Objects.isNull(AG_DataFinal) || Objects.isNull(intervaloDias)){
+            throw new Exception();
+        }
+        agendamentoController.cadastrarAgendamento(remedios, AG_DataInicio, AG_horaInicio, AG_DataFinal, AG_Periodicidade, intervaloDias);
     }
 
     @RequestMapping(value = "/remedios")
