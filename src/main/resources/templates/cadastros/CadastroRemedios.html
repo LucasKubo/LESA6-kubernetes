@@ -213,7 +213,7 @@
 
                         <!-- Default checked -->
                         <div class="form-group form-check">
-                            <input type="checkbox" class="form-check-input" data-toggle="collapse" data-target="#demo" id="exampleCheck1" checked="" aria-expanded="true">
+                            <input type="checkbox" class="form-check-input" data-toggle="collapse" data-target="#demo" id="exampleCheck1" name="exampleCheck1" checked="" aria-expanded="true">
                             <label class="form-check-input" for="exampleCheck1">Realizar Agendamento</label>
                         </div>
 
@@ -224,11 +224,11 @@
 
                             <h4 style="text-align: center">Informe o período e o horário do agendamento</h4>
                             <div class="input-group " data-provide="datepicker" id="AgInicio">
-                                <input type="date" id="AG_DataInicio" name="AG_DataInicio" placeholder="Data Inicial" onmouseover="mensagemDataInicio()" onmouseout="retirarMensagemDataInicio()" required="required">
-                                <input id="AG_HoraInicio" type="time" placeholder="Hora Inicial" name="AG_HoraInicio" value="00:00" onmouseover="mensagemHora()" onmouseout="retirarMensagemHora()" required="required">
+                                <input type="date" id="AG_DataInicio" name="AG_DataInicio" placeholder="Data Inicial" onmouseover="mensagemDataInicio()" onmouseout="retirarMensagemDataInicio()" required="">
+                                <input id="AG_HoraInicio" type="time" placeholder="Hora Inicial" name="AG_HoraInicio" value="00:00" onmouseover="mensagemHora()" onmouseout="retirarMensagemHora()" required="">
 
-                                <input placeholder="Periodicidade" type="number" id="AG_Periodicidade" name="AG_Periodicidade" onmouseover="mensagemPeriodicidade()" onmouseout="retirarMensagemPeriodicidade()" required="required">
-                                <input type="date" id="AG_DataFinal" name="AG_DataFinal" placeholder="Data Final" onmouseover="mensagemDataFim()" onmouseout="retirarMensagemDataFim()" required="required">
+                                <input placeholder="Periodicidade" type="number" id="AG_Periodicidade" name="AG_Periodicidade" onmouseover="mensagemPeriodicidade()" onmouseout="retirarMensagemPeriodicidade()" value="0">
+                                <input type="date" id="AG_DataFinal" name="AG_DataFinal" placeholder="Data Final" onmouseover="mensagemDataFim()" onmouseout="retirarMensagemDataFim()" required="">
                             </div>
                             <small><span id="mensagemPeriodocidade" class="help"></span></small>
                             <small><span id="mensagemFimAgendamento" class="help"></span></small>
@@ -248,7 +248,10 @@
                             <label class="sr-only">Escolha o remédio</label>
                             <span class="multiselect-native-select">
                                 <select id="AG_Remedios" class="form-control" name="AG_Remedios" multiple="" tabindex="-1">
-
+                                     <option th:each  ="remedio : ${remedio}"
+                                             th:value =" ${remedio.RM_ID}"
+                                             th:text  =" ${remedio.RM_Nome}"
+                                     >     </option>
                                 </select>
                                 <div class="btn-group">
                                    <!-- <button type="button" class="multiselect dropdown-toggle custom-select text-center" data-toggle="dropdown" title="None selected" aria-expanded="false">
@@ -263,14 +266,13 @@
 
 
 
-                        </div></form>
+                        </div>
                     <!-- botões principais -->
                     <div class="input-group actions">
                         <a id="cancelar" href="/remedios" class="button cancel">Voltar</a>
                         <button name="action" id="confirmar" class="button save" type="submit">Salvar</button>
                     </div>
-
-
+                    </form>
                 </div>
             </div>
         </div>
@@ -295,6 +297,25 @@
     });
 </script>
 
+<script type="text/javascript">
+     $(function() {
+      var checkbox = $("#exampleCheck1");
+      checkbox.change(function() {
+        if (checkbox.is(':checked')) {
+          $("#AG_DataInicio").attr('required'); //add required attr
+          $("#AG_HoraInicio").attr('required');
+          $("#AG_DataFinal").attr('required');
+          $("#AG_Periodicidade").attr('required');
+        } else {
+          $("#AG_DataInicio").removeAttr('required'); //add required attr
+          $("#AG_HoraInicio").removeAttr('required');
+          $("#AG_DataFinal").removeAttr('required');
+          $("#AG_Periodicidade").removeAttr('required');
+        }
+      });
+    });
+
+</script>
 
 <script type="text/javascript">
     $('.datepicker').datepicker({

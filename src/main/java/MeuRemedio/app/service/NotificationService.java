@@ -45,7 +45,8 @@ public class NotificationService {
 
     final String ZONEID = "America/Sao_Paulo";
 
-    @Scheduled(cron = "* */5 * * * *", zone = ZONEID)
+
+    @Scheduled(cron = "0 */5 * * * *", zone = ZONEID)
     @Async
     public void enviarNotificacao(){
 
