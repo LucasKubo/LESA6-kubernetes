@@ -64,14 +64,14 @@ public class NotificationService {
     }
 
     //Verificando se data atual está no intervalo de data início e data fim
-    public boolean verificarDataAtualDentroIntervalo(Agendamento agendamento, LocalDate dataAgora){
+    private boolean verificarDataAtualDentroIntervalo(Agendamento agendamento, LocalDate dataAgora){
         LocalDate dataInicio = getDataInicio(agendamento);
         LocalDate dataFinal = getDataFinal(agendamento);
         return dataAgora.compareTo(dataInicio) >= 0 &&
                 dataAgora.compareTo(dataFinal) <= 0;
     }
 
-    public void verificarHoraRemedio(Agendamento agendamento, LocalTime horaAgora){
+    private void verificarHoraRemedio(Agendamento agendamento, LocalTime horaAgora){
 
         final var instanteAgora = LocalDate.now(ZoneId.of("America/Sao_Paulo")).atTime(horaAgora);
 
@@ -86,31 +86,31 @@ public class NotificationService {
     }
 
     //Chama a classe email controller
-    public void getDadosUsuario(Agendamento agendamento, LocalDateTime instanteAgora){
+    private void getDadosUsuario(Agendamento agendamento, LocalDateTime instanteAgora){
         List<Remedio> remedios = agendamento.getRemedio();   // Recebe todos os remédios associados ao agendamento
         Usuario usuario = remedios.get(0).getUsuario();    // Recebe dados do usuário associado ao primeiro remédio da lista
         envioEmailController.emailNotificacaoRemedio(usuario, remedios, instanteAgora);
     }
 
     //Converte a data inicío para LocalDate no formato adequado
-    public LocalDate getDataInicio(Agendamento agendamento){
+    private LocalDate getDataInicio(Agendamento agendamento){
         DateTimeFormatter formatter = dataFormatada();
         return LocalDate.parse(agendamento.getDataInicio(), formatter);
     }
 
     //Converte a data final para LocalDate no formato adequado
-    public LocalDate getDataFinal(Agendamento agendamento){
+    private LocalDate getDataFinal(Agendamento agendamento){
         DateTimeFormatter formatter = dataFormatada();
         return LocalDate.parse(agendamento.getDataFinal(), formatter);
     }
 
     //Formata data
-    public DateTimeFormatter dataFormatada(){
+    private DateTimeFormatter dataFormatada(){
         return DateTimeFormatter.ofPattern("yyyy-MM-dd");
     }
 
     //Formata hora
-    public DateTimeFormatter horaFormatada(){
+    private DateTimeFormatter horaFormatada(){
         return DateTimeFormatter.ofPattern("HH:mm");
     }
 }
