@@ -64,8 +64,8 @@ public class CalculaHorariosNotificacao {
         }
 
         for (int i = 0; i < horasRemedio.size(); i++){
-            AgendamentosHorariosId agendamentosHorariosId = new AgendamentosHorariosId(agendamento.getId(),horasRemedio.get(i));
-            AgendamentosHorarios agendamentosHorarios = new AgendamentosHorarios(agendamentosHorariosId);
+            AgendamentosHorariosId agendamentosHorariosId = new AgendamentosHorariosId(agendamento.getId(), horasRemedio.get(i));
+            AgendamentosHorarios agendamentosHorarios = new AgendamentosHorarios(agendamentosHorariosId, agendamento);
             agendamentosHorariosRepository.save(agendamentosHorarios);
         }
     }

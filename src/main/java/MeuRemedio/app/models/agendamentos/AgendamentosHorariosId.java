@@ -18,10 +18,8 @@ public class AgendamentosHorariosId implements Serializable {
 
     private static final long serialVersionUID = 7699449173723614570L;
 
-//    @ManyToOne
-//    @JoinTable(name="AgendamentoRemedio",
-//            joinColumns= {@JoinColumn(name="agendamento_ag_id")})
-    private long agendamento;
+
+    private Long agendamento;
 
     private LocalDateTime horaDataNotificacao;
 }

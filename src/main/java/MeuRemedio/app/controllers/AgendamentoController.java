@@ -5,6 +5,7 @@ import MeuRemedio.app.models.agendamentos.IntervaloDias;
 import MeuRemedio.app.models.remedios.Remedio;
 import MeuRemedio.app.models.usuarios.Usuario;
 import MeuRemedio.app.repository.AgendamentoRepository;
+import MeuRemedio.app.repository.AgendamentosHorariosRepository;
 import MeuRemedio.app.repository.IntervaloDiasRepository;
 import MeuRemedio.app.repository.RemedioRepository;
 import MeuRemedio.app.service.CalculaHorariosNotificacao;
@@ -43,6 +44,9 @@ public class AgendamentoController {
 
     @Autowired
     UserSessionService userSessionService;
+
+    @Autowired
+    AgendamentosHorariosRepository agendamentosHorariosRepository;
 
     private final CalculaHorariosNotificacao calculaHorariosNotificacao;
 
@@ -115,7 +119,6 @@ public class AgendamentoController {
     public String deletarAgendamento(@PathVariable("id") long id){
         Agendamento agendamento = agendamentoRepository.findById(id);
         agendamentoRepository.delete(agendamento);
-
         return REDIRECT;
     }
 

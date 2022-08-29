@@ -46,6 +46,12 @@ public class NotificationService {
     final String ZONEID = "America/Sao_Paulo";
 
 
+    @Scheduled(cron = "0 0 * * * *", zone = ZONEID)
+    public void deletarAntigos(){
+        var instanteAgora = LocalDateTime.now(ZoneId.of(ZONEID));
+        agendamentosHorariosRepository.deletarPorHorario(instanteAgora);
+    }
+
     @Scheduled(cron = "0 */5 * * * *", zone = ZONEID)
     @Async
     public void enviarNotificacao(){

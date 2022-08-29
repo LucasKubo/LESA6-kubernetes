@@ -48,6 +48,9 @@ public class Agendamento implements Serializable {
     @Column(name = "AG_UsuarioID")
     private Long usuarioID;
 
+    @OneToMany(mappedBy = "agendamento", cascade = CascadeType.ALL)
+    private List<AgendamentosHorarios> agendamentosHorarios;
+
     @ManyToMany()
     @JoinTable(name="AgendamentoRemedio",
             joinColumns= {@JoinColumn(name="agendamento_ag_id")},
