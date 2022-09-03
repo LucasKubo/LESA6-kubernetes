@@ -15,8 +15,8 @@ public class DataConfiguration {
 
 
 
-
-//    @Bean //Metodo para base de dados locais
+//                  Metodo para base de dados locais
+//    @Bean
 //    public DataSource datasource() {
 //        try {
 //            DriverManagerDataSource driver = new DriverManagerDataSource();

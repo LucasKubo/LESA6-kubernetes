@@ -26,7 +26,7 @@ public class RemedioController {
 
 
     @Autowired
-    EnvioEmailController emailController;
+    EnvioEmail emailController;
 
     @Autowired
     UsuarioRepository usuarioRepository;

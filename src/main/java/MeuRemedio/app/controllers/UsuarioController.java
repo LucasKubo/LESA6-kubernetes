@@ -20,7 +20,7 @@ import java.io.UnsupportedEncodingException;
 @Controller
 public class UsuarioController {
     @Autowired
-    EnvioEmailController emailCadastro;
+    EnvioEmail emailCadastro;
 
     @Autowired
     private UsuarioRepository usuarioRepository;

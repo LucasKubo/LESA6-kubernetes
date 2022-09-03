@@ -1,9 +1,8 @@
 package MeuRemedio.app.service;
 
-import MeuRemedio.app.controllers.EnvioEmailController;
+import MeuRemedio.app.controllers.EnvioEmail;
 import MeuRemedio.app.models.agendamentos.Agendamento;
 import MeuRemedio.app.models.agendamentos.IntervaloDias;
-import MeuRemedio.app.models.agendamentos.Recorrencia;
 import MeuRemedio.app.models.remedios.Remedio;
 import MeuRemedio.app.models.usuarios.Usuario;
 import MeuRemedio.app.repository.AgendamentoRepository;
@@ -36,7 +35,7 @@ public class NotificationService {
     RecorrenciaRepository recorrenciaRepository;
 
     @Autowired
-    EnvioEmailController envioEmailController;
+    EnvioEmail envioEmail;
 
 
     final String ZONEID = "America/Sao_Paulo";
@@ -117,7 +116,7 @@ public class NotificationService {
     public void getDadosUsuario(Agendamento agendamento, LocalDateTime instanteAgora){
         List<Remedio> remedios = agendamento.getRemedio();   // Recebe todos os remédios associados ao agendamento
         Usuario usuario = remedios.get(0).getUsuario();    // Recebe dados do usuário associado ao primeiro remédio da lista
-        envioEmailController.emailNotificacaoRemedio(usuario, remedios, instanteAgora);
+        envioEmail.emailNotificacaoRemedio(usuario, remedios, instanteAgora);
     }
 
     //Verifica se o agendamento em questão possui intervalo de dias na tabela intervalo_dias
