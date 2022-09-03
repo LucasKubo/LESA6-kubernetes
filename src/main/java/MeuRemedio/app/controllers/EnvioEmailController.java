@@ -31,6 +31,7 @@ public class EnvioEmailController {
        emailService.sendEmail(email, assunto, mensagem );
     }
 
+
     public void emailConfirmCadastro (Usuario usuario){
         String link = "https://meuremedioapp.herokuapp.com/login";
         String msgBoasVindas = "Olá, " + usuario.getNome() + " " + usuario.getSobrenome();
@@ -39,6 +40,8 @@ public class EnvioEmailController {
 
         emailService.sendEmail(usuario, assunto, mensagem );
     }
+
+
 
     public void emailCadastroRemedio(Usuario usuario, Remedio remedios){
         String assunto = MensagemEmail.REMEDIO_CADASTRADO.getDescricao();

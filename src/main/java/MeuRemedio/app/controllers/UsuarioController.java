@@ -34,12 +34,12 @@ public class UsuarioController {
     @Autowired
     UsuarioService usuarioService;
 
-    final String REDIRECT="redirect:/home";
+    final String REDIRECT = "redirect:/home";
 
     @RequestMapping(value = "/cadastro")
     public String telaCadasUsuario() {
 
-        if (!validateAuthentication.auth()){
+        if (!validateAuthentication.auth()) {
             return "cadastros/CadastroUsuario";
         }
         return REDIRECT;
@@ -62,7 +62,7 @@ public class UsuarioController {
                 new BCryptPasswordEncoder().encode(senha), dataNascimento, sexo);
 
         usuarioRepository.save(usuario);
-       // emailCadastro.emailConfirmCadastro(usuarioCadastro);
+        // emailCadastro.emailConfirmCadastro(usuarioCadastro);
         usuarioService.cadastrar(usuario, request);
 
         //emailCadastro.emailConfirmCadastro(usuario);
@@ -79,17 +79,18 @@ public class UsuarioController {
     }
 
     @RequestMapping(value = "/atualizar_usuario", method = RequestMethod.GET)
-    public String viewAtualizarUsuario(Model model){
+    public String viewAtualizarUsuario(Model model) {
         String EmailUsuarioLogado = userSessionService.returnUsernameUsuario();
         Usuario usuarioLogado = usuarioRepository.findByEmail(EmailUsuarioLogado);
-        model.addAttribute("usuario",usuarioLogado);
+        model.addAttribute("usuario", usuarioLogado);
 
         return "atualizacoes/AtualizarUsuario";
     }
 
     @RequestMapping(value = "/atualizar_usuario", method = RequestMethod.POST)
     public String atualizarUsuario(@RequestParam("US_Nome") String nome, @RequestParam("US_Sobrenome") String sobrenome,
-                                   @RequestParam("US_Senha") String senha, @RequestParam(value = "US_NovaSenha", required = false) String novaSenha,   @RequestParam("US_Sexo") String sexo){
+                                   @RequestParam("US_Senha") String senha, @RequestParam(value = "US_NovaSenha", required = false) String novaSenha,
+                                   @RequestParam("US_Sexo") String sexo) {
 
         String EmailUsuarioLogado = userSessionService.returnUsernameUsuario();
         Usuario usuarioLogado = usuarioRepository.findByEmail(EmailUsuarioLogado);
@@ -97,15 +98,16 @@ public class UsuarioController {
 
         boolean validarSenha = false;
 
-        if (BCrypt.checkpw(senha, passUserLogged)){
+        if (BCrypt.checkpw(senha, passUserLogged)) {
             validarSenha = true;
 
-            if (validarSenha && (novaSenha.isEmpty() || novaSenha == null)){
+            if (validarSenha && (novaSenha.isEmpty() || novaSenha == null)) {
                 usuarioLogado.setNome(nome);
                 usuarioLogado.setSobrenome(sobrenome);
                 usuarioLogado.setSexo(sexo);
 
                 usuarioRepository.save(usuarioLogado);
+
                 return REDIRECT;
             }
             if (!(novaSenha == null || novaSenha.isEmpty()) && (validarSenha)) {
@@ -115,6 +117,7 @@ public class UsuarioController {
                 usuarioLogado.setSexo(sexo);
 
                 usuarioRepository.save(usuarioLogado);
+                
                 return REDIRECT;
             }
         }
