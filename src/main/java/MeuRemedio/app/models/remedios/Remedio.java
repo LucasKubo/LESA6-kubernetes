@@ -17,7 +17,7 @@ import java.util.*;
 @Setter
 @Entity
 @Table(name = "REMEDIO")
-public class Remedio implements Serializable {
+public class Remedio implements Comparable<Remedio>, Serializable  {
     private static final long serialVersionUID = 1L;
 
     @Id
@@ -96,5 +96,14 @@ public class Remedio implements Serializable {
     @Override
     public String toString() {
         return RM_Nome + " - " + RM_Dosagem + " " + RM_UnidadeDosagem;
+    }
+
+    @Override
+    public int compareTo(Remedio seguinte) {
+        if (this.RM_Nome.compareTo(seguinte.RM_Nome) > 0)
+            return 1;
+        if (this.RM_Nome.compareTo(seguinte.RM_Nome) < 0)
+            return -1;
+        return 0;
     }
 }
