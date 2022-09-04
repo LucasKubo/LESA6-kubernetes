@@ -62,19 +62,18 @@ public class UsuarioController {
                 new BCryptPasswordEncoder().encode(senha), dataNascimento, sexo);
 
         usuarioRepository.save(usuario);
-        // emailCadastro.emailConfirmCadastro(usuarioCadastro);
         usuarioService.cadastrar(usuario, request);
 
-        //emailCadastro.emailConfirmCadastro(usuario);
-        return "redirect:/login";
+        return "validacoes/AvisoVerificacaoEmail";
     }
 
     @RequestMapping(value = "/verificar_cadastro", method = RequestMethod.GET)
     public String verifyUser(@Param("code") String code) {
         if (usuarioService.verificarCodigoDeCadastro(code)) {
-            return "SucessoVerificacaoEmail";
+            return "validacoes/SucessoVerificacaoEmail";
+            //TODO enviar confirmação de cadastro por email
         } else {
-            return "FalhaVerificacaoEmail";
+            return "validacoes/FalhaVerificacaoEmail";
         }
     }
 
@@ -123,4 +122,10 @@ public class UsuarioController {
         }
         return "TemplateError";
     }
+
+//    //Endpoint criado para desenvolver front
+//    @RequestMapping(value = "/avisoValidacaoEmail", method = RequestMethod.GET)
+//    public String verificarEmail() {
+//        return "validacoes/AvisoVerificacaoEmail";
+//    }
 }
