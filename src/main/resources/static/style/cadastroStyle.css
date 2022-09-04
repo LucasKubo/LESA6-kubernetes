@@ -130,3 +130,7 @@ header{
     border:none;
     border-radius: 8px;
 }
+
+.alerta-emailExistente{
+    margin: 1rem 0 0.5rem 0;
+}
