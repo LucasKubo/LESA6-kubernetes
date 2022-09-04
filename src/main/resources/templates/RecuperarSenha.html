@@ -54,14 +54,35 @@
                     </a>
                     <form class="justify-content-center" method="post">
 
-                        <input class="formulario-input" type="text" name="US_Codigo" id="US_Codigo" placeholder="Informe o código">
+                        <input class="formulario-input" type="text" name="US_Codigo" id="US_Codigo" placeholder="Informe o código" required>
 
-                        <input class="formulario-input" type="text" name="US_Senha" id="US_Senha" placeholder="Senha">
-                        <input class="formulario-input" type="text" name="US_ConfirmSenha" id="US_ConfirmSenha" placeholder="Confirmar Senha">
+                        <input class="formulario-input" type="password" name="US_Senha" id="US_Senha" placeholder="Senha" minlength="8" required>
+                        <input class="formulario-input" type="password" name="US_ConfirmSenha" id="US_ConfirmSenha" placeholder="Confirmar Senha" minlength="8" required>
                         <button class="formulario-button">Enviar</button>
                     </form>
                 </div>
             </div>
         </section>
-                    </body>
-                    </html>
+
+
+        <script>
+            var password = document.getElementById("US_Senha")
+                , confirm_password = document.getElementById("US_ConfirmSenha");
+
+            function validatePassword(){
+                if(password.value != confirm_password.value) {
+                    confirm_password.setCustomValidity("Senhas diferentes!");
+                } else {
+                    confirm_password.setCustomValidity('');
+                }
+            }
+
+            password.onchange = validatePassword;
+            confirm_password.onkeyup = validatePassword;
+        </script>
+
+
+    </body>
+</html>
+
+
