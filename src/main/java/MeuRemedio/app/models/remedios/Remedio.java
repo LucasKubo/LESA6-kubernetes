@@ -49,7 +49,7 @@ public class Remedio implements Comparable<Remedio>, Serializable  {
                 inverseJoinColumns = {@JoinColumn(name="categoria_ct_id")})
     private List<Categoria> categoria = new ArrayList <Categoria> () ;
 
-    @ManyToMany()
+    @ManyToMany
     @JoinTable(name="AgendamentoRemedio",
             joinColumns= {@JoinColumn(name="remedio_rm_id")},
             inverseJoinColumns = {@JoinColumn(name="agendamento_ag_id")})
@@ -61,7 +61,7 @@ public class Remedio implements Comparable<Remedio>, Serializable  {
 
     private LocalDate Criado_em = LocalDate.now();
 
-    public Remedio(String RM_Nome, String RM_Dosagem, String RM_UnidadeDosagem, Boolean RM_RetiradoSus,
+    public Remedio (String RM_Nome, String RM_Dosagem, String RM_UnidadeDosagem, Boolean RM_RetiradoSus,
                     Usuario usuario) {
         this.RM_Nome = RM_Nome;
         this.RM_Dosagem = RM_Dosagem;

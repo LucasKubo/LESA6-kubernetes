@@ -12,6 +12,5 @@ public class MeuRemedioApplication {
         SpringApplication.run(MeuRemedioApplication.class, args);
 
     }
-
 }
     
