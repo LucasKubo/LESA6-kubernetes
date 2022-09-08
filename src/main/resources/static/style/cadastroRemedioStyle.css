@@ -208,6 +208,10 @@ td.expense{
 }
 
 /* Form ==========================*/
+.card{
+    border: none;
+    word-wrap: normal;
+}
 #form{
     padding: 6%;
     background: #FFFFFF;
@@ -258,19 +262,19 @@ td.expense{
     justify-content: space-around;
     flex-direction: row;
     flex-wrap: nowrap;
-    text-align: left!important;
+    //text-align: left!important;
 
 }
 #form form input.radio-yes{
-    width: 10%;
-    margin-left: -.37rem;
+    width: 70%;
+    //margin-left: -.37rem;
 
 
 }
 #form form input.radio-no{
-    width: 10%;
+    width: 70%;
 
-    margin-left: -.37rem;
+    //margin-left: -.37rem;
 
 
 }
@@ -284,7 +288,16 @@ td.expense{
 .input-group.actions button{
     width: 48%;
 }
+.label-text{
+    width: 15%;
+    text-align: left;
+}
 
+.form-check-input{
+    position: inherit;
+    margin: 0 15px 0 0;
+    width: 10%;
+}
 /* ===================================== */
 /* Aqui é o código que vem do css home.css */
 /* Marcus que fez, é o css da barra de menu */
