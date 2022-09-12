@@ -4600,7 +4600,7 @@ Docs & License: https://fullcalendar.io/
         },
         weekLabel: 'W',
         allDayText: 'all-day',
-        eventLimitText: 'more',
+        eventLimitText: 'agendamento(s)',
         noEventsMessage: 'No events to display'
     };
     function parseRawLocales(explicitRawLocales) {
