@@ -15,7 +15,7 @@ import java.util.List;
 @Getter
 @Setter
 @Entity
-public class Gasto implements Serializable {
+public class Financeiro implements Serializable {
     private static long serialVersionUID = 1L;
     @Id
     @Column(name = "GA_ID", nullable = false)
@@ -36,7 +36,7 @@ public class Gasto implements Serializable {
     @NotNull
     private List<Remedio> remedio;
 
-    public Gasto (Remedio remedio, Date data, double valor, long qtdParcela) {
+    public Financeiro(Date data, double valor, long qtdParcela) {
         this.data = data; // Data da compra do remedio. Para o gráfico usar esse campo
         this.valor = valor;
         this.qtdParcela = qtdParcela;
@@ -46,12 +46,11 @@ public class Gasto implements Serializable {
 //
 //    }
 
-    public Gasto (List<Remedio> remedios, Date data, double valor, long qtdParcela) {
+    public Financeiro(List<Remedio> remedios, Date data, double valor, long qtdParcela) {
         this.remedio = remedios;
         this.data = data;
         this.valor = valor;
         this.qtdParcela = qtdParcela;
         this.Criado_em = LocalDate.now();
-
     }
 }
