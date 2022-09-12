@@ -6,4 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface FinanceiroRepository extends CrudRepository<Financeiro, Long> {
+    Financeiro findById(long id);
 }

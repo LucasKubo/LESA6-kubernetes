@@ -15,7 +15,7 @@ import java.io.UnsupportedEncodingException;
 import java.time.LocalDateTime;
 import java.util.List;
 
-
+@Controller
 public class EnvioEmail {
     @Autowired
     EmailService emailService;

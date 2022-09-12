@@ -36,7 +36,7 @@ public class Financeiro implements Serializable {
     @NotNull
     private List<Remedio> remedio;
 
-    public Financeiro(Date data, double valor, long qtdParcela) {
+    public Financeiro (Date data, double valor, long qtdParcela) {
         this.data = data; // Data da compra do remedio. Para o gráfico usar esse campo
         this.valor = valor;
         this.qtdParcela = qtdParcela;

@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 import java.util.ServiceConfigurationError;
 
 @Controller
@@ -23,11 +24,6 @@ public class FinanceiroController {
     @Autowired
     FinanceiroRepository controleFinanceiro;
 
-    @Autowired
-    Usuario usuario;
-
-    @Autowired
-    Financeiro financeiro;
 
     @GetMapping(value = "/remedios/controle_de_gastos")
     public String telaDeGastos(Model model){
@@ -35,8 +31,8 @@ public class FinanceiroController {
     }
 
     @GetMapping(value = "/remedios/controle_de_gastos/cadastrar")
-    public String telaDeGastosCadastro(Model model){
-        return "TelaDeGastos.html";
+    public String telaDeGastosCadastro(){
+        return "TelaDeCadastrarGastos.html";
     }
 
 
@@ -67,16 +63,15 @@ public class FinanceiroController {
     public String atualizar(@PathVariable("id") long id, @RequestParam("GA_Valor") double valor, @RequestParam("GA_Data") Date data,
                             @RequestParam("GA_QtdParcelas") long qtdParcela, @RequestParam("FK_RM_ID") List<Remedio> remedio){
         try {
-            if (verificarPorId(id)) {
-                financeiro.setData(data);
-                financeiro.setValor(valor);
-                financeiro.setQtdParcela(qtdParcela);
-                financeiro.setRemedio(remedio);
+             Financeiro financeiro = controleFinanceiro.findById(id);
+              if (Objects.nonNull(financeiro))
+                 financeiro.setData(data);
+                 financeiro.setValor(valor);
+                 financeiro.setQtdParcela(qtdParcela);
+                 financeiro.setRemedio(remedio);
+                 controleFinanceiro.save(financeiro);
 
-                controleFinanceiro.save(financeiro);
-            }
-            return "redirect:/controle_de_gastos";
-
+                 return "redirect:/controle_de_gastos";
         }catch (NullPointerException e){
             return "TelaDeAtualizar.html" + e;
         }
