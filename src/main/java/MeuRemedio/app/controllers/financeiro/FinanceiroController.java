@@ -25,14 +25,15 @@ public class FinanceiroController {
     FinanceiroRepository controleFinanceiro;
 
 
+
     @GetMapping(value = "/remedios/controle_de_gastos")
     public String telaDeGastos(Model model){
-        return "TelaDeGastos.html";
+        return "cadastros/CadastroGasto";
     }
 
     @GetMapping(value = "/remedios/controle_de_gastos/cadastrar")
     public String telaDeGastosCadastro(){
-        return "TelaDeCadastrarGastos.html";
+        return "cadastros/CadastroGasto";
     }
 
 
