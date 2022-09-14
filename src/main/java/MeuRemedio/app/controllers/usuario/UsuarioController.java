@@ -1,5 +1,6 @@
-package MeuRemedio.app.controllers;
+package MeuRemedio.app.controllers.usuario;
 
+import MeuRemedio.app.controllers.EnvioEmail;
 import MeuRemedio.app.models.usuarios.Usuario;
 import MeuRemedio.app.repository.UsuarioRepository;
 import MeuRemedio.app.service.UserSessionService;
@@ -20,7 +21,7 @@ import java.io.UnsupportedEncodingException;
 @Controller
 public class UsuarioController {
     @Autowired
-    EnvioEmailController emailCadastro;
+    EnvioEmail emailCadastro;
 
     @Autowired
     private UsuarioRepository usuarioRepository;
@@ -52,11 +53,6 @@ public class UsuarioController {
 
         String emailLowerCase = email.toLowerCase();
 
-        boolean usuarioExistente = usuarioService.verificaExistencia(email);
-
-        if (usuarioExistente) {
-            return "redirect:/cadastro?emailExistente";
-        }
 
         Usuario usuario = new Usuario(nome, sobrenome, emailLowerCase,
                 new BCryptPasswordEncoder().encode(senha), dataNascimento, sexo);
@@ -122,10 +118,4 @@ public class UsuarioController {
         }
         return "TemplateError";
     }
-
-//    //Endpoint criado para desenvolver front
-//    @RequestMapping(value = "/avisoValidacaoEmail", method = RequestMethod.GET)
-//    public String verificarEmail() {
-//        return "validacoes/AvisoVerificacaoEmail";
-//    }
 }
