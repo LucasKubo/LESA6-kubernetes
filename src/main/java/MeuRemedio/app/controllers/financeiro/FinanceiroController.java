@@ -59,7 +59,7 @@ public class FinanceiroController {
             return "redirect:/controle_de_gastos";
 
         }catch (ServiceConfigurationError serviceConfigurationError) {
-            return "TelaParaCadastraDeNovo";
+            return "redirect:/controle_de_gastos/cadastrar";
         }
     }
 
@@ -77,15 +77,15 @@ public class FinanceiroController {
     public String atualizar(@PathVariable("id") long id, @RequestParam("GA_Valor") double valor, @RequestParam("GA_Data") String data,
                             @RequestParam("GA_Parcela") long qtdParcela, @RequestParam("FK_RM_ID") List<Remedio> remedio){
         try {
-             Financeiro financeiro = controleFinanceiro.findById(id);
-              if (Objects.nonNull(financeiro))
-                 financeiro.setData(data);
-                 financeiro.setValor(valor);
-                 financeiro.setQtdParcela(qtdParcela);
-                 financeiro.setRemedio(remedio);
-                 controleFinanceiro.save(financeiro);
+            Financeiro financeiro = controleFinanceiro.findById(id);
+            if (Objects.nonNull(financeiro))
+                financeiro.setData(data);
+            financeiro.setValor(valor);
+            financeiro.setQtdParcela(qtdParcela);
+            financeiro.setRemedio(remedio);
+            controleFinanceiro.save(financeiro);
 
-                 return "redirect:/controle_de_gastos";
+            return "redirect:/controle_de_gastos";
         }catch (NullPointerException e){
             return "TelaDeAtualizar.html" + e;
         }

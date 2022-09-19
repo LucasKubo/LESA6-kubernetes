@@ -7,6 +7,7 @@ import MeuRemedio.app.service.EmailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
+import org.springframework.stereotype.Controller;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
@@ -14,7 +15,7 @@ import java.io.UnsupportedEncodingException;
 import java.time.LocalDateTime;
 import java.util.List;
 
-
+@Controller
 public class EnvioEmail {
     @Autowired
     EmailService emailService;

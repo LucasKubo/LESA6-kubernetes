@@ -2,6 +2,7 @@ package MeuRemedio.app.models.usuarios;
 
 import MeuRemedio.app.models.remedios.Remedio;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
@@ -15,6 +16,7 @@ import java.util.List;
 @Getter
 @Setter
 @Entity
+@NoArgsConstructor
 public class Financeiro implements Serializable {
     private static long serialVersionUID = 1L;
 
@@ -34,9 +36,9 @@ public class Financeiro implements Serializable {
     private LocalDate Criado_em;
 
     @OneToMany
-    @JoinColumn(name = "FK_RM_id")
+    @JoinColumn(name = "RM_ID")
     @NotNull
-    private List<Remedio> remedio;
+    private List <Remedio> remedio;
 
     public Financeiro (String data, double valor, long qtdParcela) {
         this.data = data; // Data da compra do remedio. Para o gráfico usar esse campo
