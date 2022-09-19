@@ -248,11 +248,14 @@ td.expense{
     border: 3px solid var(--dark-gray);
     border-radius: 15px;
 }
+.form-control {
+    border-radius: .75rem;
+}
 .input-group small{
     opacity: 0.4;
 }
 .sus-medicine{
-    margin-top:  -.5rem;
+    margin-top:  1rem;
 }
 .input-group-radio{
     margin-top: 1rem;
@@ -273,7 +276,6 @@ td.expense{
 }
 #form form input.radio-no{
     width: 70%;
-
     //margin-left: -.37rem;
 
 
@@ -294,9 +296,18 @@ td.expense{
 }
 
 .form-check-input{
-    position: inherit;
+    position: relative;
     margin: 0 15px 0 0;
     width: 10%;
+}
+.agendamento{
+    margin-top: 1rem; 
+}
+.form-check-input h5.text-nowrap{
+    margin-left: -85px;
+}
+.button .save {
+    cursor: pointer;
 }
 /* ===================================== */
 /* Aqui é o código que vem do css home.css */
