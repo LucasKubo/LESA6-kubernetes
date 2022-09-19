@@ -1,5 +1,6 @@
 package MeuRemedio.app.models.usuarios;
 
+import MeuRemedio.app.models.remedios.Remedio;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -9,6 +10,7 @@ import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Date;
+import java.util.List;
 
 @Getter
 @Setter
@@ -25,9 +27,11 @@ public class Gasto implements Serializable {
     private double valor;
     @NotNull @NotBlank
     private long qtdParcela;
-
     @NotBlank
     private LocalDate Criado_em;
+
+    @OneToMany
+    private List<Remedio> remedio;
 
     public Gasto (Date data, double valor, long qtdParcela) {
         this.data = data;
@@ -35,6 +39,14 @@ public class Gasto implements Serializable {
         this.qtdParcela = qtdParcela;
         this.Criado_em = LocalDate.now();
     }
+
+    public Gasto (Date data, double valor, long qtdParcela, Remedio remedio) {
+        this.data = data;
+        this.valor = valor;
+        this.qtdParcela = qtdParcela;
+        this.Criado_em = LocalDate.now();
+    }
+
     public Gasto (){
 
     }
