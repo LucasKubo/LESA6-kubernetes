@@ -52,7 +52,11 @@ public class UsuarioController {
                                    @RequestParam("US_DataNascimento") String dataNascimento, @RequestParam("US_Sexo") String sexo, HttpServletRequest request) throws MessagingException, UnsupportedEncodingException {
 
         String emailLowerCase = email.toLowerCase();
+        boolean usuarioExistente = usuarioService.verificaExistencia(email);
 
+        if (usuarioExistente) {
+            return "redirect:/cadastro?emailExistente";
+        }
 
         Usuario usuario = new Usuario(nome, sobrenome, emailLowerCase,
                 new BCryptPasswordEncoder().encode(senha), dataNascimento, sexo);
