@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="pt-br" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="utf-8">
@@ -244,15 +244,6 @@
                                 </div>
                             </div>
 
-                            <h4 id="adcRemedioTitulo">Adicione o remédio ao agendamento</h4>
-                            <label class="sr-only">Escolha o remédio</label>
-                            <span class="multiselect-native-select">
-                                <select id="AG_Remedios" class="form-control" name="AG_Remedios" multiple="" tabindex="-1">
-                                     <option th:each  ="remedio : ${remedio}"
-                                             th:value =" ${remedio.RM_ID}"
-                                             th:text  =" ${remedio.RM_Nome}"
-                                     >     </option>
-                                </select>
                                 <div class="btn-group">
                                    <!-- <button type="button" class="multiselect dropdown-toggle custom-select text-center" data-toggle="dropdown" title="None selected" aria-expanded="false">
                                         <span class="multiselect-selected-text">Selecione o Remédio</span>
@@ -267,11 +258,11 @@
 
 
                         </div>
-                    <!-- botões principais -->
-                    <div class="input-group actions">
-                        <a id="cancelar" href="/remedios" class="button cancel">Voltar</a>
-                        <button name="action" id="confirmar" class="button save" type="submit">Salvar</button>
-                    </div>
+                        <!-- botões principais -->
+                        <div class="input-group actions">
+                            <a id="cancelar" href="/remedios" class="button cancel">Voltar</a>
+                            <button name="action" id="confirmar" class="button save" type="submit">Salvar</button>
+                        </div>
                     </form>
                 </div>
             </div>

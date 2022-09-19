@@ -1,6 +1,8 @@
-package MeuRemedio.app.controllers;
+package MeuRemedio.app.controllers.remedio;
 
 
+import MeuRemedio.app.controllers.EnvioEmail;
+import MeuRemedio.app.controllers.agendamento.AgendamentoController;
 import MeuRemedio.app.models.remedios.Remedio;
 import MeuRemedio.app.models.usuarios.Usuario;
 import MeuRemedio.app.repository.RemedioRepository;
@@ -29,7 +31,7 @@ public class RemedioController {
 
 
     @Autowired
-    EnvioEmailController emailController;
+    EnvioEmail emailController;
 
     @Autowired
     UsuarioRepository usuarioRepository;
@@ -63,7 +65,6 @@ public class RemedioController {
     public String CadastroRemedio(@RequestParam("RM_Nome") String RM_Nome, @RequestParam("RM_Dosagem") String RM_Dosagem,
                                   @RequestParam("RM_UnidadeDosagem") String RM_UnidadeDosagem, @RequestParam("RM_RetiradoSus") String RM_RetiradoSus,
                                   @RequestParam(value = "exampleCheck1", required = false) Boolean check,
-                                  @RequestParam(value = "AG_Remedios", required = false) List<Remedio> remedios,
                                   @RequestParam(value = "AG_DataInicio", required = false)  String AG_DataInicio,
                                   @RequestParam(value = "AG_HoraInicio", required = false) String AG_horaInicio,
                                   @RequestParam(value = "AG_DataFinal", required = false)  String AG_DataFinal ,
@@ -82,12 +83,10 @@ public class RemedioController {
         auxRetiradoSUS = RM_RetiradoSus.equals("Sim");
         Remedio remedio = new Remedio(RM_Nome, RM_Dosagem, RM_UnidadeDosagem, auxRetiradoSUS, usuarioID);
 
-        if (Objects.isNull(remedios))  remedios = new ArrayList<>();
-
-        remedios.add(remedioRepository.save(remedio));
+        remedioRepository.save(remedio);
 
         if (Objects.nonNull(check) && check) {
-            cadastrarAgendamento(remedios, AG_DataInicio, AG_horaInicio, AG_DataFinal, AG_Periodicidade, intervaloDias);
+            cadastrarAgendamento(Collections.singletonList(remedio), AG_DataInicio, AG_horaInicio, AG_DataFinal, AG_Periodicidade, intervaloDias);
         }
         Usuario us = usuarioRepository.findByEmail(userSessionService.returnUsernameUsuario());
         emailController.emailCadastroRemedio(us, remedio);
@@ -113,16 +112,13 @@ public class RemedioController {
         }
         Usuario usuarioID = new Usuario();
         usuarioID.setId(userSessionService.returnIdUsuarioLogado());
-
         List <Remedio> remedio = remedioRepository.findAllByUsuario(usuarioID);
-        Collections.sort(remedio);
         model.addAttribute("remedio", remedio);
         return "listas/ListaRemedios";
     }
 
     @RequestMapping(value = "/deletar_remedio/{id}")
     public String deletarRemedio(@PathVariable("id") long id) {
-        //  Remedio remedio = remedioRepository.findById(id);
         remedioRepository.deleteById(id);
 
         return REDIRECT;

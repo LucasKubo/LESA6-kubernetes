@@ -1,6 +1,6 @@
 package MeuRemedio.app.service;
 
-import MeuRemedio.app.controllers.EnvioEmailController;
+import MeuRemedio.app.controllers.EnvioEmail;
 import MeuRemedio.app.models.agendamentos.Agendamento;
 import MeuRemedio.app.models.agendamentos.AgendamentosHorarios;
 import MeuRemedio.app.models.remedios.Remedio;
@@ -37,7 +37,7 @@ public class NotificationService {
     RecorrenciaRepository recorrenciaRepository;
 
     @Autowired
-    EnvioEmailController envioEmailController;
+    EnvioEmail envioEmail;
 
     @Autowired
     AgendamentosHorariosRepository agendamentosHorariosRepository;
@@ -95,7 +95,7 @@ public class NotificationService {
     private void getDadosUsuario(Agendamento agendamento, LocalDateTime instanteAgora){
         List<Remedio> remedios = agendamento.getRemedio();   // Recebe todos os remédios associados ao agendamento
         Usuario usuario = remedios.get(0).getUsuario();    // Recebe dados do usuário associado ao primeiro remédio da lista
-        envioEmailController.emailNotificacaoRemedio(usuario, remedios, instanteAgora);
+        envioEmail.emailNotificacaoRemedio(usuario, remedios, instanteAgora);
     }
 
     //Converte a data inicío para LocalDate no formato adequado

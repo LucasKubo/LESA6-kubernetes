@@ -1,15 +1,13 @@
-package MeuRemedio.app.controllers;
+package MeuRemedio.app.controllers.senhas;
 
-import MeuRemedio.app.controllers.EnvioEmailController;
+import MeuRemedio.app.controllers.EnvioEmail;
 import MeuRemedio.app.models.usuarios.Usuario;
 import MeuRemedio.app.models.usuarios.Usuario_code;
 import MeuRemedio.app.repository.UserCodeRepository;
 import MeuRemedio.app.repository.UsuarioRepository;
-import MeuRemedio.app.service.utils.ValidateAuthentication;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
-import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -20,7 +18,7 @@ import java.util.Random;
 @Controller
 public class RecuperacaoSenha {
     @Autowired
-    EnvioEmailController envioEmailController;
+    EnvioEmail envioEmail;
     @Autowired
     private UsuarioRepository usuarioRepository;
     @Autowired
@@ -47,7 +45,7 @@ public class RecuperacaoSenha {
            usuarioCode.save(user);
 
            Usuario_code userEmail = usuarioCode.findByEmail(email);
-           envioEmailController.emailRecuperarSenha(userEmail.getEmail(), userEmail.getCodigo());
+           envioEmail.emailRecuperarSenha(userEmail.getEmail(), userEmail.getCodigo());
 
            return "redirect:/login";
 
