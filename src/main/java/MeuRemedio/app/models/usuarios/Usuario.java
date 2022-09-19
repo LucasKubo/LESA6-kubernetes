@@ -57,16 +57,13 @@ public class Usuario implements UserDetails {
 
     private boolean enabled;
 
-    @OneToMany
-    @JoinColumn(name = "USUARIO_FK_US_ID")
-    private List <Financeiro> financeiro;
 
     @OneToMany
     private List <Remedio> remedio;
 
 
     public Usuario (String nome, String sobrenome, String email, String senha, String dataNascimento,
-                   String sexo,/* List<Remedio> remedios,*/ List<Financeiro> financeiro) {
+                   String sexo/* List<Remedio> remedios, List<Financeiro> financeiro */) {
 
         this.nome = nome;
         this.sobrenome = sobrenome;
@@ -76,24 +73,24 @@ public class Usuario implements UserDetails {
         this.sexo = sexo;
         this.criadoEm = LocalDate.now();
        // this.remedios = remedios;
-        this.financeiro = financeiro;
+
     }
 
 
     /*Esse contrutor está sendo usado para não quebrar o progrma, NÂO APAGAR o método*/
 
-    public Usuario (String nome, String sobrenome, String email,
-                    String senha, String dataNascimento, String sexo /*List<Remedio> remedios*/) {
-
-        this.nome = nome;
-        this.sobrenome = sobrenome;
-        this.email = email;
-        this.senha = senha;
-        this.dataNascimento = dataNascimento;
-        this.sexo = sexo;
-        this.criadoEm = LocalDate.now();
-
-    }
+//    public Usuario (String nome, String sobrenome, String email,
+//                    String senha, String dataNascimento, String sexo /*List<Remedio> remedios*/) {
+//
+//        this.nome = nome;
+//        this.sobrenome = sobrenome;
+//        this.email = email;
+//        this.senha = senha;
+//        this.dataNascimento = dataNascimento;
+//        this.sexo = sexo;
+//        this.criadoEm = LocalDate.now();
+//
+//    }
 
 
 

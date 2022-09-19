@@ -34,8 +34,8 @@ public class Financeiro implements Serializable {
 
     @NotNull
     private LocalDate Criado_em;
-
-    @OneToMany @NotNull
+    @NotNull @OneToMany
+    @JoinColumn(name = "RM_ID")
     private List <Remedio> remedio;
 
     public Financeiro (String data, double valor, long qtdParcela) {

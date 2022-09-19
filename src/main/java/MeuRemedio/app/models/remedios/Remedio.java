@@ -1,6 +1,7 @@
 package MeuRemedio.app.models.remedios;
 
 import MeuRemedio.app.models.agendamentos.Agendamento;
+import MeuRemedio.app.models.usuarios.Financeiro;
 import MeuRemedio.app.models.usuarios.Usuario;
 import lombok.Getter;
 import lombok.Setter;
@@ -54,9 +55,11 @@ public class Remedio implements Comparable<Remedio>, Serializable  {
             inverseJoinColumns = {@JoinColumn(name="agendamento_ag_id")})
     private List <Agendamento> agendamentos = new ArrayList <> ();
 
-   @ManyToOne @NotNull
-    @JoinColumn(name = "Usuario_FK_Usuario")
+   @ManyToOne @NotNull @JoinColumn(name = "Usuario_FK_Usuario")
     private Usuario usuario;
+
+    @ManyToOne
+    private Financeiro financeiro;
 
     private LocalDate Criado_em = LocalDate.now();
 
@@ -81,6 +84,9 @@ public class Remedio implements Comparable<Remedio>, Serializable  {
         this.usuario = usuario;
     }
 
+    public Remedio(){
+
+    }
     
     //Método de teste sem o rádio/boolean
     public Remedio(String RM_Nome, String RM_Dosagem, String RM_UnidadeDosagem, Usuario usuario) {
