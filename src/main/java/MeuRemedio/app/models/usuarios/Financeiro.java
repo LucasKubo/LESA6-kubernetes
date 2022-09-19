@@ -10,6 +10,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -34,9 +35,12 @@ public class Financeiro implements Serializable {
 
     @NotNull
     private LocalDate Criado_em;
-    @NotNull @OneToMany
-    @JoinColumn(name = "RM_ID")
-    private List <Remedio> remedio;
+
+    @NotNull @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "Gasto_remedio",
+            joinColumns = {@JoinColumn(name = "GA_ID")},
+            inverseJoinColumns = {@JoinColumn(name = "RM_ID")})
+    private List <Remedio> remedio = new ArrayList<>();
 
     public Financeiro (String data, double valor, long qtdParcela) {
         this.data = data; // Data da compra do remedio. Para o gráfico usar esse campo

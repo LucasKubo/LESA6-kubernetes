@@ -55,11 +55,12 @@ public class Remedio implements Comparable<Remedio>, Serializable  {
             inverseJoinColumns = {@JoinColumn(name="agendamento_ag_id")})
     private List <Agendamento> agendamentos = new ArrayList <> ();
 
-   @ManyToOne @NotNull @JoinColumn(name = "Usuario_FK_Usuario")
+   @ManyToOne @NotNull
+   @JoinColumn(name = "Usuario_FK_Usuario")
     private Usuario usuario;
 
-    @ManyToOne
-    private Financeiro financeiro;
+//    @NotNull @ManyToMany(mappedBy = "remedio", cascade = CascadeType.ALL)
+//    private List <Financeiro> financeiro = new ArrayList<Financeiro>();
 
     private LocalDate Criado_em = LocalDate.now();
 
@@ -74,15 +75,15 @@ public class Remedio implements Comparable<Remedio>, Serializable  {
         this.usuario = usuario;
     }
 
-    public Remedio(String RM_Nome, String RM_Dosagem, String RM_UnidadeDosagem, Boolean RM_RetiradoSus,
-                   List<Categoria> categoria, Usuario usuario) {
-
-        this.RM_Nome = RM_Nome;
-        this.RM_Dosagem = RM_Dosagem;
-        this.RM_UnidadeDosagem = RM_UnidadeDosagem;
-        this.RM_RetiradoSus = RM_RetiradoSus;
-        this.usuario = usuario;
-    }
+//    public Remedio(String RM_Nome, String RM_Dosagem, String RM_UnidadeDosagem, Boolean RM_RetiradoSus,
+//                   List<Categoria> categoria, Usuario usuario) {
+//
+//        this.RM_Nome = RM_Nome;
+//        this.RM_Dosagem = RM_Dosagem;
+//        this.RM_UnidadeDosagem = RM_UnidadeDosagem;
+//        this.RM_RetiradoSus = RM_RetiradoSus;
+//        this.usuario = usuario;
+//    }
 
     public Remedio(){
 

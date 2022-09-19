@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 import java.util.ServiceConfigurationError;
@@ -49,14 +48,14 @@ public class FinanceiroController {
         return "cadastros/CadastroGasto";
     }
 
-
     @PostMapping(value ="/remedios/controle_de_gastos/cadastrar")
-    public String cadastrarGasto(@RequestParam("GA_Valor") double valor, @RequestParam("GA_Data") String data,
+    public String cadastrarGasto (@RequestParam("GA_Valor") double valor, @RequestParam("GA_Data") String data,
                                  @RequestParam("GA_Parcela") long qtdParcela, @RequestParam(value = "AG_Remedios", required = false) List<Remedio> remedio){
         try {
             Financeiro financeiroMedicamento = new Financeiro(remedio, data, valor, qtdParcela);
             controleFinanceiro.save(financeiroMedicamento);
-            return "redirect:/controle_de_gastos";
+
+            return "redirect:/remedios/controle_de_gastos";
 
         }catch (ServiceConfigurationError serviceConfigurationError) {
             return "redirect:/controle_de_gastos/cadastrar";
@@ -74,7 +73,7 @@ public class FinanceiroController {
     }
 
     @PostMapping(value ="/remedios/controle_de_gastos/atualizar/{id}")
-    public String atualizar(@PathVariable("id") long id, @RequestParam("GA_Valor") double valor, @RequestParam("GA_Data") String data,
+    public String atualizar (@PathVariable("id") long id, @RequestParam("GA_Valor") double valor, @RequestParam("GA_Data") String data,
                             @RequestParam("GA_Parcela") long qtdParcela, @RequestParam("FK_RM_ID") List<Remedio> remedio){
         try {
             Financeiro financeiro = controleFinanceiro.findById(id);
