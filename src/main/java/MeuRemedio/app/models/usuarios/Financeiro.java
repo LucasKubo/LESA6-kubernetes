@@ -35,9 +35,7 @@ public class Financeiro implements Serializable {
     @NotNull
     private LocalDate Criado_em;
 
-    @OneToMany
-    @JoinColumn(name = "RM_ID")
-    @NotNull
+    @OneToMany @NotNull
     private List <Remedio> remedio;
 
     public Financeiro (String data, double valor, long qtdParcela) {
@@ -47,7 +45,7 @@ public class Financeiro implements Serializable {
         this.Criado_em = LocalDate.now(); // Data de cadastro
     }
 
-    public Financeiro(List<Remedio> remedios, String data, double valor, long qtdParcela) {
+    public Financeiro (List<Remedio> remedios, String data, double valor, long qtdParcela) {
         this.remedio = remedios;
         this.data = data;
         this.valor = valor;

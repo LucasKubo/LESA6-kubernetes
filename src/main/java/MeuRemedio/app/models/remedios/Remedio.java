@@ -40,7 +40,6 @@ public class Remedio implements Comparable<Remedio>, Serializable  {
     @NotBlank
     private String RM_UnidadeDosagem;
 
-
     private Boolean RM_RetiradoSus ;
 
     @ManyToMany(cascade = CascadeType.ALL)
@@ -63,6 +62,7 @@ public class Remedio implements Comparable<Remedio>, Serializable  {
 
     public Remedio (String RM_Nome, String RM_Dosagem, String RM_UnidadeDosagem, Boolean RM_RetiradoSus,
                     Usuario usuario) {
+
         this.RM_Nome = RM_Nome;
         this.RM_Dosagem = RM_Dosagem;
         this.RM_UnidadeDosagem = RM_UnidadeDosagem;
@@ -73,6 +73,7 @@ public class Remedio implements Comparable<Remedio>, Serializable  {
 
     public Remedio(String RM_Nome, String RM_Dosagem, String RM_UnidadeDosagem, Boolean RM_RetiradoSus,
                    List<Categoria> categoria, Usuario usuario) {
+
         this.RM_Nome = RM_Nome;
         this.RM_Dosagem = RM_Dosagem;
         this.RM_UnidadeDosagem = RM_UnidadeDosagem;
@@ -80,9 +81,6 @@ public class Remedio implements Comparable<Remedio>, Serializable  {
         this.usuario = usuario;
     }
 
-    public Remedio (){
-
-    }
     
     //Método de teste sem o rádio/boolean
     public Remedio(String RM_Nome, String RM_Dosagem, String RM_UnidadeDosagem, Usuario usuario) {
