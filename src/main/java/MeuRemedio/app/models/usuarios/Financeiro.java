@@ -17,18 +17,20 @@ import java.util.List;
 @Entity
 public class Financeiro implements Serializable {
     private static long serialVersionUID = 1L;
+
     @Id
     @Column(name = "GA_ID", nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotNull @NotBlank
-    private Date data;
-    @NotNull @NotBlank
+    @NotNull
+    private String data;
+    @NotNull
     private double valor;
-    @NotNull @NotBlank
+    @NotNull
     private long qtdParcela;
 
-    @NotBlank
+    @NotNull
     private LocalDate Criado_em;
 
     @OneToMany
@@ -36,17 +38,14 @@ public class Financeiro implements Serializable {
     @NotNull
     private List<Remedio> remedio;
 
-    public Financeiro (Date data, double valor, long qtdParcela) {
+    public Financeiro (String data, double valor, long qtdParcela) {
         this.data = data; // Data da compra do remedio. Para o gráfico usar esse campo
         this.valor = valor;
         this.qtdParcela = qtdParcela;
         this.Criado_em = LocalDate.now(); // Data de cadastro
     }
-//    public Gasto (){
-//
-//    }
 
-    public Financeiro(List<Remedio> remedios, Date data, double valor, long qtdParcela) {
+    public Financeiro(List<Remedio> remedios, String data, double valor, long qtdParcela) {
         this.remedio = remedios;
         this.data = data;
         this.valor = valor;

@@ -42,7 +42,7 @@ public class Usuario implements UserDetails {
 
     @Column(name = "US_DataNascimento", nullable = false)
     @NotNull @NotEmpty @NotBlank
-    private String      dataNascimento;
+    private String dataNascimento;
 
     @Column(name = "US_Sexo", nullable = false)
     @NotNull @NotBlank @NotEmpty
