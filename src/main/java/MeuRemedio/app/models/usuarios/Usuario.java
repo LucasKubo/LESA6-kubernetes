@@ -42,7 +42,7 @@ public class Usuario implements UserDetails {
 
     @Column(name = "US_DataNascimento", nullable = false)
     @NotNull @NotEmpty @NotBlank
-    private String      dataNascimento;
+    private String dataNascimento;
 
     @Column(name = "US_Sexo", nullable = false)
     @NotNull @NotBlank @NotEmpty
@@ -59,14 +59,14 @@ public class Usuario implements UserDetails {
 
     @OneToMany
     @JoinColumn(name = "USUARIO_FK_US_ID")
-    private List <Gasto> gasto;
+    private List <Financeiro> financeiro;
 
     @OneToMany
     private List <Remedio> remedio;
 
 
     public Usuario (String nome, String sobrenome, String email, String senha, String dataNascimento,
-                   String sexo,/* List<Remedio> remedios,*/ List<Gasto> gasto) {
+                   String sexo,/* List<Remedio> remedios,*/ List<Financeiro> financeiro) {
 
         this.nome = nome;
         this.sobrenome = sobrenome;
@@ -76,7 +76,7 @@ public class Usuario implements UserDetails {
         this.sexo = sexo;
         this.criadoEm = LocalDate.now();
        // this.remedios = remedios;
-        this.gasto = gasto;
+        this.financeiro = financeiro;
     }
 
 

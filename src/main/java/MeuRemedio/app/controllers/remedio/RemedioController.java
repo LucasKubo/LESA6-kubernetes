@@ -1,6 +1,8 @@
-package MeuRemedio.app.controllers;
+package MeuRemedio.app.controllers.remedio;
 
 
+import MeuRemedio.app.controllers.EnvioEmail;
+import MeuRemedio.app.controllers.agendamento.AgendamentoController;
 import MeuRemedio.app.models.remedios.Remedio;
 import MeuRemedio.app.models.usuarios.Usuario;
 import MeuRemedio.app.repository.RemedioRepository;
@@ -29,7 +31,7 @@ public class RemedioController {
 
 
     @Autowired
-    EnvioEmailController emailController;
+    EnvioEmail emailController;
 
     @Autowired
     UsuarioRepository usuarioRepository;
@@ -113,16 +115,13 @@ public class RemedioController {
         }
         Usuario usuarioID = new Usuario();
         usuarioID.setId(userSessionService.returnIdUsuarioLogado());
-
         List <Remedio> remedio = remedioRepository.findAllByUsuario(usuarioID);
-        Collections.sort(remedio);
         model.addAttribute("remedio", remedio);
         return "listas/ListaRemedios";
     }
 
     @RequestMapping(value = "/deletar_remedio/{id}")
     public String deletarRemedio(@PathVariable("id") long id) {
-        //  Remedio remedio = remedioRepository.findById(id);
         remedioRepository.deleteById(id);
 
         return REDIRECT;

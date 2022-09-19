@@ -1,6 +1,6 @@
 package MeuRemedio.app.service;
 
-import MeuRemedio.app.controllers.EnvioEmailController;
+import MeuRemedio.app.controllers.EnvioEmail;
 import MeuRemedio.app.models.usuarios.Usuario;
 import MeuRemedio.app.repository.UsuarioRepository;
 import net.bytebuddy.utility.RandomString;
@@ -17,7 +17,7 @@ public class UsuarioService {
     private UsuarioRepository usuarioRepository;
 
     @Autowired
-    EnvioEmailController emailCadastro;
+    EnvioEmail emailCadastro;
 
     public boolean verificaExistencia(String email) {
         if(usuarioRepository.findByEmail(email) != null){

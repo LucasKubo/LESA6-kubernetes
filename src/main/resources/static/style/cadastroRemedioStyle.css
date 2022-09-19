@@ -208,6 +208,10 @@ td.expense{
 }
 
 /* Form ==========================*/
+.card{
+    border: none;
+    word-wrap: normal;
+}
 #form{
     padding: 6%;
     background: #FFFFFF;
@@ -244,11 +248,14 @@ td.expense{
     border: 3px solid var(--dark-gray);
     border-radius: 15px;
 }
+.form-control {
+    border-radius: .75rem;
+}
 .input-group small{
     opacity: 0.4;
 }
 .sus-medicine{
-    margin-top:  -.5rem;
+    margin-top:  1rem;
 }
 .input-group-radio{
     margin-top: 1rem;
@@ -258,19 +265,18 @@ td.expense{
     justify-content: space-around;
     flex-direction: row;
     flex-wrap: nowrap;
-    text-align: left!important;
+    //text-align: left!important;
 
 }
 #form form input.radio-yes{
-    width: 10%;
-    margin-left: -.37rem;
+    width: 70%;
+    //margin-left: -.37rem;
 
 
 }
 #form form input.radio-no{
-    width: 10%;
-
-    margin-left: -.37rem;
+    width: 70%;
+    //margin-left: -.37rem;
 
 
 }
@@ -284,7 +290,25 @@ td.expense{
 .input-group.actions button{
     width: 48%;
 }
+.label-text{
+    width: 15%;
+    text-align: left;
+}
 
+.form-check-input{
+    position: relative;
+    margin: 0 15px 0 0;
+    width: 10%;
+}
+.agendamento{
+    margin-top: 1rem; 
+}
+.form-check-input h5.text-nowrap{
+    margin-left: -85px;
+}
+.button .save {
+    cursor: pointer;
+}
 /* ===================================== */
 /* Aqui é o código que vem do css home.css */
 /* Marcus que fez, é o css da barra de menu */
