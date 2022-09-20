@@ -47,6 +47,37 @@ body {
     color: #38CFB8;
     margin-top: -25px;
 }
+.img-fluid{
+    width: auto;
+    height: auto;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    opacity: 1;
+    position:relative;
+    top: auto;
+    left: auto;
+    right: auto;
+    overflow: hidden;
+
+}
+.col-12{
+    flex: 0 0 100%;
+    max-width: 100%;
+    min-width: 100%;
+    position: relative;
+    width: 100%;
+    padding-right: 0px;
+    padding-left: 0px;
+}
+
+.card-img-top{
+    width: 60%;
+    border-top-left-radius: calc(0.35rem - 1px);
+    border-top-right-radius: calc(0.25rem - 1px);
+    margin-left: 2rem;
+}
+
 
 .banner-home {
     width: 1720px;
