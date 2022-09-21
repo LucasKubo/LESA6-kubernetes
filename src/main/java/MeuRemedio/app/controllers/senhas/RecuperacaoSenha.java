@@ -45,7 +45,7 @@ public class RecuperacaoSenha {
            Usuario_code userEmail = usuarioCode.findByEmail(email);
            envioEmail.emailRecuperarSenha(userEmail.getEmail(), userEmail.getCodigo());
 
-           return "redirect:/login";
+           return "redirect:/login?em_env";
 
        }catch (Exception e){
            return "TemplateError";
@@ -62,9 +62,10 @@ public class RecuperacaoSenha {
 
            usuarioRepository.save(usuario);
            usuarioCode.delete(userCodigo);
-           return "redirect:/login";
+
+           return "redirect:/login?att";
       }
-            return "RecuperarSenha";
+            return "redirect:/recuperar_senha?codigoErro";
     }
 
     public String codigoValidacao (){
