@@ -45,7 +45,6 @@ public class UsuarioService {
             usuarioRepository.save(usuario);
             return true;
         }
-
     }
 
     private String getSiteURL(HttpServletRequest request) {

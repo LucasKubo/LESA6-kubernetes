@@ -124,7 +124,7 @@ public class AgendamentoController {
     }
 
     @RequestMapping(value = "/atualizar_agendamento/{id}", method = RequestMethod.GET)
-    public String atualizarRemedio(@PathVariable("id") long id, Model model) {
+    public String atualizarRemedio (@PathVariable("id") long id, Model model) {
         if (!verificarPorId(id)) {
             return templateError();
 

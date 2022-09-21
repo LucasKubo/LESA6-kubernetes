@@ -91,8 +91,6 @@ public class EnvioEmail {
         content = content.replace("[[URL]]", verifyURL);
 
         helper.setText(content, true);
-
         mailSender.send(message);
-
     }
 }

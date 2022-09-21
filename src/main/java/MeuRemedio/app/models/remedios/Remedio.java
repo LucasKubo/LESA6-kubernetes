@@ -1,6 +1,7 @@
 package MeuRemedio.app.models.remedios;
 
 import MeuRemedio.app.models.agendamentos.Agendamento;
+import MeuRemedio.app.models.usuarios.Financeiro;
 import MeuRemedio.app.models.usuarios.Usuario;
 import lombok.Getter;
 import lombok.Setter;
@@ -40,7 +41,6 @@ public class Remedio implements Comparable<Remedio>, Serializable  {
     @NotBlank
     private String RM_UnidadeDosagem;
 
-
     private Boolean RM_RetiradoSus ;
 
     @ManyToMany(cascade = CascadeType.ALL)
@@ -56,13 +56,17 @@ public class Remedio implements Comparable<Remedio>, Serializable  {
     private List <Agendamento> agendamentos = new ArrayList <> ();
 
    @ManyToOne @NotNull
-    @JoinColumn(name = "Usuario_FK_Usuario")
+   @JoinColumn(name = "Usuario_FK_Usuario")
     private Usuario usuario;
+
+//    @NotNull @ManyToMany(mappedBy = "remedio", cascade = CascadeType.ALL)
+//    private List <Financeiro> financeiro = new ArrayList<Financeiro>();
 
     private LocalDate Criado_em = LocalDate.now();
 
     public Remedio (String RM_Nome, String RM_Dosagem, String RM_UnidadeDosagem, Boolean RM_RetiradoSus,
                     Usuario usuario) {
+
         this.RM_Nome = RM_Nome;
         this.RM_Dosagem = RM_Dosagem;
         this.RM_UnidadeDosagem = RM_UnidadeDosagem;
@@ -71,16 +75,17 @@ public class Remedio implements Comparable<Remedio>, Serializable  {
         this.usuario = usuario;
     }
 
-    public Remedio(String RM_Nome, String RM_Dosagem, String RM_UnidadeDosagem, Boolean RM_RetiradoSus,
-                   List<Categoria> categoria, Usuario usuario) {
-        this.RM_Nome = RM_Nome;
-        this.RM_Dosagem = RM_Dosagem;
-        this.RM_UnidadeDosagem = RM_UnidadeDosagem;
-        this.RM_RetiradoSus = RM_RetiradoSus;
-        this.usuario = usuario;
-    }
+//    public Remedio(String RM_Nome, String RM_Dosagem, String RM_UnidadeDosagem, Boolean RM_RetiradoSus,
+//                   List<Categoria> categoria, Usuario usuario) {
+//
+//        this.RM_Nome = RM_Nome;
+//        this.RM_Dosagem = RM_Dosagem;
+//        this.RM_UnidadeDosagem = RM_UnidadeDosagem;
+//        this.RM_RetiradoSus = RM_RetiradoSus;
+//        this.usuario = usuario;
+//    }
 
-    public Remedio (){
+    public Remedio(){
 
     }
     

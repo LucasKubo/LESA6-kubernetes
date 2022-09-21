@@ -2,7 +2,11 @@ package MeuRemedio.app.service;
 
 import MeuRemedio.app.controllers.EnvioEmail;
 import MeuRemedio.app.models.agendamentos.Agendamento;
+
+import MeuRemedio.app.models.agendamentos.IntervaloDias;
+
 import MeuRemedio.app.models.agendamentos.AgendamentosHorarios;
+
 import MeuRemedio.app.models.remedios.Remedio;
 import MeuRemedio.app.models.usuarios.Usuario;
 import MeuRemedio.app.repository.AgendamentoRepository;
