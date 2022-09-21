@@ -67,9 +67,9 @@ public class FinanceiroController {
         if (verificarPorId(id)) {
             controleFinanceiro.deleteById(id);
 
-            return "redirect:/controle_de_gastos";
+            return "redirect:/remedios/controle_de_gastos";
         }
-        return "DeuErroTentarNovamente.html";
+        return "redirect:/remedios/controle_de_gastos";
     }
 
     @PostMapping(value ="/remedios/controle_de_gastos/atualizar/{id}")
@@ -77,19 +77,19 @@ public class FinanceiroController {
                             @RequestParam("GA_Parcela") long qtdParcela, @RequestParam("FK_RM_ID") List<Remedio> remedio){
         try {
             Financeiro financeiro = controleFinanceiro.findById(id);
+
             if (Objects.nonNull(financeiro))
                 financeiro.setData(data);
-            financeiro.setValor(valor);
-            financeiro.setQtdParcela(qtdParcela);
-            financeiro.setRemedio(remedio);
-            controleFinanceiro.save(financeiro);
+                financeiro.setValor(valor);
+                financeiro.setQtdParcela(qtdParcela);
+                financeiro.setRemedio(remedio);
+                controleFinanceiro.save(financeiro);
+            return "redirect:/remedios/controle_de_gastos";
 
-            return "redirect:/controle_de_gastos";
         }catch (NullPointerException e){
             return "TelaDeAtualizar.html" + e;
         }
     }
-
     public boolean verificarPorId (long id ) {
         return controleFinanceiro.existsById(id);
     }
