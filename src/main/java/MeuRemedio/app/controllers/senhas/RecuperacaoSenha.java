@@ -38,18 +38,22 @@ public class RecuperacaoSenha {
 
     @RequestMapping(value = "/enviarEmail", method = RequestMethod.POST)
     public String receberEmail (@RequestParam("US_Email") String email) {
-       try{
+
+       Usuario verificarEmailUsuarioExistente =  usuarioRepository.findByEmail(email);
+       Usuario_code verificarEmailCod = usuarioCode.findByEmail(email);
+
+       if (Objects.nonNull(verificarEmailUsuarioExistente) && (Objects.isNull(verificarEmailCod))) {
            Usuario_code user = new Usuario_code(email, codigoValidacao());
            usuarioCode.save(user);
 
            Usuario_code userEmail = usuarioCode.findByEmail(email);
            envioEmail.emailRecuperarSenha(userEmail.getEmail(), userEmail.getCodigo());
-
-           return "redirect:/login?em_env";
-
-       }catch (Exception e){
-           return "TemplateError";
+        return "redirect:/login?em_env";
+       } else
+           if (Objects.nonNull(verificarEmailUsuarioExistente) && (Objects.nonNull(verificarEmailCod))) {
+                return "redirect:/enviarEmail?code_env";
        }
+           return "redirect:/enviarEmail?emailFail";
     }
 
     @RequestMapping(value = "/recuperar_senha", method = RequestMethod.POST)
