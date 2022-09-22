@@ -137,6 +137,7 @@
                 </h5>
                 <div class="" th:each ="agendamento : ${agendamento}">
                     <tr>
+                        <td><p><span th:text="${agendamento.id}" class="idAgendamento" hidden="true"></span></td>
                         <td><p><span th:text="${agendamento.remedio}" class="remedios" hidden="true"></span></td>
                         <td><p><span th:text="${agendamento.dataInicio}" class="dataInicio" hidden="true"></span></td>
                         <td><p><span th:text="${agendamento.horaInicio}" class="horaInicio" hidden="true"></span></td>
@@ -196,6 +197,7 @@
             const dataConst = Date.now();
             const hoje = new Date(dataConst);
 
+            var id = document.getElementsByClassName('idAgendamento');
             var remedios = document.getElementsByClassName('remedios');
             var dataInicio = document.getElementsByClassName('dataInicio');
             var dataFinal = document.getElementsByClassName('dataFinal');
@@ -219,7 +221,7 @@
                     // dataInicioIntervalo.setDate(dataInicioIntervalo.getDate() + 1);
                     while (dataInicioIntervalo <= dataFinalAjustada){
                         var ag= {
-                            "groupId": i,
+                            "groupId": id[i].innerHTML,
                             "title": remedios[i].innerHTML,
                             "start": dataInicioIntervalo.toLocaleDateString('en-CA'),
                             "end": dataInicioIntervalo.toLocaleDateString('en-CA')
@@ -230,7 +232,7 @@
                     }
                 } else {
                     var ag= {
-                                "groupId": i,
+                                "groupId": id[i].innerHTML,
                                 "title": remedios[i].innerHTML,
                                 "start": dataInicio[i].innerHTML,
                                 "end": dataFinalAjustada.toLocaleDateString('en-CA')
