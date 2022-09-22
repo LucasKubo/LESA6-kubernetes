@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -17,8 +18,8 @@ public interface AgendamentosHorariosRepository extends CrudRepository<Agendamen
 //    @Query("DELETE FROM AgendamentosHorarios WHERE id.agendamento =:codigo")
 //    void deletarTodosPorId(@Param("codigo") Long codigo);
 
-    void deleteAllByIdAgendamento(Long idAgendamento);
 
+    void deleteAllByIdAgendamento(Long idAgendamento);
 
     @Modifying
     @Query("DELETE FROM AgendamentosHorarios WHERE id.horaDataNotificacao <:agora")
