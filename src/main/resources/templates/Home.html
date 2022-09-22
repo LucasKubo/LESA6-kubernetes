@@ -137,11 +137,16 @@
                 </h5>
                 <div class="" th:each ="agendamento : ${agendamento}">
                     <tr>
+                        <td><p><span th:text="${agendamento.id}" class="idAgendamento" hidden="true"></span></td>
                         <td><p><span th:text="${agendamento.remedio}" class="remedios" hidden="true"></span></td>
                         <td><p><span th:text="${agendamento.dataInicio}" class="dataInicio" hidden="true"></span></td>
                         <td><p><span th:text="${agendamento.horaInicio}" class="horaInicio" hidden="true"></span></td>
                         <td><p><span th:text="${agendamento.dataFinal}" class="dataFinal" hidden="true"></span></td>
                         <td><p><span th:text="${agendamento.periodicidade}" class="periodicidade" hidden="true"></span></td>
+                    
+                            <div class="" th:each = "intervaloDias : ${intervaloDias}">
+                            <td><p><span th:text="${agendamento.id} eq ${intervaloDias.id} ? ${intervaloDias.intervaloDias}:''" class="intervaloDias" hidden="true"> </span> </td>
+                            </div>
                     </tr>
                 </div>
             </div>
@@ -192,9 +197,11 @@
             const dataConst = Date.now();
             const hoje = new Date(dataConst);
 
+            var id = document.getElementsByClassName('idAgendamento');
             var remedios = document.getElementsByClassName('remedios');
             var dataInicio = document.getElementsByClassName('dataInicio');
             var dataFinal = document.getElementsByClassName('dataFinal');
+            var intervalo = document.getElementsByClassName('intervaloDias');
 
 
             var listaAgendamentos = new Array();
@@ -203,43 +210,41 @@
 
                 var dataFinalDate = new Date(dataFinal[i].innerHTML)
                 var dataFinalAjustada = new Date();
+                dataFinalAjustada.setMonth(dataFinalDate.getMonth())
                 dataFinalAjustada.setDate(dataFinalDate.getDate() + 2);
-                var ag= {
-                            "groupId": 999,
+                
+            
+                if (intervalo[i].innerHTML != "" && intervalo[i].innerHTML != 0){
+                    var dataInicioAjustada = new Date(dataInicio[i].innerHTML);
+                    var dataInicioIntervalo = new Date();
+                    dataInicioIntervalo.setDate(dataInicioAjustada.getDate() + 1)
+                    // dataInicioIntervalo.setDate(dataInicioIntervalo.getDate() + 1);
+                    while (dataInicioIntervalo <= dataFinalAjustada){
+                        var ag= {
+                            "groupId": id[i].innerHTML,
                             "title": remedios[i].innerHTML,
-                            "start": dataInicio[i].innerHTML,
-                            "end": dataFinalAjustada.toLocaleDateString('en-CA')
+                            "start": dataInicioIntervalo.toLocaleDateString('en-CA'),
+                            "end": dataInicioIntervalo.toLocaleDateString('en-CA')
                         }
-                listaAgendamentos.push(ag);
-                console.log(dataFinalDate)
+                        console.log(ag)
+                        listaAgendamentos.push(ag);
+                        dataInicioIntervalo.setDate(dataInicioIntervalo.getDate() + parseInt(intervalo[i].innerHTML) + 1); 
+                    }
+                } else {
+                    var ag= {
+                                "groupId": id[i].innerHTML,
+                                "title": remedios[i].innerHTML,
+                                "start": dataInicio[i].innerHTML,
+                                "end": dataFinalAjustada.toLocaleDateString('en-CA')
+                            }
+                    listaAgendamentos.push(ag);
+                    }
             }
-
-            console.log(listaAgendamentos)
             var calendar = new FullCalendar.Calendar(calendarEl, {
                 plugins: [ 'interaction', 'dayGrid' ],
                 defaultDate: hoje,
                 editable: true,
                 eventLimit: true, // allow "more" link when too many events
-                // events: [
-                //     // {
-                //     //     groupId: 999,
-                //     //     title: 'Repeating Event',
-                //     //     start: '2022-09-03',
-                //     //     end: '2022-09-10'
-                //     // },
-                //     {
-                //         groupId: 998,
-                //         title: remedios[0].innerHTML,
-                //         start: dataInicio[0].innerHTML,
-                //         end: dataFinal[0].innerHTML
-                //     },
-                //     {
-                //         groupId: 999,
-                //         title: remedios[1].innerHTML,
-                //         start: dataInicio[1].innerHTML,
-                //         end: dataFinal[1].innerHTML
-                //     }
-                // ]
                events: listaAgendamentos
             });
 

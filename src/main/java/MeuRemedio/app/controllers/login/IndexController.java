@@ -2,12 +2,12 @@ package MeuRemedio.app.controllers.login;
 
 
 import MeuRemedio.app.models.agendamentos.Agendamento;
+import MeuRemedio.app.models.agendamentos.IntervaloDias;
 import MeuRemedio.app.repository.AgendamentoRepository;
+import MeuRemedio.app.repository.IntervaloDiasRepository;
 import MeuRemedio.app.service.UserSessionService;
-import MeuRemedio.app.service.utils.Authentication;
 import MeuRemedio.app.service.utils.ValidateAuthentication;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,6 +20,9 @@ public class IndexController {
     UserSessionService userSessionService;
     @Autowired
     AgendamentoRepository agendamentoRepository;
+
+    @Autowired
+    IntervaloDiasRepository intervaloDiasRepository;
     @Autowired
     ValidateAuthentication validateAuthentication;
     @RequestMapping(value = "/home")
@@ -30,6 +33,10 @@ public class IndexController {
 
         List<Agendamento> agendamentos = agendamentoRepository.findAllByUsuarioID(userSessionService.returnIdUsuarioLogado());
         model.addAttribute("agendamento", agendamentos);
+
+        List<IntervaloDias> intervaloDias = intervaloDiasRepository.findAllByUsuarioID(userSessionService.returnIdUsuarioLogado());
+        model.addAttribute("intervaloDias", intervaloDias);
+
         return "Home";
         }
 

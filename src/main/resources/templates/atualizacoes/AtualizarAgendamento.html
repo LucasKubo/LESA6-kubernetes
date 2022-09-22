@@ -106,7 +106,7 @@
 
                         <div id="intervaloDiasGrup" class="container">
                             <div>
-                                <h4><label><input type="checkbox" onclick="desabilitar('sim')" th:text="#{cadageform.text}" ></label></h4>
+                                <h4><label><input type="checkbox" id="check" onchange="desabilitar('sim')" th:text="#{cadageform.text}" th:checked="${intervaloDias.isPresent()}"></label></h4>
                             </div>
                             <div class="input-group">
                                 <input style="min-width:2px"
@@ -115,7 +115,7 @@
                                        id="intervaloDias"
                                        name="intervaloDias"
                                        th:value="${intervaloDias.isPresent() ? intervaloDias.get().intervaloDias: ''}"
-                                       disabled/>
+                                       readonly>
                             </div>
                         </div>
 
@@ -171,13 +171,15 @@
 </script>
 
 <script type="text/javascript">
+    if (document.getElementById('check').checked){
+        document.getElementById('intervaloDias').readOnly = false;
+    }
     function desabilitar(valor){
-        var status = document.getElementById('intervaloDias').disabled;
-
+       var status = document.getElementById('intervaloDias').readOnly;
         if (valor == 'sim' && status) {
-            document.getElementById('intervaloDias').disabled = false;
+            document.getElementById('intervaloDias').readOnly = false;
         } else {
-            document.getElementById('intervaloDias').disabled = true;
+            document.getElementById('intervaloDias').readOnly = true;
             document.getElementById('intervaloDias').value = null;
         }
     }
