@@ -15,6 +15,7 @@ import MeuRemedio.app.service.utils.ValidateAuthentication;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -124,7 +125,7 @@ public class AgendamentoController {
     }
 
     @RequestMapping(value = "/atualizar_agendamento/{id}", method = RequestMethod.GET)
-    public String atualizarRemedio(@PathVariable("id") long id, Model model) {
+    public String atualizarRemedio (@PathVariable("id") long id, Model model) {
         if (!verificarPorId(id)) {
             return templateError();
 
@@ -146,6 +147,7 @@ public class AgendamentoController {
     }
 
     @RequestMapping(value = "/atualizar_agendamento/{id}", method = RequestMethod.POST)
+    @Transactional
     public  String atualizarDadosAgendamento(@PathVariable("id") long id,
                                             @RequestParam("AG_Remedios") List<Remedio> remedios,
                                             @RequestParam("AG_DataInicio") String AG_DataInicio,
@@ -160,16 +162,18 @@ public class AgendamentoController {
 
         Optional<IntervaloDias> intervaloExiste = intervaloDiasRepository.findById(id);
         if (intervaloExiste.isPresent() && intervaloDias == null){
-            IntervaloDias agendamento = intervaloExiste.get();
+            Agendamento agendamento = new Agendamento();
 
+            //agendamento.setId(intervaloExiste.get().getId());
             agendamento.setRemedio(remedios);
             agendamento.setDataInicio(AG_DataInicio);
             agendamento.setHoraInicio(AG_horaInicio);
             agendamento.setDataFinal(AG_DataFinal);
             agendamento.setPeriodicidade(AG_Periodicidade);
-            agendamento.setIntervaloDias(0);
-
-            intervaloDiasRepository.save(agendamento);
+            agendamento.setUsuarioID(userSessionService.returnIdUsuarioLogado());
+            intervaloDiasRepository.deleteById(id);
+            Agendamento ag = agendamentoRepository.save(agendamento);
+            salvarHorariosAgendamentos(ag);
 
         } else
             if (intervaloExiste.isPresent() && intervaloDias != null){
@@ -183,9 +187,10 @@ public class AgendamentoController {
                 atualizarIntervalo.setPeriodicidade(AG_Periodicidade);
                 atualizarIntervalo.setIntervaloDias(intervaloDias);
 
-                intervaloDiasRepository.save(atualizarIntervalo);
-        } else
-            if (intervaloDias == null){
+                agendamentosHorariosRepository.deleteAllByIdAgendamento(id);
+                IntervaloDias it = intervaloDiasRepository.save(atualizarIntervalo);
+                salvarHorariosAgendamentos(it);
+        } else if (intervaloDias == null){
                 Agendamento agendamento = agendamentoRepository.findById(id);
 
                 agendamento.setRemedio(remedios);
@@ -194,17 +199,20 @@ public class AgendamentoController {
                 agendamento.setDataFinal(AG_DataFinal);
                 agendamento.setPeriodicidade(AG_Periodicidade);
 
-                agendamentoRepository.save(agendamento);
+                agendamentosHorariosRepository.deleteAllByIdAgendamento(id);
+                Agendamento ag = agendamentoRepository.save(agendamento);
+                salvarHorariosAgendamentos(ag);
+
         } else {
             IntervaloDias adicionarIntervalo = new IntervaloDias(AG_DataInicio, AG_horaInicio, AG_DataFinal, AG_Periodicidade,
                     remedios, userSessionService.returnIdUsuarioLogado(), intervaloDias);
 
             adicionarIntervalo.setId(id);
             agendamentoRepository.deleteById(id);
-
-            intervaloDiasRepository.save(adicionarIntervalo);
+            agendamentosHorariosRepository.deleteAllByIdAgendamento(id);
+            IntervaloDias it = intervaloDiasRepository.save(adicionarIntervalo);
+            salvarHorariosAgendamentos(it);
         }
-
             return REDIRECT;
     }
 

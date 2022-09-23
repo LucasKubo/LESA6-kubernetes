@@ -80,6 +80,6 @@ public class Agendamento implements Serializable {
     }
 
     public Agendamento() {
-
+        this.AG_Criado_em = LocalDate.now();
     }
 }

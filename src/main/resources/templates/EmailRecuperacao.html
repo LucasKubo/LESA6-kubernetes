@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-br" xmlns:th="http://www.w3.org/1999/xhtml">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -43,6 +43,13 @@
                 </ul>
             </div>
         </nav>
+
+        <div style="text-align: center" class="alert alert-info" role="alert"
+             th:if="${param.emailFail}"> EMAIL INVÁLIDO, TENTE NOVAMENTE </div>
+
+        <div style="text-align: center" class="alert alert-info" role="alert"
+             th:if="${param.code_env}">VIMOS QUE JÁ HOUVE UMA SOLICITAÇÂO PARA ESSE EMAIL<br>
+        POR FAVOR, VALIDE SUA CAIXA DE ENTRADA OU AGUARDE ALGUNS MINUTOS PARA TENTAR NOVAMENTE</div>
 
         <!-- Container - Form -->
         <section class="container d-flex justify-content-center col-12 col-sm-12 col-md-8 col-lg-5 col-lx-6">

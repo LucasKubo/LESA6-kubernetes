@@ -1,6 +1,5 @@
-package MeuRemedio.app.controllers.senhas;
+package MeuRemedio.app.controllers;
 
-import MeuRemedio.app.controllers.EnvioEmail;
 import MeuRemedio.app.models.usuarios.Usuario;
 import MeuRemedio.app.models.usuarios.Usuario_code;
 import MeuRemedio.app.repository.UserCodeRepository;
@@ -28,10 +27,10 @@ public class RecuperacaoSenha {
     protected String emailUsuario;
     @RequestMapping(value = "/enviarEmail", method = RequestMethod.GET)
     public String receberEmail(){
-        /*Remover a linha 30, somente para teste ela*/
-       // envioEmailController.emailRecuperarSenha("eric.jin300@gmail.com", codigo());
+
         return "EmailRecuperacao";
     }
+
     @RequestMapping(value = "/recuperar_senha", method = RequestMethod.GET)
     public String atualizarSenha(){
         return "RecuperarSenha";
@@ -39,19 +38,22 @@ public class RecuperacaoSenha {
 
     @RequestMapping(value = "/enviarEmail", method = RequestMethod.POST)
     public String receberEmail (@RequestParam("US_Email") String email) {
-       try{
-           emailUsuario = email;
-           Usuario_code user = new Usuario_code(email, codigo());
+
+       Usuario verificarEmailUsuarioExistente =  usuarioRepository.findByEmail(email);
+       Usuario_code verificarEmailCod = usuarioCode.findByEmail(email);
+
+       if (Objects.nonNull(verificarEmailUsuarioExistente) && (Objects.isNull(verificarEmailCod))) {
+           Usuario_code user = new Usuario_code(email, codigoValidacao());
            usuarioCode.save(user);
 
            Usuario_code userEmail = usuarioCode.findByEmail(email);
            envioEmail.emailRecuperarSenha(userEmail.getEmail(), userEmail.getCodigo());
-
-           return "redirect:/login";
-
-       }catch (Exception e){
-           return "TemplateError";
+        return "redirect:/login?em_env";
+       } else
+           if (Objects.nonNull(verificarEmailUsuarioExistente) && (Objects.nonNull(verificarEmailCod))) {
+                return "redirect:/enviarEmail?code_env";
        }
+           return "redirect:/enviarEmail?emailFail";
     }
 
     @RequestMapping(value = "/recuperar_senha", method = RequestMethod.POST)
@@ -61,16 +63,16 @@ public class RecuperacaoSenha {
       if (Objects.nonNull(userCodigo) ){
            Usuario usuario = usuarioRepository.findByEmail(userCodigo.getEmail());
            usuario.setSenha(new BCryptPasswordEncoder().encode(senha));
+
            usuarioRepository.save(usuario);
            usuarioCode.delete(userCodigo);
 
-           return "redirect:/login";
-       }
-            return "RecuperarSenha";
+           return "redirect:/login?att";
+      }
+            return "redirect:/recuperar_senha?codigoErro";
     }
 
-    //Teste
-    public String codigo (){
+    public String codigoValidacao (){
         int[] codigo = new int [8];
         Random random = new Random();
         String codValidacao= "";

@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 import java.util.ServiceConfigurationError;
@@ -49,17 +48,17 @@ public class FinanceiroController {
         return "cadastros/CadastroGasto";
     }
 
-
     @PostMapping(value ="/remedios/controle_de_gastos/cadastrar")
-    public String cadastrarGasto(@RequestParam("GA_Valor") double valor, @RequestParam("GA_Data") String data,
+    public String cadastrarGasto (@RequestParam("GA_Valor") double valor, @RequestParam("GA_Data") String data,
                                  @RequestParam("GA_Parcela") long qtdParcela, @RequestParam(value = "AG_Remedios", required = false) List<Remedio> remedio){
         try {
             Financeiro financeiroMedicamento = new Financeiro(remedio, data, valor, qtdParcela);
             controleFinanceiro.save(financeiroMedicamento);
-            return "redirect:/controle_de_gastos";
+
+            return "redirect:/remedios/controle_de_gastos";
 
         }catch (ServiceConfigurationError serviceConfigurationError) {
-            return "TelaParaCadastraDeNovo";
+            return "redirect:/controle_de_gastos/cadastrar";
         }
     }
 
@@ -68,29 +67,29 @@ public class FinanceiroController {
         if (verificarPorId(id)) {
             controleFinanceiro.deleteById(id);
 
-            return "redirect:/controle_de_gastos";
+            return "redirect:/remedios/controle_de_gastos";
         }
-        return "DeuErroTentarNovamente.html";
+        return "redirect:/remedios/controle_de_gastos";
     }
 
     @PostMapping(value ="/remedios/controle_de_gastos/atualizar/{id}")
-    public String atualizar(@PathVariable("id") long id, @RequestParam("GA_Valor") double valor, @RequestParam("GA_Data") String data,
+    public String atualizar (@PathVariable("id") long id, @RequestParam("GA_Valor") double valor, @RequestParam("GA_Data") String data,
                             @RequestParam("GA_Parcela") long qtdParcela, @RequestParam("FK_RM_ID") List<Remedio> remedio){
         try {
-             Financeiro financeiro = controleFinanceiro.findById(id);
-              if (Objects.nonNull(financeiro))
-                 financeiro.setData(data);
-                 financeiro.setValor(valor);
-                 financeiro.setQtdParcela(qtdParcela);
-                 financeiro.setRemedio(remedio);
-                 controleFinanceiro.save(financeiro);
+            Financeiro financeiro = controleFinanceiro.findById(id);
 
-                 return "redirect:/controle_de_gastos";
+            if (Objects.nonNull(financeiro))
+                financeiro.setData(data);
+                financeiro.setValor(valor);
+                financeiro.setQtdParcela(qtdParcela);
+                financeiro.setRemedio(remedio);
+                controleFinanceiro.save(financeiro);
+            return "redirect:/remedios/controle_de_gastos";
+
         }catch (NullPointerException e){
             return "TelaDeAtualizar.html" + e;
         }
     }
-
     public boolean verificarPorId (long id ) {
         return controleFinanceiro.existsById(id);
     }
