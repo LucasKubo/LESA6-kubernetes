@@ -21,7 +21,7 @@
 
     <body>
         <!-- Menu Simples -->
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light bg-gradient">
             <div>
                 <a class="navbar-brand" href="/static">
                     <img alt="logo-icon" width="140px" src="/images/icon-home.png">
@@ -55,9 +55,9 @@
 
         <!-- Formulario do Login -->
         <section class="container d-flex justify-content-center col-12 col-sm-10 col-md-8 col-lg-5 col-lx-6">
-            <div class="text-center alert alert-info col-12 alerta-emailExistente" 
-                 th:if="${param.emailExistente}" th:text="#{cadusuvalid.usedemail}">
-            </div>
+            <p class="text-center error-message" 
+               th:if="${param.emailExistente}" th:text="#{cadusuvalid.usedemail}">
+            </p>
             <div class="card formulario-card col-12">
                 <div class="card-body d-flex flex-wrap justify-content-center">
                     <a href="/static">
@@ -71,7 +71,7 @@
                             <label class="input-label" th:text="#{cadusulabel.firstname}" for="US_Nome"></label>
                             <input th:placeholder="#{cadusuplaceholder.firstname}"
                                    type="text"
-                                   class="formulario-input"
+                                   class="form-control formulario-input"
                                    id="US_Nome"
                                    name="US_Nome"
                                    required="required"
@@ -82,19 +82,19 @@
                             <label class="input-label" th:text="#{cadusulabel.lastname}" for="US_Sobrenome"></label>
                             <input th:placeholder="#{cadusuplaceholder.lastname}"
                                    type="text"
-                                   class="formulario-input"
+                                   class="form-control formulario-input"
                                    id="US_Sobrenome"
                                    name="US_Sobrenome"
                                    required="required"
                                    >
                         </div>
-                        
+
                         <div class="form-group">
                             <label class="input-label" th:text="#{cadusuplaceholder.birthdate}" for="US_DataNascimento"></label>
                             <input
                                 th:placeholder="#{cadusuplaceholder.birthdate}"
                                 type="date"
-                                class="formulario-input"
+                                class="form-control formulario-input"
                                 id="US_DataNascimento"
                                 name="US_DataNascimento"
                                 maxlength="10"
@@ -107,7 +107,7 @@
                             <label class="input-label" th:text="#{cadusulabel.email}" for="US_Email"></label>
                             <input type="email"
                                    name="US_Email"
-                                   class="formulario-input"
+                                   class="form-control formulario-input"
                                    id="US_Email"
                                    th:placeholder="#{loginplaceholder.email}"
                                    required="required"
@@ -122,12 +122,12 @@
                                    type="password"
                                    id="US_Senha"
                                    name="US_Senha"
-                                   class="formulario-input"
+                                   class="form-control formulario-input"
                                    minlength="8"
                                    required=""
                                    >
                         </div>
-                        
+
                         <div class="form-group">
                             <label class="input-label" th:text="#{cadususelect.label}" for="US_Sexo"></label>
                             <select class="gender-select" id="US_Sexo" name="US_Sexo" required>
@@ -137,7 +137,10 @@
                                 <option th:text="#{cadususelect.null}" value="Não informar"></option>
                             </select>
                         </div>
-
+                        
+                        <span class="text-center error-message" 
+                              th:if="${param.emailExistente}" th:text="#{cadusuvalid.usedemail}">
+                        </span>
                         <span class="error-message" id="error-email"></span>
                         <span class="error-message" id="error-date"></span>
 
