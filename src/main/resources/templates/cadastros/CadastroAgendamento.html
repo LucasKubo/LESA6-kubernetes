@@ -148,7 +148,9 @@
                                 <label class="input-label text-center" for="#AG_Remedios">
                                     <h2 class="form-h2" id="adcRemedioTitulo" th:text="#{cadageform.addremedy}"></h2>
                                 </label>
-                                <select id="AG_Remedios" class="form-control dosage-select d-flex justify-content-center agenda-select" name="AG_Remedios" multiple>
+                                <select id="AG_Remedios" 
+                                        class="form-control dosage-select d-flex justify-content-center agenda-select" 
+                                        name="AG_Remedios" multiple>
                                     <option th:each  ="remedio : ${remedio}"
                                             th:value =" ${remedio.RM_ID}"
                                             th:text  =" ${remedio.RM_Nome}">     
