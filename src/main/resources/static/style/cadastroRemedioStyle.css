@@ -240,6 +240,10 @@ td.expense{
     margin-top: 20px;
 }
 
+.input-label.mar-top {
+    margin-top: 5%;
+}
+
 
 .formulario-card form{
     width: 100%;

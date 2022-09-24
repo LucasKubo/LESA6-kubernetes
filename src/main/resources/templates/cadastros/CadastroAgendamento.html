@@ -56,6 +56,20 @@
                         <form method="post" name="formCadastroAG">
 
 
+                            <div class="form-group d-flex justify-content-center align-items-center flex-column">
+                                <label class="input-label text-center mar-top" for="#AG_Remedios">
+                                    Adicione o remédio ao agendamento
+                                </label>
+                                <select id="AG_Remedios" 
+                                        class="form-control dosage-select d-flex justify-content-center agenda-select" 
+                                        name="AG_Remedios" multiple>
+                                    <option th:each  ="remedio : ${remedio}"
+                                            th:value =" ${remedio.RM_ID}"
+                                            th:text  =" ${remedio.RM_Nome}">     
+                                    </option>
+                                </select>
+                            </div>
+
                             <div class="input-group d-flex flex-column" data-provide="datepicker" id="AgInicio">
                                 <div class="form-group">
                                     <label class="input-label" for="AG_DataInicio">Data Inicial</label>
@@ -120,7 +134,7 @@
                                     <label id="intervalo-label" 
                                            class="input-label form-check-input" 
                                            for="intervalo-check">
-                                        <h2 class="form-h2">Adicionar Intervalo de Dias?</h2>
+                                        Adicionar Intervalo de Dias?
                                     </label>
                                     <input id="intervalo-check" 
                                            class="form-check-input checkbox-margin-top"
@@ -144,19 +158,7 @@
                             </div>
 
 
-                            <div class="form-group d-flex justify-content-center align-items-center flex-column">
-                                <label class="input-label text-center" for="#AG_Remedios">
-                                    <h2 class="form-h2" id="adcRemedioTitulo" th:text="#{cadageform.addremedy}"></h2>
-                                </label>
-                                <select id="AG_Remedios" 
-                                        class="form-control dosage-select d-flex justify-content-center agenda-select" 
-                                        name="AG_Remedios" multiple>
-                                    <option th:each  ="remedio : ${remedio}"
-                                            th:value =" ${remedio.RM_ID}"
-                                            th:text  =" ${remedio.RM_Nome}">     
-                                    </option>
-                                </select>
-                            </div>
+
 
                             <div class="input-group actions">
                                 <a th:text="#{cadremform.cancel}" id="cancelar" href="/agendamentos" class="button cancel"></a>
