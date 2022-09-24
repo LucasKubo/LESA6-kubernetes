@@ -17,7 +17,7 @@ public class AddServiceWorkerSecurityHeaderFilter implements Filter {
     public void doFilter(ServletRequest request, ServletResponse response,
                          FilterChain chain) throws IOException, ServletException {
         HttpServletResponse httpServletResponse = (HttpServletResponse) response;
-        httpServletResponse.setHeader("Service-Worker-Allowed", "/");
+        httpServletResponse.setHeader("Service-Worker-Allowed", "../");
         chain.doFilter(request, response);
     }
 
