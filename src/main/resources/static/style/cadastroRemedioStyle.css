@@ -282,6 +282,10 @@ select.form-control:not([size]):not([multiple]) {
     color: #495057;
     transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
 }
+.agenda-select {
+    width: 300px;
+    margin: auto;
+}
 
 .error-message {
     color:#F92A2A;

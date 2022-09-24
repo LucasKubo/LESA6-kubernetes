@@ -1,136 +1,166 @@
 <!DOCTYPE html>
 <html lang="pt-br" xmlns:th="http://www.w3.org/1999/xhtml">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <link rel="icon" href="/images/icon.svg"/>
+        <link rel="icon" href="/images/icon.svg"/>
 
-    <title th:text="#{cadtitle.text}"></title>
+        <title th:text="#{cadtitle.text}"></title>
 
-    <!-- Bootstrap CSS CDN -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
-    <!-- Our Custom CSS -->
-    <link rel="stylesheet" href="/style/cadastroRemedioStyle.css">
-    <!-- Scrollbar Custom CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
+        <!-- Bootstrap CSS CDN -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+        <!-- Our Custom CSS -->
+        <link rel="stylesheet" href="/style/cadastroRemedioStyle.css">
+        <!-- Scrollbar Custom CSS -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300&display=swap" rel="stylesheet">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300&display=swap" rel="stylesheet">
 
-    <!-- Font Awesome JS -->
-    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
-    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
+        <!-- Font Awesome JS -->
+        <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
+        <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
 
-</head>
-<body>
-<div class="wrapper conta-lg">
-    
-<!-- Menu bolado  -->
-<nav th:replace="~{MenuLateral :: menuLateral}"></nav>
+    </head>
+    <body>
+        <div class="wrapper conta-lg">
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="container-fluid">
+            <!-- Menu bolado  -->
+            <nav th:replace="~{MenuLateral :: menuLateral}"></nav>
 
-        <button type="button" id="sidebarCollapse" class="btn btn-info">
-            <em class="fas fa-align-left"></em>
-            <span>Menu</span>
-        </button>
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="container-fluid">
 
-        <a href="/home" class="navbar-brand text-center col-09" >
-            <img alt="Brand" src="/images/icon.svg" class="img-responsive text-center">
-        </a>
+                    <button type="button" id="sidebarCollapse" class="btn btn-info">
+                        <em class="fas fa-align-left"></em>
+                        <span>Menu</span>
+                    </button>
 
-    </div>
+                    <a href="/home" class="navbar-brand text-center col-09" >
+                        <img alt="Brand" src="/images/icon.svg" class="img-responsive text-center">
+                    </a>
 
-</nav>
-
-</div>
-<div class="modal-overlay text-center">
-    <div class="modal">
-        <div class="text-center" id="form">
-            <!--<img class="formulario-icon-cadastro" src="/assets/img/cadastro-form-icon.svg" alt="Ícone Meu Remédio"> -->
-            <h2 class='form-h2' th:text="#{Attremform.title}"></h2>
-            <form method="post" name="formCadastroRM">
-                <div class="input-group">
-                    <label th:text="#{cadremform.remedy}" class="sr-only" for="RM_Nome"></label>
-                    <input th:value="${remedio.RM_Nome}"
-                           type="text"
-                           id="RM_Nome"
-                           name="RM_Nome"
-                           required="required"
-                    />
                 </div>
-                <div class="input-group">
-                    <label th:text="#{cadremform.dosage}" class="sr-only" for="RM_Dosagem"></label>
-                    <input th:value="${remedio.RM_Dosagem}"
-                           type="text"
-                           id="RM_Dosagem"
-                           name="RM_Dosagem"
-                           onMouseOver="mensagemDosagem()"
-                           onMouseOut = "retirarMensagemDosagem()"
-                           required="required"
-                    />
-                </div>
-                <small><span id="mensagemDosagem" class="help"></span></small>
 
-                <label class="sr-only"> Unidade de medida </label>
-                <select id="RM_UnidadeDosagem" class="form-control"
-                        name="RM_UnidadeDosagem"
-                        required="required"
-                >
-                    <option value ="mg" th:text="#{cadremform.miligram}"></option>
-                    <option value ="g" th:text="#{cadremform.gram}"></option>
-                    <option value ="ml" th:text="#{cadremform.mililiter}"></option>
-                    <option value ="ui" th:text="#{cadremform.internationalunits}"></option>
-                    <option value ="gts" th:text="#{cadremform.gotas}"></option>
-                </select>
-                <small><span id="mensagemUnidade" class="help"></span></small>
+            </nav>
 
-                <div class="input-group-radio">
-                    <small><strong th:text="#{cadremform.susremedy}" class="sus-medicine" ></strong></small>
-                    <!--<label th:text="#{cadremform.susremedy}" class="sr-only" for="RM_RetiradoSus"></label>-->
-                    <div class="radio-container">
-                        <input class="radio-yes" th:text="#{cadremform.radioyes}" th:checked="${remedio.RM_RetiradoSus}" type="radio" id="RM_RetiradoSus" value="Sim" name="RM_RetiradoSus"/>
-                        <input class="radio-no" th:text="#{cadremform.radiono}"  th:checked="${!remedio.RM_RetiradoSus}" type="radio" id="RM_RetiradoSusNo" value="Não" name="RM_RetiradoSus"/>
-                    </div>
-                </div>
-                <div class="input-group actions">
-                    <a th:text="#{cadremform.cancel}" id="cancelar" href="/remedios" class="button cancel"></a>
-                    <button  th:text="#{cadremform.submit}" name="action" id="confirmar" class="button save" type="submit"></button>
-                </div>
-            </form>
         </div>
-    </div>
-</div>
-
-<div class="overlay"></div>
-<!-- Scripts da página -->
-<!-- jQuery CDN - Slim version (=without AJAX) -->
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<!-- Popper.JS -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
-<!-- Bootstrap JS -->
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-<script src="/script/cadastroRemedio.jsp"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
-<script src="/script/bootstrap-multiselect.js"></script>
-
-<script type="text/javascript">
-    $(document).ready(function () {
-        $('#RM_UnidadeDosagem')
-    });
-</script>
 
 
-<script type="text/javascript">
-    $('.datepicker').datepicker({
-        inline: true
-    });
-</script>
+        <!-- Content -->
 
-</body>
+        <section class="container d-flex justify-content-center col-12 col-sm-10 col-md-8 col-lg-5 col-lx-6">
+            <div class="card formulario-card col-12" id="form-card">
+                <div class="card-body d-flex flex-wrap justify-content-center">
+                    <a href="/static">
+                        <img class="formulario-icon" src="/images/icon.svg" alt="Ícone Meu Remédio">
+                    </a>
+                    <h2 class='form-h2' th:text="#{Attremform.title}"></h2>
+                    <form method="post" name="formCadastroRM">
+
+                        <div class="form-group">
+                            <label th:text="#{cadremform.remedy}" class="input-label" for="RM_Nome"></label>
+                            <input th:value="${remedio.RM_Nome}"
+                                   class="form-control formulario-input"
+                                   type="text"
+                                   id="RM_Nome"
+                                   name="RM_Nome"
+                                   required="required"
+                                   />
+                        </div>
+
+                        <div class="form-group">
+                            <label th:text="#{cadremform.dosage}" class="input-label" for="RM_Dosagem"></label>
+                            <input th:value="${remedio.RM_Dosagem}"
+                                   class="form-control formulario-input"
+                                   type="text"
+                                   id="RM_Dosagem"
+                                   name="RM_Dosagem"
+                                   onMouseOver="mensagemDosagem()"
+                                   onMouseOut = "retirarMensagemDosagem()"
+                                   required="required"
+                                   />
+                        </div>
+                        <small><span id="mensagemDosagem" class="help"></span></small>
+
+                        <div class="form-group">
+                            <label class="input-label"> Unidade de medida </label>
+                            <select id="RM_UnidadeDosagem" class="form-control dosage-select"
+                                    name="RM_UnidadeDosagem"
+                                    required="required"
+                                    >
+                                <option value ="mg" th:text="#{cadremform.miligram}"></option>
+                                <option value ="g" th:text="#{cadremform.gram}"></option>
+                                <option value ="ml" th:text="#{cadremform.mililiter}"></option>
+                                <option value ="ui" th:text="#{cadremform.internationalunits}"></option>
+                                <option value ="gts" th:text="#{cadremform.gotas}"></option>
+                            </select>
+                        </div>
+                        <small><span id="mensagemUnidade" class="help"></span></small>
+
+                        <div class="input-group-radio">
+                            <label th:text="#{cadremform.susremedy}" class="input-label" ></label>
+                            <!--<label th:text="#{cadremform.susremedy}" class="sr-only" for="RM_RetiradoSus"></label>-->
+                            <div class="radio-container">
+                                <span>
+                                    <input class="radio-yes" 
+                                           th:checked="${remedio.RM_RetiradoSus}" 
+                                           type="radio" 
+                                           id="RM_RetiradoSus" 
+                                           value="Sim" 
+                                           name="RM_RetiradoSus"
+                                           />
+                                    <label class="input-label" for="RM_RetiradoSus" th:text="#{cadremform.radioyes}"></label>
+                                </span>
+                                <span>
+                                <input class="radio-no" 
+                                       th:checked="${!remedio.RM_RetiradoSus}" 
+                                       type="radio" 
+                                       id="RM_RetiradoSusNo" 
+                                       value="Não" 
+                                       name="RM_RetiradoSus"
+                                       />
+                                <label class="input-label" for="RM_RetiradoSusNo" th:text="#{cadremform.radiono}"></label>
+                                </span> 
+                            </div>
+                        </div>
+                        <div class="input-group actions">
+                            <a th:text="#{cadremform.cancel}" id="cancelar" href="/remedios" class="button cancel"></a>
+                            <button  th:text="#{cadremform.submit}" name="action" id="confirmar" class="button save" type="submit"></button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <div class="overlay"></div>
+        <!-- Scripts da página -->
+        <!-- jQuery CDN - Slim version (=without AJAX) -->
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <!-- Popper.JS -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+        <!-- Bootstrap JS -->
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+        <script src="/script/cadastroRemedio.jsp"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
+        <script src="/script/bootstrap-multiselect.js"></script>
+
+        <script type="text/javascript">
+                                       $(document).ready(function () {
+                                           $('#RM_UnidadeDosagem')
+                                       });
+        </script>
+
+
+        <script type="text/javascript">
+            $('.datepicker').datepicker({
+                inline: true
+            });
+        </script>
+
+    </body>
 </html>
