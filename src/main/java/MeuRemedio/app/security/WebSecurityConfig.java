@@ -22,7 +22,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Bean
     public WebSecurityCustomizer webSecuritycustomizer(){
-        return web -> web.ignoring().antMatchers("/static/**", "/template/**",
+        return web -> web.ignoring().antMatchers("/static/**", "/template/**","/config/**",
                 "/style/**","/assets/**","/script/**", "/images/**", "/languages/**"
         );
     }
