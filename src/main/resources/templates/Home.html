@@ -144,9 +144,9 @@
                         <td><p><span th:text="${agendamento.dataFinal}" class="dataFinal" hidden="true"></span></td>
                         <td><p><span th:text="${agendamento.periodicidade}" class="periodicidade" hidden="true"></span></td>
                     
-                            <div class="" th:each = "intervaloDias : ${intervaloDias}">
+                            <!-- <div class="" th:each = "intervaloDias : ${intervaloDias}">
                             <td><p><span th:text="${agendamento.id} eq ${intervaloDias.id} ? ${intervaloDias.intervaloDias}:''" class="intervaloDias" hidden="true"> </span> </td>
-                            </div>
+                            </div> -->
                     </tr>
                 </div>
             </div>
@@ -214,23 +214,23 @@
                 dataFinalAjustada.setDate(dataFinalDate.getDate() + 2);
                 
             
-                if (intervalo[i].innerHTML != "" && intervalo[i].innerHTML != 0){
-                    var dataInicioAjustada = new Date(dataInicio[i].innerHTML);
-                    var dataInicioIntervalo = new Date();
-                    dataInicioIntervalo.setDate(dataInicioAjustada.getDate() + 1)
-                    // dataInicioIntervalo.setDate(dataInicioIntervalo.getDate() + 1);
-                    while (dataInicioIntervalo <= dataFinalAjustada){
-                        var ag= {
-                            "groupId": id[i].innerHTML,
-                            "title": remedios[i].innerHTML,
-                            "start": dataInicioIntervalo.toLocaleDateString('en-CA'),
-                            "end": dataInicioIntervalo.toLocaleDateString('en-CA')
-                        }
-                        console.log(ag)
-                        listaAgendamentos.push(ag);
-                        dataInicioIntervalo.setDate(dataInicioIntervalo.getDate() + parseInt(intervalo[i].innerHTML) + 1); 
-                    }
-                } else {
+                // if (intervalo[i].innerHTML != "" && intervalo[i].innerHTML != 0){
+                //     var dataInicioAjustada = new Date(dataInicio[i].innerHTML);
+                //     var dataInicioIntervalo = new Date();
+                //     dataInicioIntervalo.setDate(dataInicioAjustada.getDate() + 1)
+                //     // dataInicioIntervalo.setDate(dataInicioIntervalo.getDate() + 1);
+                //     while (dataInicioIntervalo <= dataFinalAjustada){
+                //         var ag= {
+                //             "groupId": id[i].innerHTML,
+                //             "title": remedios[i].innerHTML,
+                //             "start": dataInicioIntervalo.toLocaleDateString('en-CA'),
+                //             "end": dataInicioIntervalo.toLocaleDateString('en-CA')
+                //         }
+                //         console.log(ag)
+                //         listaAgendamentos.push(ag);
+                //         dataInicioIntervalo.setDate(dataInicioIntervalo.getDate() + parseInt(intervalo[i].innerHTML) + 1); 
+                //     }
+                // } else {
                     var ag= {
                                 "groupId": id[i].innerHTML,
                                 "title": remedios[i].innerHTML,
@@ -238,7 +238,7 @@
                                 "end": dataFinalAjustada.toLocaleDateString('en-CA')
                             }
                     listaAgendamentos.push(ag);
-                    }
+                    // }
             }
             var calendar = new FullCalendar.Calendar(calendarEl, {
                 plugins: [ 'interaction', 'dayGrid' ],
