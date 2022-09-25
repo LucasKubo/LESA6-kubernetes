@@ -33,7 +33,7 @@ public class FinanceiroController {
     public String telaDeGastos(Model model){
         Usuario usuarioID = new Usuario();
         usuarioID.setId(userSessionService.returnIdUsuarioLogado());
-        Iterable<Financeiro> financeiro = controleFinanceiro.findAll();
+        Iterable<Financeiro> financeiro = controleFinanceiro.findAllByUsuarioID(usuarioID.getId());
         model.addAttribute("financeiro", financeiro);
         return "listas/ListarGasto";
 
@@ -54,7 +54,9 @@ public class FinanceiroController {
     public String cadastrarGasto (@RequestParam("GA_Valor") double valor, @RequestParam("GA_Data") String data,
                                  @RequestParam("GA_Parcela") long qtdParcela, @RequestParam(value = "AG_Remedios", required = false) List<Remedio> remedio){
         try {
-            Financeiro financeiroMedicamento = new Financeiro(remedio, data, valor, qtdParcela);
+            Usuario usuarioID = new Usuario();
+            usuarioID.setId(userSessionService.returnIdUsuarioLogado());
+            Financeiro financeiroMedicamento = new Financeiro(remedio, data, valor, qtdParcela, usuarioID.getId());
             controleFinanceiro.save(financeiroMedicamento);
 
             return "redirect:/remedios/controle_de_gastos";

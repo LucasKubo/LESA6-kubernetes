@@ -13,7 +13,6 @@ import javax.sql.DataSource;
 public class DataConfiguration {
 
     //Metodo para base de dados locais
-    /*
     @Bean
     public DataSource datasource() {
         try {
@@ -27,7 +26,7 @@ public class DataConfiguration {
             throw new IllegalStateException("Erro de conexão com o banco" + e);
         }
     }
-*/
+
     @Bean
     public JpaVendorAdapter JpaVendorAdapter() {
         try {

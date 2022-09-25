@@ -10,5 +10,5 @@ import java.util.List;
 @Repository
 public interface FinanceiroRepository extends CrudRepository<Financeiro, Long> {
     Financeiro findById(long id);
-    //List<Financeiro> findAllByUsuario(Usuario usuario);
+    List<Financeiro> findAllByUsuarioID(Long usuarioID);
 }
