@@ -10,10 +10,7 @@ import MeuRemedio.app.service.UserSessionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Objects;
@@ -34,7 +31,12 @@ public class FinanceiroController {
 
     @GetMapping(value = "/remedios/controle_de_gastos")
     public String telaDeGastos(Model model){
-        return "cadastros/CadastroGasto";
+        Usuario usuarioID = new Usuario();
+        usuarioID.setId(userSessionService.returnIdUsuarioLogado());
+        Iterable<Financeiro> financeiro = controleFinanceiro.findAll();
+        model.addAttribute("financeiro", financeiro);
+        return "listas/ListarGasto";
+
     }
 
     @GetMapping(value = "/remedios/controle_de_gastos/cadastrar")
@@ -62,7 +64,7 @@ public class FinanceiroController {
         }
     }
 
-    @PostMapping(value ="/remedios/controle_de_gastos/deletar/{id}")
+    @RequestMapping(value ="/remedios/controle_de_gastos/deletar/{id}")
     public String deletarGasto (@PathVariable("id") long id){
         if (verificarPorId(id)) {
             controleFinanceiro.deleteById(id);
@@ -72,6 +74,24 @@ public class FinanceiroController {
         return "redirect:/remedios/controle_de_gastos";
     }
 
+    @RequestMapping(value ="/remedios/controle_de_gastos/atualizar/{id}",  method = RequestMethod.GET)
+    public String atualizarGasto(@PathVariable("id") long id, Model model) {
+        if (!verificarPorId(id)) {
+            return templateError();
+        } else {
+            Financeiro financeiro = controleFinanceiro.findById(id);
+            model.addAttribute("financeiro", financeiro);
+            Usuario usuarioID = new Usuario();
+            usuarioID.setId(userSessionService.returnIdUsuarioLogado());
+            Iterable <Remedio> remedio = remedioRepository.findAllByUsuario(usuarioID);
+            model.addAttribute("remedio", remedio);
+            return "atualizacoes/AtualizarGasto";
+        }
+    }
+
+    public String templateError(){
+        return "TemplateError";
+    }
     @PostMapping(value ="/remedios/controle_de_gastos/atualizar/{id}")
     public String atualizar (@PathVariable("id") long id, @RequestParam("GA_Valor") double valor, @RequestParam("GA_Data") String data,
                             @RequestParam("GA_Parcela") long qtdParcela, @RequestParam("FK_RM_ID") List<Remedio> remedio){

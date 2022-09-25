@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <link rel="icon" href="/images/icon.svg"/>
+
+    <title th:text="#{cadtitle.text}"></title>
+
+    <!-- Bootstrap CSS CDN -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+    <!-- Our Custom CSS -->
+    <link rel="stylesheet" href="/style/cadastroRemedioStyle.css">
+    <link rel="stylesheet" href="/style/bootstrap-multiselect.css">
+    <!-- Scrollbar Custom CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300&display=swap" rel="stylesheet">
+
+
+
+    <!-- Font Awesome JS -->
+    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
+
+</head>
+<body>
+<div class="wrapper conta-lg">
+    <!-- Menu bolado  -->
+    <nav th:replace="~{MenuLateral :: menuLateral}"></nav>
+
+    <div id="content">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container-fluid">
+
+                <button type="button" id="sidebarCollapse" class="btn btn-info">
+                    <svg class="svg-inline--fa fa-align-left fa-w-14" aria-hidden="true" data-prefix="fas" data-icon="align-left" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M288 44v40c0 8.837-7.163 16-16 16H16c-8.837 0-16-7.163-16-16V44c0-8.837 7.163-16 16-16h256c8.837 0 16 7.163 16 16zM0 172v40c0 8.837 7.163 16 16 16h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16zm16 312h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16zm256-200H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16h256c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16z"></path></svg><!-- <em class="fas fa-align-left"></em> -->
+                    <span>Menu</span>
+                </button>
+
+                <a href="/home" class="navbar-brand text-center col-09">
+                    <img alt="Brand" src="/images/icon.svg" class="img-responsive text-center">
+                </a>
+
+            </div>
+        </nav>
+
+
+        <div class="container d-flex justify-content-center col-10 col-sm-10 col-md-8 col-lg-5 col-lx-5">
+
+            <div class="card formulario-card col-12">
+                <div class="text-center" id="form">
+                    <!--Select -->
+                    <h2 class="form-h2">Ataulizar Gasto</h2>
+
+                    <form method="post" name="formCadastroRM">
+                        <h4 id="adcRemedioTitulo">Selecione o remédio</h4>
+                        <label class="sr-only">Escolha o Remédio</label>
+
+                        <select id="AG_Remedios"
+                                class="form-control dosage-select d-flex justify-content-center agenda-select"
+                                name="FK_RM_ID" multiple>
+                            <option th:each  ="remedio : ${remedio}"
+                                    th:value =" ${remedio.RM_ID}"
+                                    th:text  =" ${remedio.RM_Nome}"
+                                    th:selected = "${financeiro.remedio.contains(remedio)}"
+                            ></option>
+                        </select>
+
+                        <h4 style="text-align: center">Informe a data da compra.</h4>
+                        <div class="input-group " data-provide="datepicker" id="GaData">
+                            <input th:value="${financeiro.data}" type="date" id="GA_Data" name="GA_Data" onmouseover="mensagemDataFim()" onmouseout="retirarMensagemDataFim()" required="">
+                        </div>
+
+                        <h4 style="text-align: center">Informe o valor</h4>
+                        <div class="input-group " data-provide="datepicker" id="GaValor">
+                            <input th:value="${financeiro.valor}" type="number" step="0.01" id="GA_Valor" name="GA_Valor" min="0.01">
+                        </div>
+
+
+                        <h4 style="text-align: center">Informe a quantidade de parcelas</h4>
+                        <div class="input-group " data-provide="datepicker" id="GaParcela">
+                            <input th:value="${financeiro.qtdParcela}" type="number" id="GA_Parcela" name="GA_Parcela" placeholder="Ex: 1, 2, 3">
+                        </div>
+
+                        <!-- botões principais -->
+                        <div class="input-group actions">
+                            <a id="cancelar" href="/remedios" class="button cancel">Voltar</a>
+                            <button name="action" id="confirmar" class="button save" type="submit">Salvar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="overlay"></div>
+
+        <!-- Import de Scripts da página -->
+        <!-- jQuery CDN - Slim version (=without AJAX) -->
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <!-- Popper.JS -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+        <!-- Bootstrap JS -->
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+        <script src="/script/cadastroRemedio.jsp"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script><script src="/script/bootstrap-multiselect.js"></script></div>
+</div>
+
+
+
+</script>
+
+<script type="text/javascript">
+    $('.datepicker').datepicker({
+        inline: true
+    });
+</script>
+
+
+<!--Select dos Remédios  -->
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#AG_Remedios').multiselect()
+    });
+</script>
+
+
+
+
+
+<div id="torrent-scanner-popup" style="display: none;">
+
+</div>
+</body>
+</html>
