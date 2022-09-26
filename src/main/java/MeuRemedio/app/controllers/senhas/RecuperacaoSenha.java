@@ -1,5 +1,6 @@
-package MeuRemedio.app.controllers;
+package MeuRemedio.app.controllers.senhas;
 
+import MeuRemedio.app.controllers.EnvioEmail;
 import MeuRemedio.app.models.usuarios.Usuario;
 import MeuRemedio.app.models.usuarios.Usuario_code;
 import MeuRemedio.app.repository.UserCodeRepository;

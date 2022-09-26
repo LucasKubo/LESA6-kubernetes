@@ -27,7 +27,6 @@
         <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js"
                 integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY"
         crossorigin="anonymous"></script>
-
     </head>
 
     <body>
@@ -63,14 +62,38 @@
     </nav>
 
         <div id="content">
-            <div class="container col-12">
+            <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                <ol class="carousel-indicators">
+                    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                </ol>
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img src="/images/Prin_Banner.png" class="d-block w-100" alt="Responsive image">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="/images/Prin_Banner.png" class="d-block w-100" alt="Responsive image">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="/images/Prin_Banner.png" class="d-block w-100" alt="Responsive image">
+                    </div>
+                </div>
+                <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>
 
-
-                    <div class="col-12">
+                    <!--<div class="col-12">
                         <img src="/images/Prin_Banner.png" class="img-fluid" alt="Responsive image">
                     </div>
 
-            </div>
+            </div> -->
 
             <div class="jumbotron col-lg-12 col-md-12">
                 
@@ -140,6 +163,23 @@
                 <!-- Fim da Row -->
                 </div>
             </div>
+
+            <div class="rodape" id="rodapeHome">
+                <div class="informacoes-footer text-center">
+
+                    <h5>
+                        Meu Remédio - CNPJ: 00.000.000/0000-00 - SAC: (11) 0000-0000
+                    </h5>
+                    <h5>
+                        <a href="mailto:8balls.integratedproject@gmail.com">8balls.integratedproject@gmail.com</a>
+                    </h5>
+                    <h5>
+                        R. Pedro Vicente, 625 - Canindé, São Paulo - SP, 01109-010
+                    </h5>
+
+                </div>
+            </div>
+
         </div>
 
     <!-- Estes scripts tratam dos arquivos .jsp correspondentes a cada página html -->
@@ -152,6 +192,19 @@
             integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
             crossorigin="anonymous"></script>
+
+<!--        &lt;!&ndash; correto =  /script/index.jsp&ndash;&gt;-->
+<!--        <script src="static/script/index.jsp"></script>-->
+<!--        &lt;!&ndash; Bootstrap &ndash;&gt;-->
+<!--        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>-->
+<!--        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>-->
+<!--        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>-->
+    <script>
+        $('.carousel').carousel({
+            interval: 5000
+        })
+    </script>
+
 
     </body>
 

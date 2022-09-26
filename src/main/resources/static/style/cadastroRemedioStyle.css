@@ -71,7 +71,7 @@ h2{
     display: flex;
     align-items: center;
     justify-content: center;
-    opacity: 0.6;
+    opacity: 0.9;
 }
 .button.save:hover{
     opacity: 1;
@@ -94,7 +94,20 @@ h2{
     color: var(--white);
     background: var(--red);
 }
-
+.button.list {
+    width: 84%;
+    height: 50px;
+    padding: 3%;
+    margin: -22px 9% 0 8%;
+    background-color: #38CFB8;
+    font-size: 1.2em;
+    font-weight: bold;
+    border:none;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 /*  Header =================== */
 .nav-lista{
     width: 25%;
@@ -208,30 +221,95 @@ td.expense{
 }
 
 /* Form ==========================*/
-.card{
-    border: none;
-    word-wrap: normal;
-}
-#form{
-    padding: 6%;
+.formulario-card{
+    padding: 3%;
+    margin-top: 3%;
     background: #FFFFFF;
     box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.25);
     border-radius: 40px;
-    border: 1px solid;
-    border-color: #C4C4C4;
-
 }
-#form h2{
-    margin-top: 20px;
-    margin-bottom: 45px;
+.formulario-icon{
+    width: 124px;
+}
+.formulario-card h2{
+    width: 100%;
+    font-style: normal;
+    font-weight: 400;
     text-align: center;
+    color: #081816;
+    margin-top: 20px;
 }
-#form form input{
-    border: none;
-    border-radius: 0.2rem;
-    padding: 0.8rem;
+
+.input-label.mar-top {
+    margin-top: 5%;
+}
+
+
+.formulario-card form{
     width: 100%;
 }
+
+.input-label {
+    font-size: 1.1em;
+    font-weight: bold;
+}
+.formulario-input{
+    width: 100%;
+    padding: 3.5%;
+    margin: 1% 0 1% 0 ;
+    background: #FFFFFF;
+    border: 3px solid #E6E6E6;
+    border-radius: 15px;
+}
+.margin-bot {
+    margin-bottom: 10%;
+}
+.margin-top {
+    margin-top: 2%;
+}
+
+select.form-control:not([size]):not([multiple]) {
+    height: calc(2.25rem + 25px);
+}
+.dosage-select{
+    padding: 1.5%;
+    margin: 1% 0 1% 0 ;
+    background: #FFFFFF;
+    border: 3px solid #E6E6E6;
+    border-radius: 15px;
+    display: block;
+    width: 100%;
+    height: calc(1.5em + 0.75rem + 25px);
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #495057;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+.agenda-select {
+    width: 300px;
+    margin: auto;
+}
+
+.error-message {
+    color:#F92A2A;
+    display:block;
+    padding-top: 20px;
+    text-decoration: underline;
+    font-weight: bold;
+}
+
+.formulario-button{
+    width: 100%;
+    padding: 2%;
+    margin-top: 6%;
+    background-color: #38CFB8;
+    font-size: 1.2em;
+    font-weight: bold;
+    border:none;
+    border-radius: 8px;
+}
+
 .formulario-icon{
     width: 124px;
 
@@ -245,12 +323,13 @@ td.expense{
     padding: 2%;
     margin-top: 0.5rem;
     background: var(--white);
-    border: 3px solid var(--dark-gray);
+    //border: 3px solid var(--dark-gray);
     border-radius: 15px;
 }
-.form-control {
+/*.form-control {
     border-radius: .75rem;
-}
+}*/
+
 .input-group small{
     opacity: 0.4;
 }
@@ -268,17 +347,25 @@ td.expense{
     //text-align: left!important;
 
 }
-#form form input.radio-yes{
+.radio-yes{
     width: 70%;
     //margin-left: -.37rem;
+    transform: scale(1.5);
+
+}
+.radio-no{
+    width: 70%;
+    //margin-left: -.37rem;
+    transform: scale(1.5);
 
 
 }
-#form form input.radio-no{
-    width: 70%;
-    //margin-left: -.37rem;
 
-
+.line-break {
+    height: 1px;
+    background-color: #333;
+    text-align: center;
+    margin:7% 0 7% 0;
 }
 .input-group.actions{
     border: none;
@@ -294,17 +381,33 @@ td.expense{
     width: 15%;
     text-align: left;
 }
-
+#AG_DataInicio, #AG_HoraInicio, #AG_Periodicidade, #AG_DataFinal{
+    width: 100%;
+    border-radius: 15px;
+}
+input[type='checkbox'] {
+    align-self: center;
+    transform: scale(1.5);
+    margin-top: 10px;
+}
 .form-check-input{
     position: relative;
     margin: 0 15px 0 0;
-    width: 10%;
+    //width: 100%;
+    border-radius: 50%;
 }
+#
 .agendamento{
-    margin-top: 1rem; 
+    margin-top: 1rem;
 }
 .form-check-input h5.text-nowrap{
     margin-left: -85px;
+}
+#intervaloDiasGrup {
+    width: 100%;
+}
+.intervalo {
+    padding: 0;
 }
 .button .save {
     cursor: pointer;
