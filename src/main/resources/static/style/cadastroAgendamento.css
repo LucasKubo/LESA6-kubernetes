@@ -1,3 +1,28 @@
+:root{
+    --black: #000;
+    --light-black: #181a19;
+    --dark-blue: #363f5f;
+    --light-blue: #f2fffd;
+    --light-green: #3dd405;
+    --green: #49aa26;
+    --dark-green: #2d4a22;
+    --red: #e92929;
+    --light-gray: #fbf2f5;
+    --gray: #969cb3;
+    --dark-gray: #E6E6E6;
+    --white: #fff;
+}
+html, body{
+    margin:0px !important;
+    padding: 0px !important;
+}
+body{
+    font-family: 'Roboto', sans-serif;
+    background: #ffffff;
+}
+
+
+
 h4{
     font-family: "Roboto", sans-serif;
     font-size: 15px;
@@ -23,4 +48,7 @@ input#intervaloDias{
 margin-top: 15px;
 }
 
-
+label.input-label {
+    font-size: 1.1em;
+    font-weight: normal;
+}

@@ -13,7 +13,7 @@ header{
     height: 30px;
 }
 .title-home{
-     /* H4 - Regular */
+    /* H4 - Regular */
     font-style: normal;
     font-weight: 400;
     font-size: 2rem;
@@ -24,52 +24,64 @@ header{
 }
 
 /* Botões*/
-
-.inicio-btn {
-    background: #fff;
-    font-family: 'Roboto';
-    font-style: normal;
+.inicio-btn, .login-btn, .inter {
     font-weight: 400;
     font-size: 17px;
     line-height: 27px;
     text-align: center;
     margin: 5px;
     color: #081816;
-    padding: 5px;
     height: 40px;
     width: 115px;
+    border-radius: 117px;
+    border: 3px solid #4FF4DB;
+}
+
+.inicio-btn {
+    background: #fff;
+    //font-family: 'Roboto';
+    font-style: normal;
+    //font-weight: 400;
+    //font-size: 17px;
+    //line-height: 27px;
+    //text-align: center;
+    //margin: 5px;
+    //color: #081816;
+    padding: 5px;
+    //height: 40px;
+    //width: 115px;
     border-radius: 117px;
     border: 3px solid #4FF4DB;
 }
 .login-btn {
     background: #fff;
-    font-weight: 400;
-    font-size: 17px;
-    line-height: 27px;
+    //font-weight: 400;
+    //font-size: 17px;
+    //line-height: 27px;
     text-decoration: none;
-    text-align: center;
-    margin: 5px;
-    color: #081816;
+    //text-align: center;
+    //margin: 5px;
+    //color: #081816;
     padding: 7.5px 30px 7.5px 30px;
-    height: 40px;
-    width: 114px;
+    //height: 40px;
+    //width: 114px;
     border-radius: 117px;
     border: 3px solid #4FF4DB;
 }
 .inter {
-    font-family: 'Roboto';
+    //font-family: 'Roboto';
     font-style: normal;
-    font-weight: 400;
-    font-size: 17px;
-    line-height: 27px;
-    text-align: center;
-    margin: 5px;
-    color: #081816;
+    //font-weight: 400;
+    //font-size: 17px;
+    //line-height: 27px;
+    //text-align: center;
+    // margin: 5px;
+    //color: #081816;
     padding: 5px;
-    height: 40px;
-    width: 115px;
-    border-radius: 117px;
-    border: 3px solid #4FF4DB;
+    //height: 40px;
+    // width: 115px;
+    // border-radius: 117px;
+    // border: 3px solid #4FF4DB;
 }
 .navbar {
     padding: 15px 10px;
@@ -111,6 +123,11 @@ header{
 .formulario-card form{
     width: 100%;
 }
+
+.input-label {
+    font-size: 1.1em;
+    font-weight: bold;
+}
 .formulario-input{
     width: 100%;
     padding: 6.5%;
@@ -118,6 +135,30 @@ header{
     background: #FFFFFF;
     border: 3px solid #E6E6E6;
     border-radius: 15px;
+}
+
+.gender-select {
+    padding: 6.5%;
+    margin: 1% 0 1% 0 ;
+    background: #FFFFFF;
+    border: 3px solid #E6E6E6;
+    border-radius: 15px;
+    display: block;
+    width: 100%;
+    height: calc(1.5em + 0.75rem + 2px);
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #495057;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
+.error-message {
+    color:#F92A2A;
+    display:block;
+    padding-top: 20px;
+    text-decoration: underline;
+    font-weight: bold;
 }
 
 .formulario-button{

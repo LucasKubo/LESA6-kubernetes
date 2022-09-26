@@ -33,6 +33,9 @@ public class Financeiro implements Serializable {
     @NotNull
     private long qtdParcela;
 
+    @Column(name = "usuarioID")
+    private Long usuarioID;
+
     @NotNull
     private LocalDate Criado_em;
 
@@ -55,5 +58,14 @@ public class Financeiro implements Serializable {
         this.valor = valor;
         this.qtdParcela = qtdParcela;
         this.Criado_em = LocalDate.now();
+    }
+
+    public Financeiro (List<Remedio> remedios, String data, double valor, long qtdParcela, long usuarioId) {
+        this.remedio = remedios;
+        this.data = data;
+        this.valor = valor;
+        this.qtdParcela = qtdParcela;
+        this.Criado_em = LocalDate.now();
+        this.usuarioID = usuarioId;
     }
 }
