@@ -80,7 +80,7 @@ public class FinanceiroController {
     }
 
     @RequestMapping(value ="/remedios/controle_de_gastos/atualizar/{id}",  method = RequestMethod.GET)
-    public String atualizarGasto(@PathVariable("id") long id, Model model) {
+    public String atualizarGasto (@PathVariable("id") long id, Model model) {
         if (!verificarPorId(id)) {
             return templateError();
         } else {
@@ -90,8 +90,8 @@ public class FinanceiroController {
             Usuario usuarioID = new Usuario();
             usuarioID.setId(userSessionService.returnIdUsuarioLogado());
 
-            //Iterable <Remedio> remedio = remedioRepository.findAllByUsuario(usuarioID);
-           // model.addAttribute("remedio", remedio);
+            Iterable <Remedio> remedio = remedioRepository.findAllByUsuario(usuarioID);
+            model.addAttribute("remedio", remedio);
 
             return "atualizacoes/AtualizarGasto";
         }
@@ -112,6 +112,7 @@ public class FinanceiroController {
                 financeiro.setQtdParcela(qtdParcela);
                 financeiro.setRemedio(remedio);
                 controleFinanceiro.save(financeiro);
+
             return "redirect:/remedios/controle_de_gastos";
 
         }catch (NullPointerException e){

@@ -6,7 +6,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -32,7 +31,7 @@ public class Financeiro implements Serializable {
     @NotNull
     private long qtdParcela;
 
-    @Column(name = "usuario_us_ID")
+    @Column(name = "usuario_us_id")
     private Long usuarioID;
 
     @NotNull
@@ -44,27 +43,13 @@ public class Financeiro implements Serializable {
             inverseJoinColumns = {@JoinColumn(name = "RM_ID")})
     private List <Remedio> remedio = new ArrayList<>();
 
-    public Financeiro (String data, double valor, long qtdParcela) {
-        this.data = data; // Data da compra do remedio. Para o gráfico usar esse campo
-        this.valor = valor;
-        this.qtdParcela = qtdParcela;
-        this.Criado_em = LocalDate.now(); // Data de cadastro
-    }
-
-    public Financeiro (List<Remedio> remedios, String data, double valor, long qtdParcela) {
-        this.remedio = remedios;
-        this.data = data;
-        this.valor = valor;
-        this.qtdParcela = qtdParcela;
-        this.Criado_em = LocalDate.now();
-    }
 
     public Financeiro (List<Remedio> remedios, String data, double valor, long qtdParcela, long usuarioId) {
         this.remedio = remedios;
-        this.data = data;
+        this.data = data; // Data da compra do remedio. Para o gráfico usar esse campo
         this.valor = valor;
         this.qtdParcela = qtdParcela;
-        this.Criado_em = LocalDate.now();
+        this.Criado_em = LocalDate.now();  // Data de cadastro
         this.usuarioID = usuarioId;
     }
 }
