@@ -11,7 +11,6 @@ import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @Getter
@@ -33,7 +32,7 @@ public class Financeiro implements Serializable {
     @NotNull
     private long qtdParcela;
 
-    @Column(name = "usuarioID")
+    @Column(name = "usuario_us_ID")
     private Long usuarioID;
 
     @NotNull

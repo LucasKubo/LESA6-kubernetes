@@ -30,13 +30,14 @@ public class FinanceiroController {
 
 
     @GetMapping(value = "/remedios/controle_de_gastos")
-    public String telaDeGastos(Model model){
+    public String telaDeGastos (Model model){
         Usuario usuarioID = new Usuario();
         usuarioID.setId(userSessionService.returnIdUsuarioLogado());
+
         Iterable<Financeiro> financeiro = controleFinanceiro.findAllByUsuarioID(usuarioID.getId());
         model.addAttribute("financeiro", financeiro);
-        return "listas/ListarGasto";
 
+        return "listas/ListarGasto";
     }
 
     @GetMapping(value = "/remedios/controle_de_gastos/cadastrar")
@@ -44,8 +45,8 @@ public class FinanceiroController {
 
         Usuario usuarioID = new Usuario();
         usuarioID.setId(userSessionService.returnIdUsuarioLogado());
-        List <Remedio> remedio = remedioRepository.findAllByUsuario(usuarioID);
 
+        List <Remedio> remedio = remedioRepository.findAllByUsuario(usuarioID);
         model.addAttribute("remedio", remedio);
         return "cadastros/CadastroGasto";
     }
@@ -56,8 +57,10 @@ public class FinanceiroController {
         try {
             Usuario usuarioID = new Usuario();
             usuarioID.setId(userSessionService.returnIdUsuarioLogado());
+
             Financeiro financeiroMedicamento = new Financeiro(remedio, data, valor, qtdParcela, usuarioID.getId());
             controleFinanceiro.save(financeiroMedicamento);
+
 
             return "redirect:/remedios/controle_de_gastos";
 
@@ -81,12 +84,15 @@ public class FinanceiroController {
         if (!verificarPorId(id)) {
             return templateError();
         } else {
-            Financeiro financeiro = controleFinanceiro.findById(id);
+            Financeiro financeiro = controleFinanceiro.findById (id);
             model.addAttribute("financeiro", financeiro);
+
             Usuario usuarioID = new Usuario();
             usuarioID.setId(userSessionService.returnIdUsuarioLogado());
-            Iterable <Remedio> remedio = remedioRepository.findAllByUsuario(usuarioID);
-            model.addAttribute("remedio", remedio);
+
+            //Iterable <Remedio> remedio = remedioRepository.findAllByUsuario(usuarioID);
+           // model.addAttribute("remedio", remedio);
+
             return "atualizacoes/AtualizarGasto";
         }
     }

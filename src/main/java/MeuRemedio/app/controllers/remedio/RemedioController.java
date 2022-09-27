@@ -56,8 +56,11 @@ public class RemedioController {
         }
         Usuario usuarioID = new Usuario();
         usuarioID.setId(userSessionService.returnIdUsuarioLogado());
+
         List <Remedio> remedio  = remedioRepository.findAllByUsuario(usuarioID);
         model.addAttribute("remedio", remedio);
+
+
         return "cadastros/CadastroRemedios";
     }
 
