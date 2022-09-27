@@ -37,7 +37,7 @@ public class Financeiro implements Serializable {
     @NotNull
     private LocalDate Criado_em;
 
-    @NotNull @ManyToMany(cascade = CascadeType.ALL)
+    @NotNull @ManyToMany(   )
     @JoinTable(name = "Gasto_remedio",
             joinColumns = {@JoinColumn(name = "GA_ID")},
             inverseJoinColumns = {@JoinColumn(name = "RM_ID")})

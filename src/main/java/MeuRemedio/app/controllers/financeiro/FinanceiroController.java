@@ -65,7 +65,7 @@ public class FinanceiroController {
             return "redirect:/remedios/controle_de_gastos";
 
         }catch (ServiceConfigurationError serviceConfigurationError) {
-            return "redirect:/controle_de_gastos/cadastrar";
+            return templateError();
         }
     }
 
@@ -73,10 +73,9 @@ public class FinanceiroController {
     public String deletarGasto (@PathVariable("id") long id){
         if (verificarPorId(id)) {
             controleFinanceiro.deleteById(id);
-
             return "redirect:/remedios/controle_de_gastos";
         }
-        return "redirect:/remedios/controle_de_gastos";
+        return templateError();
     }
 
     @RequestMapping(value ="/remedios/controle_de_gastos/atualizar/{id}",  method = RequestMethod.GET)
@@ -116,7 +115,7 @@ public class FinanceiroController {
             return "redirect:/remedios/controle_de_gastos";
 
         }catch (NullPointerException e){
-            return "TelaDeAtualizar.html" + e;
+            return templateError() + e;
         }
     }
     public boolean verificarPorId (long id ) {
