@@ -274,7 +274,7 @@
                 dataInicioIntervalo.setDate(dataInicioAjustada.getDate() + 1)
                 console.log(dataInicioIntervalo.toLocaleDateString('en-CA'))
                 console.log(dataFinalAjustada.toLocaleDateString('en-CA'))
-                    while (dataInicioIntervalo <= dataFinalAjustada){
+                    while (dataInicioIntervalo < dataFinalAjustada){
                         var ag= {
                             "groupId": idIT[i].innerHTML,
                             "title": remediosIT[i].innerHTML,
