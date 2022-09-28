@@ -34,11 +34,12 @@ public class Financeiro implements Serializable {
     @Column(name = "usuario_us_id")
     private Long usuarioID;
 
-    @NotNull
+     @NotNull
     private LocalDate Criado_em;
 
-    @NotNull @ManyToMany(   )
-    @JoinTable(name = "Gasto_remedio",
+    @NotNull
+    @ManyToMany()
+    @JoinTable(name = "financeiro_remedio",
             joinColumns = {@JoinColumn(name = "GA_ID")},
             inverseJoinColumns = {@JoinColumn(name = "RM_ID")})
     private List <Remedio> remedio = new ArrayList<>();
@@ -51,5 +52,14 @@ public class Financeiro implements Serializable {
         this.qtdParcela = qtdParcela;
         this.Criado_em = LocalDate.now();  // Data de cadastro
         this.usuarioID = usuarioId;
+    }
+
+    public Financeiro (String ga_data, double ga_valor, long ga_parcela, List<Remedio> ag_remedios, long usuarioID) {
+        this.data = ga_data;
+        this.valor = ga_valor;
+        this.qtdParcela = ga_parcela;
+        this.remedio = ag_remedios;
+        this.usuarioID = usuarioID;
+        this.Criado_em = LocalDate.now();
     }
 }

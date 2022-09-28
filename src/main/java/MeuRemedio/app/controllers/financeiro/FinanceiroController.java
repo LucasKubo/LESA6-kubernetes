@@ -78,6 +78,7 @@ public class FinanceiroController {
         return templateError();
     }
 
+
     @RequestMapping(value ="/remedios/controle_de_gastos/atualizar/{id}",  method = RequestMethod.GET)
     public String atualizarGasto (@PathVariable("id") long id, Model model) {
         if (!verificarPorId(id)) {
