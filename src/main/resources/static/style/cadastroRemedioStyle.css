@@ -249,6 +249,9 @@ td.expense{
     width: 100%;
 }
 
+.form-h3 {
+    font-weight: 400;
+}
 .input-label {
     font-size: 1.1em;
     font-weight: bold;
@@ -271,6 +274,7 @@ td.expense{
 select.form-control:not([size]):not([multiple]) {
     height: calc(2.25rem + 25px);
 }
+
 .dosage-select{
     padding: 1.5%;
     margin: 1% 0 1% 0 ;
@@ -388,7 +392,7 @@ select.form-control:not([size]):not([multiple]) {
 input[type='checkbox'] {
     align-self: center;
     transform: scale(1.5);
-    margin-top: 10px;
+    margin-top: -5px;
 }
 .form-check-input{
     position: relative;
