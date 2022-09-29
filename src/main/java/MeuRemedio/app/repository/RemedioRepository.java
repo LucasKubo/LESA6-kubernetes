@@ -8,6 +8,8 @@ import java.util.List;
 
 public interface RemedioRepository extends JpaRepository<Remedio, Long> {
     Remedio findById (long id);
+
+    Remedio findByUsuario(Usuario usuario);
     List<Remedio> findAllByUsuario(Usuario usuario);
 
 
