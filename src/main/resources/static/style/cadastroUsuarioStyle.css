@@ -90,6 +90,9 @@ header{
     border-radius: 0;
     box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
 }
+.navbar-nav {
+    justify-content: flex-end;
+}
 .navbar-toggler{
     width: 150px;
 }
@@ -138,19 +141,22 @@ header{
 }
 
 .gender-select {
-    padding: 6.5%;
+    padding: 1%;
     margin: 1% 0 1% 0 ;
     background: #FFFFFF;
     border: 3px solid #E6E6E6;
     border-radius: 15px;
     display: block;
     width: 100%;
-    height: calc(1.5em + 0.75rem + 2px);
+    height: 100%;
     font-size: 1rem;
     font-weight: 400;
     line-height: 1.5;
     color: #495057;
     transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+.select-group {
+    height: 8%;
 }
 
 .error-message {
