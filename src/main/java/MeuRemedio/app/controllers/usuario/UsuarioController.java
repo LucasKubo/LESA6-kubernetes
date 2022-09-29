@@ -1,8 +1,11 @@
 package MeuRemedio.app.controllers.usuario;
 
 import MeuRemedio.app.controllers.EnvioEmail;
+import MeuRemedio.app.models.remedios.Remedio;
 import MeuRemedio.app.models.usuarios.Usuario;
+import MeuRemedio.app.repository.RemedioRepository;
 import MeuRemedio.app.repository.UsuarioRepository;
+import MeuRemedio.app.repository.UsuarioRepository_2;
 import MeuRemedio.app.service.UserSessionService;
 import MeuRemedio.app.service.UsuarioService;
 import MeuRemedio.app.service.utils.ValidateAuthentication;
@@ -25,6 +28,12 @@ public class UsuarioController {
 
     @Autowired
     private UsuarioRepository usuarioRepository;
+
+    @Autowired
+    UsuarioRepository_2 usuarioRepository_2;
+
+    @Autowired
+    RemedioRepository remedioRepository;
 
     @Autowired
     ValidateAuthentication validateAuthentication;
@@ -77,7 +86,7 @@ public class UsuarioController {
         }
     }
 
-    @RequestMapping(value = "/atualizar_usuario", method = RequestMethod.GET)
+    @RequestMapping(value = "/usuario/edit/atualizar_usuario", method = RequestMethod.GET)
     public String viewAtualizarUsuario(Model model) {
         String EmailUsuarioLogado = userSessionService.returnUsernameUsuario();
         Usuario usuarioLogado = usuarioRepository.findByEmail(EmailUsuarioLogado);
@@ -86,7 +95,7 @@ public class UsuarioController {
         return "atualizacoes/AtualizarUsuario";
     }
 
-    @RequestMapping(value = "/atualizar_usuario", method = RequestMethod.POST)
+    @RequestMapping(value = "/usuario/edit/atualizar_usuario", method = RequestMethod.POST)
     public String atualizarUsuario(@RequestParam("US_Nome") String nome, @RequestParam("US_Sobrenome") String sobrenome,
                                    @RequestParam("US_Senha") String senha, @RequestParam(value = "US_NovaSenha", required = false) String novaSenha,
                                    @RequestParam("US_Sexo") String sexo) {
@@ -116,9 +125,31 @@ public class UsuarioController {
                 usuarioLogado.setSexo(sexo);
 
                 usuarioRepository.save(usuarioLogado);
-                
+
                 return REDIRECT;
             }
+        }
+        return "TemplateError";
+    }
+
+    @GetMapping(value = "/usuario/edit/deletar_usuario/{id}") /*Validar como vai ser a chamada do do front para o metodo*/
+    public String deletarUsuario (@PathVariable("id") long id ,@RequestParam("US_Senha") String senha ) {
+
+        String EmailUsuarioLogado = userSessionService.returnUsernameUsuario();
+        Usuario usuarioLogado = usuarioRepository.findByEmail(EmailUsuarioLogado);
+        String passUserLogged = usuarioLogado.getPassword();
+
+        boolean validarSenha;
+
+        if (BCrypt.checkpw(senha, passUserLogged)) {
+            validarSenha = true;
+
+        if (validarSenha) {
+            Remedio remedio = remedioRepository.findByUsuario(usuarioLogado);
+            remedioRepository.delete(remedio);
+            usuarioRepository_2.deleteById(id);
+        }
+            return "redirect:/logout";
         }
         return "TemplateError";
     }
