@@ -8,8 +8,8 @@ import org.springframework.data.repository.CrudRepository;
 
 public interface UsuarioRepository extends CrudRepository<Usuario, String> {
     Usuario findByEmail(String email);
-    Usuario findById(long id);
-    Usuario deleteByID(long id);
+//    Usuario findById(long id);
+//    Usuario deleteByID(long id);
 
 
     @Query("SELECT u FROM Usuario u WHERE u.verificationCode = ?1")

@@ -86,7 +86,7 @@ public class UsuarioController {
         }
     }
 
-    @RequestMapping(value = "/atualizar_usuario", method = RequestMethod.GET)
+    @RequestMapping(value = "/usuario/edit/atualizar_usuario", method = RequestMethod.GET)
     public String viewAtualizarUsuario(Model model) {
         String EmailUsuarioLogado = userSessionService.returnUsernameUsuario();
         Usuario usuarioLogado = usuarioRepository.findByEmail(EmailUsuarioLogado);
@@ -95,7 +95,7 @@ public class UsuarioController {
         return "atualizacoes/AtualizarUsuario";
     }
 
-    @RequestMapping(value = "/atualizar_usuario", method = RequestMethod.POST)
+    @RequestMapping(value = "/usuario/edit/atualizar_usuario", method = RequestMethod.POST)
     public String atualizarUsuario(@RequestParam("US_Nome") String nome, @RequestParam("US_Sobrenome") String sobrenome,
                                    @RequestParam("US_Senha") String senha, @RequestParam(value = "US_NovaSenha", required = false) String novaSenha,
                                    @RequestParam("US_Sexo") String sexo) {
