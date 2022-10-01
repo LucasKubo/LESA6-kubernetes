@@ -1,4 +1,4 @@
-package MeuRemedio.app.controllers.remedio;
+package MeuRemedio.app.security.remedio;
 
 
 import MeuRemedio.app.controllers.EnvioEmail;
