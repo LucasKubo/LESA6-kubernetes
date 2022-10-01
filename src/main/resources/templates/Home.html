@@ -90,17 +90,22 @@
                 <div class="" th:each ="agendamento : ${agendamento}">
                     <tr>
                         <td><p><span th:text="${agendamento.id}" class="idAgendamento" hidden="true"></span></td>
-                        <td><p><span th:text="${agendamento.remedio}" class="remedios" hidden="true"></span></td>
+                        <td><p><span th:text="${#strings.substring(agendamento.remedio, 1, #strings.length(agendamento.remedio)-1)}" class="remedios" hidden="true"></span></td>
                         <td><p><span th:text="${agendamento.dataInicio}" class="dataInicio" hidden="true"></span></td>
-                        <td><p><span th:text="${agendamento.horaInicio}" class="horaInicio" hidden="true"></span></td>
                         <td><p><span th:text="${agendamento.dataFinal}" class="dataFinal" hidden="true"></span></td>
-                        <td><p><span th:text="${agendamento.periodicidade}" class="periodicidade" hidden="true"></span></td>
-
-                        <!-- <div class="" th:each = "intervaloDias : ${intervaloDias}">
-                        <td><p><span th:text="${agendamento.id} eq ${intervaloDias.id} ? ${intervaloDias.intervaloDias}:''" class="intervaloDias" hidden="true"> </span> </td>
-                        </div> -->
                     </tr>
                 </div>
+                <div class="" th:each ="intervaloDias : ${intervaloDias}">
+                    <tr>
+                        <td><p><span th:text="${intervaloDias.id}" class="idIntervaloDias" hidden="true"></span></td>
+                        <td><p><span th:text="${#strings.substring(intervaloDias.remedio, 1, #strings.length(intervaloDias.remedio)-1)}" class="remediosIT" hidden="true"></span></td>
+                        <td><p><span th:text="${intervaloDias.dataInicio}" class="dataInicioIT" hidden="true"></span></td>
+                        <td><p><span th:text="${intervaloDias.dataFinal}" class="dataFinalIT" hidden="true"></span></td>
+                        <td><p><span th:text="${intervaloDias.intervaloDias}" class="intervaloDias" hidden="true"></span></td>
+                    </tr>
+                </div>
+
+
 
 
 
@@ -117,16 +122,19 @@
                                 <th th:text="#{cadageform.initialhour}"></th>
                                 <th th:text="#{cadageform.finaldate}"></th>
                                 <th th:text="#{cadageform.frequency}"></th>
+
                             </tr>
                             </thead>
                             <tbody>
                             <div class="" th:each ="agendamento : ${agendamento}">
                                 <tr>
-                                    <td><p><span th:text="${agendamento.remedio}"></span></td>
-                                    <td><p><span th:text="${agendamento.dataInicio}"></span></td>
-                                    <td><p><span th:text="${agendamento.horaInicio}"></span></td>
-                                    <td><p><span th:text="${agendamento.dataFinal}"></span></td>
-                                    <td><p><span th:text="${agendamento.periodicidade}"></span></td>
+                                    <td><p><span th:text="${#strings.substring(agendamento.remedio, 1, #strings.length(agendamento.remedio)-1)}"></span></td>
+                                    <th:block th:with="sdf = ${new java.text.SimpleDateFormat('yyyy-MM-dd')}">
+                                        <td><p> <span th:text="${#dates.format(sdf.parse(agendamento.dataInicio), 'dd/MM/yyyy')}"> </span></td>
+                                        <td><p><span th:text="${agendamento.horaInicio}"></span></td>
+                                        <td><p> <span th:text="${#dates.format(sdf.parse(agendamento.dataFinal), 'dd/MM/yyyy')}"> </span></td>
+                                    </th:block>
+                                    <td><p><span th:text="${agendamento.periodicidade} + 'h'"></span></td>
                                     <td><a th:href="@{/atualizar_agendamento/{id} (id = ${agendamento.id})}"> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
                                         <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
                                         <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
@@ -186,10 +194,14 @@
                 <h5>
                     R. Pedro Vicente, 625 - Canindé, São Paulo - SP, 01109-010
                 </h5>
-
+                <!-- <div class="" th:each ="horarios : ${horarios}">
+                    <tr>
+                        <td><p><span th:text="${horarios.agendamento.remedio}" class="horarios"></span></td>
+                        <td><p><span th:text="${#temporals.format(horarios.id.horaDataNotificacao, 'HH:mm')}" class="horarios"></span></td>
+                    </tr>
+                </div> -->
             </div>
         </div>
-
         </main>
 
     </div>
@@ -239,36 +251,51 @@
             var remedios = document.getElementsByClassName('remedios');
             var dataInicio = document.getElementsByClassName('dataInicio');
             var dataFinal = document.getElementsByClassName('dataFinal');
-            var intervalo = document.getElementsByClassName('intervaloDias');
+
+            var idIT = document.getElementsByClassName('idIntervaloDias');
+            var remediosIT = document.getElementsByClassName('remediosIT');
+            var dataInicioIT = document.getElementsByClassName('dataInicioIT');
+            var dataFinalIT = document.getElementsByClassName('dataFinalIT');
+            var intervaloIT = document.getElementsByClassName('intervaloDias');
 
 
+            console.log(remediosIT)
+            console.log(intervaloIT)
             var listaAgendamentos = new Array();
+
+            for (var i = 0; i < remediosIT.length; i++){
+                var dataFinalDate = new Date(dataFinalIT[i].innerHTML)
+                var dataFinalAjustada = new Date();
+                dataFinalAjustada.setMonth(dataFinalDate.getMonth())
+                dataFinalAjustada.setDate(dataFinalDate.getDate() + 2);
+                var dataInicioAjustada = new Date(dataInicioIT[i].innerHTML);
+                var dataInicioIntervalo = new Date();
+                dataInicioIntervalo.setMonth(dataInicioAjustada.getMonth())
+                dataInicioIntervalo.setDate(dataInicioAjustada.getDate() + 1)
+                console.log(dataInicioIntervalo.toLocaleDateString('en-CA'))
+                console.log(dataFinalAjustada.toLocaleDateString('en-CA'))
+                    while (dataInicioIntervalo < dataFinalAjustada){
+                        var ag= {
+                            "groupId": idIT[i].innerHTML,
+                            "title": remediosIT[i].innerHTML,
+                            "start": dataInicioIntervalo.toLocaleDateString('en-CA'),
+                            "end": dataInicioIntervalo.toLocaleDateString('en-CA')
+                        }
+                        console.log(ag)
+                        listaAgendamentos.push(ag);
+                        dataInicioIntervalo.setDate(dataInicioIntervalo.getDate() + parseInt(intervaloIT[i].innerHTML) + 1);
+                    }
+            }
 
             for (var i = 0; i < remedios.length; i++){
 
+                if (listaAgendamentos.filter(e => e.groupId === id[i].innerHTML).length > 0){
+                        console.log("Já adicionado")
+                } else {
                 var dataFinalDate = new Date(dataFinal[i].innerHTML)
                 var dataFinalAjustada = new Date();
                 dataFinalAjustada.setMonth(dataFinalDate.getMonth())
                 dataFinalAjustada.setDate(dataFinalDate.getDate() + 2);
-                
-            
-                // if (intervalo[i].innerHTML != "" && intervalo[i].innerHTML != 0){
-                //     var dataInicioAjustada = new Date(dataInicio[i].innerHTML);
-                //     var dataInicioIntervalo = new Date();
-                //     dataInicioIntervalo.setDate(dataInicioAjustada.getDate() + 1)
-                //     // dataInicioIntervalo.setDate(dataInicioIntervalo.getDate() + 1);
-                //     while (dataInicioIntervalo <= dataFinalAjustada){
-                //         var ag= {
-                //             "groupId": id[i].innerHTML,
-                //             "title": remedios[i].innerHTML,
-                //             "start": dataInicioIntervalo.toLocaleDateString('en-CA'),
-                //             "end": dataInicioIntervalo.toLocaleDateString('en-CA')
-                //         }
-                //         console.log(ag)
-                //         listaAgendamentos.push(ag);
-                //         dataInicioIntervalo.setDate(dataInicioIntervalo.getDate() + parseInt(intervalo[i].innerHTML) + 1); 
-                //     }
-                // } else {
                     var ag= {
                                 "groupId": id[i].innerHTML,
                                 "title": remedios[i].innerHTML,
@@ -276,12 +303,12 @@
                                 "end": dataFinalAjustada.toLocaleDateString('en-CA')
                             }
                     listaAgendamentos.push(ag);
-                    // }
             }
+        }
             var calendar = new FullCalendar.Calendar(calendarEl, {
                 plugins: [ 'interaction', 'dayGrid' ],
                 defaultDate: hoje,
-                editable: true,
+                editable: false,
                 eventLimit: true, // allow "more" link when too many events
                events: listaAgendamentos
             });
