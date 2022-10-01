@@ -45,23 +45,8 @@
                 <a href="/home" class="navbar-brand text-center col-09" >
                     <img alt="Brand" src="/images/icon.svg" class="img-responsive text-center">
                 </a>
-
             </div>
         </nav>
-
-
-
-
-        <!-- <div class="jumbotron">
-
-             <selection class="jumbotron text-center">
-                 <div class="container">
-                     <h1 class="jumbotron-heading footer">Bem Vindo ao Meu Remédio!</h1>
-                     <p class="lead text-muted footer">Aqui você conseguirá realizar o controle dos remédios que está utilizando, ver o quanto está gastando com eles e verificar se o medicamento está disponível no SUS gratuitamente.</p>
-
-                 </div>
-             </selection>
-         </div>-->
 
         <main class="container-table text-center">
             <section id="gasto">
@@ -73,7 +58,6 @@
                         <th>Remédio</th>
                         <th>Data</th>
                         <th>Valor</th>
-
                     </tr>
                     </thead>
                     <tbody>
@@ -82,7 +66,7 @@
                             <td><p style="color: black"><span th:text="${#strings.substring(financeiro.remedio, 1, #strings.length(financeiro.remedio)-1)}"></span></td>
                              <th:block th:with="sdf = ${new java.text.SimpleDateFormat('yyyy-MM-dd')}">
                             <td><p style="color: black"><span th:text="${#dates.format(sdf.parse(financeiro.data), 'dd/MM/yyyy')}"> </span></td> </th:block>
-                            <td><p style="color: black"><span th:text="${financeiro.valor}"></span></td>
+                            <td><p style="color: black"><span th:text="${#numbers.formatCurrency(financeiro.valor)}"></span></td>
 
                             <td><a th:href="@{/remedios/controle_de_gastos/atualizar/{id} (id = ${financeiro.id})}"> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
                                 <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
@@ -97,13 +81,12 @@
                     </div>
                     </tbody>
                 </table>
-
                 <a id="new-cad" href="/remedios/controle_de_gastos/cadastrar" class="button new">Novo Gasto</a>
             </section>
         </main>
-
         <div class="overlay"></div>
     </div>
+
     <!-- Scripts da página -->
     <!-- jQuery CDN - Slim version (=without AJAX) -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
@@ -113,10 +96,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
     <script src="/script/cadastroRemedio.jsp"></script>
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
 </div>
-
 </body>
-
 </html>

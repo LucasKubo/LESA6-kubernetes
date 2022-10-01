@@ -3,6 +3,7 @@ package MeuRemedio.app.models.usuarios;
 
 import MeuRemedio.app.models.remedios.Remedio;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -16,13 +17,14 @@ import java.util.List;
 @Getter
 @Setter
 @Entity
+@NoArgsConstructor
 public class Usuario implements UserDetails {
     private static long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "US_ID", nullable = false)
-    private Long id;
+    private long id;
 
     @Column(name = "US_Nome", nullable = false)
     @NotNull @NotEmpty @NotBlank
@@ -73,28 +75,6 @@ public class Usuario implements UserDetails {
         this.sexo = sexo;
         this.criadoEm = LocalDate.now();
        // this.remedios = remedios;
-
-    }
-
-
-    /*Esse contrutor está sendo usado para não quebrar o progrma, NÂO APAGAR o método*/
-
-//    public Usuario (String nome, String sobrenome, String email,
-//                    String senha, String dataNascimento, String sexo /*List<Remedio> remedios*/) {
-//
-//        this.nome = nome;
-//        this.sobrenome = sobrenome;
-//        this.email = email;
-//        this.senha = senha;
-//        this.dataNascimento = dataNascimento;
-//        this.sexo = sexo;
-//        this.criadoEm = LocalDate.now();
-//
-//    }
-
-
-
-    public Usuario() {
 
     }
 

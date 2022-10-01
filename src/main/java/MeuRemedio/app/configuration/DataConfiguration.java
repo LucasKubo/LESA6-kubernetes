@@ -1,6 +1,5 @@
 package MeuRemedio.app.configuration;
 
-
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
@@ -13,22 +12,20 @@ import javax.sql.DataSource;
 @Configuration
 public class DataConfiguration {
 
-
-
-                  //Metodo para base de dados locais
-    @Bean
-    public DataSource datasource() {
-        try {
-            DriverManagerDataSource driver = new DriverManagerDataSource();
-            driver.setDriverClassName("org.postgresql.Driver");
-            driver.setUrl("jdbc:postgresql://localhost:5432/meuremediobd");
-            driver.setUsername("postgres");
-            driver.setPassword("root");
-            return driver;
-        } catch (Exception e) {
-            throw new IllegalStateException("Erro de conexão com o banco" + e);
-       }
-   }
+   // Metodo para base de dados locais
+//    @Bean
+//    public DataSource datasource() {
+//        try {
+//            DriverManagerDataSource driver = new DriverManagerDataSource();
+//            driver.setDriverClassName("org.postgresql.Driver");
+//            driver.setUrl("jdbc:postgresql://localhost:5432/meuremediobd");
+//            driver.setUsername("postgres");
+//            driver.setPassword("root");
+//            return driver;
+//        } catch (Exception e) {
+//            throw new IllegalStateException("Erro de conexão com o banco" + e);
+//        }
+//    }
 
     @Bean
     public JpaVendorAdapter JpaVendorAdapter() {

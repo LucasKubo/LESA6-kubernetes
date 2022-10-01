@@ -1,6 +1,6 @@
 package MeuRemedio.app.controllers.agendamento;
 
-import MeuRemedio.app.controllers.remedio.RemedioController;
+import MeuRemedio.app.security.remedio.RemedioController;
 import MeuRemedio.app.models.agendamentos.Agendamento;
 import MeuRemedio.app.models.agendamentos.IntervaloDias;
 import MeuRemedio.app.models.remedios.Remedio;
@@ -121,7 +121,7 @@ public class AgendamentoController {
     public String deletarAgendamento(@PathVariable("id") long id){
         Agendamento agendamento = agendamentoRepository.findById(id);
         agendamentoRepository.delete(agendamento);
-        return REDIRECT;
+        return "redirect:/home";
     }
 
     @RequestMapping(value = "/atualizar_agendamento/{id}", method = RequestMethod.GET)

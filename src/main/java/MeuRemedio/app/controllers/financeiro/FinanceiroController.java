@@ -30,13 +30,14 @@ public class FinanceiroController {
 
 
     @GetMapping(value = "/remedios/controle_de_gastos")
-    public String telaDeGastos(Model model){
+    public String telaDeGastos (Model model){
         Usuario usuarioID = new Usuario();
         usuarioID.setId(userSessionService.returnIdUsuarioLogado());
+
         Iterable<Financeiro> financeiro = controleFinanceiro.findAllByUsuarioID(usuarioID.getId());
         model.addAttribute("financeiro", financeiro);
-        return "listas/ListarGasto";
 
+        return "listas/ListarGasto";
     }
 
     @GetMapping(value = "/remedios/controle_de_gastos/cadastrar")
@@ -44,8 +45,8 @@ public class FinanceiroController {
 
         Usuario usuarioID = new Usuario();
         usuarioID.setId(userSessionService.returnIdUsuarioLogado());
-        List <Remedio> remedio = remedioRepository.findAllByUsuario(usuarioID);
 
+        List <Remedio> remedio = remedioRepository.findAllByUsuario(usuarioID);
         model.addAttribute("remedio", remedio);
         return "cadastros/CadastroGasto";
     }
@@ -56,13 +57,15 @@ public class FinanceiroController {
         try {
             Usuario usuarioID = new Usuario();
             usuarioID.setId(userSessionService.returnIdUsuarioLogado());
+
             Financeiro financeiroMedicamento = new Financeiro(remedio, data, valor, qtdParcela, usuarioID.getId());
             controleFinanceiro.save(financeiroMedicamento);
+
 
             return "redirect:/remedios/controle_de_gastos";
 
         }catch (ServiceConfigurationError serviceConfigurationError) {
-            return "redirect:/controle_de_gastos/cadastrar";
+            return templateError();
         }
     }
 
@@ -70,23 +73,26 @@ public class FinanceiroController {
     public String deletarGasto (@PathVariable("id") long id){
         if (verificarPorId(id)) {
             controleFinanceiro.deleteById(id);
-
             return "redirect:/remedios/controle_de_gastos";
         }
-        return "redirect:/remedios/controle_de_gastos";
+        return templateError();
     }
 
+
     @RequestMapping(value ="/remedios/controle_de_gastos/atualizar/{id}",  method = RequestMethod.GET)
-    public String atualizarGasto(@PathVariable("id") long id, Model model) {
+    public String atualizarGasto (@PathVariable("id") long id, Model model) {
         if (!verificarPorId(id)) {
             return templateError();
         } else {
-            Financeiro financeiro = controleFinanceiro.findById(id);
+            Financeiro financeiro = controleFinanceiro.findById (id);
             model.addAttribute("financeiro", financeiro);
+
             Usuario usuarioID = new Usuario();
             usuarioID.setId(userSessionService.returnIdUsuarioLogado());
+
             Iterable <Remedio> remedio = remedioRepository.findAllByUsuario(usuarioID);
             model.addAttribute("remedio", remedio);
+
             return "atualizacoes/AtualizarGasto";
         }
     }
@@ -106,10 +112,11 @@ public class FinanceiroController {
                 financeiro.setQtdParcela(qtdParcela);
                 financeiro.setRemedio(remedio);
                 controleFinanceiro.save(financeiro);
+
             return "redirect:/remedios/controle_de_gastos";
 
         }catch (NullPointerException e){
-            return "TelaDeAtualizar.html" + e;
+            return templateError() + e;
         }
     }
     public boolean verificarPorId (long id ) {

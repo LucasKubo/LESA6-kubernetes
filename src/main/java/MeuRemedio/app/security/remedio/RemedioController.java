@@ -1,10 +1,12 @@
-package MeuRemedio.app.controllers.remedio;
+package MeuRemedio.app.security.remedio;
 
 
 import MeuRemedio.app.controllers.EnvioEmail;
 import MeuRemedio.app.controllers.agendamento.AgendamentoController;
 import MeuRemedio.app.models.remedios.Remedio;
+import MeuRemedio.app.models.usuarios.Financeiro;
 import MeuRemedio.app.models.usuarios.Usuario;
+import MeuRemedio.app.repository.FinanceiroRepository;
 import MeuRemedio.app.repository.RemedioRepository;
 import MeuRemedio.app.repository.UsuarioRepository;
 import MeuRemedio.app.service.UserSessionService;
@@ -47,6 +49,9 @@ public class RemedioController {
     @Autowired
     UserSessionService userSessionService;
 
+    @Autowired
+    FinanceiroRepository controleFinanceiro;
+
     final String REDIRECT="redirect:/remedios";
 
     @RequestMapping(value = "/remedios_cadastro")
@@ -56,8 +61,11 @@ public class RemedioController {
         }
         Usuario usuarioID = new Usuario();
         usuarioID.setId(userSessionService.returnIdUsuarioLogado());
+
         List <Remedio> remedio  = remedioRepository.findAllByUsuario(usuarioID);
         model.addAttribute("remedio", remedio);
+
+
         return "cadastros/CadastroRemedios";
     }
 
@@ -69,32 +77,36 @@ public class RemedioController {
                                   @RequestParam(value = "AG_HoraInicio", required = false) String AG_horaInicio,
                                   @RequestParam(value = "AG_DataFinal", required = false)  String AG_DataFinal ,
                                   @RequestParam(value = "AG_Periodicidade", required = false) long AG_Periodicidade,
-                                  @RequestParam(value = "intervaloDias", required = false) Long intervaloDias) throws Exception {
+                                  @RequestParam(value = "intervaloDias", required = false) Long intervaloDias /**,
+                                  @RequestParam(defaultValue = "2022/01/01", value = "GA_Data", required = false) String GA_Data,
+                                  @RequestParam(value = "GA_Valor", required = false) double GA_Valor,
+                                  @RequestParam(value = "GA_Parcela", required = false) long GA_Parcela,
+                                  @RequestParam(value = "AG_Remedios", required = false) List <Remedio> AG_Remedios **/) throws Exception {
 
         boolean auxRetiradoSUS;
 
         Usuario usuarioID = new Usuario();
         usuarioID.setId(userSessionService.returnIdUsuarioLogado());
 
-        if (usuarioID.getId() <= 0) {
-            throw new SQLException("Erro ao retornar ID do usuário ");
-        }
-
         auxRetiradoSUS = RM_RetiradoSus.equals("Sim");
         Remedio remedio = new Remedio(RM_Nome, RM_Dosagem, RM_UnidadeDosagem, auxRetiradoSUS, usuarioID);
-
         remedioRepository.save(remedio);
+
+/**     Financeiro financeiro = new Financeiro (GA_Data, GA_Valor, GA_Parcela, AG_Remedios, usuarioID.getId());
+        controleFinanceiro.save(financeiro);
+ **/
 
         if (Objects.nonNull(check) && check) {
             cadastrarAgendamento(Collections.singletonList(remedio), AG_DataInicio, AG_horaInicio, AG_DataFinal, AG_Periodicidade, intervaloDias);
         }
-        Usuario us = usuarioRepository.findByEmail(userSessionService.returnUsernameUsuario());
-        emailController.emailCadastroRemedio(us, remedio);
+
+        Usuario usuario = usuarioRepository.findByEmail(userSessionService.returnUsernameUsuario());
+        emailController.emailCadastroRemedio(usuario, remedio);
 
         return REDIRECT;
     }
 
-    public void cadastrarAgendamento(List<Remedio> remedios, String AG_DataInicio, String AG_horaInicio,
+    public void cadastrarAgendamento (List<Remedio> remedios, String AG_DataInicio, String AG_horaInicio,
                                      String AG_DataFinal, long AG_Periodicidade, Long intervaloDias) throws Exception {
 
         if(Objects.isNull(remedios) || Objects.isNull(AG_DataInicio) || Objects.isNull(AG_horaInicio) ||
@@ -105,23 +117,28 @@ public class RemedioController {
     }
 
     @RequestMapping(value = "/remedios")
-    public String listaRemedios(ModelMap model) {
+    public String listaRemedios (ModelMap model) {
 
         if (!validateAuthentication.auth()) {
             return "Login";
         }
         Usuario usuarioID = new Usuario();
         usuarioID.setId(userSessionService.returnIdUsuarioLogado());
+
         List <Remedio> remedio = remedioRepository.findAllByUsuario(usuarioID);
         model.addAttribute("remedio", remedio);
+
         return "listas/ListaRemedios";
     }
 
     @RequestMapping(value = "/deletar_remedio/{id}")
-    public String deletarRemedio(@PathVariable("id") long id) {
-        remedioRepository.deleteById(id);
-
-        return REDIRECT;
+    public String deletarRemedio (@PathVariable("id") long id) {
+        if (verificarPorId(id)) {
+            //controleFinanceiro.deleteByRemedio(id);
+            remedioRepository.deleteById(id);
+            return REDIRECT;
+        }
+        return templateError();
     }
 
     @RequestMapping(value = "/atualizar_remedio/{id}", method = RequestMethod.GET)
@@ -136,7 +153,7 @@ public class RemedioController {
     }
 
     @RequestMapping(value = "/atualizar_remedio/{id}", method = RequestMethod.POST)
-    public String atualizarDadosRemedio(@PathVariable("id") long id,  @RequestParam("RM_Nome") String RM_Nome, @RequestParam("RM_Dosagem") String RM_Dosagem,
+    public String atualizarDadosRemedio (@PathVariable("id") long id,  @RequestParam("RM_Nome") String RM_Nome, @RequestParam("RM_Dosagem") String RM_Dosagem,
                                        @RequestParam("RM_UnidadeDosagem") String RM_UnidadeDosagem, @RequestParam("RM_RetiradoSus") String RM_RetiradoSus)  {
         boolean auxRetiradoSUS;
 
@@ -156,13 +173,11 @@ public class RemedioController {
             remedio.setRM_UnidadeDosagem(RM_UnidadeDosagem);
             remedio.setRM_RetiradoSus(auxRetiradoSUS);
 
-
             remedioRepository.save(remedio);
-
             return REDIRECT;
-
         }
     }
+
     //função responsável por achar um id dentro do banco. Retorna true se encontrar
     public boolean verificarPorId (long id ) {
         return remedioRepository.existsById(id);

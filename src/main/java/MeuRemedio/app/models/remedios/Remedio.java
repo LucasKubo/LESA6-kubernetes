@@ -4,6 +4,7 @@ import MeuRemedio.app.models.agendamentos.Agendamento;
 import MeuRemedio.app.models.usuarios.Financeiro;
 import MeuRemedio.app.models.usuarios.Usuario;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
@@ -17,6 +18,7 @@ import java.util.*;
 @Getter
 @Setter
 @Entity
+@NoArgsConstructor
 @Table(name = "REMEDIO")
 public class Remedio implements Comparable<Remedio>, Serializable  {
     private static final long serialVersionUID = 1L;
@@ -59,9 +61,6 @@ public class Remedio implements Comparable<Remedio>, Serializable  {
    @JoinColumn(name = "Usuario_FK_Usuario")
     private Usuario usuario;
 
-//    @NotNull @ManyToMany(mappedBy = "remedio", cascade = CascadeType.ALL)
-//    private List <Financeiro> financeiro = new ArrayList<Financeiro>();
-
     private LocalDate Criado_em = LocalDate.now();
 
     public Remedio (String RM_Nome, String RM_Dosagem, String RM_UnidadeDosagem, Boolean RM_RetiradoSus,
@@ -75,22 +74,8 @@ public class Remedio implements Comparable<Remedio>, Serializable  {
         this.usuario = usuario;
     }
 
-//    public Remedio(String RM_Nome, String RM_Dosagem, String RM_UnidadeDosagem, Boolean RM_RetiradoSus,
-//                   List<Categoria> categoria, Usuario usuario) {
-//
-//        this.RM_Nome = RM_Nome;
-//        this.RM_Dosagem = RM_Dosagem;
-//        this.RM_UnidadeDosagem = RM_UnidadeDosagem;
-//        this.RM_RetiradoSus = RM_RetiradoSus;
-//        this.usuario = usuario;
-//    }
-
-    public Remedio(){
-
-    }
-    
     //Método de teste sem o rádio/boolean
-    public Remedio(String RM_Nome, String RM_Dosagem, String RM_UnidadeDosagem, Usuario usuario) {
+    public Remedio (String RM_Nome, String RM_Dosagem, String RM_UnidadeDosagem, Usuario usuario) {
         this.RM_Nome = RM_Nome;
         this.RM_Dosagem = RM_Dosagem;
         this.RM_UnidadeDosagem = RM_UnidadeDosagem;

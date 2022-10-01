@@ -19,8 +19,6 @@ public class UserSessionService {
     @Autowired
     private IAuthentication authenticationFacade;
 
-    @Autowired
-    ValidateAuthentication validateAuthentication;
 
     public String returnUsernameUsuario(){
         Authentication authentication = authenticationFacade.getAuthentication();
