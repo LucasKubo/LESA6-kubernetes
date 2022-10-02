@@ -271,7 +271,7 @@
                                                    placeholder="Data Inicial"
                                                    onmouseover="mensagemDataInicio()"
                                                    onmouseout="retirarMensagemDataInicio()"
-                                                   onBlur= "validaDataFinal()"
+                                                   onBlur="validaDataFinal()"
                                                    required=""
                                             >
                                         </div>
@@ -285,7 +285,7 @@
                                                    placeholder="Data Final"
                                                    onmouseover="mensagemDataFim()"
                                                    onmouseout="retirarMensagemDataFim()"
-                                                   onBlur= "validaDataFinal()"
+                                                   onBlur="validaDataFinal()"
                                                    required=""
                                             >
                                         </div>
@@ -315,7 +315,7 @@
                                                    min="1"
                                                    onmouseover="mensagemPeriodicidade()"
                                                    onmouseout="retirarMensagemPeriodicidade()"
-                                                   value="0"
+                                                   value="1"
                                             >
                                         </div>
                                     </div>
@@ -354,6 +354,8 @@
                                 <small><span id="mensagemInicioAgendamento" class="help"></span></small>
                                 <small><span id="mensagemHora" class="help"></span></small>
 
+                               <span class="error-message" id="error-hoje"></span>
+                               <span class="error-message" id="error-date"></span>
 
 
                                 <!--
@@ -368,13 +370,6 @@
                                 </div>
                         </div>
                                 -->
-
-
-
-
-
-                                <span class="error-message" id="error-hoje"></span>
-                                <span class="error-message" id="error-date"></span>
                                 <!-- botões principais -->
                                 <div class="input-group actions">
                                     <a id="cancelar2" href="/remedios" class="button cancel">Voltar</a>
