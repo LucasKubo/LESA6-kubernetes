@@ -22,7 +22,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Bean
     public WebSecurityCustomizer webSecuritycustomizer(){
-        return web -> web.ignoring().antMatchers("/static/**", "/template/**",
+        return web -> web.ignoring().antMatchers("/static/**", "/template/**","/config/**",
                 "/style/**","/assets/**","/script/**", "/images/**", "/languages/**"
         );
     }
@@ -31,7 +31,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     public void configure (HttpSecurity http) throws Exception {
         http.csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/login", "/cadastro", "/", "/enviarEmail","/recuperar_senha","/verificar_cadastro").permitAll()
+                .antMatchers("/login", "/cadastro", "/", "/enviarEmail","/recuperar_senha","/verificar_cadastro","/sw.js").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()

@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.mail.MessagingException;
+import java.io.UnsupportedEncodingException;
 import java.util.Objects;
 import java.util.Random;
 
@@ -38,7 +40,7 @@ public class RecuperacaoSenha {
     }
 
     @RequestMapping(value = "/enviarEmail", method = RequestMethod.POST)
-    public String receberEmail (@RequestParam("US_Email") String email) {
+    public String receberEmail (@RequestParam("US_Email") String email) throws MessagingException, UnsupportedEncodingException {
 
        Usuario verificarEmailUsuarioExistente =  usuarioRepository.findByEmail(email);
        Usuario_code verificarEmailCod = usuarioCode.findByEmail(email);
