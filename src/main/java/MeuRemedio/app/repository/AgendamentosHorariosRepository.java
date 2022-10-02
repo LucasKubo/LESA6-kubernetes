@@ -30,6 +30,6 @@ public interface AgendamentosHorariosRepository extends CrudRepository<Agendamen
     @Query(value = "from AgendamentosHorarios " +
             "WHERE id.horaDataNotificacao >=:agora " +
             "AND DATE(id.horaDataNotificacao) <CURRENT_DATE + 1" +
-            " AND agendamento.usuarioID =:id")
+            " AND agendamento.usuarioID =:id ORDER BY id.horaDataNotificacao")
     List<AgendamentosHorarios> selecionarHorarios(@Param("id") Long id, @Param("agora")LocalDateTime agora);
 }

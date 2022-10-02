@@ -37,7 +37,6 @@ public class Financeiro implements Serializable {
      @NotNull
     private LocalDate Criado_em;
 
-    @NotNull
     @ManyToMany()
     @JoinTable(name = "financeiro_remedio",
             joinColumns = {@JoinColumn(name = "GA_ID")},
