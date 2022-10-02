@@ -63,7 +63,9 @@
                                 <label class="input-label-ag text-center mar-top" for="#AG_Remedios">
                                     Adicione o remédio ao agendamento
                                 </label>
-                                <select id="AG_Remedios" class="form-control d-flex justify-content-center agenda-select" name="AG_Remedios" multiple="multiple">
+                                <select id="AG_Remedios" 
+                                        class="form-control dosage-select d-flex justify-content-center agenda-select" 
+                                        name="AG_Remedios" multiple required="true">
                                     <option th:each  ="remedio : ${remedio}"
                                             th:value =" ${remedio.RM_ID}"
                                             th:text  =" ${remedio.RM_Nome}">     
@@ -81,6 +83,7 @@
                                            th:placeholder="#{cadageform.begindate}"
                                            onMouseOver="mensagemDataInicio()"
                                            onMouseOut = "retirarMensagemDataInicio()"
+                                           onBlur= "validaDataFinal()"
                                            required="required">
                                 </div> 
 
@@ -93,7 +96,8 @@
                                            th:placeholder="#{cadageform.finaldate}"
                                            onMouseOver="mensagemDataFim()"
                                            onMouseOut = "retirarMensagemDataFim()"
-                                           required="required"
+                                           onBlur= "validaDataFinal()"
+                                           required=""
                                            >
                                 </div>
 
@@ -121,6 +125,7 @@
                                            onMouseOver="mensagemPeriodicidade()"
                                            onMouseOut = "retirarMensagemPeriodicidade()"
                                            required="required"
+                                           min="1"
                                            />
                                 </div> 
 
@@ -154,10 +159,8 @@
                                            />
                                 </div>
                             </div>
-
-
-
-
+                            <span class="error-message" id="error-hoje"></span>
+                            <span class="error-message" id="error-date"></span>
                             <div class="input-group actions">
                                 <a th:text="#{cadremform.cancel}" id="cancelar" href="/agendamentos" class="button cancel"></a>
                                 <button th:text="#{cadremform.submit}" name="action" id="confirmar" class="button save" type="submit"></button>
@@ -184,7 +187,6 @@
         <script src="/script/bootstrap-multiselect.js"></script>
         <script src="multiselect/jquery.multiselect.js"></script>
 
-    </div>
 
 
 </body>

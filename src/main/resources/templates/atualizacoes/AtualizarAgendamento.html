@@ -62,7 +62,7 @@
                                     </label>
                                     <select id="AG_Remedios" 
                                             class="form-control dosage-select d-flex justify-content-center agenda-select" 
-                                            name="AG_Remedios" multiple>
+                                            name="AG_Remedios" multiple required="true">
                                         <option th:each  ="remedio : ${remedio}"
                                                 th:value =" ${remedio.RM_ID}"
                                                 th:text  =" ${remedio.RM_Nome}"
@@ -96,6 +96,7 @@
                                                placeholder="Data final"
                                                onMouseOver="mensagemDataFim()"
                                                onMouseOut = "retirarMensagemDataFim()"
+                                               onBlur= "validaDataFinal()"
                                                th:placeholder="#{cadageform.finaldate}"
                                                th:value="${agendamento.dataFinal}"
                                                >
@@ -111,6 +112,7 @@
                                                step="300"
                                                onMouseOver="mensagemHora()"
                                                onMouseOut = "retirarMensagemHora()"
+                                               onBlur= "validaDataFinal()"
                                                required="required"
                                                th:placeholder="#{cadageform.initialhour}"
                                                th:value="${agendamento.horaInicio}">
@@ -128,6 +130,7 @@
                                                th:placeholder="#{cadageform.frequency}"
                                                th:value="${agendamento.periodicidade}"
                                                required="required"
+                                               min="1"
                                                />
                                     </div>
 
@@ -167,9 +170,8 @@
                                                >
                                     </div>
                                 </div>
-
-
-
+                                <span class="error-message" id="error-hoje"></span>
+                                <span class="error-message" id="error-date"></span>
                                 <div class="input-group actions">
                                     <a th:text="#{cadremform.cancel}" id="cancelar" href="/agendamentos" class="button cancel"></a>
                                     <button name="action" id="confirmar" class="button save" type="submit" th:text="#{cadremform.submit}"></button>
