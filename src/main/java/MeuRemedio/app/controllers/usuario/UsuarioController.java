@@ -104,7 +104,7 @@ public class UsuarioController {
         Usuario usuarioLogado = usuarioRepository.findByEmail(EmailUsuarioLogado);
         String passUserLogged = usuarioLogado.getPassword();
 
-        boolean validarSenha = false;
+        boolean validarSenha ;
 
         if (BCrypt.checkpw(senha, passUserLogged)) {
             validarSenha = true;
@@ -129,10 +129,10 @@ public class UsuarioController {
                 return REDIRECT;
             }
         }
-        return "redirect:/usuario/edit/atualizar_usuario?senhaInvalida";
+        return TemplateError();
     }
 
-    @GetMapping(value = "/usuario/edit/deletar_usuario/{id}") /*Validar como vai ser a chamada do do front para o metodo*/
+    @PostMapping(value = "/usuario/edit/deletar_usuario/{id}") /*Validar como vai ser a chamada front para o metodo*/
     public String deletarUsuario (@PathVariable("id") long id ,@RequestParam("US_Senha") String senha ) {
 
         String EmailUsuarioLogado = userSessionService.returnUsernameUsuario();
@@ -144,13 +144,17 @@ public class UsuarioController {
         if (BCrypt.checkpw(senha, passUserLogged)) {
             validarSenha = true;
 
-        if (validarSenha) {
-            Remedio remedio = remedioRepository.findByUsuario(usuarioLogado);
-            remedioRepository.delete(remedio);
-            usuarioRepository_2.deleteById(id);
-        }
+            if (validarSenha) {
+                Remedio remedio = remedioRepository.findByUsuario(usuarioLogado);
+                remedioRepository.delete(remedio);
+                usuarioRepository_2.deleteById(id);
+            }
             return "redirect:/logout";
         }
+        return TemplateError();
+    }
+
+    public String TemplateError(){
         return "TemplateError";
     }
 }
