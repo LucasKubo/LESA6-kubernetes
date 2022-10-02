@@ -129,7 +129,7 @@ public class UsuarioController {
                 return REDIRECT;
             }
         }
-        return "TemplateError";
+        return "redirect:/usuario/edit/atualizar_usuario?senhaInvalida";
     }
 
     @GetMapping(value = "/usuario/edit/deletar_usuario/{id}") /*Validar como vai ser a chamada do do front para o metodo*/

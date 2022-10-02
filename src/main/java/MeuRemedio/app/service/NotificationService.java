@@ -20,6 +20,7 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.mail.MessagingException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -58,7 +59,7 @@ public class NotificationService {
 
     @Scheduled(cron = "0 */5 * * * *", zone = ZONEID)
     @Async
-    public void enviarNotificacao(){
+    public void enviarNotificacao() throws MessagingException {
 
         final var horaAgora = LocalTime.parse(LocalTime.now(ZoneId.of(ZONEID)).format(horaFormatada()));
         final var dataAgora = LocalDate.parse(LocalDate.now(ZoneId.of(ZONEID)).format(dataFormatada()));
@@ -81,7 +82,7 @@ public class NotificationService {
                 dataAgora.compareTo(dataFinal) <= 0;
     }
 
-    private void verificarHoraRemedio(Agendamento agendamento, LocalTime horaAgora){
+    private void verificarHoraRemedio(Agendamento agendamento, LocalTime horaAgora) throws MessagingException {
 
         final var instanteAgora = LocalDate.now(ZoneId.of("America/Sao_Paulo")).atTime(horaAgora);
 
@@ -96,7 +97,7 @@ public class NotificationService {
     }
 
     //Chama a classe email controller
-    private void getDadosUsuario(Agendamento agendamento, LocalDateTime instanteAgora){
+    private void getDadosUsuario(Agendamento agendamento, LocalDateTime instanteAgora) throws MessagingException {
         List<Remedio> remedios = agendamento.getRemedio();   // Recebe todos os remédios associados ao agendamento
         Usuario usuario = remedios.get(0).getUsuario();    // Recebe dados do usuário associado ao primeiro remédio da lista
         envioEmail.emailNotificacaoRemedio(usuario, remedios, instanteAgora);

@@ -57,16 +57,14 @@ function validaData() {
 
     if (idade < 13) {
         error.innerHTML = "Menores de 13 não podem se cadastrar";
-        return false;
-    }
-
-    if (idade >= 13 && idade <= 100) {
+        document.querySelector('#cadastrar').disabled = true;
+    } else if (idade >= 13 && idade <= 130) {
         error.innerHTML = "";
-        return true;
+        document.querySelector('#cadastrar').disabled = false;
+    } else {
+        error.innerHTML = "Idade Inválida";
+        document.querySelector('#cadastrar').disabled = true;
     }
-
-    // se for maior que 60 não vai acontecer nada!
-    return false;
 }
 
 
