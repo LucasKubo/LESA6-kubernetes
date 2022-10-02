@@ -53,6 +53,7 @@
                     <div class="card-body d-flex flex-wrap justify-content-center">
                         <h3 th:text="#{alterarUsuarioCard.title}"></h3>
                         <form method="post" name="formCadastro">
+                            <label class="input-label" >Nome</label>
 
                             <input th:value="${usuario.nome}"
                                    type="text"
@@ -62,6 +63,7 @@
                                    required="required"
                             >
 
+                            <label class="input-label" >Sobrenome</label>
                             <input th:value="${usuario.sobrenome}"
                                    type="text"
                                    class="formulario-input"
@@ -70,6 +72,7 @@
                                    required="required"
                             >
 
+                            <label class="input-label" >E-mail</label>
                             <input type=""
                                    th:value="${usuario.email}"
                                    name="US_Email"
@@ -81,6 +84,7 @@
                                    disabled
                             >
 
+                            <label class="input-label" >Sexo</label>
                             <select id="US_Sexo" name="US_Sexo" class="formulario-input">
                                 <option th:text="#{cadususelect.female}" value="Feminino"></option>
                                 <option th:text="#{cadususelect.male}" value="Masculino"></option>
@@ -88,6 +92,7 @@
                                 <option th:text="#{cadususelect.null}" value="Não informar"></option>
                             </select>
 
+                            <label class="input-label" >Data de Nascimento</label>
                             <input
                                     th:value="${usuario.dataNascimento}"
                                     type="date"
@@ -100,6 +105,7 @@
                                     disabled
                             >
 
+                            <label class="input-label" >Senha Atual*</label>
                             <input th:placeholder="#{cadusuplaceholder.passwordCadastro}"
                                    type="password"
                                    id="US_Senha"
@@ -109,6 +115,7 @@
                                    required
                             >
 
+                            <label class="input-label" >Nova Senha</label>
                             <input th:placeholder="#{cadusuplaceholder.newpassword}"
                                    type="password"
                                    id="US_NovaSenha"
@@ -121,7 +128,7 @@
                             <span id="error-date" style="color:#FF8A8A; display:block"></span>
                             <small> Campos com * são obrigatórios </small>
 
-                            <button th:text="#{alterarUsuarioCard.button}" id="cadastrar" name="action" class="formulario-button" type="submit"></button>
+                            <button th:text="#{alterarUsuarioCard.button}" id="cadastrar" name="action" class="formulario-button" type="submit" onclick="return validar()"></button>
 
                             <div th:if="${param.emailExistente}"
                                  th:text="#{cadvalid.usedemail}"
@@ -159,7 +166,7 @@
     function validatePassword(){
         if(password.value == confirm_password.value) {
             confirm_password.setCustomValidity("A nova senha precisa ser diferente da anterior.");
-        } else {
+        } else if(password.value != confirm_password.value){
             confirm_password.setCustomValidity('');
         }
     }
@@ -167,6 +174,25 @@
     password.onchange = validatePassword;
     confirm_password.onkeyup = validatePassword;
 </script>
+
+<!--<script>-->
+<!--    function validar(){-->
+<!--        var senha = formCadastro.US_Senha.value;-->
+<!--        var novaSenha= formCadastro.US_NovaSenha;-->
+
+<!--        // if(senha == novaSenha){-->
+<!--        //     alert("A nova senha precisa ser diferente da anterior.")-->
+<!--        //     formCadastro.US_NovaSenha.focus();-->
+<!--        //     return false;-->
+<!--        // }-->
+<!--        if (senha != novaSenha){-->
+<!--            alert("Senha alterada com sucesso")-->
+
+<!--            return false;-->
+<!--        }-->
+
+<!--    }-->
+<!--</script>-->
 </body>
 
 </html>
