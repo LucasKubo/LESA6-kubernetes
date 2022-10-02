@@ -78,8 +78,6 @@
                                            class="form-control formulario-input margin-bot"
                                            name="AG_DataInicio"
                                            th:placeholder="#{cadageform.begindate}"
-                                           onMouseOver="mensagemDataInicio()"
-                                           onMouseOut = "retirarMensagemDataInicio()"
                                            required="required">
                                 </div> 
 
@@ -90,8 +88,6 @@
                                            class="form-control formulario-input margin-bot"
                                            name="AG_DataFinal"
                                            th:placeholder="#{cadageform.finaldate}"
-                                           onMouseOver="mensagemDataFim()"
-                                           onMouseOut = "retirarMensagemDataFim()"
                                            required="required"
                                            >
                                 </div>
@@ -105,8 +101,6 @@
                                            name="AG_HoraInicio"
                                            value="00:00"
                                            step="300"
-                                           onMouseOver="mensagemHora()"
-                                           onMouseOut = "retirarMensagemHora()"
                                            required="required">
                                 </div> 
 
@@ -117,8 +111,6 @@
                                            class="form-control formulario-input margin-bot"
                                            id="AG_Periodicidade"
                                            name="AG_Periodicidade"
-                                           onMouseOver="mensagemPeriodicidade()"
-                                           onMouseOut = "retirarMensagemPeriodicidade()"
                                            required="required"
                                            />
                                 </div> 
@@ -134,7 +126,7 @@
                                     <label id="intervalo-label" 
                                            class="input-label form-check-input" 
                                            for="intervalo-check">
-                                        Adicionar Intervalo de Dias?
+                                        Adicionar Intervalo de Dias ?
                                     </label>
                                     <input id="intervalo-check" 
                                            class="form-check-input checkbox-margin-top"
@@ -157,9 +149,6 @@
                                 </div>
                             </div>
 
-
-
-
                             <div class="input-group actions">
                                 <a th:text="#{cadremform.cancel}" id="cancelar" href="/agendamentos" class="button cancel"></a>
                                 <button th:text="#{cadremform.submit}" name="action" id="confirmar" class="button save" type="submit"></button>
@@ -169,8 +158,6 @@
                 </div>
             </section>
         </div>
-
-
         <div class="overlay"></div>
         <!-- Scripts da página -->
         <!-- jQuery CDN - Slim version (=without AJAX) -->
@@ -183,9 +170,7 @@
         <script src="/script/cadastroRemedio.jsp"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
         <script src="/script/bootstrap-multiselect.js"></script>
-
     </div>
-
 
 </body>
 <script type="text/javascript">
