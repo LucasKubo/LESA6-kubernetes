@@ -98,6 +98,11 @@ body {
     overflow: hidden;
 }
 
+#H2Fun {
+    font-size: 2rem;
+    margin-top: 5%;
+}
+
 .btn-sus-home-back {
     width: 1720px;
     height: 69px;
