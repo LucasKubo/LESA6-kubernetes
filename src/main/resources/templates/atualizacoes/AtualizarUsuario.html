@@ -1,49 +1,48 @@
 <!DOCTYPE html>
 <html lang="pt-br" xmlns:th="http://www.w3.org/1999/xhtml">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-        <link rel="icon" href="/images/icon.svg"/>
+    <link rel="icon" href="/images/icon.svg"/>
 
-        <title>Meu Remédio</title>
+    <title>Meu Remédio</title>
 
-        <!-- Bootstrap CSS CDN -->
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
-        <!-- Our Custom CSS -->
-        <!--
-            <link rel="stylesheet" href="/style/cadastroStyle.css">
-            <link rel="stylesheet" href="/style/homeStyle.css">
-        -->
-        <link rel="stylesheet" href="/style/cadastroRemedioStyle.css">
+    <!-- Bootstrap CSS CDN -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+    <!-- Our Custom CSS -->
+    <link rel="stylesheet" href="/style/cadastroStyle.css">
+    <link rel="stylesheet" href="/style/homeStyle.css">
+    <link rel="stylesheet" href="/style/cadastroRemedioStyle.css">
 
-        <!-- Scrollbar Custom CSS -->
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
+    <!-- Scrollbar Custom CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
 
-        <!-- Font Awesome JS -->
-        <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
-        <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
+    <!-- Font Awesome JS -->
+    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
 
-    </head>
-    <body>
-        <div class="wrapper conta-lg">
-            <!-- Menu bolado  -->
-            <nav th:replace="~{MenuLateral :: menuLateral}"></nav>
+</head>
+<body>
+<div class="wrapper conta-lg">
+    <!-- Menu bolado  -->
+    <nav th:replace="~{MenuLateral :: menuLateral}"></nav>
 
-            <div id="content">
-                <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                    <div class="container-fluid">
+    <div id="content">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container-fluid">
 
-                        <button type="button" id="sidebarCollapse" class="btn btn-info">
-                            <em class="fas fa-align-left"></em>
-                            <span>Menu</span>
-                        </button>
-                        <a href="/home" class="navbar-brand text-center col-09" >
-                            <img alt="Brand" src="/images/icon.svg" class="img-responsive text-center">
-                        </a>
-                    </div>
-                </nav>
+                <button type="button" id="sidebarCollapse" class="btn btn-info">
+                    <em class="fas fa-align-left"></em>
+                    <span>Menu</span>
+                </button>
+                <a href="/home" class="navbar-brand text-center col-09" >
+                    <img alt="Brand" src="/images/icon.svg" class="img-responsive text-center">
+                </a>
+
+            </div>
+        </nav>
 
         <div style="text-align: center" class="alert alert-info" role="alert"
              th:if="${param.senhaInvalida}">A senha atual está errada
@@ -56,16 +55,13 @@
                         <form method="post" name="formCadastro">
                             <label class="input-label" >Nome</label>
 
-                                        <div class="form-group">
-                                            <label class="input-label" for="US_Nome" th:text="${cadusulabel.firstname}"></label>
-                                            <input th:value="${usuario.nome}"
-                                                   type="text"
-                                                   class="form-control formulario-input"
-                                                   id="US_Nome"
-                                                   name="US_Nome"
-                                                   required="required"
-                                                   >
-                                        </div>
+                            <input th:value="${usuario.nome}"
+                                   type="text"
+                                   class="formulario-input"
+                                   id="US_Nome"
+                                   name="US_Nome"
+                                   required="required"
+                            >
 
                             <label class="input-label" >Sobrenome</label>
                             <input th:value="${usuario.sobrenome}"
@@ -87,16 +83,6 @@
                                    onblur="checarEmail();"
                                    disabled
                             >
-                                        <div class="form-group">
-                                            <label class="input-label" for="US_Sobrenome" th:text="${cadusulabel.lastname}"></label>
-                                            <input th:value="${usuario.sobrenome}"
-                                                   type="text"
-                                                   class="form-control formulario-input"
-                                                   id="US_Sobrenome"
-                                                   name="US_Sobrenome"
-                                                   required="required"
-                                                   >
-                                        </div>
 
                             <label class="input-label" >Sexo</label>
                             <select id="US_Sexo" name="US_Sexo" class="formulario-input">
@@ -138,56 +124,44 @@
                                    minlength="8"
                             >
 
-                                        <span id="error-email" style="color:#FF8A8A; display:block"></span>
-                                        <span id="error-date" style="color:#FF8A8A; display:block"></span>
-                                        <small> Campos com * são obrigatórios </small>
+                            <span id="error-email" style="color:#FF8A8A; display:block"></span>
+                            <span id="error-date" style="color:#FF8A8A; display:block"></span>
+                            <small> Campos com * são obrigatórios </small>
 
-                            <button th:text="#{alterarUsuarioCard.button}" id="cadastrar" name="action" class="formulario-button" type="submit"></button>
+                            <div class="input-group actions">
+                                <a id="cancelar2" href="/home" class="button cancel">Voltar</a>
+                                <button name="action" id="cadastrar" class="button save" type="submit">Salvar</button>
+                                <!--<button th:text="#{alterarUsuarioCard.button}" id="cadastrar" name="action" class="formulario-button" type="submit" onclick="return validar()">Salvar</button> -->
 
-                                        <div th:if="${param.emailExistente}"
-                                             th:text="#{cadvalid.usedemail}"
-                                             class="alert alert-error">
-                                        </div>
-
-                                    </form>
-                                </div>
                             </div>
-                        </section>
+                            <div th:if="${param.emailExistente}"
+                                 th:text="#{cadvalid.usedemail}"
+                                 class="alert alert-error">
+                            </div>
 
-
-
-
-                        <div class="overlay"></div>
-                        <!-- Scripts da página -->
-                        <!-- jQuery CDN - Slim version (=without AJAX) -->
-                        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-                        <!-- Popper.JS -->
-                        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
-                        <!-- Bootstrap JS -->
-                        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
-                        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-                        <script src="/script/cadastroRemedio.jsp"></script>
-                        <script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
-
+                        </form>
                     </div>
-
-
-
-
-
-                    <div class="overlay"></div>
-                    <!-- Scripts da página -->
-                    <!-- jQuery CDN - Slim version (=without AJAX) -->
-                    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-                    <!-- Popper.JS -->
-                    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
-                    <!-- Bootstrap JS -->
-                    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
-                    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-                    <script src="/script/cadastroRemedio.jsp"></script>
-                    <script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
-
                 </div>
+            </div>
+
+
+
+
+        <div class="overlay"></div>
+        <!-- Scripts da página -->
+        <!-- jQuery CDN - Slim version (=without AJAX) -->
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <!-- Popper.JS -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+        <!-- Bootstrap JS -->
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+        <script src="/script/cadastroRemedio.jsp"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
+
+    </div>
+
+</div>
 
 <script>
     var password = document.getElementById("US_Senha")
@@ -224,4 +198,5 @@
 <!--    }-->
 <!--</script>-->
 </body>
+
 </html>
