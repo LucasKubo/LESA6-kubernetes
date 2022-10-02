@@ -11,6 +11,8 @@
 
         <!-- Bootstrap CSS CDN -->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+
+
         <!-- Our Custom CSS -->
         <link rel="stylesheet" href="/style/homeStyle.css">
         <link rel="stylesheet" href="/style/cadastroRemedioStyle.css">
@@ -198,8 +200,11 @@
 
 
 <script type="text/javascript">
-    $('.datepicker').datepicker({
-        inline: true
+    $(function () {
+        $('#datetimepicker5').datetimepicker({
+            use24hours: true,
+            format: 'HH:mm'
+        });
     });
 </script>
 

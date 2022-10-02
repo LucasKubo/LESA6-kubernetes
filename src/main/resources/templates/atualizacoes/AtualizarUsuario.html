@@ -128,8 +128,12 @@
                             <span id="error-date" style="color:#FF8A8A; display:block"></span>
                             <small> Campos com * são obrigatórios </small>
 
-                            <button th:text="#{alterarUsuarioCard.button}" id="cadastrar" name="action" class="formulario-button" type="submit" onclick="return validar()"></button>
+                            <div class="input-group actions">
+                                <a id="cancelar2" href="/home" class="button cancel">Voltar</a>
+                                <button name="action" id="cadastrar" class="button save" type="submit">Salvar</button>
+                                <!--<button th:text="#{alterarUsuarioCard.button}" id="cadastrar" name="action" class="formulario-button" type="submit" onclick="return validar()">Salvar</button> -->
 
+                            </div>
                             <div th:if="${param.emailExistente}"
                                  th:text="#{cadvalid.usedemail}"
                                  class="alert alert-error">

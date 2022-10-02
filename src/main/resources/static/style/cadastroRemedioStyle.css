@@ -9,6 +9,17 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
 */
 
 /*  Global config =================== */
+/* Bootstrap css */
+@import "https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css";
+
+/* Google Material icons */
+@import "http://fonts.googleapis.com/icon?family=Material+Icons";
+
+/* Propeller css */
+@import "dist/css/propeller.min.css";
+
+
+
 :root{
     --black: #000;
     --light-black: #181a19;
@@ -400,7 +411,7 @@ input[type='checkbox'] {
     //width: 100%;
     border-radius: 50%;
 }
-#
+
 .agendamento{
     margin-top: 1rem;
 }
