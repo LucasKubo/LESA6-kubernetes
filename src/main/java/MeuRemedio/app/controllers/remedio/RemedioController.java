@@ -6,11 +6,13 @@ import MeuRemedio.app.controllers.agendamento.AgendamentoController;
 import MeuRemedio.app.models.remedios.Remedio;
 import MeuRemedio.app.models.usuarios.Financeiro;
 import MeuRemedio.app.models.usuarios.Usuario;
+import MeuRemedio.app.repository.AgendamentoRepository;
 import MeuRemedio.app.repository.FinanceiroRepository;
 import MeuRemedio.app.repository.RemedioRepository;
 import MeuRemedio.app.repository.UsuarioRepository;
 import MeuRemedio.app.service.UserSessionService;
 import MeuRemedio.app.service.utils.ValidateAuthentication;
+import lombok.var;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -52,6 +54,9 @@ public class RemedioController {
     @Autowired
     FinanceiroRepository controleFinanceiro;
 
+    @Autowired
+    AgendamentoRepository agendamentoRepository;
+
     final String REDIRECT="redirect:/remedios";
 
     @RequestMapping(value = "/remedios_cadastro")
@@ -77,11 +82,10 @@ public class RemedioController {
                                   @RequestParam(value = "AG_HoraInicio", required = false) String AG_horaInicio,
                                   @RequestParam(value = "AG_DataFinal", required = false)  String AG_DataFinal ,
                                   @RequestParam(value = "AG_Periodicidade", required = false) long AG_Periodicidade,
-                                  @RequestParam(value = "intervaloDias", required = false) Long intervaloDias /**,
+                                  @RequestParam(value = "intervaloDias", required = false) Long intervaloDias /*,
                                   @RequestParam(defaultValue = "2022/01/01", value = "GA_Data", required = false) String GA_Data,
                                   @RequestParam(value = "GA_Valor", required = false) double GA_Valor,
-                                  @RequestParam(value = "GA_Parcela", required = false) long GA_Parcela,
-                                  @RequestParam(value = "AG_Remedios", required = false) List <Remedio> AG_Remedios **/) throws Exception {
+                                  @RequestParam(value = "GA_Parcela", required = false) long GA_Parcela */) throws Exception {
 
         boolean auxRetiradoSUS;
 
@@ -90,12 +94,11 @@ public class RemedioController {
 
         auxRetiradoSUS = RM_RetiradoSus.equals("Sim");
         Remedio remedio = new Remedio(RM_Nome, RM_Dosagem, RM_UnidadeDosagem, auxRetiradoSUS, usuarioID);
-        remedioRepository.save(remedio);
+        Remedio rem = remedioRepository.save(remedio);
 
-/**     Financeiro financeiro = new Financeiro (GA_Data, GA_Valor, GA_Parcela, AG_Remedios, usuarioID.getId());
+/*        Financeiro financeiro = new Financeiro (GA_Data, GA_Valor, GA_Parcela, Collections.singletonList(rem), usuarioID.getId());
         controleFinanceiro.save(financeiro);
- **/
-
+*/
         if (Objects.nonNull(check) && check) {
             cadastrarAgendamento(Collections.singletonList(remedio), AG_DataInicio, AG_horaInicio, AG_DataFinal, AG_Periodicidade, intervaloDias);
         }
@@ -134,7 +137,14 @@ public class RemedioController {
     @RequestMapping(value = "/deletar_remedio/{id}")
     public String deletarRemedio (@PathVariable("id") long id) {
         if (verificarPorId(id)) {
+            var remedio = remedioRepository.findById(id);
             //controleFinanceiro.deleteByRemedio(id);
+            var agendamentos = agendamentoRepository.findAllByRemedio(remedio);
+            for (int i = 0; i < agendamentos.size(); i++){
+                if (agendamentos.get(i).getRemedio().size() == 1) {
+                    agendamentoRepository.deleteById(agendamentos.get(i).getId());
+                }
+            }
             remedioRepository.deleteById(id);
             return REDIRECT;
         }

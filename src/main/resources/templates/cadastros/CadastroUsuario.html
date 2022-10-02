@@ -15,7 +15,7 @@
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300&display=swap" rel="stylesheet">
-        <!--<!-- Link do Arquivo CSS Customizado -->
+        <!-- Link do Arquivo CSS Customizado -->
         <link rel="stylesheet" href="/style/cadastroUsuarioStyle.css">
     </head>
 
@@ -89,6 +89,18 @@
                                    >
                         </div>
 
+                        <div class="form-group select-group">
+                            <label class="input-label" th:text="#{cadususelect.label}" for="US_Sexo"></label>
+                            <select class="form-control formulario-input gender-select" id="US_Sexo" name="US_Sexo" required>
+                                <option th:text="#{cadususelect.female}" value="Feminino"></option>
+                                <option th:text="#{cadususelect.male}" value="Masculino"></option>
+                                <option th:text="#{cadususelect.other}" value="Outro"></option>
+                                <option th:text="#{cadususelect.null}" value="Não informar"></option>
+                            </select>
+                        </div>
+                        <div class = "form-group">
+
+                        </div>
                         <div class="form-group">
                             <label class="input-label" th:text="#{cadusuplaceholder.birthdate}" for="US_DataNascimento"></label>
                             <input
@@ -115,7 +127,6 @@
                                    >
                         </div>
 
-
                         <div class="form-group">
                             <label class="input-label" th:text="#{cadusuplaceholder.passwordCadastro}" for="US_Senha"></label>
                             <input th:placeholder="#{loginplaceholder.password}"
@@ -126,16 +137,6 @@
                                    minlength="8"
                                    required=""
                                    >
-                        </div>
-
-                        <div class="form-group select-group">
-                            <label class="input-label" th:text="#{cadususelect.label}" for="US_Sexo"></label>
-                            <select class="form-control formulario-input gender-select" id="US_Sexo" name="US_Sexo" required>
-                                <option th:text="#{cadususelect.female}" value="Feminino"></option>
-                                <option th:text="#{cadususelect.male}" value="Masculino"></option>
-                                <option th:text="#{cadususelect.other}" value="Outro"></option>
-                                <option th:text="#{cadususelect.null}" value="Não informar"></option>
-                            </select>
                         </div>
                         
                         <span class="text-center error-message" 

@@ -22,7 +22,7 @@ public class EnvioEmail {
     @Autowired
     JavaMailSender mailSender;
 
-    public void emailRecuperarSenha (String email, String codigo){
+    public void emailRecuperarSenha (String email, String codigo) throws MessagingException, UnsupportedEncodingException {
         String assunto = MensagemEmail.RECUPERACAO_SENHA.getDescricao();
         String mensagem = MensagemEmail.RECUPERACAO_MENSAGEM.getDescricao() + codigo ;
 
@@ -30,7 +30,7 @@ public class EnvioEmail {
     }
 
 
-    public void emailConfirmCadastro (Usuario usuario){
+    public void emailConfirmCadastro (Usuario usuario) throws MessagingException {
         String link = "https://meuremedioapp.herokuapp.com/login";
         String msgBoasVindas = "Olá, " + usuario.getNome() + " " + usuario.getSobrenome();
         String assunto = MensagemEmail.CADASTRO_REALIZADO.getDescricao();
@@ -41,7 +41,7 @@ public class EnvioEmail {
 
 
 
-    public void emailCadastroRemedio(Usuario usuario, Remedio remedios){
+    public void emailCadastroRemedio(Usuario usuario, Remedio remedios) throws MessagingException {
         String assunto = MensagemEmail.REMEDIO_CADASTRADO.getDescricao();
         String msg = MensagemEmail.CADASTRO_REMEDIO.getDescricao() + remedios.getRM_Nome() + "''. " +
                 "Fique atento aos horários e siga as restrições médicas !";
@@ -49,7 +49,7 @@ public class EnvioEmail {
         emailService.sendEmail(usuario, assunto, msg);
     }
 
-    public void emailNotificacaoRemedio(Usuario usuario, List<Remedio> remedios, LocalDateTime instanteAgora){
+    public void emailNotificacaoRemedio(Usuario usuario, List<Remedio> remedios, LocalDateTime instanteAgora) throws MessagingException {
         String assunto = MensagemEmail.NOTIFICACAO_REMEDIO.getDescricao();
 
         String horaFormatada = instanteAgora.getHour() + ":" + (instanteAgora.getMinute()<10?"0":"") + instanteAgora.getMinute();

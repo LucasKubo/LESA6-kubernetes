@@ -98,4 +98,40 @@ const mensagem = document.getElementById("mensagemHora");
 mensagem.innerHTML = ""
 }
 
+function validaDataFinal(){
+const dataFinal = document.getElementById("AG_DataFinal").value;
+const dataInicio = document.getElementById("AG_DataInicio").value;
+
+var dataFinalData = new Date(dataFinal + " ")
+var dataInicioData = new Date(dataInicio+ " ")
+var hoje = new Date()
+hoje.setHours(0,0,0,0);
+
+let error = document.getElementById("error-date");
+let errorHoje = document.getElementById("error-hoje");
+
+
+console.log(dataFinalData)
+console.log(dataInicioData)
+console.log(hoje)
+if (dataInicioData > dataFinalData){
+     error.innerHTML = "A data final não pode ser menor que a data inicial";
+     document.querySelector('#confirmar').disabled = true;
+} else {
+    error.innerHTML = "";
+}
+if (dataFinalData < hoje){
+    errorHoje.innerHTML = "Não é possível cadastrar um agendamento já finalizado.";
+    document.querySelector('#confirmar').disabled = true;
+} else {
+    errorHoje.innerHTML = "";
+}
+
+
+if(dataInicioData <= dataFinalData && dataFinalData >= hoje){
+    error.innerHTML = "";
+    errorHoje.innerHTML = "";
+    document.querySelector('#confirmar').disabled = false;
+}
+}
 

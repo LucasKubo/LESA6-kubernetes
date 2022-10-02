@@ -44,6 +44,9 @@
             </div>
         </nav>
 
+        <div style="text-align: center" class="alert alert-info" role="alert"
+             th:if="${param.senhaInvalida}">A senha atual está errada
+        </div>
             <!-- Formulario de dados do usuário -->
             <div class="container d-flex justify-content-center col-12 col-sm-12 col-md-8 col-lg-5 col-lx-6">
                 <div class="card formulario-card col-12">
