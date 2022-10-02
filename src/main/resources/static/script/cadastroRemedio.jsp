@@ -126,8 +126,6 @@ if (dataFinalData < hoje){
 } else {
     errorHoje.innerHTML = "";
 }
-
-
 if(dataInicioData <= dataFinalData && dataFinalData >= hoje){
     error.innerHTML = "";
     errorHoje.innerHTML = "";
@@ -135,3 +133,13 @@ if(dataInicioData <= dataFinalData && dataFinalData >= hoje){
 }
 }
 
+function checarBox(){
+    let error = document.getElementById("error-date");
+    let errorHoje = document.getElementById("error-hoje");
+
+    if (document.getElementById('exampleCheck1').checked === false){
+        error.innerHTML = "";
+        errorHoje.innerHTML = "";
+        document.querySelector('#confirmar').disabled = false;
+    }
+}
