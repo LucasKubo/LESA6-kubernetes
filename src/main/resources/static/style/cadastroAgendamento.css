@@ -21,8 +21,16 @@ body{
     background: #ffffff;
 }
 
-h2.form-h2 {
+/*h2.form-h2 {
     font-weight: normal;
+}*/
+.input-label-ag {
+    font-size: 1.1em;
+    //font-weight: normal;
+    padding-top: 1.5vw;
+}
+.input-label-ag.mar-top {
+    margin-top: 5%;
 }
 .select-group {
     width: 100%;

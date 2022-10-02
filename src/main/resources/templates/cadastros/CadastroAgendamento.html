@@ -15,7 +15,10 @@
         <link rel="stylesheet" href="/style/homeStyle.css">
         <link rel="stylesheet" href="/style/cadastroRemedioStyle.css">
         <link rel="stylesheet" href="/style/cadastroAgendamento.css">
-        <link rel="stylesheet" href="/style/bootstrap-multiselect.css">
+        <!--<link rel="stylesheet" href="/style/bootstrap-multiselect.css">-->
+
+        <!-- Multiselect JQuery -->
+        <link rel="stylesheet" href="multiselect/jquery.multiselect.css">
 
         <!-- Scrollbar Custom CSS -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
@@ -57,7 +60,7 @@
 
 
                             <div class="form-group d-flex justify-content-center align-items-center flex-column select-group">
-                                <label class="input-label text-center mar-top" for="AG_Remedios">
+                                <label class="input-label-ag text-center mar-top" for="#AG_Remedios">
                                     Adicione o remédio ao agendamento
                                 </label>
                                 <select id="AG_Remedios" 
@@ -72,7 +75,7 @@
 
                             <div class="input-group d-flex flex-column" data-provide="datepicker" id="AgInicio">
                                 <div class="form-group">
-                                    <label class="input-label" for="AG_DataInicio">Data Inicial</label>
+                                    <label class="input-label-ag" for="AG_DataInicio">Data Inicial</label>
                                     <input type="date"
                                            id="AG_DataInicio"
                                            class="form-control formulario-input margin-bot"
@@ -85,7 +88,7 @@
                                 </div> 
 
                                 <div class="form-group">
-                                    <label class="input-label" for="AG_DataFinal">Data Final</label>
+                                    <label class="input-label-ag" for="AG_DataFinal">Data Final</label>
                                     <input type="date"
                                            id="AG_DataFinal"
                                            class="form-control formulario-input margin-bot"
@@ -99,7 +102,7 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label class="input-label" for="AG_HoraInicio">Horário Inicial</label>
+                                    <label class="input-label-ag" for="AG_HoraInicio">Horário Inicial</label>
                                     <input id="AG_HoraInicio"
                                            type="time"
                                            class="form-control formulario-input margin-bot"
@@ -113,29 +116,26 @@
                                 </div> 
 
                                 <div class="form-group">
-                                    <label class="input-label margin-top" for="AG_Periodicidade">Periodicidade (horas)</label>
+                                    <label class="input-label-ag margin-top" for="AG_Periodicidade">Periodicidade (horas)</label>
                                     <input th:placeholder="#{cadageform.frequency}"
                                            type="number"
-                                           class="form-control formulario-input margin-bot"
+                                           class="form-control formulario-input"
                                            id="AG_Periodicidade"
                                            name="AG_Periodicidade"
                                            onMouseOver="mensagemPeriodicidade()"
                                            onMouseOut = "retirarMensagemPeriodicidade()"
                                            required="required"
-                                           min="0"
+                                           min="1"
                                            />
                                 </div> 
 
                             </div>
-                            <small><span id="mensagemPeriodocidade" class="help"></span></small>
-                            <small><span id="mensagemFimAgendamento" class="help"></span></small>
-                            <small><span id="mensagemInicioAgendamento" class="help"></span></small>
-                            <small><span id="mensagemHora" class="help"></span></small>
+
 
                             <div id="intervaloDiasGrup" class="d-flex flex-column justify-content-center align-content-center">
-                                <div class="d-flex justify-content-center">
+                                <div >
                                     <label id="intervalo-label" 
-                                           class="input-label form-check-input" 
+                                           class="input-label-ag form-check-input text-left"
                                            for="intervalo-check">
                                         Adicionar Intervalo de Dias?
                                     </label>
@@ -176,6 +176,7 @@
         <div class="overlay"></div>
         <!-- Scripts da página -->
         <!-- jQuery CDN - Slim version (=without AJAX) -->
+        <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>-->
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
         <!-- Popper.JS -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
@@ -185,28 +186,32 @@
         <script src="/script/cadastroRemedio.jsp"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
         <script src="/script/bootstrap-multiselect.js"></script>
+        <script src="multiselect/jquery.multiselect.js"></script>
 
-    </div>
 
 
 </body>
 <script type="text/javascript">
-                                               $(document).ready(function () {
-                                                   $('#AG_Remedios').multiselect()
-                                               });
+    $(document).ready(function () {
+        $('#AG_Remedios').multiselect({
+            includeSelectAllOption: true,
+            buttonWidth: 90%,
+            /*padding: 3.5%,*/
+            columns: 1,
+            placeholder: 'Escolha um ou mais remédios'
+        })
+    });
 </script>
 
 
 <script type="text/javascript">
     $('.datepicker').datepicker({
         inline: true
-    });
-</script>
+    });</script>
 
 <script type="text/javascript">
     function desabilitar(valor) {
         var status = document.getElementById('intervaloDias').disabled;
-
         if (valor == 'sim' && status) {
             document.getElementById('intervaloDias').disabled = false;
         } else {
@@ -215,5 +220,7 @@
         }
     }
 </script>
+
+
 
 </html>
