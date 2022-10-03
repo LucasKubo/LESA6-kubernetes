@@ -1,4 +1,4 @@
-package MeuRemedio.app.security.remedio;
+package MeuRemedio.app.controllers.remedio;
 
 
 import MeuRemedio.app.controllers.EnvioEmail;
@@ -83,7 +83,7 @@ public class RemedioController {
                                   @RequestParam(value = "AG_DataFinal", required = false)  String AG_DataFinal ,
                                   @RequestParam(value = "AG_Periodicidade", required = false) long AG_Periodicidade,
                                   @RequestParam(value = "intervaloDias", required = false) Long intervaloDias ,
-                                  @RequestParam(defaultValue = "2022/01/01", value = "GA_Data", required = false) String GA_Data,
+                                  @RequestParam(value = "GA_Data", required = false) String GA_Data,
                                   @RequestParam(value = "GA_Valor", required = false) double GA_Valor,
                                   @RequestParam(value = "GA_Parcela", required = false) long GA_Parcela ) throws Exception {
 
@@ -96,8 +96,10 @@ public class RemedioController {
         Remedio remedio = new Remedio(RM_Nome, RM_Dosagem, RM_UnidadeDosagem, auxRetiradoSUS, usuarioID);
         Remedio rem = remedioRepository.save(remedio);
 
-        Financeiro financeiro = new Financeiro (GA_Data, GA_Valor, GA_Parcela, Collections.singletonList(rem), usuarioID.getId());
-        controleFinanceiro.save(financeiro);
+        if(GA_Data.equals("") && Objects.nonNull(GA_Valor) && Objects.nonNull(GA_Parcela)) {
+            Financeiro financeiro = new Financeiro(GA_Data, GA_Valor, GA_Parcela, Collections.singletonList(rem), usuarioID.getId());
+            controleFinanceiro.save(financeiro);
+        }
 
         if (Objects.nonNull(check) && check) {
             cadastrarAgendamento(Collections.singletonList(remedio), AG_DataInicio, AG_horaInicio, AG_DataFinal, AG_Periodicidade, intervaloDias);
