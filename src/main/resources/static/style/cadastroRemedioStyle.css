@@ -427,6 +427,15 @@ input[type='checkbox'] {
 .button .save {
     cursor: pointer;
 }
+
+#intervaloDias {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    border-radius: 15px;
+    width: 100%;
+}
+
+
 /* ===================================== */
 /* Aqui é o código que vem do css home.css */
 /* Marcus que fez, é o css da barra de menu */

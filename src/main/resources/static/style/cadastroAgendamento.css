@@ -54,8 +54,11 @@ h4{
     display: flex;
     justify-content: space-between;
 }
-input#intervaloDias{
-    width:1px;
+#intervaloDias {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    border-radius: 15px;
+    width: 100%;
 }
 #adcRemedioTitulo{
 margin-top: 15px;

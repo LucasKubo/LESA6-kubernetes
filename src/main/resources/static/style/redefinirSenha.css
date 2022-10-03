@@ -78,6 +78,12 @@ a.inicio-btn {
     width: 150px;
 }
 
+/* Card*/
+.card{
+    border: 0px solid rgba(0,0,0,0);
+    border-radius: 0rem;
+}
+
 /* Container Form */
 
 .content{

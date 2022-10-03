@@ -80,8 +80,7 @@
                                            class="form-control formulario-input margin-bot"
                                            name="AG_DataInicio"
                                            th:placeholder="#{cadageform.begindate}"
-                                           onMouseOver="mensagemDataInicio()"
-                                           onMouseOut = "retirarMensagemDataInicio()"
+
                                            onBlur= "validaDataFinal()"
                                            required="required">
                                 </div> 
@@ -93,8 +92,6 @@
                                            class="form-control formulario-input margin-bot"
                                            name="AG_DataFinal"
                                            th:placeholder="#{cadageform.finaldate}"
-                                           onMouseOver="mensagemDataFim()"
-                                           onMouseOut = "retirarMensagemDataFim()"
                                            onBlur= "validaDataFinal()"
                                            required=""
                                            >
@@ -109,8 +106,7 @@
                                            name="AG_HoraInicio"
                                            value="00:00"
                                            step="300"
-                                           onMouseOver="mensagemHora()"
-                                           onMouseOut = "retirarMensagemHora()"
+
                                            required="required">
                                 </div> 
 
@@ -121,8 +117,6 @@
                                            class="form-control formulario-input margin-bot"
                                            id="AG_Periodicidade"
                                            name="AG_Periodicidade"
-                                           onMouseOver="mensagemPeriodicidade()"
-                                           onMouseOut = "retirarMensagemPeriodicidade()"
                                            required="required"
                                            min="0"
                                            />
@@ -153,6 +147,7 @@
                                 </div>
 
                                 <div id="intervalo" class="input-group collapse show">
+                                    <label class="input-label">Intervalo de dias</label>
                                     <input style="min-width:2px"
                                            th:placeholder="#{cadageform.numberdays}"
                                            class="formulario-input form-control"
