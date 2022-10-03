@@ -54,13 +54,13 @@
 
 
         <article>
-           
+
             <div class="alert-danger alert-info text-center" role="alert"
                   th:if="${param.emailExistente}" th:text="#{cadusuvalid.usedemail}">
             </div>
             <div class="alert-danger alert-info text-center" role="alert" id="error-email"></div>
             <div class="alert-danger alert-info text-center" role="alert" id="error-date"></div>
-            
+
         </article>
 
         <!-- Formulario do Login -->
@@ -105,7 +105,7 @@
                                 <option th:text="#{cadususelect.null}" value="Não informar"></option>
                             </select>
                         </div>
-                        
+
                         <div class="form-group">
                             <label class="input-label" th:text="#{cadusuplaceholder.birthdate}" for="US_DataNascimento"></label>
                             <input
