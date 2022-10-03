@@ -59,7 +59,16 @@
              th:if="${param.em_env}"> VERIFIQUE SUA CAIXA DE EMAIL</div>
         <div  class="alert alert-info text-center" role="alert"
              th:if="${param.att}"> SENHA ALTERADA COM SUCESSO </div>
-
+        <div class="error" th:if="${param.error}"
+             th:with="errorMsg=${session['SPRING_SECURITY_LAST_EXCEPTION'].message}">
+        <div class="alert-danger alert-info text-center" role="alert" th:if="${errorMsg} == 'Bad credentials'">
+            <span th:text="#{logininvalid.text}"> Usuário ou senha incorretas</span>
+        </div>
+        <div class="alert-danger alert-info text-center" role="alert" th:if="${errorMsg} == 'User is disabled'">
+            <span th:text="#{logindisabled.text}"> Usuário desabilitado</span>
+        </div>
+        </div>     
+        <div  class="alert alert-info text-center" role="alert" th:text="#{loginlogout.text}" th:if="${param.logout}"></div>
         <!-- Formulário do Login -->
         <section class="container d-flex justify-content-center col-12 col-sm-10 col-md-8 col-lg-5 col-lx-6">
 
@@ -86,11 +95,6 @@
                                    name="password"
                                    th:placeholder="#{loginplaceholder.password}" required>
                         </div>
-                        <label th:text="#{logininvalid.text}" th:if="${param.error}" class="alert alert-error error-message">
-                        </label>
-                        <label th:text="#{loginlogout.text}" th:if="${param.logout}" class="alert alert-sucess error-message">
-                        </label>
-
                         <div class="form-group">
                             <button th:text="#{loginlogin.text}" id="cadastrar" name="action" class="formulario-button" type="submit"></button>
                             <p><a th:text="#{loginforget.password}" id="recuperar_senha" style="font-size:12px" href="/enviarEmail"></a></p>

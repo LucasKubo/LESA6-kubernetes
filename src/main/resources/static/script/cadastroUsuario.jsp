@@ -14,7 +14,7 @@ $(document).ready(function () {
         });
     });
 
-function checarEmail() {
+/* function checarEmail() {
     const error = document.getElementById('error-email');
     const email = document.getElementById('US_Email').value;
 
@@ -35,7 +35,7 @@ function checarEmail() {
     } else {
         error.innerHTML = "";
     }
-}
+} */
 
 function validaData() {
     let data = document.getElementById("US_DataNascimento").value; // pega o valor do input
