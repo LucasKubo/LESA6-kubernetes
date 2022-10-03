@@ -89,7 +89,7 @@
                                    >
                         </div>
 
-                        <div class="form-group select-group">
+                        <div class="form-group ">
                             <label class="input-label" th:text="#{cadususelect.label}" for="US_Sexo"></label>
                             <select class="form-control formulario-input gender-select" id="US_Sexo" name="US_Sexo" required>
                                 <option th:text="#{cadususelect.female}" value="Feminino"></option>
@@ -98,11 +98,10 @@
                                 <option th:text="#{cadususelect.null}" value="Não informar"></option>
                             </select>
                         </div>
-                        <div class = "form-group">
 
-                        </div>
-                        <div class="form-group">
-                            <label class="input-label" th:text="#{cadusuplaceholder.birthdate}" for="US_DataNascimento"></label>
+
+                        <div class="form-group" >
+                           <br> <label class="input-label" th:text="#{cadusuplaceholder.birthdate}" for="US_DataNascimento" id="DataNasc"></label>
                             <input
                                 th:placeholder="#{cadusuplaceholder.birthdate}"
                                 type="date"
