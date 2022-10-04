@@ -1,5 +1,6 @@
 package MeuRemedio.app.repository;
 
+import MeuRemedio.app.models.remedios.Remedio;
 import MeuRemedio.app.models.usuarios.Financeiro;
 import MeuRemedio.app.models.usuarios.Usuario;
 import org.springframework.data.jpa.repository.Modifying;
@@ -14,4 +15,6 @@ import java.util.List;
 public interface FinanceiroRepository extends CrudRepository<Financeiro, Long> {
     Financeiro findById(long id);
     List<Financeiro> findAllByUsuarioID(Long usuarioID);
+
+    void deleteAllByRemedio(Remedio remedio);
 }

@@ -34,7 +34,7 @@ public class Financeiro implements Serializable {
     @Column(name = "usuario_us_id")
     private Long usuarioID;
 
-     @NotNull
+    @NotNull
     private LocalDate Criado_em;
 
     @ManyToMany()

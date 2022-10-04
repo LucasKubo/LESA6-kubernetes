@@ -15,6 +15,7 @@ import MeuRemedio.app.service.utils.ValidateAuthentication;
 import lombok.var;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -81,7 +82,7 @@ public class RemedioController {
                                   @RequestParam(value = "AG_DataInicio", required = false)  String AG_DataInicio,
                                   @RequestParam(value = "AG_HoraInicio", required = false) String AG_horaInicio,
                                   @RequestParam(value = "AG_DataFinal", required = false)  String AG_DataFinal ,
-                                  @RequestParam(value = "AG_Periodicidade", required = false) long AG_Periodicidade,
+                                  @RequestParam(defaultValue = "0", value = "AG_Periodicidade", required = false) long AG_Periodicidade,
                                   @RequestParam(value = "intervaloDias", required = false) Long intervaloDias ,
                                   @RequestParam(value = "GA_Data", required = false) String GA_Data,
                                   @RequestParam(value = "GA_Valor", required = false) double GA_Valor,
@@ -96,7 +97,7 @@ public class RemedioController {
         Remedio remedio = new Remedio(RM_Nome, RM_Dosagem, RM_UnidadeDosagem, auxRetiradoSUS, usuarioID);
         Remedio rem = remedioRepository.save(remedio);
 
-        if(GA_Data.equals("") && Objects.nonNull(GA_Valor) && Objects.nonNull(GA_Parcela)) {
+        if(!GA_Data.equals("") && Objects.nonNull(GA_Valor) && Objects.nonNull(GA_Parcela)) {
             Financeiro financeiro = new Financeiro(GA_Data, GA_Valor, GA_Parcela, Collections.singletonList(rem), usuarioID.getId());
             controleFinanceiro.save(financeiro);
         }
@@ -106,7 +107,6 @@ public class RemedioController {
         }
 
         Usuario usuario = usuarioRepository.findByEmail(userSessionService.returnUsernameUsuario());
-        emailController.emailCadastroRemedio(usuario, remedio);
 
         return REDIRECT;
     }
@@ -136,11 +136,12 @@ public class RemedioController {
         return "listas/ListaRemedios";
     }
 
+    @Transactional
     @RequestMapping(value = "/deletar_remedio/{id}")
     public String deletarRemedio (@PathVariable("id") long id) {
         if (verificarPorId(id)) {
             var remedio = remedioRepository.findById(id);
-            //controleFinanceiro.deleteByRemedio(id);
+            controleFinanceiro.deleteAllByRemedio(remedio);
             var agendamentos = agendamentoRepository.findAllByRemedio(remedio);
             for (int i = 0; i < agendamentos.size(); i++){
                 if (agendamentos.get(i).getRemedio().size() == 1) {
