@@ -7,7 +7,7 @@
 
     <link rel="icon" href="/images/icon.svg"/>
 
-    <title th:text="#{cadtitle.text}"></title>
+    <title>Meu Remédio</title>
 
     <!-- Bootstrap CSS CDN -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
@@ -61,7 +61,7 @@
                         <h4 id="adcRemedioTitulo">Selecione o remédio</h4>
                         <label class="sr-only formulario-input">Escolha o Remédio</label>
 
-                        <select id="AG_Remedios" class="form-control" name="AG_Remedios" multiple>
+                        <select id="AG_Remedios" class="form-control" name="AG_Remedios" multiple required="required">
                             <option th:each  ="remedio : ${remedio}"
                                     th:value =" ${remedio.RM_ID}"
                                     th:text  =" ${remedio.RM_Nome}"
@@ -75,13 +75,13 @@
 
                         <h4>Informe o valor</h4>
                         <div class="input-group formulario-input" data-provide="datepicker" id="GaValor">
-                            <input class="formulario-input" type="number" step="0.01" id="GA_Valor" name="GA_Valor" min="0">
+                            <input class="formulario-input" type="number" step="0.01" id="GA_Valor" name="GA_Valor" min="0" required>
                         </div>
 
 
                         <h4>Informe a quantidade de parcelas</h4>
                         <div class="input-group formulario-input" data-provide="datepicker" id="GaParcela">
-                            <input class="formulario-input" type="number" id="GA_Parcela" name="GA_Parcela" min="1" placeholder="Ex: 1, 2, 3">
+                            <input class="formulario-input" type="number" id="GA_Parcela" name="GA_Parcela" min="1" placeholder="Ex: 1, 2, 3" required>
                         </div>
 
                         <!-- botões principais -->
