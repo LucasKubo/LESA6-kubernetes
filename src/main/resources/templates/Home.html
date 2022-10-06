@@ -122,7 +122,7 @@
                             <tbody>
                             <div class="" th:each ="horarios : ${horarios}">
                                 <tr>
-                                    <td><p><span th:text="${horarios.agendamento.remedio}" class="horarios"></span></td>
+                                    <td><p><span th:text="${#strings.substring(horarios.agendamento.remedio, 1, #strings.length(horarios.agendamento.remedio)-1)}"></span></td>
                                     <td><p><span th:text="${#temporals.format(horarios.id.horaDataNotificacao, 'HH:mm')}" class="horarios"></span></td>
                                 </tr>
                             </div>
