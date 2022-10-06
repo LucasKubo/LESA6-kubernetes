@@ -6,6 +6,7 @@ import MeuRemedio.app.models.usuarios.Usuario_code;
 import MeuRemedio.app.repository.UserCodeRepository;
 import MeuRemedio.app.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -70,7 +71,7 @@ public class RecuperacaoSenha {
     }
 
     @RequestMapping(value = "/recuperar_senha", method = RequestMethod.POST)
-    public String atualizarSenha (@RequestParam("US_Codigo") String codigo, @RequestParam("US_Senha") String senha){
+    public String atualizarSenha (@RequestParam("US_Codigo") String codigo, @RequestParam("US_Senha") String senha) {
         Usuario_code userCodigo = usuarioCode.findByCodigo(codigo);
 
       if (Objects.nonNull(userCodigo) ){
@@ -97,3 +98,4 @@ public class RecuperacaoSenha {
         return codValidacao;
     }
 }
+
