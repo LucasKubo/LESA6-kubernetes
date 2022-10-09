@@ -32,10 +32,35 @@ body{
     border-radius: 117px;
     border: 3px solid #4FF4DB;
 }
+/* Olho da senha */
+#pass {
+    width: 150px;
+    padding-right: 20px;
+}
+
+.spnMostrarSenha {
+    cursor: pointer;
+    left: 160px;
+    position: absolute;
+    width: 20px;
+    text-align: right;
+
+}
+
+
+
 .cadastrar-btn, .inicio-btn {
     background:  #fff;
 }
-//.inicio-btn {
+.form-group .glyphicon-eye-open {
+    pointer-events: auto;
+}
+.form-group .glyphicon-eye-open:hover {
+    cursor: pointer;
+}
+
+
+/*.inicio-btn {
 //background: #fff;
 //font-family: 'Roboto';
 //font-style: normal;
@@ -66,7 +91,7 @@ body{
 //width: 115px;
 //border-radius: 117px;
 //border: 3px solid #4FF4DB;
-//}
+//} */
 .navbar {
     padding: 15px 10px;
     background: #fff;
