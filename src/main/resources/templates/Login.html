@@ -95,6 +95,7 @@
                                    name="password"
                                    th:placeholder="#{loginplaceholder.password}" required>
                         </div>
+                            <small><input type="checkbox" name="remember-me" th:text="#{loginremember.text}"/> </small>
                         <div class="form-group">
                             <button th:text="#{loginlogin.text}" id="cadastrar" name="action" class="formulario-button" type="submit"></button>
                             <p><a th:text="#{loginforget.password}" id="recuperar_senha" style="font-size:12px" href="/enviarEmail"></a></p>
