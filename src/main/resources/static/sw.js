@@ -4,21 +4,21 @@ const resourcesToPreCache = [
     //Páginas que não exigem autenticação de usuário
 
     //Login
-    '/',
-    '/login',
-    '/images/icon.svg',
-    '/style/homeStyle.css',
-    '/style/loginStyle.css',
-    '/script/login.jsp',
+//    '/',
+//    '/login',
+//    '/images/icon.svg',
+//    '/style/homeStyle.css',
+//    '/style/loginStyle.css',
+//    '/script/login.jsp',
+//
+//    //Index
+//    '/Index',
+//    '/style/indexStyle.css',
 
-    //Index
-    '/Index',
-    '/style/indexStyle.css',
-
-    //Cadastro
-    '/cadastro',
-    '/style/cadastroUsuarioStyle.css',
-    '/script/cadastroUsuario.jsp',
+//    //Cadastro
+//    '/cadastro',
+//    '/style/cadastroUsuarioStyle.css',
+//    '/script/cadastroUsuario.jsp',
 
     //Páginas que exigem autenticação de usuário
 
@@ -40,16 +40,16 @@ const resourcesToPreCache = [
     // '/lista_agendamento',
 
 
-    'https://fonts.googleapis.com/css?family=Roboto&display=swap',
-    'https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css',
-    'https://use.fontawesome.com/releases/v5.0.13/js/solid.js',
-    'https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js',
-
-    'https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js',
-    //Bootstrap
-    'https://code.jquery.com/jquery-3.3.1.slim.min.js',
-    'https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js',
-    'https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js',
+//    'https://fonts.googleapis.com/css?family=Roboto&display=swap',
+//    'https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css',
+//    'https://use.fontawesome.com/releases/v5.0.13/js/solid.js',
+//    'https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js',
+//
+//    'https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js',
+//    //Bootstrap
+//    'https://code.jquery.com/jquery-3.3.1.slim.min.js',
+//    'https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js',
+//    'https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js',
 
 ]
 
