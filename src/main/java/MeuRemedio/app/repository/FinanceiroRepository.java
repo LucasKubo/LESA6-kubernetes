@@ -17,4 +17,6 @@ public interface FinanceiroRepository extends CrudRepository<Financeiro, Long> {
     List<Financeiro> findAllByUsuarioID(Long usuarioID);
 
     void deleteAllByRemedio(Remedio remedio);
+
+    List<Financeiro> findAllByRemedio(Remedio remedio);
 }

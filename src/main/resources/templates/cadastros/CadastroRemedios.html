@@ -49,6 +49,9 @@
                     </div>
                 </nav>
 
+                <div class="alert-danger alert-info text-center" role="alert" th:if="${param.remedioExistente}">
+                    <span> Já existe um remédio semelhante cadastrado</span>
+                </div>
                 <!-- FORMULÁRIO -->
                 <section class="container d-flex justify-content-center col-12 col-sm-10 col-md-8 col-lg-5 col-lx-6">
                     <div class="card formulario-card col-12" id="form-card">
@@ -73,6 +76,7 @@
                                            name="RM_Dosagem"
                                            onmouseover="mensagemDosagem()"
                                            onmouseout="retirarMensagemDosagem()"
+                                           min="1"
                                            required="required"
                                     >
                                 </div>
@@ -249,7 +253,7 @@
                                                    type="number"
                                                    id="intervaloDias"
                                                    name="intervaloDias"
-                                                   min="0"
+                                                   min="1"
                                             >
                                         </div>
                                     </div>

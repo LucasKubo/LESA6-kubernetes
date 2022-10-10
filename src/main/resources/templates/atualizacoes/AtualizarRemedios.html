@@ -7,7 +7,7 @@
 
         <link rel="icon" href="/images/icon.svg"/>
 
-        <title th:text="#{cadtitle.text}"></title>
+        <title>Meu Remédio</title>
 
         <!-- Bootstrap CSS CDN -->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
@@ -52,6 +52,9 @@
 
         <!-- Content -->
 
+        <div class="alert-danger alert-info text-center" role="alert" th:if="${param.remedioExistente}">
+            <span> Já existe um remédio semelhante cadastrado</span>
+        </div>
         <section class="container d-flex justify-content-center col-12 col-sm-10 col-md-8 col-lg-5 col-lx-6">
             <div class="card formulario-card col-12" id="form-card">
                 <div class="card-body d-flex flex-wrap justify-content-center">
@@ -81,6 +84,7 @@
                                    name="RM_Dosagem"
                                    onMouseOver="mensagemDosagem()"
                                    onMouseOut = "retirarMensagemDosagem()"
+                                   min="1"
                                    required="required"
                                    />
                         </div>

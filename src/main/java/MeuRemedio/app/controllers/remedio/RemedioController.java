@@ -95,6 +95,16 @@ public class RemedioController {
 
         auxRetiradoSUS = RM_RetiradoSus.equals("Sim");
         Remedio remedio = new Remedio(RM_Nome, RM_Dosagem, RM_UnidadeDosagem, auxRetiradoSUS, usuarioID);
+        List<Remedio> remediosCadastrados = remedioRepository.findAllByUsuario(usuarioID);
+        for (Remedio remediosCadastrado : remediosCadastrados) {
+            if (remedio.getRM_Nome().equals(remediosCadastrado.getRM_Nome()) &&
+                    remedio.getRM_Dosagem().equals(remediosCadastrado.getRM_Dosagem()) &&
+                    remedio.getRM_UnidadeDosagem().equals(remediosCadastrado.getRM_UnidadeDosagem()) &&
+                    remedio.getRM_RetiradoSus().equals(remediosCadastrado.getRM_RetiradoSus())) {
+                return "redirect:/remedios_cadastro?remedioExistente";
+            }
+        }
+
         Remedio rem = remedioRepository.save(remedio);
 
         if(!GA_Data.equals("") && Objects.nonNull(GA_Valor) && Objects.nonNull(GA_Parcela)) {
@@ -141,7 +151,15 @@ public class RemedioController {
     public String deletarRemedio (@PathVariable("id") long id) {
         if (verificarPorId(id)) {
             var remedio = remedioRepository.findById(id);
-            controleFinanceiro.deleteAllByRemedio(remedio);
+            var gastos = controleFinanceiro.findAllByRemedio(remedio);
+            for (int i = 0; i < gastos.size(); i++) {
+                if (gastos.get(i).getRemedio().contains(remedio)){
+                    gastos.get(i).getRemedio().remove(remedio);
+                    if(gastos.get(i).getRemedio().size() == 0){
+                        controleFinanceiro.deleteById(gastos.get(i).getId());
+                    }
+                }
+            }
             var agendamentos = agendamentoRepository.findAllByRemedio(remedio);
             for (int i = 0; i < agendamentos.size(); i++){
                 if (agendamentos.get(i).getRemedio().size() == 1) {
@@ -185,7 +203,17 @@ public class RemedioController {
             remedio.setRM_Dosagem(RM_Dosagem);
             remedio.setRM_UnidadeDosagem(RM_UnidadeDosagem);
             remedio.setRM_RetiradoSus(auxRetiradoSUS);
-
+            Usuario usuarioID = new Usuario();
+            usuarioID.setId(userSessionService.returnIdUsuarioLogado());
+            List<Remedio> remediosCadastrados = remedioRepository.findAllByUsuario(usuarioID);
+            for (Remedio remediosCadastrado : remediosCadastrados) {
+                if (remedio.getRM_Nome().equals(remediosCadastrado.getRM_Nome()) &&
+                        remedio.getRM_Dosagem().equals(remediosCadastrado.getRM_Dosagem()) &&
+                        remedio.getRM_UnidadeDosagem().equals(remediosCadastrado.getRM_UnidadeDosagem()) &&
+                        remedio.getRM_RetiradoSus().equals(remediosCadastrado.getRM_RetiradoSus())) {
+                    return "redirect:/atualizar_remedio/{id}?remedioExistente";
+                }
+            }
             remedioRepository.save(remedio);
             return REDIRECT;
         }
