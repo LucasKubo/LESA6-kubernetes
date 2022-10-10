@@ -13,6 +13,7 @@ import MeuRemedio.app.repository.AgendamentoRepository;
 import MeuRemedio.app.repository.AgendamentosHorariosRepository;
 import MeuRemedio.app.repository.IntervaloDiasRepository;
 import MeuRemedio.app.repository.RecorrenciaRepository;
+import com.google.firebase.messaging.FirebaseMessagingException;
 import lombok.var;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
@@ -59,7 +60,7 @@ public class NotificationService {
 
     @Scheduled(cron = "0 */5 * * * *", zone = ZONEID)
     @Async
-    public void enviarNotificacao() throws MessagingException {
+    public void enviarNotificacao() throws MessagingException, FirebaseMessagingException {
 
         final var horaAgora = LocalTime.parse(LocalTime.now(ZoneId.of(ZONEID)).format(horaFormatada()));
         final var dataAgora = LocalDate.parse(LocalDate.now(ZoneId.of(ZONEID)).format(dataFormatada()));
@@ -82,7 +83,7 @@ public class NotificationService {
                 dataAgora.compareTo(dataFinal) <= 0;
     }
 
-    private void verificarHoraRemedio(Agendamento agendamento, LocalTime horaAgora) throws MessagingException {
+    private void verificarHoraRemedio(Agendamento agendamento, LocalTime horaAgora) throws MessagingException, FirebaseMessagingException {
 
         final var instanteAgora = LocalDate.now(ZoneId.of("America/Sao_Paulo")).atTime(horaAgora);
 
@@ -97,7 +98,7 @@ public class NotificationService {
     }
 
     //Chama a classe email controller
-    private void getDadosUsuario(Agendamento agendamento, LocalDateTime instanteAgora) throws MessagingException {
+    private void getDadosUsuario(Agendamento agendamento, LocalDateTime instanteAgora) throws MessagingException, FirebaseMessagingException {
         List<Remedio> remedios = agendamento.getRemedio();   // Recebe todos os remédios associados ao agendamento
         Usuario usuario = remedios.get(0).getUsuario();    // Recebe dados do usuário associado ao primeiro remédio da lista
         envioEmail.emailNotificacaoRemedio(usuario, remedios, instanteAgora);
