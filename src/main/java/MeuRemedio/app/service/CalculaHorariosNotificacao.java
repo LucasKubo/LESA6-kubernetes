@@ -59,7 +59,11 @@ public class CalculaHorariosNotificacao {
             //Monta lista de horários sem intervalo
             while (instanteInicio.isBefore(instanteFinal)) {
                 instanteInicio = instanteInicio.plusHours(agendamento.getPeriodicidade());
-                horasRemedio.add(instanteInicio);
+                if (instanteInicio.isBefore(instanteFinal)) {
+                    horasRemedio.add(instanteInicio);
+                } else {
+                    break;
+                }
             }
         }
 
