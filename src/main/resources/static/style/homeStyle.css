@@ -223,6 +223,21 @@ a.article:hover {
     margin-top: 48rem
 }
 
+/* Olho da senha */
+#pass {
+    width: 150px;
+    padding-right: 20px;
+}
+
+.spnMostrarSenha {
+    cursor: pointer;
+    left: 160px;
+    position: absolute;
+    width: 20px;
+    text-align: right;
+
+}
+
 /*tamanho da logo*/
 nav a img {
     width: 120px;

@@ -82,6 +82,14 @@ body {
     margin-left: 2rem;
 }
 
+.rodapeIndex {
+    padding: 2rem 1rem;
+    margin-bottom: 2rem;
+    background-color: #6bffe9;
+    border-radius: 0.3rem;
+    margin-top: 4rem
+}
+
 
 .banner-home {
     width: 1720px;
