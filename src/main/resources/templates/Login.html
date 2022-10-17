@@ -59,6 +59,8 @@
              th:if="${param.em_env}"> VERIFIQUE SUA CAIXA DE EMAIL</div>
         <div  class="alert alert-info text-center" role="alert"
              th:if="${param.att}"> SENHA ALTERADA COM SUCESSO </div>
+        <div  class="alert alert-info text-center" role="alert"
+              th:if="${param.contaExcluida}"> Conta deletada com sucesso </div>
         <div class="error" th:if="${param.error}"
              th:with="errorMsg=${session['SPRING_SECURITY_LAST_EXCEPTION'].message}">
         <div class="alert-danger alert-info text-center" role="alert" th:if="${errorMsg} == 'Bad credentials'">

@@ -12,13 +12,17 @@ import MeuRemedio.app.repository.IntervaloDiasRepository;
 import MeuRemedio.app.service.UserSessionService;
 import MeuRemedio.app.service.utils.ValidateAuthentication;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.List;
+import java.util.Objects;
 
 @Controller
 public class IndexController {
@@ -40,7 +44,12 @@ public class IndexController {
     final String ZONEID = "America/Sao_Paulo";
 
     @RequestMapping(value = "/home")
-        public String home(ModelMap model){
+        public String home(ModelMap model, HttpServletRequest request){
+        if (Objects.isNull(userSessionService.returnIdUsuarioLogado())){
+            HttpSession session= request.getSession();
+            SecurityContextHolder.clearContext();
+            session.invalidate();
+        }
         if (!validateAuthentication.auth()) {
             return "Login";
         }

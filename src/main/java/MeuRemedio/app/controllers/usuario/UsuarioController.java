@@ -2,15 +2,17 @@ package MeuRemedio.app.controllers.usuario;
 
 import MeuRemedio.app.controllers.EnvioEmail;
 import MeuRemedio.app.models.remedios.Remedio;
+import MeuRemedio.app.models.usuarios.Financeiro;
 import MeuRemedio.app.models.usuarios.Usuario;
-import MeuRemedio.app.repository.RemedioRepository;
-import MeuRemedio.app.repository.UsuarioRepository;
-import MeuRemedio.app.repository.UsuarioRepository_2;
+import MeuRemedio.app.repository.*;
 import MeuRemedio.app.service.UserSessionService;
 import MeuRemedio.app.service.UsuarioService;
 import MeuRemedio.app.service.utils.ValidateAuthentication;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.session.SessionInformation;
+import org.springframework.security.core.session.SessionRegistry;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -18,8 +20,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.mail.MessagingException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 public class UsuarioController {
@@ -36,13 +43,22 @@ public class UsuarioController {
     RemedioRepository remedioRepository;
 
     @Autowired
+    AgendamentoRepository agendamentoRepository;
+
+    @Autowired
     ValidateAuthentication validateAuthentication;
 
     @Autowired
     UserSessionService userSessionService;
 
     @Autowired
+    FinanceiroRepository financeiroRepository;
+
+    @Autowired
     UsuarioService usuarioService;
+
+    @Autowired
+    SessionRegistry sessionRegistryImpl;
 
     final String REDIRECT = "redirect:/home";
 
@@ -132,28 +148,42 @@ public class UsuarioController {
     return "redirect:/usuario/edit/atualizar_usuario?senhaInvalida";
     }
 
-    @PostMapping(value = "/usuario/edit/deletar_usuario/{id}") /*Validar como vai ser a chamada front para o metodo*/
-    public String deletarUsuario (@PathVariable("id") long id ,@RequestParam("US_Senha") String senha ) {
+    @RequestMapping(value = "/usuario/edit/deletar_usuario", method = RequestMethod.GET)
+    public String deletarUsuario(Model model) {
+        String EmailUsuarioLogado = userSessionService.returnUsernameUsuario();
+        Usuario usuarioLogado = usuarioRepository.findByEmail(EmailUsuarioLogado);
+        model.addAttribute("usuario", usuarioLogado);
+
+        return "ExcluirUser";
+    }
+
+    @PostMapping(value = "/usuario/edit/deletar_usuario") /*Validar como vai ser a chamada front para o metodo*/
+    public String deletarUsuario (@RequestParam("US_Senha") String senha, HttpServletRequest request) throws MessagingException, UnsupportedEncodingException {
 
         String EmailUsuarioLogado = userSessionService.returnUsernameUsuario();
         Usuario usuarioLogado = usuarioRepository.findByEmail(EmailUsuarioLogado);
         String passUserLogged = usuarioLogado.getPassword();
 
-        boolean validarSenha;
+        boolean validarSenha = false;
 
         if (BCrypt.checkpw(senha, passUserLogged)) {
             validarSenha = true;
-
-            if (validarSenha) {
-                Remedio remedio = remedioRepository.findByUsuario(usuarioLogado);
-                remedioRepository.delete(remedio);
-                usuarioRepository_2.deleteById(id);
-            }
-            return "redirect:/logout";
         }
-        return TemplateError();
+            if (validarSenha) {
+                List<Remedio> remedio = remedioRepository.findAllByUsuario(usuarioLogado);
+                List<Financeiro> gastos = financeiroRepository.findAllByUsuarioID(usuarioLogado.getId());
+                financeiroRepository.deleteAll(gastos);
+                remedioRepository.deleteAll(remedio);
+                usuarioRepository_2.deleteById(usuarioLogado.getId());
+                emailCadastro.emailDeletarCadastro(usuarioLogado);
+                HttpSession session= request.getSession();
+                SecurityContextHolder.clearContext();
+                session.invalidate();
+                return "redirect:/login?contaExcluida";
+            } else {
+                return "redirect:/usuario/edit/deletar_usuario?senhaInvalida";
+            }
     }
-
     public String TemplateError(){
         return "TemplateError";
     }
