@@ -4,6 +4,8 @@ import MeuRemedio.app.enums.MensagemEmail;
 import MeuRemedio.app.models.remedios.Remedio;
 import MeuRemedio.app.models.usuarios.Usuario;
 import MeuRemedio.app.service.EmailService;
+import MeuRemedio.app.service.FirebaseMessagingService;
+import com.google.firebase.messaging.FirebaseMessagingException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
@@ -21,6 +23,9 @@ public class EnvioEmail {
     EmailService emailService;
     @Autowired
     JavaMailSender mailSender;
+
+    @Autowired
+    private FirebaseMessagingService firebaseService;
 
     public void emailRecuperarSenha (String email, String codigo) throws MessagingException, UnsupportedEncodingException {
         String assunto = MensagemEmail.RECUPERACAO_SENHA.getDescricao();
@@ -49,7 +54,7 @@ public class EnvioEmail {
         emailService.sendEmail(usuario, assunto, msg);
     }
 
-    public void emailNotificacaoRemedio(Usuario usuario, List<Remedio> remedios, LocalDateTime instanteAgora) throws MessagingException {
+    public void emailNotificacaoRemedio(Usuario usuario, List<Remedio> remedios, LocalDateTime instanteAgora) throws MessagingException, FirebaseMessagingException {
         String assunto = MensagemEmail.NOTIFICACAO_REMEDIO.getDescricao();
 
         String horaFormatada = instanteAgora.getHour() + ":" + (instanteAgora.getMinute()<10?"0":"") + instanteAgora.getMinute();
@@ -64,6 +69,7 @@ public class EnvioEmail {
                 "! Agora são " + horaFormatada + " e já está na hora de tomar os seus remédios: \n" + remediosString;
 
         emailService.sendEmail(usuario, assunto, msg);
+        firebaseService.sendNotification(assunto, msg, "Receiver device token");
     }
 
     public void emailValidacaoCadastro(Usuario user, String siteURL)
