@@ -4,11 +4,14 @@ package MeuRemedio.app.controllers.login;
 import MeuRemedio.app.models.agendamentos.Agendamento;
 import MeuRemedio.app.models.agendamentos.AgendamentosHorarios;
 import MeuRemedio.app.models.agendamentos.IntervaloDias;
+import MeuRemedio.app.models.remedios.Remedio;
 import MeuRemedio.app.models.usuarios.Financeiro;
+import MeuRemedio.app.models.usuarios.Usuario;
 import MeuRemedio.app.repository.AgendamentoRepository;
 import MeuRemedio.app.repository.AgendamentosHorariosRepository;
 import MeuRemedio.app.repository.FinanceiroRepository;
 import MeuRemedio.app.repository.IntervaloDiasRepository;
+import MeuRemedio.app.repository.RemedioRepository;
 import MeuRemedio.app.service.UserSessionService;
 import MeuRemedio.app.service.utils.ValidateAuthentication;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +25,9 @@ import javax.servlet.http.HttpSession;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.util.Objects;
+
 
 @Controller
 public class IndexController {
@@ -40,6 +45,9 @@ public class IndexController {
 
     @Autowired
     FinanceiroRepository financeiroRepository;
+    
+    @Autowired
+    RemedioRepository remedioRepository;
 
     final String ZONEID = "America/Sao_Paulo";
 
@@ -63,8 +71,17 @@ public class IndexController {
         List<AgendamentosHorarios> horarios = agendamentosHorariosRepository.selecionarHorarios(userSessionService.returnIdUsuarioLogado(), instanteAgora);
         model.addAttribute("horarios", horarios);
 
-        Iterable<Financeiro> financeiro = financeiroRepository.findAllByUsuarioID(userSessionService.returnIdUsuarioLogado());
+        List <Financeiro> financeiro = financeiroRepository.findAllByUsuarioID(userSessionService.returnIdUsuarioLogado());
         model.addAttribute("financeiro", financeiro);
+        List <Double> valores = financeiro.stream().map(Financeiro::getValor).collect(Collectors.toList());
+        model.addAttribute("valor", valores);
+        
+        Usuario usuarioID = new Usuario();
+        usuarioID.setId(userSessionService.returnIdUsuarioLogado());
+        List <Remedio> remedios = remedioRepository.findAllByUsuario(usuarioID);
+         List<String> nomesRemedios = remedios.stream().map(Remedio::getRM_Nome).collect(Collectors.toList());
+        model.addAttribute("remedio", nomesRemedios);
+        
         return "Home";
         }
 
