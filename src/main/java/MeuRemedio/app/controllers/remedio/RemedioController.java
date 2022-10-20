@@ -3,13 +3,11 @@ package MeuRemedio.app.controllers.remedio;
 
 import MeuRemedio.app.controllers.EnvioEmail;
 import MeuRemedio.app.controllers.agendamento.AgendamentoController;
+import MeuRemedio.app.models.dash.Dash;
 import MeuRemedio.app.models.remedios.Remedio;
 import MeuRemedio.app.models.usuarios.Financeiro;
 import MeuRemedio.app.models.usuarios.Usuario;
-import MeuRemedio.app.repository.AgendamentoRepository;
-import MeuRemedio.app.repository.FinanceiroRepository;
-import MeuRemedio.app.repository.RemedioRepository;
-import MeuRemedio.app.repository.UsuarioRepository;
+import MeuRemedio.app.repository.*;
 import MeuRemedio.app.service.UserSessionService;
 import MeuRemedio.app.service.utils.ValidateAuthentication;
 import lombok.var;
@@ -34,6 +32,8 @@ public class RemedioController {
 
     private String username;
 
+    @Autowired
+    DashBoardsRepository dashBoardsRepository;
 
     @Autowired
     EnvioEmail emailController;
@@ -76,7 +76,7 @@ public class RemedioController {
     }
 
     @RequestMapping(value = "/remedios_cadastro", method = RequestMethod.POST)
-    public String CadastroRemedio(@RequestParam("RM_Nome") String RM_Nome, @RequestParam("RM_Dosagem") String RM_Dosagem,
+    public String CadastroRemedio (@RequestParam("RM_Nome") String RM_Nome, @RequestParam("RM_Dosagem") String RM_Dosagem,
                                   @RequestParam("RM_UnidadeDosagem") String RM_UnidadeDosagem, @RequestParam("RM_RetiradoSus") String RM_RetiradoSus,
                                   @RequestParam(value = "exampleCheck1", required = false) Boolean check,
                                   @RequestParam(value = "AG_DataInicio", required = false)  String AG_DataInicio,
@@ -95,13 +95,21 @@ public class RemedioController {
 
         auxRetiradoSUS = RM_RetiradoSus.equals("Sim");
         Remedio remedio = new Remedio(RM_Nome, RM_Dosagem, RM_UnidadeDosagem, auxRetiradoSUS, usuarioID);
+
         List<Remedio> remediosCadastrados = remedioRepository.findAllByUsuario(usuarioID);
         for (Remedio remediosCadastrado : remediosCadastrados) {
             if (remedio.getRM_Nome().equals(remediosCadastrado.getRM_Nome()) &&
                     remedio.getRM_Dosagem().equals(remediosCadastrado.getRM_Dosagem()) &&
                     remedio.getRM_UnidadeDosagem().equals(remediosCadastrado.getRM_UnidadeDosagem()) &&
                     remedio.getRM_RetiradoSus().equals(remediosCadastrado.getRM_RetiradoSus())) {
+
                 return "redirect:/remedios_cadastro?remedioExistente";
+            }
+            if (RM_RetiradoSus.equals("Não")){
+                Dash dash = new Dash(usuarioID, GA_Valor, GA_Data);
+                dashBoardsRepository.save(dash);
+
+                return REDIRECT;
             }
         }
 
