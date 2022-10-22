@@ -260,6 +260,11 @@ a.button.new:hover{
     width: 100%;
     overflow-x: auto;
 }
+#agendamentos{
+    display: block;
+    width: 100%;
+    overflow-x: auto;
+}
 
 /*.gastos {
 

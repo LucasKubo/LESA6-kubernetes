@@ -49,9 +49,13 @@
                     </div>
                 </nav>
 
+
+                <!-- MENSAGENS DE ERROS -->
                 <div class="alert-danger alert-info text-center" role="alert" th:if="${param.remedioExistente}">
                     <span> Já existe um remédio semelhante cadastrado</span>
                 </div>
+
+
                 <!-- FORMULÁRIO -->
                 <section class="container d-flex justify-content-center col-12 col-sm-10 col-md-8 col-lg-5 col-lx-6">
                     <div class="card formulario-card col-12" id="form-card">
@@ -76,7 +80,7 @@
                                            name="RM_Dosagem"
                                            min="1"
                                            required="required"
-                                    >
+                                           >
                                 </div>
                                 <small><span id="mensagemDosagem" class="help"></span></small>
 
@@ -109,7 +113,7 @@
                                                    checked
 
 
-                                            >
+                                                   >
                                             <label class="input-label" for="RM_RetiradoSus">Sim</label>
                                         </span>
                                         <span>
@@ -122,7 +126,7 @@
                                                    data-toggle="collapse"
                                                    data-target=".collapseOne:not(.show)"
 
-                                            >
+                                                   >
                                             <label class="input-label" for="RM_RetiradoSusNo">Não</label>
                                         </span>
                                     </div>
@@ -133,23 +137,28 @@
                                 <div class="collapseOne panel-collapse collapse">
                                     <div class="line-break"></div>
                                     <h2 class="form-h2">Informe o gasto com o medicamento</h2>
-                                    <div class="form-group panel-body">
-                                        <h3 class="input-label">Informe a data da compra.</h3>
+
+                                    <div class="form-group">
+                                        <label class="input-label" for="GA_Data">Informe a data da compra.</label>
                                         <div class="input-group" data-provide="datepicker" id="GaData">
                                             <input class="formulario-input" type="date" id="GA_Data" name="GA_Data" value=null>
                                         </div>
+                                    </div>
 
-                                        <h3 class="input-label">Informe o valor</h3>
+                                    <div class="form-group">
+                                        <label class="input-label" for="GA_Valor">Informe o valor</label>
                                         <div class="input-group" data-provide="datepicker" id="GaValor">
                                             <input class="formulario-input" type="number" step="0.01" id="GA_Valor" name="GA_Valor" min="0" value="0">
                                         </div>
+                                    </div>
 
-
-                                        <h3 class="input-label">Informe a quantidade de parcelas</h3>
+                                    <div class="form-group">
+                                        <label class="input-label" for="GA_Parcela">Informe a quantidade de parcelas</label>
                                         <div class="input-group" data-provide="datepicker" id="GaParcela">
                                             <input class="formulario-input" type="number" id="GA_Parcela" name="GA_Parcela" min="1" placeholder="Ex: 1, 2, 3" value="0">
                                         </div>
                                     </div>
+
                                 </div>
 
                                 <div class="line-break"></div>
@@ -169,7 +178,7 @@
                                            checked=""
                                            aria-expanded="true"
                                            onclick="checarBox()"
-                                    >
+                                           >
                                 </div>
 
                                 <!-- Parte do agendamento -->
@@ -185,7 +194,7 @@
                                                    placeholder="Data Inicial"
                                                    onBlur="validaDataFinal()"
                                                    required=""
-                                            >
+                                                   >
                                         </div>
 
                                         <div class="form-group">
@@ -197,7 +206,7 @@
                                                    placeholder="Data Final"
                                                    onBlur="validaDataFinal()"
                                                    required=""
-                                            >
+                                                   >
                                         </div>
 
                                         <div class="form-group">
@@ -210,7 +219,7 @@
                                                    step="300"
                                                    value="00:00"
                                                    required=""
-                                            >
+                                                   >
                                         </div>
 
                                         <div class="form-group">
@@ -222,7 +231,7 @@
                                                    name="AG_Periodicidade"
                                                    min="1"
                                                    required=""
-                                            >
+                                                   >
                                         </div>
                                     </div>
 
@@ -240,7 +249,7 @@
                                                    data-toggle="collapse"
                                                    data-target="#intervalo"
                                                    checked="false"
-                                            >
+                                                   >
                                         </div>
                                         <div id="intervalo" class="input-group collapse show">
 
@@ -253,7 +262,7 @@
                                                    id="intervaloDias"
                                                    name="intervaloDias"
                                                    min="1"
-                                            >
+                                                   >
                                         </div>
                                     </div>
 
@@ -264,8 +273,8 @@
                                 <small><span id="mensagemInicioAgendamento" class="help"></span></small>
                                 <small><span id="mensagemHora" class="help"></span></small>
 
-                               <span class="error-message" id="error-hoje"></span>
-                               <span class="error-message" id="error-date"></span>
+                                <span class="error-message" id="error-hoje"></span>
+                                <span class="error-message" id="error-date"></span>
 
 
                                 <!--
@@ -310,9 +319,9 @@
         </div>
 
         <script type="text/javascript">
-                                                           $(document).ready(function () {
-                                                               $('#RM_UnidadeDosagem')
-                                                           });
+                                                       $(document).ready(function () {
+                                                           $('#RM_UnidadeDosagem')
+                                                       });
         </script>
 
         <script type="text/javascript">
