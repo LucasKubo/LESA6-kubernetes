@@ -1,6 +1,6 @@
-@media only screen and (max-device-width: 700px) {
-    /* .menu { width:400px; } */
-}
+/*@media only screen and (max-device-width: 700px) {*/
+/*    !* .menu { width:400px; } *!*/
+/*}*/
 
 /*{
   box-sizing: border-box;
@@ -18,10 +18,9 @@ header{
 }
 
 body {
-    margin: 0;
-    padding: 0;
-    font-family: "Roboto", sans-serif;
-    font-size: 16px;
+    font-family: 'Poppins', sans-serif;
+    background: #ffffff;
+    /*background-color: var(--light-blue);*/
 }
 
 /*header{
