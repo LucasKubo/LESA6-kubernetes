@@ -74,8 +74,6 @@
                                            type="number"
                                            id="RM_Dosagem"
                                            name="RM_Dosagem"
-                                           onmouseover="mensagemDosagem()"
-                                           onmouseout="retirarMensagemDosagem()"
                                            min="1"
                                            required="required"
                                     >
@@ -131,6 +129,7 @@
                                 </div>
 
 
+                                <!-- Cadastro dos gastos -->
                                 <div class="collapseOne panel-collapse collapse">
                                     <div class="line-break"></div>
                                     <h2 class="form-h2">Informe o gasto com o medicamento</h2>
@@ -148,7 +147,7 @@
 
                                         <h3 class="input-label">Informe a quantidade de parcelas</h3>
                                         <div class="input-group" data-provide="datepicker" id="GaParcela">
-                                            <input class="formulario-input" type="number" id="GA_Parcela" name="GA_Parcela" placeholder="Ex: 1, 2, 3" value="0">
+                                            <input class="formulario-input" type="number" id="GA_Parcela" name="GA_Parcela" min="1" placeholder="Ex: 1, 2, 3" value="0">
                                         </div>
                                     </div>
                                 </div>
