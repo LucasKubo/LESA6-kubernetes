@@ -49,8 +49,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
         http.headers()
                 .addHeaderWriter(new StaticHeadersWriter("Content-Security-Policy","script-src 'self'"))
-                .addHeaderWriter(new StaticHeadersWriter("Referrer-Policy", "script-src 'self'"))
-                .addHeaderWriter(new StaticHeadersWriter("Permissions-Policy","script-src 'self'"));
+                .addHeaderWriter(new StaticHeadersWriter("Referrer-Policy", "no-referrer, strict-origin-when-cross-origin"))
+                .addHeaderWriter(new StaticHeadersWriter("Permissions-Policy","geolocation=(self)"));
 
     }
 
