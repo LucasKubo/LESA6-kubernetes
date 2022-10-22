@@ -15,7 +15,7 @@ public class FirebaseMessagingService {
         this.firebaseMessaging = firebaseMessaging;
     }
 
-
+    //TODO usar Note como parametro
     public void sendNotification(String title, String body, String token) throws FirebaseMessagingException {
 
         Notification notification = Notification
