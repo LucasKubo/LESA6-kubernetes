@@ -4468,6 +4468,11 @@ Docs & License: https://fullcalendar.io/
     }
 
     var config = {}; // TODO: make these options
+    const params = new URLSearchParams(window.location.search)
+    var lang = params.get("lang")
+    if(lang === null || lang === "pt_BR"){
+        lang = "pt-br"
+    }
     var globalDefaults = {
         defaultRangeSeparator: ' - ',
         titleRangeSeparator: ' \u2013 ',
@@ -4502,7 +4507,7 @@ Docs & License: https://fullcalendar.io/
         // allDayDefault: undefined,
         // locale
         locales: [],
-        locale: 'pt-br',
+        locale: lang,
         // dir: will get this from the default locale
         // buttonIcons: null,
         // allows setting a min-height to the event segment to prevent short events overlapping each other
@@ -4578,7 +4583,6 @@ Docs & License: https://fullcalendar.io/
         }
         return INTERNAL_PLUGINS.concat(plugins);
     }
-
     var RAW_EN_LOCALE = {
         code: 'en',
         week: {
@@ -4603,6 +4607,7 @@ Docs & License: https://fullcalendar.io/
         eventLimitText: '',
         noEventsMessage: 'No events to display'
     };
+
     function parseRawLocales(explicitRawLocales) {
         var defaultCode = explicitRawLocales.length > 0 ? explicitRawLocales[0].code : 'en';
         var globalArray = window['FullCalendarLocalesAll'] || []; // from locales-all.js
