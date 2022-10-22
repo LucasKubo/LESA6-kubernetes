@@ -12,7 +12,7 @@ import java.time.LocalDate;
 @Entity
 @Getter
 @Setter
-@Table(name = "Remedio_SUS")
+@Table(name = "Remedios_SUS")
 public class RemedioSUS implements Serializable {
 
     private static long serialVersionUID = 1L;
@@ -24,11 +24,7 @@ public class RemedioSUS implements Serializable {
     @NotNull @NotBlank
     private String RS_Nome;
     @NotNull @NotBlank
-    private String RS_FormaFarmaceutica;
-    @NotNull @NotBlank
-    private String RS_CodigoATC;
-    @NotNull @NotBlank
-    private String RS_Componente;
+    private String RS_DisponivelSus;
 
     @NotBlank
     private LocalDate Criado_em = LocalDate.now();
@@ -38,12 +34,9 @@ public class RemedioSUS implements Serializable {
 
     }
 
-    public RemedioSUS (long RS_ID, String RS_Nome, String RS_FormaFarmaceutica, String RS_CodigoATC, String RS_Componente) {
-        this.RS_ID = RS_ID;
+    public RemedioSUS (String RS_Nome, String RS_DisponivelSus) {
         this.RS_Nome = RS_Nome;
-        this.RS_FormaFarmaceutica = RS_FormaFarmaceutica;
-        this.RS_CodigoATC = RS_CodigoATC;
-        this.RS_Componente = RS_Componente;
+        this.RS_DisponivelSus = RS_DisponivelSus;
         this.Criado_em = LocalDate.now();
     }
 }

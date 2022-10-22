@@ -70,16 +70,13 @@ public class Remedio implements Comparable<Remedio>, Serializable  {
         this.RM_Dosagem = RM_Dosagem;
         this.RM_UnidadeDosagem = RM_UnidadeDosagem;
         this.RM_RetiradoSus = RM_RetiradoSus;
-       // this.categoria = categoria;
         this.usuario = usuario;
     }
 
-    //Método de teste sem o rádio/boolean
     public Remedio (String RM_Nome, String RM_Dosagem, String RM_UnidadeDosagem, Usuario usuario) {
         this.RM_Nome = RM_Nome;
         this.RM_Dosagem = RM_Dosagem;
         this.RM_UnidadeDosagem = RM_UnidadeDosagem;
-       // this.categoria = categoria;
         this.usuario = usuario;
     }
 
