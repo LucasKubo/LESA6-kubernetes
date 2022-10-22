@@ -48,7 +48,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .key("uniqueAndSecret");
 
         http.headers()
-                .addHeaderWriter(new StaticHeadersWriter("X-Content-Security-Policy","script-src 'self'"));
+                .addHeaderWriter(new StaticHeadersWriter("X-Content-Security-Policy","script-src 'self'"))
+                .addHeaderWriter(new StaticHeadersWriter("Referrer-Policy", "script-src 'self'"))
+                .addHeaderWriter(new StaticHeadersWriter("Permissions-Policy","script-src 'self'"));
 
     }
 
