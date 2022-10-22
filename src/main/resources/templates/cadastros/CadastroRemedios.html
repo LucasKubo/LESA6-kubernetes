@@ -13,6 +13,8 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
         <!-- Our Custom CSS -->
         <link rel="stylesheet" href="/style/cadastroRemedioStyle.css">
+
+        <!-- Bootstrap Multiselect -->
         <link rel="stylesheet" href="/style/bootstrap-multiselect.css">
         <!-- Scrollbar Custom CSS -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
@@ -67,12 +69,12 @@
                             <form method="post" name="formCadastroRM">
 
                                 <div class="form-group">
-                                    <label class="input-label" for="RM_Nome">Remédio</label>
+                                    <label class="input-label" for="RM_Nome">Remédio*</label>
                                     <input class="form-control formulario-input" placeholder="Nome do Medicamento" type="text" id="RM_Nome" name="RM_Nome" required="required">
                                 </div>
 
                                 <div class="form-group">
-                                    <label class="input-label" for="RM_Dosagem">Dosagem</label>
+                                    <label class="input-label" for="RM_Dosagem">Dosagem*</label>
                                     <input placeholder="Quantidade"
                                            class="form-control formulario-input"
                                            type="number"
@@ -85,7 +87,7 @@
                                 <small><span id="mensagemDosagem" class="help"></span></small>
 
                                 <div class="form-group">
-                                    <label class="input-label" for="RM_UnidadeDosagem"> Unidade de medida </label>
+                                    <label class="input-label" for="RM_UnidadeDosagem"> Unidade de medida* </label>
                                     <select id="RM_UnidadeDosagem" class="form-control dosage-select" name="RM_UnidadeDosagem" required="required">
                                         <option value="mg">Miligrama (mg)</option>
                                         <option value="g">Grama (g)</option>
@@ -141,21 +143,21 @@
                                     <div class="form-group">
                                         <label class="input-label" for="GA_Data">Informe a data da compra.</label>
                                         <div class="input-group" data-provide="datepicker" id="GaData">
-                                            <input class="formulario-input" type="date" id="GA_Data" name="GA_Data" value=null>
+                                            <input class="form-control formulario-input" type="date" id="GA_Data" name="GA_Data" value=null>
                                         </div>
                                     </div>
 
                                     <div class="form-group">
                                         <label class="input-label" for="GA_Valor">Informe o valor</label>
                                         <div class="input-group" data-provide="datepicker" id="GaValor">
-                                            <input class="formulario-input" type="number" step="0.01" id="GA_Valor" name="GA_Valor" min="0" value="0">
+                                            <input class="form-control formulario-input" type="number" step="0.01" id="GA_Valor" name="GA_Valor" min="0" value="0">
                                         </div>
                                     </div>
 
                                     <div class="form-group">
                                         <label class="input-label" for="GA_Parcela">Informe a quantidade de parcelas</label>
                                         <div class="input-group" data-provide="datepicker" id="GaParcela">
-                                            <input class="formulario-input" type="number" id="GA_Parcela" name="GA_Parcela" min="1" placeholder="Ex: 1, 2, 3" value="0">
+                                            <input class="form-control formulario-input" type="number" id="GA_Parcela" name="GA_Parcela" min="1" placeholder="Ex: 1, 2, 3" value="0">
                                         </div>
                                     </div>
 
@@ -175,14 +177,14 @@
                                            data-target="#demo"
                                            id="exampleCheck1"
                                            name="exampleCheck1"
-                                           checked=""
+
                                            aria-expanded="true"
                                            onclick="checarBox()"
                                            >
                                 </div>
 
                                 <!-- Parte do agendamento -->
-                                <div id="demo" class="collapse show">
+                                <div id="demo" class="collapse">
                                     <label class="text-center input-label">Informe o período e o horário do agendamento</label>
                                     <div class="input-group d-flex flex-column" data-provide="datepicker" id="AgInicio">
                                         <div class="form-group">
@@ -248,10 +250,10 @@
                                                    onclick="desabilitar('sim')"
                                                    data-toggle="collapse"
                                                    data-target="#intervalo"
-                                                   checked="false"
+
                                                    >
                                         </div>
-                                        <div id="intervalo" class="input-group collapse show">
+                                        <div id="intervalo" class="input-group collapse">
 
                                             <label class="input-label">Intervalo de dias</label>
 
