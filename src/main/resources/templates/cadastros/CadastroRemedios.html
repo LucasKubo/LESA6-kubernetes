@@ -157,7 +157,7 @@
                                     <div class="form-group">
                                         <label class="input-label" for="GA_Parcela">Informe a quantidade de parcelas</label>
                                         <div class="input-group" data-provide="datepicker" id="GaParcela">
-                                            <input class="form-control formulario-input" type="number" id="GA_Parcela" name="GA_Parcela" min="1" placeholder="Ex: 1, 2, 3" value="0">
+                                            <input class="form-control formulario-input" type="number" id="GA_Parcela" name="GA_Parcela" min="1" placeholder="Ex: 1, 2, 3" value="1">
                                         </div>
                                     </div>
 
@@ -195,7 +195,7 @@
                                                    name="AG_DataInicio"
                                                    placeholder="Data Inicial"
                                                    onBlur="validaDataFinal()"
-                                                   required=""
+
                                                    >
                                         </div>
 
@@ -207,7 +207,7 @@
                                                    name="AG_DataFinal"
                                                    placeholder="Data Final"
                                                    onBlur="validaDataFinal()"
-                                                   required=""
+
                                                    >
                                         </div>
 
@@ -220,7 +220,7 @@
                                                    name="AG_HoraInicio"
                                                    step="300"
                                                    value="00:00"
-                                                   required=""
+
                                                    >
                                         </div>
 
@@ -232,7 +232,7 @@
                                                    id="AG_Periodicidade"
                                                    name="AG_Periodicidade"
                                                    min="1"
-                                                   required=""
+
                                                    >
                                         </div>
                                     </div>
@@ -331,10 +331,10 @@
                 var checkbox = $("#exampleCheck1");
                 checkbox.change(function () {
                     if (checkbox.is(':checked')) {
-                        $("#AG_DataInicio").attr('required'); //add required attr
-                        $("#AG_HoraInicio").attr('required');
-                        $("#AG_DataFinal").attr('required');
-                        $("#AG_Periodicidade").attr('required');
+                        $("#AG_DataInicio").prop('required',true); //add required attr
+                        $("#AG_HoraInicio").prop('required',true);
+                        $("#AG_DataFinal").prop('required',true);
+                        $("#AG_Periodicidade").prop('required',true);
                     } else {
                         $("#AG_DataInicio").removeAttr('required'); //add required attr
                         $("#AG_HoraInicio").removeAttr('required');
@@ -362,7 +362,7 @@
 
         <script type="text/javascript">
             function desabilitar(valor) {
-                var status = document.getElementById('intervaloDias').disabled;
+                var status = document.getElementById('intervaloDias').enabled;
 
                 if (valor == 'sim' && status) {
                     document.getElementById('intervaloDias').disabled = false;

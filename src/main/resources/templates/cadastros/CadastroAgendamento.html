@@ -207,18 +207,12 @@
         //     });
         // });
 
-            $('#AG_HoraInicio').timepicker({
-                format : 'HH:mm',
+          $('#AG_HoraInicio').timepicker({
+                timeFormat : 'HH:mm',
                 interval: 5,
-                showInputs: false,
-                showMeridian: false
-
-            // $('#AG_HoraInicio').datetimepicker({
-            //     format: 'HH:mm',
-            //     stepping: 5
-            });
-
+                defaultTime: '09:00'
         });
+         });
     </script>
 <!--   Não usar esse, pq trava o remédio     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>-->
         <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.css">
