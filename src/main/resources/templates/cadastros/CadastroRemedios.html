@@ -13,6 +13,8 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
         <!-- Our Custom CSS -->
         <link rel="stylesheet" href="/style/cadastroRemedioStyle.css">
+
+        <!-- Bootstrap Multiselect -->
         <link rel="stylesheet" href="/style/bootstrap-multiselect.css">
         <!-- Scrollbar Custom CSS -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
@@ -49,9 +51,13 @@
                     </div>
                 </nav>
 
+
+                <!-- MENSAGENS DE ERROS -->
                 <div class="alert-danger alert-info text-center" role="alert" th:if="${param.remedioExistente}">
                     <span> Já existe um remédio semelhante cadastrado</span>
                 </div>
+
+
                 <!-- FORMULÁRIO -->
                 <section class="container d-flex justify-content-center col-12 col-sm-10 col-md-8 col-lg-5 col-lx-6">
                     <div class="card formulario-card col-12" id="form-card">
@@ -63,27 +69,25 @@
                             <form method="post" name="formCadastroRM">
 
                                 <div class="form-group">
-                                    <label class="input-label" for="RM_Nome">Remédio</label>
+                                    <label class="input-label" for="RM_Nome">Remédio*</label>
                                     <input class="form-control formulario-input" placeholder="Nome do Medicamento" type="text" id="RM_Nome" name="RM_Nome" required="required">
                                 </div>
 
                                 <div class="form-group">
-                                    <label class="input-label" for="RM_Dosagem">Dosagem</label>
+                                    <label class="input-label" for="RM_Dosagem">Dosagem*</label>
                                     <input placeholder="Quantidade"
                                            class="form-control formulario-input"
                                            type="number"
                                            id="RM_Dosagem"
                                            name="RM_Dosagem"
-                                           onmouseover="mensagemDosagem()"
-                                           onmouseout="retirarMensagemDosagem()"
                                            min="1"
                                            required="required"
-                                    >
+                                           >
                                 </div>
                                 <small><span id="mensagemDosagem" class="help"></span></small>
 
                                 <div class="form-group">
-                                    <label class="input-label" for="RM_UnidadeDosagem"> Unidade de medida </label>
+                                    <label class="input-label" for="RM_UnidadeDosagem"> Unidade de medida* </label>
                                     <select id="RM_UnidadeDosagem" class="form-control dosage-select" name="RM_UnidadeDosagem" required="required">
                                         <option value="mg">Miligrama (mg)</option>
                                         <option value="g">Grama (g)</option>
@@ -111,7 +115,7 @@
                                                    checked
 
 
-                                            >
+                                                   >
                                             <label class="input-label" for="RM_RetiradoSus">Sim</label>
                                         </span>
                                         <span>
@@ -124,33 +128,39 @@
                                                    data-toggle="collapse"
                                                    data-target=".collapseOne:not(.show)"
 
-                                            >
+                                                   >
                                             <label class="input-label" for="RM_RetiradoSusNo">Não</label>
                                         </span>
                                     </div>
                                 </div>
 
 
+                                <!-- Cadastro dos gastos -->
                                 <div class="collapseOne panel-collapse collapse">
                                     <div class="line-break"></div>
                                     <h2 class="form-h2">Informe o gasto com o medicamento</h2>
-                                    <div class="form-group panel-body">
-                                        <h3 class="input-label">Informe a data da compra.</h3>
+
+                                    <div class="form-group">
+                                        <label class="input-label" for="GA_Data">Informe a data da compra.</label>
                                         <div class="input-group" data-provide="datepicker" id="GaData">
-                                            <input class="formulario-input" type="date" id="GA_Data" name="GA_Data" value=null>
-                                        </div>
-
-                                        <h3 class="input-label">Informe o valor</h3>
-                                        <div class="input-group" data-provide="datepicker" id="GaValor">
-                                            <input class="formulario-input" type="number" step="0.01" id="GA_Valor" name="GA_Valor" min="0" value="0">
-                                        </div>
-
-
-                                        <h3 class="input-label">Informe a quantidade de parcelas</h3>
-                                        <div class="input-group" data-provide="datepicker" id="GaParcela">
-                                            <input class="formulario-input" type="number" id="GA_Parcela" name="GA_Parcela" placeholder="Ex: 1, 2, 3" value="0">
+                                            <input class="form-control formulario-input" type="date" id="GA_Data" name="GA_Data" value=null>
                                         </div>
                                     </div>
+
+                                    <div class="form-group">
+                                        <label class="input-label" for="GA_Valor">Informe o valor</label>
+                                        <div class="input-group" data-provide="datepicker" id="GaValor">
+                                            <input class="form-control formulario-input" type="number" step="0.01" id="GA_Valor" name="GA_Valor" min="0" value="0">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="input-label" for="GA_Parcela">Informe a quantidade de parcelas</label>
+                                        <div class="input-group" data-provide="datepicker" id="GaParcela">
+                                            <input class="form-control formulario-input" type="number" id="GA_Parcela" name="GA_Parcela" min="1" placeholder="Ex: 1, 2, 3" value="1">
+                                        </div>
+                                    </div>
+
                                 </div>
 
                                 <div class="line-break"></div>
@@ -167,14 +177,14 @@
                                            data-target="#demo"
                                            id="exampleCheck1"
                                            name="exampleCheck1"
-                                           checked=""
+
                                            aria-expanded="true"
                                            onclick="checarBox()"
-                                    >
+                                           >
                                 </div>
 
                                 <!-- Parte do agendamento -->
-                                <div id="demo" class="collapse show">
+                                <div id="demo" class="collapse">
                                     <label class="text-center input-label">Informe o período e o horário do agendamento</label>
                                     <div class="input-group d-flex flex-column" data-provide="datepicker" id="AgInicio">
                                         <div class="form-group">
@@ -185,8 +195,8 @@
                                                    name="AG_DataInicio"
                                                    placeholder="Data Inicial"
                                                    onBlur="validaDataFinal()"
-                                                   required=""
-                                            >
+
+                                                   >
                                         </div>
 
                                         <div class="form-group">
@@ -197,8 +207,8 @@
                                                    name="AG_DataFinal"
                                                    placeholder="Data Final"
                                                    onBlur="validaDataFinal()"
-                                                   required=""
-                                            >
+
+                                                   >
                                         </div>
 
                                         <div class="form-group">
@@ -210,8 +220,8 @@
                                                    name="AG_HoraInicio"
                                                    step="300"
                                                    value="00:00"
-                                                   required=""
-                                            >
+
+                                                   >
                                         </div>
 
                                         <div class="form-group">
@@ -222,8 +232,8 @@
                                                    id="AG_Periodicidade"
                                                    name="AG_Periodicidade"
                                                    min="1"
-                                                   required=""
-                                            >
+
+                                                   >
                                         </div>
                                     </div>
 
@@ -240,10 +250,10 @@
                                                    onclick="desabilitar('sim')"
                                                    data-toggle="collapse"
                                                    data-target="#intervalo"
-                                                   checked="false"
-                                            >
+
+                                                   >
                                         </div>
-                                        <div id="intervalo" class="input-group collapse show">
+                                        <div id="intervalo" class="input-group collapse">
 
                                             <label class="input-label">Intervalo de dias</label>
 
@@ -254,7 +264,7 @@
                                                    id="intervaloDias"
                                                    name="intervaloDias"
                                                    min="1"
-                                            >
+                                                   >
                                         </div>
                                     </div>
 
@@ -265,8 +275,8 @@
                                 <small><span id="mensagemInicioAgendamento" class="help"></span></small>
                                 <small><span id="mensagemHora" class="help"></span></small>
 
-                               <span class="error-message" id="error-hoje"></span>
-                               <span class="error-message" id="error-date"></span>
+                                <span class="error-message" id="error-hoje"></span>
+                                <span class="error-message" id="error-date"></span>
 
 
                                 <!--
@@ -311,9 +321,9 @@
         </div>
 
         <script type="text/javascript">
-                                                           $(document).ready(function () {
-                                                               $('#RM_UnidadeDosagem')
-                                                           });
+                                                       $(document).ready(function () {
+                                                           $('#RM_UnidadeDosagem')
+                                                       });
         </script>
 
         <script type="text/javascript">
@@ -321,10 +331,10 @@
                 var checkbox = $("#exampleCheck1");
                 checkbox.change(function () {
                     if (checkbox.is(':checked')) {
-                        $("#AG_DataInicio").attr('required'); //add required attr
-                        $("#AG_HoraInicio").attr('required');
-                        $("#AG_DataFinal").attr('required');
-                        $("#AG_Periodicidade").attr('required');
+                        $("#AG_DataInicio").prop('required',true); //add required attr
+                        $("#AG_HoraInicio").prop('required',true);
+                        $("#AG_DataFinal").prop('required',true);
+                        $("#AG_Periodicidade").prop('required',true);
                     } else {
                         $("#AG_DataInicio").removeAttr('required'); //add required attr
                         $("#AG_HoraInicio").removeAttr('required');
@@ -352,7 +362,7 @@
 
         <script type="text/javascript">
             function desabilitar(valor) {
-                var status = document.getElementById('intervaloDias').disabled;
+                var status = document.getElementById('intervaloDias').enabled;
 
                 if (valor == 'sim' && status) {
                     document.getElementById('intervaloDias').disabled = false;

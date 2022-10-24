@@ -207,21 +207,22 @@ public class RemedioController {
         } else {
             Remedio remedio = remedioRepository.findById(id);
 
+            Usuario usuarioID = new Usuario();
+            usuarioID.setId(userSessionService.returnIdUsuarioLogado());
+            List<Remedio> remediosCadastrados = remedioRepository.findAllByUsuario(usuarioID);
+
+            for (Remedio remediosCadastrado : remediosCadastrados) {
+                if (RM_Nome.equals(remediosCadastrado.getRM_Nome()) &&
+                        RM_Dosagem.equals(remediosCadastrado.getRM_Dosagem()) &&
+                        RM_UnidadeDosagem.equals(remediosCadastrado.getRM_UnidadeDosagem()) &&
+                        auxRetiradoSUS == remediosCadastrado.getRM_RetiradoSus()) {
+                    return "redirect:/atualizar_remedio/{id}?remedioExistente";
+                }
+            }
             remedio.setRM_Nome(RM_Nome);
             remedio.setRM_Dosagem(RM_Dosagem);
             remedio.setRM_UnidadeDosagem(RM_UnidadeDosagem);
             remedio.setRM_RetiradoSus(auxRetiradoSUS);
-            Usuario usuarioID = new Usuario();
-            usuarioID.setId(userSessionService.returnIdUsuarioLogado());
-            List<Remedio> remediosCadastrados = remedioRepository.findAllByUsuario(usuarioID);
-            for (Remedio remediosCadastrado : remediosCadastrados) {
-                if (remedio.getRM_Nome().equals(remediosCadastrado.getRM_Nome()) &&
-                        remedio.getRM_Dosagem().equals(remediosCadastrado.getRM_Dosagem()) &&
-                        remedio.getRM_UnidadeDosagem().equals(remediosCadastrado.getRM_UnidadeDosagem()) &&
-                        remedio.getRM_RetiradoSus().equals(remediosCadastrado.getRM_RetiradoSus())) {
-                    return "redirect:/atualizar_remedio/{id}?remedioExistente";
-                }
-            }
             remedioRepository.save(remedio);
             return REDIRECT;
         }

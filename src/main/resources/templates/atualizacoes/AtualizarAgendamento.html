@@ -1,232 +1,229 @@
 <!DOCTYPE html>
-<html lang="pt-br" xmlns:th="http://www.w3.org/1999/xhtml" xmlns="http://www.w3.org/1999/html">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+<html lang="pt-br" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-        <link rel="icon" href="/images/icon.svg"/>
+    <link rel="icon" href="/images/icon.svg"/>
 
-        <title>Meu Remédio</title>
+    <title>Meu Remédio</title>
 
-        <!-- Bootstrap CSS CDN -->
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
-        <!-- Our Custom CSS -->
-        <link rel="stylesheet" href="/style/homeStyle.css">
-        <link rel="stylesheet" href="/style/cadastroRemedioStyle.css">
-        <link rel="stylesheet" href="/style/cadastroAgendamento.css">
-        <link rel="stylesheet" href="/style/bootstrap-multiselect.css">
+    <!-- Bootstrap CSS CDN -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+    <!-- Our Custom CSS -->
+    <link rel="stylesheet" href="/style/cadastroRemedioStyle.css">
 
-        <!-- Scrollbar Custom CSS -->
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
+    <!-- Bootstrap Multiselect -->
+    <link rel="stylesheet" href="/style/bootstrap-multiselect.css">
+    <!-- Scrollbar Custom CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
 
-        <!-- Font Awesome JS -->
-        <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
-        <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
-
-
-    </head>
-    <body>
-        <div class="wrapper conta-lg">
-            <!-- Menu bolado  -->
-            <nav th:replace="~{MenuLateral :: menuLateral}"></nav>
-            <div id="content">
-                <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                    <div class="container-fluid">
-
-                        <button type="button" id="sidebarCollapse" class="btn btn-info">
-                            <em class="fas fa-align-left"></em>
-                            <span>Menu</span>
-                        </button>
-
-                        <a href="/home" class="navbar-brand text-center col-09" >
-                            <img alt="Brand" src="/images/icon.svg" class="img-responsive text-center">
-                        </a>
-
-                    </div>
-                </nav>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300&display=swap" rel="stylesheet">
 
 
-                <section class="container d-flex justify-content-center col-12 col-sm-10 col-md-8 col-lg-5 col-lx-6">
-                    <div class="card formulario-card col-12" id="form-card">
-                        <div class="card-body d-flex flex-wrap justify-content-center">
-                            <a href="/static">
-                                <img class="formulario-icon" src="/images/icon.svg" alt="Ícone Meu Remédio">
-                            </a>
-                            <h2 class='form-h2' text="" th:text="#{attage.title}"></h2>
-                            <form method="post" name="formCadastroAG">
-
-                                <div class="form-group d-flex justify-content-center align-items-center flex-column">
-                                    <label class="input-label text-center mar-top" for="#AG_Remedios">
-                                        Adicione o remédio ao agendamento
-                                    </label>
-                                    <select id="AG_Remedios" 
-                                            class="form-control dosage-select d-flex justify-content-center agenda-select" 
-                                            name="AG_Remedios" multiple required="true">
-                                        <option th:each  ="remedio : ${remedio}"
-                                                th:value =" ${remedio.RM_ID}"
-                                                th:text  =" ${remedio.RM_Nome}"
-                                                th:selected = "${agendamento.remedio.contains(remedio)}"
-                                                ></option>
-                                    </select>
-                                </div>
-
-                                <div class="input-group d-flex flex-column" data-provide="datepicker" id="AgInicio">
-                                    <div class="form-group">
-                                        <label class="input-label" for="AG_DataInicio">Data Inicial</label>
-                                        <input type="date"
-                                               id="AG_DataInicio"
-                                               name="AG_DataInicio"
-                                               class="form-control formulario-input margin-bot"
-                                               th:placeholder="#{cadageform.begindate}"
-                                               onMouseOver="mensagemDataInicio()"
-                                               onMouseOut = "retirarMensagemDataInicio()"
-                                               required="required"
-                                               th:value="${agendamento.dataInicio}"
-                                               >
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label class="input-label" for="AG_DataFinal">Data Final</label>
-                                        <input type="date"
-                                               id="AG_DataFinal"
-                                               name="AG_DataFinal"
-                                               class="form-control formulario-input margin-bot"
-                                               required="required"
-                                               placeholder="Data final"
-                                               onMouseOver="mensagemDataFim()"
-                                               onMouseOut = "retirarMensagemDataFim()"
-                                               onBlur= "validaDataFinal()"
-                                               th:placeholder="#{cadageform.finaldate}"
-                                               th:value="${agendamento.dataFinal}"
-                                               >
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label class="input-label" for="AG_HoraInicio">Horário Inicial</label>
-                                        <input id="AG_HoraInicio"
-                                               type="time"
-                                               class="form-control formulario-input margin-bot"
-                                               name="AG_HoraInicio"
-                                               value="00:00"
-                                               step="300"
-                                               onMouseOver="mensagemHora()"
-                                               onMouseOut = "retirarMensagemHora()"
-                                               onBlur= "validaDataFinal()"
-                                               required="required"
-                                               th:placeholder="#{cadageform.initialhour}"
-                                               th:value="${agendamento.horaInicio}">
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label class="input-label" for="AG_Periodicidade">Periodicidade (horas)</label>
-                                        <input placeholder="Periodicidade"
-                                               type="number"
-                                               class="form-control formulario-input margin-bot"
-                                               id="AG_Periodicidade"
-                                               name="AG_Periodicidade"
-                                               onMouseOver="mensagemPeriodicidade()"
-                                               onMouseOut = "retirarMensagemPeriodicidade()"
-                                               th:placeholder="#{cadageform.frequency}"
-                                               th:value="${agendamento.periodicidade}"
-                                               required="required"
-                                               min="1"
-                                               />
-                                    </div>
+    <!-- Font Awesome JS -->
+    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
 
 
-                                </div>
-                                <small><span id="mensagemPeriodocidade" class="help"></span></small>
-                                <small><span id="mensagemFimAgendamento" class="help"></span></small>
-                                <small><span id="mensagemInicioAgendamento" class="help"></span></small>
-                                <small><span id="mensagemHora" class="help"></span></small>
+</head>
+<body>
+<div class="wrapper conta-lg">
+    <!-- Menu bolado  -->
+    <nav th:replace="~{MenuLateral :: menuLateral}"></nav>
+    <div id="content">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container-fluid">
 
-                                <div id="intervaloDiasGrup" class="d-flex flex-column justify-content-center align-content-center">
-                                    <div class="d-flex justify-content-center">
-                                        <label id="intervalo-label" 
-                                               class="input-label form-check-input" 
-                                               for="intervalo-check">
-                                            Adicionar Intervalo de Dias?
-                                        </label>
-                                        <input type="checkbox" 
-                                               id="intervalo-check" 
-                                               class="form-check-input checkbox-margin-top"
-                                               onchange="desabilitar('sim')"
-                                               data-toggle="collapse" 
-                                               data-target="#intervalo" 
-                                               checked="true"
-                                               enabled>
+                <button type="button" id="sidebarCollapse" class="btn btn-info">
+                    <em class="fas fa-align-left"></em>
+                    <span>Menu</span>
+                </button>
 
-                                    </div>
+                <a href="/home" class="navbar-brand text-center col-09" >
+                    <img alt="Brand" src="/images/icon.svg" class="img-responsive text-center">
+                </a>
 
-                                    <div id="intervalo" class="input-group collapse show">
-                                        <input style="min-width:2px"
-                                               th:placeholder="#{cadageform.numberdays}"
-                                               class="formulario-input form-control"
-                                               type="number"
-                                               id="intervaloDias"
-                                               name="intervaloDias"
-                                               th:value="${intervaloDias.isPresent() ? intervaloDias.get().intervaloDias: ''}"
-                                               min="1"
-                                               >
-                                    </div>
-                                </div>
-                                <span class="error-message" id="error-hoje"></span>
-                                <span class="error-message" id="error-date"></span>
-                                <div class="input-group actions">
-                                    <a th:text="#{cadremform.cancel}" id="cancelar" href="/agendamentos" class="button cancel"></a>
-                                    <button name="action" id="confirmar" class="button save" type="submit" th:text="#{cadremform.submit}"></button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </section>
             </div>
+        </nav>
 
 
-            <div class="overlay"></div>
-            <!-- Scripts da página -->
-            <!-- jQuery CDN - Slim version (=without AJAX) -->
-            <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-            <!-- Popper.JS -->
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
-            <!-- Bootstrap JS -->
-            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
-            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-            <script src="/script/cadastroRemedio.jsp"></script>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
-            <script src="/script/bootstrap-multiselect.js"></script>
-
-        </div>
+        <section class="container d-flex justify-content-center col-12 col-sm-10 col-md-8 col-lg-5 col-lx-6">
+            <div class="card formulario-card col-12" id="form-card">
+                <div class="card-body d-flex flex-wrap justify-content-center">
+                    <a href="/home">
+                        <img class="formulario-icon" src="/images/icon.svg" alt="Ícone Meu Remédio">
+                    </a>
+                    <h2 th:text="#{cadage.title}" class="form-h2">Novo Agendamento</h2>
+                    <form method="post" name="formCadastroAG">
 
 
-    </body>
+                        <div class="form-group d-flex justify-content-center align-items-center flex-column select-group">
+                            <label class="input-label text-center mar-top" for="AG_Remedios">
+                                Adicione o remédio ao agendamento*
+                            </label>
+                            <select id="AG_Remedios"
+                                    class="form-control dosage-select d-flex justify-content-center agenda-select"
+                                    name="AG_Remedios" multiple required="true">
+                                <option th:each  ="remedio : ${remedio}"
+                                        th:value =" ${remedio.RM_ID}"
+                                        th:text  =" ${remedio.RM_Nome}">
+                                </option>
+                            </select>
+                        </div>
+
+                        <div class="input-group d-flex flex-column" data-provide="datepicker" id="AgInicio">
+                            <div class="form-group">
+                                <label class="input-label" for="AG_DataInicio">Data Inicial*</label>
+                                <input type="date"
+                                       id="AG_DataInicio"
+                                       class="form-control formulario-input margin-bot"
+                                       name="AG_DataInicio"
+                                       th:placeholder="#{cadageform.begindate}"
+
+                                       onBlur= "validaDataFinal()"
+                                       required="required">
+                            </div>
+
+                            <div class="form-group">
+                                <label class="input-label" for="AG_DataFinal">Data Final*</label>
+                                <input type="date"
+                                       id="AG_DataFinal"
+                                       class="form-control formulario-input margin-bot"
+                                       name="AG_DataFinal"
+                                       th:placeholder="#{cadageform.finaldate}"
+                                       onBlur= "validaDataFinal()"
+                                       required=""
+                                >
+                            </div>
+
+                            <div class="form-group">
+                                <label class="input-label timepicker" for="AG_HoraInicio">Horário Inicial*</label>
+                                <input id="AG_HoraInicio"
+                                       type="text"
+                                       class="form-control formulario-input margin-bot"
+                                       th:placeholder="#{cadageform.initialhour}"
+                                       name="AG_HoraInicio"
+                                       value="00:00"
+                                       step="300"
+
+                                       required="required">
+
+                            </div>
+
+                            <div class="form-group">
+                                <label class="input-label margin-top" for="AG_Periodicidade">Periodicidade (horas)*</label>
+                                <input th:placeholder="#{cadageform.frequency}"
+                                       type="number"
+                                       class="form-control formulario-input margin-bot"
+                                       id="AG_Periodicidade"
+                                       name="AG_Periodicidade"
+                                       required="required"
+                                       min="0"
+                                />
+                            </div>
+
+                        </div>
+                        <small><span id="mensagemPeriodocidade" class="help"></span></small>
+                        <small><span id="mensagemFimAgendamento" class="help"></span></small>
+                        <small><span id="mensagemInicioAgendamento" class="help"></span></small>
+                        <small><span id="mensagemHora" class="help"></span></small>
+
+                        <div id="intervaloDiasGrup" class="d-flex flex-column justify-content-center align-content-center">
+                            <div class="d-flex justify-content-center">
+                                <label id="intervalo-label"
+                                       class="input-label form-check-input"
+                                       for="intervalo-check">
+                                    Adicionar Intervalo de Dias?
+                                </label>
+                                <input id="intervalo-check"
+                                       class="form-check-input checkbox-margin-top"
+                                       type="checkbox"
+                                       onclick="desabilitar('sim')"
+                                       data-toggle="collapse"
+                                       data-target="#intervalo"
+                                       min="0"
+                                >
+                            </div>
+
+                            <div id="intervalo" class="input-group collapse">
+                                <label class="input-label">Intervalo de dias</label>
+                                <input style="min-width:2px"
+                                       th:placeholder="#{cadageform.numberdays}"
+                                       class="formulario-input form-control"
+                                       type="number"
+                                       id="intervaloDias"
+                                       name="intervaloDias"
+                                       min="1"
+                                />
+                            </div>
+                        </div>
+                        <span class="error-message" id="error-hoje"></span>
+                        <span class="error-message" id="error-date"></span>
+                        <div class="input-group actions">
+                            <a th:text="#{cadremform.cancel}" id="cancelar" href="/agendamentos" class="button cancel"></a>
+                            <button th:text="#{cadremform.submit}" name="action" id="confirmar" class="button save" type="submit"></button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </div>
+
+
+    <div class="overlay"></div>
+    <!-- Scripts da página -->
+    <!-- jQuery CDN - Slim version (=without AJAX) -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <!-- Popper.JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script src="/script/cadastroRemedio.jsp"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script src="/script/bootstrap-multiselect.js"></script>
+
+
+
     <script type="text/javascript">
-                                                   $(document).ready(function () {
-                                                       $('#AG_Remedios').multiselect()
-                                                   });
-    </script>
-
-
-    <script type="text/javascript">
-        $('.datepicker').datepicker({
-            inline: true
+        $(document).ready(function () {
+            $('#AG_Remedios').multiselect()
         });
     </script>
 
+
     <script type="text/javascript">
-        if (document.getElementById('check').checked) {
-            document.getElementById('intervaloDias').readOnly = false;
-        }
+        $(function () {
+            $('#AG_HoraInicio').timepicker({
+                timeFormat : 'HH:mm',
+                interval: 5,
+                defaultTime: '09:00'
+            });
+        });
+    </script>
+    <!--   Não usar esse, pq trava o remédio     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>-->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"></script>
+
+
+    <script type="text/javascript">
         function desabilitar(valor) {
-            var status = document.getElementById('intervaloDias').readOnly;
+            var status = document.getElementById('intervaloDias').disabled;
+
             if (valor == 'sim' && status) {
-                document.getElementById('intervaloDias').readOnly = false;
+                document.getElementById('intervaloDias').disabled = false;
             } else {
-                document.getElementById('intervaloDias').readOnly = true;
+                document.getElementById('intervaloDias').disabled = true;
                 document.getElementById('intervaloDias').value = null;
             }
         }
     </script>
 
+
+</div>
+</body>
 </html>
