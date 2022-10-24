@@ -4,6 +4,7 @@ package MeuRemedio.app.controllers.remedio;
 import MeuRemedio.app.controllers.EnvioEmail;
 import MeuRemedio.app.controllers.agendamento.AgendamentoController;
 import MeuRemedio.app.models.dash.Dash;
+import MeuRemedio.app.models.remedios.ListagemRemedios;
 import MeuRemedio.app.models.remedios.Remedio;
 import MeuRemedio.app.models.usuarios.Financeiro;
 import MeuRemedio.app.models.usuarios.Usuario;
@@ -21,8 +22,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
@@ -57,6 +56,9 @@ public class RemedioController {
 
     @Autowired
     AgendamentoRepository agendamentoRepository;
+
+    @Autowired
+    ListagemRemediosRepository listagemRemediosRepository;
 
     final String REDIRECT="redirect:/remedios";
 
@@ -226,6 +228,16 @@ public class RemedioController {
             remedioRepository.save(remedio);
             return REDIRECT;
         }
+    }
+
+    @RequestMapping(value = "/buscarRemedio", method = RequestMethod.GET)
+    public String testeRepo(@RequestParam(value="RM_Nome", required = false) String nome, Model model){
+        if(Objects.isNull(nome)){
+            return "cadastros/CadastroRemedios";
+        }
+        var result = listagemRemediosRepository.buscarPorNome(nome);
+        model.addAttribute("result", result);
+        return "cadastros/CadastroRemedios";
     }
 
     //função responsável por achar um id dentro do banco. Retorna true se encontrar

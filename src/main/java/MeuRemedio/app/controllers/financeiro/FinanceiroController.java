@@ -114,12 +114,13 @@ public class FinanceiroController {
         try {
             Financeiro financeiro = controleFinanceiro.findById(id);
 
-            if (Objects.nonNull(financeiro))
+            if (Objects.nonNull(financeiro)) {
                 financeiro.setData(data);
                 financeiro.setValor(valor);
                 financeiro.setQtdParcela(qtdParcela);
                 financeiro.setRemedio(remedio);
                 controleFinanceiro.save(financeiro);
+            }
 
             return "redirect:/remedios/controle_de_gastos";
 
