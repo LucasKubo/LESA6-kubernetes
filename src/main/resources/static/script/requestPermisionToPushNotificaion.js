@@ -21,6 +21,7 @@ getToken(messaging, { vapidKey: 'BGQ114U_v6SYU0cFpx3bzDcNcDIy40jbd60PhYG6v5Qqj5n
     .then((currentToken) => {
         if (currentToken) {
             console.log(currentToken);
+            sendTokenToServer(currentToken);
         } else {
             // Show permission request UI
             console.log('No registration token available. Request permission to generate one.');
@@ -35,3 +36,12 @@ onMessage(messaging, (payload) => {
     console.log('Message received. ', payload);
     // ...
 });
+//TODO set this for Heroku path
+const URL_RECIEVE_TOKEN = "http://localhost:8080/getNotificationToken"
+
+function sendTokenToServer(token){
+    let xmlHttp = new XMLHttpRequest();
+    xmlHttp.open( "POST", URL_RECIEVE_TOKEN, true );
+    xmlHttp.setRequestHeader("Content-Type","application/json");
+    xmlHttp.send(token);
+}
