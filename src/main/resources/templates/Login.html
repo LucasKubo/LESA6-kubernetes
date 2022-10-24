@@ -69,7 +69,7 @@
         <div class="alert-danger alert-info text-center" role="alert" th:if="${errorMsg} == 'User is disabled'">
             <span th:text="#{logindisabled.text}"> Usuário desabilitado</span>
         </div>
-        </div>     
+        </div>
         <div  class="alert alert-info text-center" role="alert" th:text="#{loginlogout.text}" th:if="${param.logout}"></div>
         <!-- Formulário do Login -->
         <section class="container d-flex justify-content-center col-12 col-sm-10 col-md-8 col-lg-5 col-lx-6">
@@ -96,10 +96,9 @@
                             <input type="password" class="form-control formulario-input" minlength="8" id="txtSenha"
                                    name="password"
                                    th:placeholder="#{loginplaceholder.password}" required>
-<!--                            <span id="spnMostrarSenha" class="glyphicon glyphicon glyphicon-eye-open form-control-feedback"></span>-->
+                           <span><img id="spnMostrarSenha" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABDUlEQVQ4jd2SvW3DMBBGbwQVKlyo4BGC4FKFS4+TATKCNxAggkeoSpHSRQbwAB7AA7hQoUKFLH6E2qQQHfgHdpo0yQHX8T3exyPR/ytlQ8kOhgV7FvSx9+xglA3lM3DBgh0LPn/onbJhcQ0bv2SHlgVgQa/suFHVkCg7bm5gzB2OyvjlDFdDcoa19etZMN8Qp7oUDPEM2KFV1ZAQO2zPMBERO7Ra4JQNpRa4K4FDS0R0IdneCbQLb4/zh/c7QdH4NL40tPXrovFpjHQr6PJ6yr5hQV80PiUiIm1OKxZ0LICS8TWvpyyOf2DBQQtcXk8Zi3+JcKfNafVsjZ0WfGgJlZZQxZjdwzX+ykf6u/UF0Fwo5Apfcq8AAAAASUVORK5CYII="
+                           /> Visualizar Senha</span>
 
-                            <img id="spnMostrarSenha" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABDUlEQVQ4jd2SvW3DMBBGbwQVKlyo4BGC4FKFS4+TATKCNxAggkeoSpHSRQbwAB7AA7hQoUKFLH6E2qQQHfgHdpo0yQHX8T3exyPR/ytlQ8kOhgV7FvSx9+xglA3lM3DBgh0LPn/onbJhcQ0bv2SHlgVgQa/suFHVkCg7bm5gzB2OyvjlDFdDcoa19etZMN8Qp7oUDPEM2KFV1ZAQO2zPMBERO7Ra4JQNpRa4K4FDS0R0IdneCbQLb4/zh/c7QdH4NL40tPXrovFpjHQr6PJ6yr5hQV80PiUiIm1OKxZ0LICS8TWvpyyOf2DBQQtcXk8Zi3+JcKfNafVsjZ0WfGgJlZZQxZjdwzX+ykf6u/UF0Fwo5Apfcq8AAAAASUVORK5CYII="
-                            /> Visualizar Senha
                         </div>
                             <small><input type="checkbox" name="remember-me" th:text="#{loginremember.text}"/> </small>
                         <div class="form-group">
@@ -115,7 +114,6 @@
                 </div>
             </div>
         </section>
-
         </section>
         <!-- Estes scripts tratam dos arquivos .jsp correspondentes a cada página html -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
@@ -144,32 +142,17 @@
         </script>
 
         <script>
-
             var $spnMostrarSenha = $('#spnMostrarSenha');
             var $txtSenha = $('#txtSenha');
 
             $spnMostrarSenha
-                .on('mousedown mouseup', function() {
+                .on('click', function() {
                     var inputType = $txtSenha.attr('type') == 'password' ? 'text' : 'password';
                     $txtSenha.attr('type', inputType);
                 })
-                .on('mouseout', function() {
+                .on('dblclick', function() {
                     $txtSenha.attr('type', 'password');
                 });
-
-            // document.getElementById('olho').addEventListener('mousedown', function() {
-            //     document.getElementById('pass').type = 'text';
-            // });
-            //
-            // document.getElementById('olho').addEventListener('mouseup', function() {
-            //     document.getElementById('pass').type = 'password';
-            // });
-            //
-            // // Para que o password não fique exposto apos mover a imagem.
-            // document.getElementById('olho').addEventListener('mousemove', function() {
-            //     document.getElementById('pass').type = 'password';
-            // });
         </script>
-
     </body>
 </html>
