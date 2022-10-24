@@ -137,6 +137,9 @@ body{
 .formulario-card form{
     width: 100%;
 }
+.collapse.show{
+    margin-left: 80%;
+}
 
 .formulario-card label{
     margin-bottom: 0;
@@ -155,7 +158,7 @@ body{
 .formulario-button{
     width: 100%;
     height: 50px;
-    padding: 3%;
+    /*padding: 3%;*/
     margin-top: 6%;
     background-color: #38CFB8;
     font-size: 1.2em;

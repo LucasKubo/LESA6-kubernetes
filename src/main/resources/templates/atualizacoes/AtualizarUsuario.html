@@ -53,11 +53,16 @@
         </div>
         <div id="error-email" class="alert-danger alert-info text-center" role="alert"></div>
         <div id="error-date" class="alert-danger alert-info text-center" role="alert"></div>
+
+
         <!-- Formulario de dados do usuário -->
-        <div class="container d-flex justify-content-center col-12 col-sm-12 col-md-8 col-lg-5 col-lx-6">
-            <div class="card formulario-card col-12">
+        <selection class="container d-flex justify-content-center col-12 col-sm-10 col-md-8 col-lg-5 col-lx-6">
+            <div class="card formulario-card col-12" id="form-card">
                 <div class="card-body d-flex flex-wrap justify-content-center">
-                    <h3 th:text="#{alterarUsuarioCard.title}"></h3>
+                    <a href="/home">
+                        <img class="formulario-icon" src="/images/icon.svg" alt="Ícone Meu Remédio">
+                    </a>
+                    <h2 th:text="#{alterarUsuarioCard.title}"></h2>
                     <form method="post" name="formCadastro">
 
                         <div class="form-group">
@@ -170,7 +175,7 @@
                     </form>
                 </div>
             </div>
-        </div>
+        </selection>
 
 
 

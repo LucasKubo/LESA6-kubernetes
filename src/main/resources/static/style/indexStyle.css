@@ -36,6 +36,9 @@ body {
 
 /* Meu Remédio */
 
+
+
+
 .title-home {
     /* H4 - Regular */
     font-family: "Roboto";
@@ -143,9 +146,19 @@ body {
     border: none;
     border-radius: 0;
     box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+
+
 }
 .navbar-toggler{
     width: 150px;
+}
+
+#MenuIndex{
+    margin-left: 80%;
+}
+
+.collapse.show{
+    margin-left: 80%;
 }
 
 /*Botoes*/
@@ -181,6 +194,7 @@ body {
     width: 115px;
     border-radius: 117px;
     border: 3px solid #4FF4DB;
+
 }
 .inicio-btn {
     background: #fff;
@@ -197,6 +211,7 @@ body {
     width: 115px;
     border-radius: 117px;
     border: 3px solid #4FF4DB;
+
 }
 
 .inter {
@@ -213,6 +228,7 @@ body {
     width: 115px;
     border-radius: 117px;
     border: 3px solid #4FF4DB;
+
 }
 
 
