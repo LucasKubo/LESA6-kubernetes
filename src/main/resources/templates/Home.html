@@ -313,17 +313,7 @@
     </script>
 
 <script src='/script/calendario4.js'></script>
-<script>
-    function requestPermission() {
-        console.log('Requesting permission...');
-        Notification.requestPermission()
-            .then((permission) => {
-                if (permission === 'granted') {
-                    console.log('Notification permission granted.');
-                }
-            })
-    }
-    requestPermission();
-</script>
+<script type="module" src="/script/requestPermisionToPushNotificaion.js"></script>
+
 </body>
 </html>
