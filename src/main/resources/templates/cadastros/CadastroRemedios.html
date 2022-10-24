@@ -66,13 +66,20 @@
                                 <img class="formulario-icon" src="/images/icon.svg" alt="Ícone Meu Remédio">
                             </a>
                             <h2 class="form-h2">Cadastre um medicamento</h2>
-                            <form method="post" name="formCadastroRM">
+                            <form method="post" name="formCadastroRM" action="/remedios_cadastro">
 
                                 <div class="form-group">
                                     <label class="input-label" for="RM_Nome">Remédio*</label>
                                     <input class="form-control formulario-input" placeholder="Nome do Medicamento" type="text" id="RM_Nome" name="RM_Nome" required="required">
+                                    <a id="buscarRemedio" onclick="montarParametro()">Buscar</a>
                                 </div>
-
+                                <div class="form-group" th:if="${result != null}">
+                                    <div class="" th:each="result : ${result}">
+                                        <input name="botaoTeste" type="radio" th:value="${result.nome}" th:attr="onclick=|selecionarRemedio(this.value, '${result.disponivelSus}')|">
+                                        <label class="input-label" th:text="${result.nome}"></label>
+                                        <label class="input-label" th:text="${result.disponivelSus}"></label>
+                                    </div>
+                                </div>
                                 <div class="form-group">
                                     <label class="input-label" for="RM_Dosagem">Dosagem*</label>
                                     <input placeholder="Quantidade"
@@ -113,8 +120,6 @@
                                                    data-toggle="collapse"
                                                    data-target=".collapseOne.show"
                                                    checked
-
-
                                                    >
                                             <label class="input-label" for="RM_RetiradoSus">Sim</label>
                                         </span>
@@ -370,6 +375,28 @@
                     document.getElementById('intervaloDias').disabled = true;
                     document.getElementById('intervaloDias').value = null;
                 }
+            }
+        </script>
+
+        <script type="text/javascript">
+            function montarParametro(){
+                var texto = document.getElementById("RM_Nome").value;
+                console.log(texto)
+                var url = 'buscarRemedio?RM_Nome=' + texto;
+                document.getElementById("buscarRemedio").setAttribute("href",url);
+            }
+        </script>
+        <script type="text/javascript">
+            function selecionarRemedio(valor, disponivel){
+                 document.getElementById("RM_Nome").setAttribute('value', valor);
+                 if (disponivel == 'false') {
+                    var botao = document.getElementById("RM_RetiradoSusNo");
+                    botao.checked = true;
+                 } else {
+                    console.log(disponivel)
+                    var botao = document.getElementById("RM_RetiradoSus");
+                    botao.checked = true;
+                 }
             }
         </script>
 
