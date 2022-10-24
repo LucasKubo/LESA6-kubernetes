@@ -62,15 +62,15 @@
         <section class="container d-flex justify-content-center col-12 col-sm-10 col-md-8 col-lg-5 col-lx-6">
             <div class="card formulario-card col-12" id="form-card">
                 <div class="card-body d-flex flex-wrap justify-content-center">
-                    <a href="/static">
+                    <a href="/">
                         <img class="formulario-icon" src="/images/icon.svg" alt="Ícone Meu Remédio">
                     </a>
-                    <h2 class="form-h2">Cadastre um medicamento</h2>
+                    <h2 class='form-h2' th:text="#{Attremform.title}"></h2>
                     <form method="post" name="formCadastroRM">
 
                         <div class="form-group">
                             <label class="input-label" for="RM_Nome">Remédio*</label>
-                            <input class="form-control formulario-input" placeholder="Nome do Medicamento" type="text" id="RM_Nome" name="RM_Nome" required="required">
+                            <input class="form-control formulario-input" th:value="${remedio.RM_Nome}" placeholder="Nome do Medicamento" type="text" id="RM_Nome" name="RM_Nome" required="required">
                         </div>
 
                         <div class="form-group">
@@ -81,6 +81,7 @@
                                    id="RM_Dosagem"
                                    name="RM_Dosagem"
                                    min="1"
+                                   th:value="${remedio.RM_Dosagem}"
                                    required="required"
                             >
                         </div>
@@ -133,169 +134,6 @@
                                         </span>
                             </div>
                         </div>
-
-
-                        <!-- Cadastro dos gastos -->
-                        <div class="collapseOne panel-collapse collapse">
-                            <div class="line-break"></div>
-                            <h2 class="form-h2">Informe o gasto com o medicamento</h2>
-
-                            <div class="form-group">
-                                <label class="input-label" for="GA_Data">Informe a data da compra.</label>
-                                <div class="input-group" data-provide="datepicker" id="GaData">
-                                    <input class="form-control formulario-input" type="date" id="GA_Data" name="GA_Data" value=null>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label class="input-label" for="GA_Valor">Informe o valor</label>
-                                <div class="input-group" data-provide="datepicker" id="GaValor">
-                                    <input class="form-control formulario-input" type="number" step="0.01" id="GA_Valor" name="GA_Valor" min="0" value="0">
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label class="input-label" for="GA_Parcela">Informe a quantidade de parcelas</label>
-                                <div class="input-group" data-provide="datepicker" id="GaParcela">
-                                    <input class="form-control formulario-input" type="number" id="GA_Parcela" name="GA_Parcela" min="1" placeholder="Ex: 1, 2, 3" value="1">
-                                </div>
-                            </div>
-
-                        </div>
-
-                        <div class="line-break"></div>
-
-                        <!-- Default checked -->
-                        <div class="d-flex justify-content-center form-group form-check">
-                            <label class="form-check-input input-label"
-                                   for="exampleCheck1">
-                                <h3 class="form-h3">Realizar Agendamento?</h3>
-                            </label>
-                            <input type="checkbox"
-                                   class="form-check-input checkbox-margin-top"
-                                   data-toggle="collapse"
-                                   data-target="#demo"
-                                   id="exampleCheck1"
-                                   name="exampleCheck1"
-
-                                   aria-expanded="true"
-                                   onclick="checarBox()"
-                            >
-                        </div>
-
-                        <!-- Parte do agendamento -->
-                        <div id="demo" class="collapse">
-                            <label class="text-center input-label">Informe o período e o horário do agendamento</label>
-                            <div class="input-group d-flex flex-column" data-provide="datepicker" id="AgInicio">
-                                <div class="form-group">
-                                    <label class="input-label" for="AG_DataInicio">Data Inicial</label>
-                                    <input type="date"
-                                           class="form-control formulario-input margin-bot"
-                                           id="AG_DataInicio"
-                                           name="AG_DataInicio"
-                                           placeholder="Data Inicial"
-                                           onBlur="validaDataFinal()"
-
-                                    >
-                                </div>
-
-                                <div class="form-group">
-                                    <label class="input-label" for="AG_DataFinal">Data Final</label>
-                                    <input type="date"
-                                           class="form-control formulario-input margin-bot"
-                                           id="AG_DataFinal"
-                                           name="AG_DataFinal"
-                                           placeholder="Data Final"
-                                           onBlur="validaDataFinal()"
-
-                                    >
-                                </div>
-
-                                <div class="form-group">
-                                    <label class="input-label" for="AG_HoraInicio">Horário Inicial</label>
-                                    <input id="AG_HoraInicio"
-                                           class="form-control formulario-input margin-bot"
-                                           type="time"
-                                           placeholder="Hora Inicial"
-                                           name="AG_HoraInicio"
-                                           step="300"
-                                           value="00:00"
-
-                                    >
-                                </div>
-
-                                <div class="form-group">
-                                    <label class="input-label margin-top" for="AG_Periodicidade">Periodicidade (horas)</label>
-                                    <input placeholder="Periodicidade"
-                                           class="form-control formulario-input margin-bot"
-                                           type="number"
-                                           id="AG_Periodicidade"
-                                           name="AG_Periodicidade"
-                                           min="1"
-
-                                    >
-                                </div>
-                            </div>
-
-                            <div id="intervaloDiasGrup" class="d-flex flex-column justify-content-center align-content-center">
-                                <div class="d-flex justify-content-center">
-                                    <label id="intervalo-label"
-                                           class="input-label form-check-input"
-                                           for="intervalo-check">
-                                        <h3 class="form-h3">Adicionar Intervalo de Dias?</h3>
-                                    </label>
-                                    <input id="intervalo-check"
-                                           class="form-check-input checkbox-margin-top"
-                                           type="checkbox"
-                                           onclick="desabilitar('sim')"
-                                           data-toggle="collapse"
-                                           data-target="#intervalo"
-
-                                    >
-                                </div>
-                                <div id="intervalo" class="input-group collapse">
-
-                                    <label class="input-label">Intervalo de dias</label>
-
-                                    <input style="min-width:2px"
-                                           class="formulario-input form-control"
-                                           placeholder="1,2,3"
-                                           type="number"
-                                           id="intervaloDias"
-                                           name="intervaloDias"
-                                           min="1"
-                                    >
-                                </div>
-                            </div>
-
-                        </div>
-
-                        <small><span id="mensagemPeriodocidade" class="help"></span></small>
-                        <small><span id="mensagemFimAgendamento" class="help"></span></small>
-                        <small><span id="mensagemInicioAgendamento" class="help"></span></small>
-                        <small><span id="mensagemHora" class="help"></span></small>
-
-                        <span class="error-message" id="error-hoje"></span>
-                        <span class="error-message" id="error-date"></span>
-
-
-                        <!--
-                        <div class="btn-group">
-                         <button type="button" class="multiselect dropdown-toggle custom-select text-center" data-toggle="dropdown" title="None selected" aria-expanded="false">
-                             <span class="multiselect-selected-text">Selecione o Remédio</span>
-                         </button> -->
-                        <!--<div class="multiselect-container dropdown-menu"
-                             x-placement="bottom-start"
-                             style="position: absolute; transform: translate3d(0px, 38px, 0px); top: 0px; left: 0px; will-change: transform;"
-                             >
-                        </div>
-                </div>
-                        -->
-                        <!-- Fomulário de Gasto -->
-
-
-
-
                         <!-- botões principais -->
                         <div class="input-group actions">
                             <a id="cancelar2" href="/remedios" class="button cancel">Voltar</a>

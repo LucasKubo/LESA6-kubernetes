@@ -65,6 +65,7 @@
                                 <option th:each  ="remedio : ${remedio}"
                                         th:value =" ${remedio.RM_ID}"
                                         th:text  =" ${remedio.RM_Nome}"
+                                        th:selected = "${financeiro.remedio.contains(remedio)}"
                                 ></option>
                             </select>
                         </div>
@@ -72,21 +73,21 @@
                         <div class="form-group">
                             <label class="input-label" for="GA_Data">Informe a data da compra.</label>
                             <div data-provide="datepicker" id="GaData">
-                                <input class="formulario-input" type="date" id="GA_Data" name="GA_Data" onmouseover="mensagemDataFim()" onmouseout="retirarMensagemDataFim()" required="">
+                                <input th:value="${financeiro.data}"  class="formulario-input" type="date" id="GA_Data" name="GA_Data" onmouseover="mensagemDataFim()" onmouseout="retirarMensagemDataFim()" required="">
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label class="input-label" for="GA_Valor">Informe o valor</label>
                             <div data-provide="datepicker" id="GaValor">
-                                <input class="formulario-input" type="number" step="0.01" id="GA_Valor" name="GA_Valor" min="0" required>
+                                <input th:value="${financeiro.valor}" class="formulario-input" type="number" step="0.01" id="GA_Valor" name="GA_Valor" min="0" required>
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label class="input-label" for="GA_Parcela">Informe a quantidade de parcelas</label>
                             <div data-provide="datepicker" id="GaParcela">
-                                <input class="formulario-input" type="number" id="GA_Parcela" name="GA_Parcela" min="1" placeholder="Ex: 1, 2, 3" required>
+                                <input th:value="${financeiro.qtdParcela}" class="formulario-input" type="number" id="GA_Parcela" name="GA_Parcela" min="1" placeholder="Ex: 1, 2, 3" required>
                             </div>
                         </div>
 
