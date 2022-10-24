@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.mail.MessagingException;
 import java.io.UnsupportedEncodingException;
+import java.security.SecureRandom;
 import java.util.Objects;
 import java.util.Random;
 
@@ -88,7 +89,7 @@ public class RecuperacaoSenha {
 
     public String codigoValidacao (){
         int[] codigo = new int [8];
-        Random random = new Random();
+        SecureRandom random = new SecureRandom();
         String codValidacao= "";
 
         for (int i = 0; i < 8; i ++ ){

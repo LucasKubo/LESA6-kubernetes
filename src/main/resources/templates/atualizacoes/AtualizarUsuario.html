@@ -59,77 +59,102 @@
                 <div class="card-body d-flex flex-wrap justify-content-center">
                     <h3 th:text="#{alterarUsuarioCard.title}"></h3>
                     <form method="post" name="formCadastro">
-                        <label class="input-label" >Nome</label>
 
-                        <input th:value="${usuario.nome}"
-                               type="text"
-                               class="formulario-input"
-                               id="US_Nome"
-                               name="US_Nome"
-                               required="required"
-                               >
+                        <div class="form-group">
+                            <label>Nome</label>
 
-                        <label class="input-label" >Sobrenome</label>
-                        <input th:value="${usuario.sobrenome}"
-                               type="text"
-                               class="formulario-input"
-                               id="US_Sobrenome"
-                               name="US_Sobrenome"
-                               required="required"
-                               >
+                            <input th:value="${usuario.nome}"
+                                   type="text"
+                                   class="form-control formulario-input"
+                                   id="US_Nome"
+                                   name="US_Nome"
+                                   required="required"
+                                   >
+                        </div>
 
-                        <label class="input-label" >E-mail</label>
-                        <input type=""
-                               th:value="${usuario.email}"
-                               name="US_Email"
-                               class="formulario-input"
-                               id="US_Email"
-                               placeholder="E-mail*"
-                               required="required"
-                               onblur="checarEmail();"
-                               disabled
-                               >
+                        <div class="form-group">
+                            <label>Sobrenome</label>
+                            <input th:value="${usuario.sobrenome}"
+                                   type="text"
+                                   class="form-control formulario-input"
+                                   id="US_Sobrenome"
+                                   name="US_Sobrenome"
+                                   required="required"
+                                   >
+                        </div>
 
-                        <label class="input-label" >Sexo</label>
-                        <select id="US_Sexo" name="US_Sexo" class="formulario-input">
-                            <option th:text="#{cadususelect.female}" value="Feminino"></option>
-                            <option th:text="#{cadususelect.male}" value="Masculino"></option>
-                            <option th:text="#{cadususelect.other}" value="Outro"></option>
-                            <option th:text="#{cadususelect.null}" value="Não informar"></option>
-                        </select>
+                        <div class="form-group">
+                            <label>E-mail</label>
+                            <input type=""
+                                   class="form-control formulario-input"
+                                   th:value="${usuario.email}"
+                                   name="US_Email"
+                                   id="US_Email"
+                                   placeholder="E-mail*"
+                                   required="required"
+                                   onblur="checarEmail();"
+                                   disabled
+                                   >
+                        </div>
 
-                        <label class="input-label" >Data de Nascimento</label>
-                        <input
-                            th:value="${usuario.dataNascimento}"
-                            type="date"
-                            class="formulario-input"
-                            id="US_DataNascimento"
-                            name="US_DataNascimento"
-                            maxlength="10"
-                            onBlur="validaData()"
-                            required=""
-                            disabled
-                            >
+                        <div class="form-group">
+                            <label>Sexo</label>
+                            <select id="US_Sexo" name="US_Sexo" class="form-control formulario-input gender-select">
+                                <option th:text="#{cadususelect.female}" value="Feminino"></option>
+                                <option th:text="#{cadususelect.male}" value="Masculino"></option>
+                                <option th:text="#{cadususelect.other}" value="Outro"></option>
+                                <option th:text="#{cadususelect.null}" value="Não informar"></option>
+                            </select>
+                        </div>
 
-                        <label class="input-label" >Senha Atual*</label>
-                        <input th:placeholder="#{cadusuplaceholder.passwordCadastro}"
-                               type="password"
-                               id="US_Senha"
-                               name="US_Senha"
-                               class="formulario-input"
-                               minlength="8"
-                               required
-                               >
 
-                        <label class="input-label" >Nova Senha</label>
-                        <input th:placeholder="#{cadusuplaceholder.newpassword}"
-                               type="password"
-                               id="US_NovaSenha"
-                               name="US_NovaSenha"
-                               class="formulario-input"
-                               minlength="8"
-                               >
+                        <div class="form-group">
+                            <label>Data de Nascimento</label>
+                            <input
+                                th:value="${usuario.dataNascimento}"
+                                type="date"
+                                class="form-control formulario-input"
+                                id="US_DataNascimento"
+                                name="US_DataNascimento"
+                                maxlength="10"
+                                onBlur="validaData()"
+                                required=""
+                                disabled
+                                >
+                        </div>
 
+                        <div class="form-group">
+                            <label>Senha Atual*</label>
+                            <input th:placeholder="#{cadusuplaceholder.passwordCadastro}"
+                                   type="password"
+                                   id="US_Senha"
+                                   name="US_Senha"
+                                   class="form-control formulario-input"
+                                   minlength="8"
+                                   required
+                                   ><img id="spnMostrarSenha" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABDUlEQVQ4jd2SvW3DMBBGbwQVKlyo4BGC4FKFS4+TATKCNxAggkeoSpHSRQbwAB7AA7hQoUKFLH6E2qQQHfgHdpo0yQHX8T3exyPR/ytlQ8kOhgV7FvSx9+xglA3lM3DBgh0LPn/onbJhcQ0bv2SHlgVgQa/suFHVkCg7bm5gzB2OyvjlDFdDcoa19etZMN8Qp7oUDPEM2KFV1ZAQO2zPMBERO7Ra4JQNpRa4K4FDS0R0IdneCbQLb4/zh/c7QdH4NL40tPXrovFpjHQr6PJ6yr5hQV80PiUiIm1OKxZ0LICS8TWvpyyOf2DBQQtcXk8Zi3+JcKfNafVsjZ0WfGgJlZZQxZjdwzX+ykf6u/UF0Fwo5Apfcq8AAAAASUVORK5CYII="
+                                    /> Visualizar Senha <br>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label>Digite a nova senha</label>
+                            <input type="password" class="form-control formulario-input" minlength="8" id="US_NovaSenha"
+                                   name="US_NovaSenha"
+                                   >
+
+                            <img id="spnMostrarSenha1" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABDUlEQVQ4jd2SvW3DMBBGbwQVKlyo4BGC4FKFS4+TATKCNxAggkeoSpHSRQbwAB7AA7hQoUKFLH6E2qQQHfgHdpo0yQHX8T3exyPR/ytlQ8kOhgV7FvSx9+xglA3lM3DBgh0LPn/onbJhcQ0bv2SHlgVgQa/suFHVkCg7bm5gzB2OyvjlDFdDcoa19etZMN8Qp7oUDPEM2KFV1ZAQO2zPMBERO7Ra4JQNpRa4K4FDS0R0IdneCbQLb4/zh/c7QdH4NL40tPXrovFpjHQr6PJ6yr5hQV80PiUiIm1OKxZ0LICS8TWvpyyOf2DBQQtcXk8Zi3+JcKfNafVsjZ0WfGgJlZZQxZjdwzX+ykf6u/UF0Fwo5Apfcq8AAAAASUVORK5CYII="
+                            /> Visualizar Senha <br>
+                        </div>
+                        <div class="form-group">
+                            <label>Digite novamente a senha</label>
+                            <input type="password" class="form-control formulario-input" minlength="8" id="US_ConfirmSenha"
+                                   name="US_ConfirmSenha"
+                                   >
+
+                            <img id="spnMostrarSenha2" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABDUlEQVQ4jd2SvW3DMBBGbwQVKlyo4BGC4FKFS4+TATKCNxAggkeoSpHSRQbwAB7AA7hQoUKFLH6E2qQQHfgHdpo0yQHX8T3exyPR/ytlQ8kOhgV7FvSx9+xglA3lM3DBgh0LPn/onbJhcQ0bv2SHlgVgQa/suFHVkCg7bm5gzB2OyvjlDFdDcoa19etZMN8Qp7oUDPEM2KFV1ZAQO2zPMBERO7Ra4JQNpRa4K4FDS0R0IdneCbQLb4/zh/c7QdH4NL40tPXrovFpjHQr6PJ6yr5hQV80PiUiIm1OKxZ0LICS8TWvpyyOf2DBQQtcXk8Zi3+JcKfNafVsjZ0WfGgJlZZQxZjdwzX+ykf6u/UF0Fwo5Apfcq8AAAAASUVORK5CYII="
+                            /> Visualizar Senha <br>
+                        </div>
 
                         <small> Campos com * são obrigatórios </small>
 
@@ -167,40 +192,88 @@
 
 </div>
 
-<script>
-                                var password = document.getElementById("US_Senha")
-                                        , confirm_password = document.getElementById("US_NovaSenha");
+        <script>
+            var password = document.getElementById("US_Senha"), password2 = document.getElementById("US_ConfirmSenha")
+                , confirm_password = document.getElementById("US_NovaSenha");
 
-                                function validatePassword() {
-                                    if (password.value == confirm_password.value) {
-                                        confirm_password.setCustomValidity("A nova senha precisa ser diferente da anterior.");
-                                    } else if (password.value != confirm_password.value) {
-                                        confirm_password.setCustomValidity('');
-                                    }
-                                }
+            function validatePassword() {
 
-                                password.onchange = validatePassword;
-                                confirm_password.onkeyup = validatePassword;
-</script>
+                if (password.value == confirm_password.value) {
+                    confirm_password.setCustomValidity("A nova senha precisa ser diferente da anterior.");
+                    console.log(password.value);
+                    console.log(confirm_password.value);
+                } else if (password.value != confirm_password.value) {
+                    console.log("passou para a segunda");
+                    if(confirm_password.value != password2.value) {
+                        password2.setCustomValidity("Senhas diferentes!");
+                        console.log(password.value);
+                        console.log(confirm_password.value);
+                        console.log(password2.value);
+                    } else {
+                        password2.setCustomValidity('');
+                    }
+                }
+            }
 
-<!--<script>-->
-<!--    function validar(){-->
-<!--        var senha = formCadastro.US_Senha.value;-->
-<!--        var novaSenha= formCadastro.US_NovaSenha;-->
 
-<!--        // if(senha == novaSenha){-->
-<!--        //     alert("A nova senha precisa ser diferente da anterior.")-->
-<!--        //     formCadastro.US_NovaSenha.focus();-->
-<!--        //     return false;-->
-<!--        // }-->
-<!--        if (senha != novaSenha){-->
-<!--            alert("Senha alterada com sucesso")-->
 
-<!--            return false;-->
-<!--        }-->
+            password.onchange = validatePassword;
+            password2.onkeyup = validatePassword;
 
-<!--    }-->
-<!--</script>-->
+        </script>
+
+<!--        <script>-->
+<!--            var password2 = document.getElementById("US_NovaSenha")-->
+<!--                , confirm_password2 = document.getElementById("US_ConfirmSenha");-->
+
+<!--            function validatePassword2(){-->
+<!--                if(password2.value != confirm_password.value) {-->
+<!--                    confirm_password2.setCustomValidity("Senhas diferentes!");-->
+<!--                } else {-->
+<!--                    confirm_password2.setCustomValidity('');-->
+<!--                }-->
+<!--            }-->
+
+<!--            password2.onchange = validatePassword2;-->
+<!--            confirm_password2.onkeyup = validatePassword2;-->
+<!--        </script>-->
+
+
+<!--        <script>-->
+<!--            var $spnMostrarSenha = $('#spnMostrarSenha');-->
+<!--            var $txtSenha = $('#txtSenha');-->
+
+<!--            $spnMostrarSenha-->
+<!--                .on('mousedown mouseup', function() {-->
+<!--                    var inputType = $txtSenha.attr('type') == 'password' ? 'text' : 'password';-->
+<!--                    $txtSenha.attr('type', inputType);-->
+<!--                })-->
+<!--                .on('mouseout', function() {-->
+<!--                    $txtSenha.attr('type', 'password');-->
+<!--                });-->
+<!--        </script>-->
+
+        <!--<script>-->
+        <!--    function validar(){-->
+        <!--        var senha = formCadastro.US_Senha.value;-->
+        <!--        var novaSenha= formCadastro.US_NovaSenha;-->
+
+        <!--        // if(senha == novaSenha){-->
+        <!--        //     alert("A nova senha precisa ser diferente da anterior.")-->
+        <!--        //     formCadastro.US_NovaSenha.focus();-->
+        <!--        //     return false;-->
+        <!--        // }-->
+        <!--        if (senha != novaSenha){-->
+        <!--            alert("Senha alterada com sucesso")-->
+
+        <!--            return false;-->
+        <!--        }-->
+
+        <!--    }-->
+        <!--</script>-->
 </body>
+
+
+
 
 </html>

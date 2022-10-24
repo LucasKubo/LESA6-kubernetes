@@ -123,6 +123,22 @@ header{
     color: rgba(24, 26, 25, 0.5);
 }
 
+/* Olho da senha */
+#pass {
+    width: 150px;
+    padding-right: 20px;
+}
+
+.spnMostrarSenha {
+    cursor: pointer;
+    left: 160px;
+    position: absolute;
+    width: 20px;
+    text-align: right;
+
+}
+
+
 .formulario-card form{
     width: 100%;
 }

@@ -77,7 +77,7 @@ public class EnvioEmail {
         String toAddress = user.getEmail();
         String fromAddress = "8balls.integratedproject@gmail.com";
         String senderName = "Meu Remédio";
-        String subject = "Please verify your registration";
+        String subject = "Por favor, verifique seu cadastro";
         String content = "Prezado [[name]],<br>"
                 + "Por favor, clique no link abaixo para verificar seu registro:<br>"
                 + "<h3><a href=\"[[URL]]\" target=\"_self\">VERIFICAR</a></h3>"
@@ -96,6 +96,27 @@ public class EnvioEmail {
 
         content = content.replace("[[URL]]", verifyURL);
 
+        helper.setText(content, true);
+        mailSender.send(message);
+    }
+
+    public void emailDeletarCadastro(Usuario user)
+            throws MessagingException, UnsupportedEncodingException {
+        String toAddress = user.getEmail();
+        String fromAddress = "8balls.integratedproject@gmail.com";
+        String senderName = "Meu Remédio";
+        String subject = "Sua conta foi excluída";
+        String content = "Prezado [[name]],<br>"
+                + "Sua conta foi excluída com sucesso. Caso queira voltar a utilizar o Meu Remédio, faça um novo cadastro."
+                + "<br>Obrigado,<br>"
+                + "Meu Remédio.";
+
+        MimeMessage message = mailSender.createMimeMessage();
+        MimeMessageHelper helper = new MimeMessageHelper(message);
+        helper.setFrom(fromAddress, senderName);
+        helper.setTo(toAddress);
+        helper.setSubject(subject);
+        content = content.replace("[[name]]", user.getNome());
         helper.setText(content, true);
         mailSender.send(message);
     }

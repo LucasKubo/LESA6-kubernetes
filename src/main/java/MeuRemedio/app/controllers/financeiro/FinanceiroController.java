@@ -1,9 +1,11 @@
 package MeuRemedio.app.controllers.financeiro;
 
 
+import MeuRemedio.app.models.dash.Dash;
 import MeuRemedio.app.models.remedios.Remedio;
 import MeuRemedio.app.models.usuarios.Financeiro;
 import MeuRemedio.app.models.usuarios.Usuario;
+import MeuRemedio.app.repository.DashBoardsRepository;
 import MeuRemedio.app.repository.FinanceiroRepository;
 import MeuRemedio.app.repository.RemedioRepository;
 import MeuRemedio.app.service.UserSessionService;
@@ -24,6 +26,9 @@ public class FinanceiroController {
 
     @Autowired
     RemedioRepository remedioRepository;
+
+    @Autowired
+    DashBoardsRepository dashBoardsRepository;
 
     @Autowired
     UserSessionService userSessionService;
@@ -53,12 +58,16 @@ public class FinanceiroController {
 
     @PostMapping(value ="/remedios/controle_de_gastos/cadastrar")
     public String cadastrarGasto (@RequestParam("GA_Valor") double valor, @RequestParam("GA_Data") String data,
-                                 @RequestParam("GA_Parcela") long qtdParcela, @RequestParam(value = "AG_Remedios", required = false) List<Remedio> remedio){
+                                  @RequestParam("GA_Parcela") long qtdParcela, @RequestParam(value = "AG_Remedios", required = false) List<Remedio> remedio,
+                                  @RequestParam( value = "RM_Nome", required = false) String RM_Nome){
         try {
             Usuario usuarioID = new Usuario();
             usuarioID.setId(userSessionService.returnIdUsuarioLogado());
 
             Financeiro financeiroMedicamento = new Financeiro(remedio, data, valor, qtdParcela, usuarioID.getId());
+            Dash dash = new Dash(usuarioID, valor, data);
+
+            dashBoardsRepository.save(dash);
             controleFinanceiro.save(financeiroMedicamento);
 
 
@@ -77,7 +86,6 @@ public class FinanceiroController {
         }
         return templateError();
     }
-
 
     @RequestMapping(value ="/remedios/controle_de_gastos/atualizar/{id}",  method = RequestMethod.GET)
     public String atualizarGasto (@PathVariable("id") long id, Model model) {
