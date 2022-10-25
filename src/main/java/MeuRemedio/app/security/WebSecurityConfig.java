@@ -25,7 +25,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Bean
     public WebSecurityCustomizer webSecuritycustomizer(){
         return web -> web.ignoring().antMatchers("/static/**", "/template/**","/config/**",
-                "/style/**","/assets/**","/script/**", "/images/**", "/languages/**"
+                "/style/**","/assets/**","/script/**", "/images/**", "/languages/**", "/.well-known/**"
         );
     }
 
@@ -33,7 +33,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     public void configure (HttpSecurity http) throws Exception {
         http.csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/login", "/cadastro", "/", "/enviarEmail","/recuperar_senha","/verificar_cadastro","/sw.js","/firebase-messaging-sw.js").permitAll()
+                .antMatchers("/login", "/cadastro", "/", "/enviarEmail","/recuperar_senha","/verificar_cadastro","/sw.js","/firebase-messaging-sw.js", "/.well-known/assetlinks.json").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
