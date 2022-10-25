@@ -16,7 +16,8 @@ public class FirebaseMessagingService {
     }
 
     //TODO usar Note como parametro
-    public void sendNotification(String title, String body, String token, String image) throws FirebaseMessagingException {
+    private String image = "https://i.imgur.com/5aNuYP7.png";
+    public void sendNotification(String title, String body, String token) throws FirebaseMessagingException {
 
         Notification notification = Notification
                 .builder()
