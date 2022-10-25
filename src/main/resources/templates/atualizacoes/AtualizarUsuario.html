@@ -16,6 +16,7 @@
         <link rel="stylesheet" href="/style/cadastroStyle.css">
         <link rel="stylesheet" href="/style/homeStyle.css">
         <link rel="stylesheet" href="/style/cadastroRemedioStyle.css">
+        <link rel="stylesheet" href="/style/olho.css">
         <!-- Scrollbar Custom CSS -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
         <!-- Font Awesome JS -->
@@ -41,8 +42,6 @@
                 </a>
             </div>
         </nav>
-
-
 
         <div class="alert-danger alert-info text-center" role="alert"
              th:if="${param.senhaInvalida}">A senha atual está errada
@@ -137,49 +136,36 @@
                                    class="form-control formulario-input"
                                    minlength="8"
                                    required
-                                   ><img id="spnMostrarSenha" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABDUlEQVQ4jd2SvW3DMBBGbwQVKlyo4BGC4FKFS4+TATKCNxAggkeoSpHSRQbwAB7AA7hQoUKFLH6E2qQQHfgHdpo0yQHX8T3exyPR/ytlQ8kOhgV7FvSx9+xglA3lM3DBgh0LPn/onbJhcQ0bv2SHlgVgQa/suFHVkCg7bm5gzB2OyvjlDFdDcoa19etZMN8Qp7oUDPEM2KFV1ZAQO2zPMBERO7Ra4JQNpRa4K4FDS0R0IdneCbQLb4/zh/c7QdH4NL40tPXrovFpjHQr6PJ6yr5hQV80PiUiIm1OKxZ0LICS8TWvpyyOf2DBQQtcXk8Zi3+JcKfNafVsjZ0WfGgJlZZQxZjdwzX+ykf6u/UF0Fwo5Apfcq8AAAAASUVORK5CYII="
-                                    /> Visualizar Senha <br>
+                            >
                         </div>
 
-
                         <div class="form-group">
-                            <label>Digite a nova senha</label>
+                            <label>Digite a nova senha (em caso de alteração)</label>
                             <input type="password" class="form-control formulario-input" minlength="8" id="US_NovaSenha"
                                    name="US_NovaSenha"
-                                   >
-
-                            <img id="spnMostrarSenha1" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABDUlEQVQ4jd2SvW3DMBBGbwQVKlyo4BGC4FKFS4+TATKCNxAggkeoSpHSRQbwAB7AA7hQoUKFLH6E2qQQHfgHdpo0yQHX8T3exyPR/ytlQ8kOhgV7FvSx9+xglA3lM3DBgh0LPn/onbJhcQ0bv2SHlgVgQa/suFHVkCg7bm5gzB2OyvjlDFdDcoa19etZMN8Qp7oUDPEM2KFV1ZAQO2zPMBERO7Ra4JQNpRa4K4FDS0R0IdneCbQLb4/zh/c7QdH4NL40tPXrovFpjHQr6PJ6yr5hQV80PiUiIm1OKxZ0LICS8TWvpyyOf2DBQQtcXk8Zi3+JcKfNafVsjZ0WfGgJlZZQxZjdwzX+ykf6u/UF0Fwo5Apfcq8AAAAASUVORK5CYII="
-                            /> Visualizar Senha <br>
+                            >
                         </div>
+
                         <div class="form-group">
-                            <label>Digite novamente a senha</label>
+                            <label>Digite novamente a nova senha</label>
                             <input type="password" class="form-control formulario-input" minlength="8" id="US_ConfirmSenha"
                                    name="US_ConfirmSenha"
-                                   >
-
-                            <img id="spnMostrarSenha2" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABDUlEQVQ4jd2SvW3DMBBGbwQVKlyo4BGC4FKFS4+TATKCNxAggkeoSpHSRQbwAB7AA7hQoUKFLH6E2qQQHfgHdpo0yQHX8T3exyPR/ytlQ8kOhgV7FvSx9+xglA3lM3DBgh0LPn/onbJhcQ0bv2SHlgVgQa/suFHVkCg7bm5gzB2OyvjlDFdDcoa19etZMN8Qp7oUDPEM2KFV1ZAQO2zPMBERO7Ra4JQNpRa4K4FDS0R0IdneCbQLb4/zh/c7QdH4NL40tPXrovFpjHQr6PJ6yr5hQV80PiUiIm1OKxZ0LICS8TWvpyyOf2DBQQtcXk8Zi3+JcKfNafVsjZ0WfGgJlZZQxZjdwzX+ykf6u/UF0Fwo5Apfcq8AAAAASUVORK5CYII="
-                            /> Visualizar Senha <br>
+                            >
                         </div>
 
-                        <small> Campos com * são obrigatórios </small>
+                        <div id="btnS">
+                           <span><img id="spnMostrarSenha" style="margin-right: 4px" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABDUlEQVQ4jd2SvW3DMBBGbwQVKlyo4BGC4FKFS4+TATKCNxAggkeoSpHSRQbwAB7AA7hQoUKFLH6E2qQQHfgHdpo0yQHX8T3exyPR/ytlQ8kOhgV7FvSx9+xglA3lM3DBgh0LPn/onbJhcQ0bv2SHlgVgQa/suFHVkCg7bm5gzB2OyvjlDFdDcoa19etZMN8Qp7oUDPEM2KFV1ZAQO2zPMBERO7Ra4JQNpRa4K4FDS0R0IdneCbQLb4/zh/c7QdH4NL40tPXrovFpjHQr6PJ6yr5hQV80PiUiIm1OKxZ0LICS8TWvpyyOf2DBQQtcXk8Zi3+JcKfNafVsjZ0WfGgJlZZQxZjdwzX+ykf6u/UF0Fwo5Apfcq8AAAAASUVORK5CYII="/> Visualizar Senha</span>
+                            <small> <strong>Campos com * são obrigatórios</strong></small>
+                        </div>
 
                         <div class="input-group actions">
                             <a id="cancelar2" href="/home" class="button cancel">Voltar</a>
                             <button name="action" id="cadastrar" class="button save" type="submit">Salvar</button>
-                            <!--<button th:text="#{alterarUsuarioCard.button}" id="cadastrar" name="action" class="formulario-button" type="submit" onclick="return validar()">Salvar</button> -->
-
                         </div>
-
-
-
                     </form>
                 </div>
             </div>
         </selection>
-
-
-
-
 
         <div class="overlay"></div>
         <!-- Scripts da página -->
@@ -192,11 +178,8 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
         <script src="/script/cadastroRemedio.jsp"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
-
     </div>
-
 </div>
-
         <script>
             var password = document.getElementById("US_Senha"), password2 = document.getElementById("US_ConfirmSenha")
                 , confirm_password = document.getElementById("US_NovaSenha");
@@ -205,80 +188,43 @@
 
                 if (password.value == confirm_password.value) {
                     confirm_password.setCustomValidity("A nova senha precisa ser diferente da anterior.");
-                    console.log(password.value);
-                    console.log(confirm_password.value);
+
                 } else if (password.value != confirm_password.value) {
-                    console.log("passou para a segunda");
+
                     if(confirm_password.value != password2.value) {
                         password2.setCustomValidity("Senhas diferentes!");
-                        console.log(password.value);
-                        console.log(confirm_password.value);
-                        console.log(password2.value);
+
                     } else {
                         password2.setCustomValidity('');
                     }
                 }
             }
-
-
-
             password.onchange = validatePassword;
             password2.onkeyup = validatePassword;
-
         </script>
+        <script>
+            var $spnMostrarSenha = $('#spnMostrarSenha');
 
-<!--        <script>-->
-<!--            var password2 = document.getElementById("US_NovaSenha")-->
-<!--                , confirm_password2 = document.getElementById("US_ConfirmSenha");-->
+            var $US_Senha = $('#US_Senha');
+            var $US_NovaSenha = $('#US_NovaSenha');
+            var $US_ConfirmSenha = $('#US_ConfirmSenha');
 
-<!--            function validatePassword2(){-->
-<!--                if(password2.value != confirm_password.value) {-->
-<!--                    confirm_password2.setCustomValidity("Senhas diferentes!");-->
-<!--                } else {-->
-<!--                    confirm_password2.setCustomValidity('');-->
-<!--                }-->
-<!--            }-->
+            $spnMostrarSenha
+                .on('click', function() {
+                    var inputType = $US_Senha.attr('type') == 'password' ? 'text' : 'password';
+                    var inputTypec = $US_NovaSenha.attr('type') == 'password' ? 'text' : 'password';
+                    var inputTypeN = $US_ConfirmSenha.attr('type') == 'password' ? 'text' : 'password';
 
-<!--            password2.onchange = validatePassword2;-->
-<!--            confirm_password2.onkeyup = validatePassword2;-->
-<!--        </script>-->
+                    $US_Senha.attr('type', inputType);
+                    $US_NovaSenha.attr('type', inputTypeN);
+                    $US_ConfirmSenha.attr('type', inputTypeN);
 
-
-<!--        <script>-->
-<!--            var $spnMostrarSenha = $('#spnMostrarSenha');-->
-<!--            var $txtSenha = $('#txtSenha');-->
-
-<!--            $spnMostrarSenha-->
-<!--                .on('mousedown mouseup', function() {-->
-<!--                    var inputType = $txtSenha.attr('type') == 'password' ? 'text' : 'password';-->
-<!--                    $txtSenha.attr('type', inputType);-->
-<!--                })-->
-<!--                .on('mouseout', function() {-->
-<!--                    $txtSenha.attr('type', 'password');-->
-<!--                });-->
-<!--        </script>-->
-
-        <!--<script>-->
-        <!--    function validar(){-->
-        <!--        var senha = formCadastro.US_Senha.value;-->
-        <!--        var novaSenha= formCadastro.US_NovaSenha;-->
-
-        <!--        // if(senha == novaSenha){-->
-        <!--        //     alert("A nova senha precisa ser diferente da anterior.")-->
-        <!--        //     formCadastro.US_NovaSenha.focus();-->
-        <!--        //     return false;-->
-        <!--        // }-->
-        <!--        if (senha != novaSenha){-->
-        <!--            alert("Senha alterada com sucesso")-->
-
-        <!--            return false;-->
-        <!--        }-->
-
-        <!--    }-->
-        <!--</script>-->
+                })
+                .on('dblclick', function() {
+                    $US_Senha.attr('type', 'password');
+                    $US_NovaSenha.attr('type', 'password');
+                    $US_ConfirmSenha.attr('type', 'password');
+                });
+        </script>
 </body>
-
-
-
-
 </html>

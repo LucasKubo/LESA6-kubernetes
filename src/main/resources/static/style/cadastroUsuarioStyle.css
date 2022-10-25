@@ -105,7 +105,6 @@ header{
 }
 
 
-
 .formulario-card{
     padding: 3%;
     margin-top: 3%;
@@ -134,15 +133,6 @@ header{
 #pass {
     width: 150px;
     padding-right: 20px;
-}
-
-.spnMostrarSenha {
-    cursor: pointer;
-    left: 160px;
-    position: absolute;
-    width: 20px;
-    text-align: right;
-
 }
 
 .collapse.show{

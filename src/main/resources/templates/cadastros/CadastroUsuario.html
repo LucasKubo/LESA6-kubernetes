@@ -17,6 +17,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300&display=swap" rel="stylesheet">
     <!-- Link do Arquivo CSS Customizado -->
     <link rel="stylesheet" href="/style/cadastroUsuarioStyle.css">
+    <link rel="stylesheet" href="/style/olho.css">
 </head>
 
 <body>
@@ -141,9 +142,6 @@
                            minlength="8"
                            required=""
                     >
-                    <img id="spnMostrarSenha"
-                         src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABDUlEQVQ4jd2SvW3DMBBGbwQVKlyo4BGC4FKFS4+TATKCNxAggkeoSpHSRQbwAB7AA7hQoUKFLH6E2qQQHfgHdpo0yQHX8T3exyPR/ytlQ8kOhgV7FvSx9+xglA3lM3DBgh0LPn/onbJhcQ0bv2SHlgVgQa/suFHVkCg7bm5gzB2OyvjlDFdDcoa19etZMN8Qp7oUDPEM2KFV1ZAQO2zPMBERO7Ra4JQNpRa4K4FDS0R0IdneCbQLb4/zh/c7QdH4NL40tPXrovFpjHQr6PJ6yr5hQV80PiUiIm1OKxZ0LICS8TWvpyyOf2DBQQtcXk8Zi3+JcKfNafVsjZ0WfGgJlZZQxZjdwzX+ykf6u/UF0Fwo5Apfcq8AAAAASUVORK5CYII="
-                    /> Visualizar Senha
                 </div>
 
                 <div class="form-group">
@@ -156,13 +154,11 @@
                            minlength="8"
                            required=""
                     >
-                    <img id="btnMostrarSenhaNova"
-                         src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABDUlEQVQ4jd2SvW3DMBBGbwQVKlyo4BGC4FKFS4+TATKCNxAggkeoSpHSRQbwAB7AA7hQoUKFLH6E2qQQHfgHdpo0yQHX8T3exyPR/ytlQ8kOhgV7FvSx9+xglA3lM3DBgh0LPn/onbJhcQ0bv2SHlgVgQa/suFHVkCg7bm5gzB2OyvjlDFdDcoa19etZMN8Qp7oUDPEM2KFV1ZAQO2zPMBERO7Ra4JQNpRa4K4FDS0R0IdneCbQLb4/zh/c7QdH4NL40tPXrovFpjHQr6PJ6yr5hQV80PiUiIm1OKxZ0LICS8TWvpyyOf2DBQQtcXk8Zi3+JcKfNafVsjZ0WfGgJlZZQxZjdwzX+ykf6u/UF0Fwo5Apfcq8AAAAASUVORK5CYII="
-                    /> Visualizar Senha
                 </div>
-
-
-                <small> Campos com * são obrigatórios </small>
+                <div id="btnS">
+                <span><img id="spnMostrarSenha" style="margin-right: 4px" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABDUlEQVQ4jd2SvW3DMBBGbwQVKlyo4BGC4FKFS4+TATKCNxAggkeoSpHSRQbwAB7AA7hQoUKFLH6E2qQQHfgHdpo0yQHX8T3exyPR/ytlQ8kOhgV7FvSx9+xglA3lM3DBgh0LPn/onbJhcQ0bv2SHlgVgQa/suFHVkCg7bm5gzB2OyvjlDFdDcoa19etZMN8Qp7oUDPEM2KFV1ZAQO2zPMBERO7Ra4JQNpRa4K4FDS0R0IdneCbQLb4/zh/c7QdH4NL40tPXrovFpjHQr6PJ6yr5hQV80PiUiIm1OKxZ0LICS8TWvpyyOf2DBQQtcXk8Zi3+JcKfNafVsjZ0WfGgJlZZQxZjdwzX+ykf6u/UF0Fwo5Apfcq8AAAAASUVORK5CYII=" /> Visualizar Senhas</span>
+                    <small><strong>Campos com * são obrigatórios</strong></small>
+                </div>
 
                 <button th:text="#{cadusubutton.createacc}" id="cadastrar" name="action" class="formulario-button"
                         type="submit"></button>
@@ -185,7 +181,6 @@
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
 
-<!-- Validar senha -->
 
 <script>
             var password = document.getElementById("US_Senha")
@@ -205,27 +200,20 @@
 
 
 <script>
-            var $spnMostrarSenha = $('#spnMostrarSenha');
-            var $txtSenha = $('#US_Senha');
-
-            var $btnMostrarSenhaNova = $('#btnMostrarSenhaNova');
+            var $spnMostrarSenhas = $('#spnMostrarSenha');
+            var $txtSenhaS = $('#US_Senha');
             var $txtNovaSenha = $('#US_ConfirmSenha');
 
-            $spnMostrarSenha
+             $spnMostrarSenhas
                 .on('click', function() {
-                    var inputType = $txtSenha.attr('type') == 'password' ? 'text' : 'password';
-                    $txtSenha.attr('type', inputType);
-                })
-                .on('dblclick', function() {
-                    $txtSenha.attr('type', 'password');
-            });
-
-            $btnMostrarSenhaNova
-                .on('click', function() {
+                    var inputType = $txtSenhaS.attr('type') == 'password' ? 'text' : 'password';
                     var inputType = $txtNovaSenha.attr('type') == 'password' ? 'text' : 'password';
+
+                    $txtSenhaS.attr('type', inputType);
                     $txtNovaSenha.attr('type', inputType);
                 })
                 .on('dblclick', function() {
+                    $txtSenhaS.attr('type', 'password');
                     $txtNovaSenha.attr('type', 'password');
             });
 </script>

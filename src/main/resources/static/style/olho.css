@@ -1,0 +1,15 @@
+#btnS{
+      display: flex;
+      justify-content: space-between;
+}
+.spnMostrarSenha {
+    width: 150px;
+    padding-right: 20px;
+    cursor: pointer;
+    left: 160px;
+    position: absolute;
+    width: 20px;
+    margin-right: 5px;
+    margin-bottom: 1rem
+}
+
