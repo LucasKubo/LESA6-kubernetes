@@ -1,6 +1,7 @@
 package MeuRemedio.app.models.usuarios;
 
 
+import MeuRemedio.app.models.agendamentos.AgendamentosHorarios;
 import MeuRemedio.app.models.remedios.Remedio;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -62,6 +63,9 @@ public class Usuario implements UserDetails {
 
     @OneToMany
     private List <Remedio> remedio;
+
+    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
+    private List<UsuarioNotificationToken> usuarioNotificationTokens;
 
 
     public Usuario (String nome, String sobrenome, String email, String senha, String dataNascimento,

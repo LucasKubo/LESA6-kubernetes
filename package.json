@@ -1,0 +1,23 @@
+{
+  "name": "projeto8balls",
+  "version": "1.0.0",
+  "description": "Projeto de desenvolvimento de software para a disciplina de Projeto Integrado 1 do Instituto Federal de Educação, Ciência e Tecnologia de São Paulo, IFSP.\r Sendo uma aplicação web com PWA para facilitar o controle de dosagem e alertas para o consumo de remédios, além do controle financeiro relacionado aos gastos com medicações.\r Equipe: Any Gabrielly Gomes dos Santos, Eric dos Santos Cabral, Guilherme Fernandes Lima, Lucas Hideki Kubo, Pedro Henrique Verginelli Haka, Samy Almeida.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/any-gomes/Projeto8Balls.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/any-gomes/Projeto8Balls/issues"
+  },
+  "homepage": "https://github.com/any-gomes/Projeto8Balls#readme",
+  "dependencies": {
+    "firebase": "^9.12.1"
+  }
+}

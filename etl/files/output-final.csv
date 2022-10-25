@@ -1,0 +1,570 @@
+,RS_Nome,RS_DisponivelSus
+0,acetato de betametasona,False
+1, fosfato dissodico de,False
+2,betametasona,False
+3,acetato de hidrocortisona,True
+4,acetato de,True
+5,medroxiprogesterona,True
+6,acetato de sodio,True
+7,acetazolamida,True
+8,aciclovir,True
+9,acido acetilsalicilico,True
+10,acido folico,True
+11,acido folinico,False
+12,acido salicilico,True
+13,alcachofra,False
+14,Cynara scolymus L,False
+15,alcatrao mineral FN,True
+16,alendronato de sodio,False
+17,alopurinol,False
+18,amoxicilina,True
+19,amoxicilina  clavulanato,True
+20,de potassio,True
+21,anlodipino,True
+22,anlodipino,False
+23,babosa Aloe vera L Burm f,False
+24,benzilpenicilina benzatina,True
+25,benzilpenicilina potassica,True
+26,benzilpenicilina procaina ,False
+27,benzilpenicilina potassica,False
+28,benzoilmetronidazol,True
+29,bicarbonato de sodio,False
+30,brometo de ipratropio,True
+31,budesonida,True
+32,cabergolina,False
+33,captopril,True
+34,carbamazepina,True
+35,carvedilol,True
+36,cascara-sagrada Rhamnus,False
+37,purshiana DC,False
+38,cefalexina,False
+39,cefotaxima sodica,True
+40,ceftriaxona,False
+41,cetoconazol,True
+42,cianocobalamina,False
+43,ciprofloxacino,False
+44,claritromicina,True
+45,cloreto de sodio,True
+46,cloridrato de amiodarona,True
+47,cloridrato de amitriptilina,True
+48,cloridrato de biperideno,False
+49,cloridrato de bupivacaina,False
+50,cloridrato de clindamicina,False
+51,cloridrato de clomipramina,False
+52,cloridrato de clorpromazina,False
+53,cloridrato de dobutamina,True
+54,cloridrato de dopamina,True
+55,cloridrato de fluoxetina,True
+56,cloridrato de lidocaina ,True
+57,hemitartarato de epinefrina,False
+58,cloridrato de metformina,True
+59,cloridrato de metoclopramida,True
+60,cloridrato de naloxona,False
+61,cloridrato de nortriptilina,False
+62,cloridrato de ondansetrona,False
+63,cloridrato de pilocarpina,True
+64,cloridrato de piridoxina,False
+65,cloridrato de prilocaina ,False
+66,felipressina,False
+67,cloridrato de prometazina,True
+68,cloridrato de propafenona,False
+69,cloridrato de verapamil,False
+70,decanoato de haloperidol,False
+71,dexametasona,True
+72,diazepam,False
+73,digliconato de clorexidina,True
+74,digoxina,False
+75,dinitrato de isossorbida,True
+76,dipirona,False
+77,dipropionato de beclometasona,False
+78,espinheira-santa Maytenus,False
+79,ilicifolia Mart ex Reissek,False
+80,espironolactona,False
+81,estolato de eritromicina,True
+82,estriol,True
+83,estrogenios conjugados,False
+84,etinilestradiol  levonorgestrel,True
+85,fenitoina,True
+86,fenobarbital,True
+87,colecalciferol,False
+88,fosfato de clindamicina,True
+89,fosfato de potassio,False
+90,monobasico  fosfato de,False
+91,potassio dibasico,True
+92,fosfato dissodico de,True
+93,dexametasona,False
+94,fosfato sodico de prednisolona,True
+95,furosemida,True
+96,garra-do-diabo Harpagophytum,True
+97,procumbens DC ex Meissn,False
+98,glibenclamida,False
+99,glicerol,False
+100,guaco Mikania,True
+101,glomerata Spreng,True
+102,haloperidol,True
+103,hemitartarato de norepinefrina,False
+104,heparina sodica,False
+105,hidroclorotiazida,False
+106,hidroxido de aluminio,True
+107,hipromelose,False
+108,hortela Mentha x piperita L,True
+109,ibuprofeno,False
+110,itraconazol,True
+111,ivermectina,False
+112,lactato de biperideno,False
+113,lactulose,True
+114,levodopa  benserazida,True
+115,levodopa  carbidopa,True
+116,levonorgestrel,True
+117,levotiroxina sodica,True
+118,loratadina,False
+119,losartana potassica,False
+120,maleato de dexclorfeniramina,True
+121,maleato de enalapril,False
+122,metildopa,True
+123,metronidazol,False
+124,midazolam,True
+125,misoprostol,True
+126,mononitrato de isossorbida,False
+127,nifedipino,False
+128,nistatina,True
+129,nitrato de miconazol,True
+130,nitrofurantoina,False
+131,noretisterona,True
+132,oleo mineral,True
+133,omeprazol,False
+134,permetrina,True
+135,peroxido de benzoila,False
+136,plantago Plantago,True
+137,ovata Forssk,False
+138,podofilina,True
+139,podofilotoxina,True
+140,prednisona,False
+141,propiltiouracila,False
+142,rifampicina,True
+143,sais para reidratacao oral,True
+144,salgueiro Salix alba L,True
+145,sinvastatina,True
+146,solucao ringer  lactato,True
+147,hidrocortisona,False
+148,sulfadiazina de prata,False
+149,sulfametoxazol  trimetoprima,True
+150,sulfato de atropina,True
+151,sulfato de gentamicina,False
+152,sulfato de magnesio,True
+153,sulfato de polimixina B  sulfato,True
+154,de neomicina  fluocinolona,False
+155,acetonida  cloridrato,True
+156,de lidocaina,False
+157,sulfato de salbutamol,True
+158,sulfato de zinco,True
+159,sulfato ferroso,False
+160,tartarato de metoprolol,True
+163,valproato de sodio,True
+164,varfarina sodica,True
+166,Assistencia Farmaceutica,False
+167,Denominacao generica,True
+168,acetato de desmopressina,False
+169,acido folinico,True
+170,acido paraminossalicilico,True
+171,acido tranexamico,True
+172,alfapeginterferona b,False
+173,anfotericina B,False
+174,complexo lipidico,True
+175,anfotericina B desoxicolato,False
+176,anfotericina B lipossomal,False
+177,antimoniato de meglumina,True
+178,artemeter  lumefantrina,True
+179,artesunato,False
+180,artesunato  cloridrato de,True
+181,mefloquina,False
+182,azitromicina,True
+183,bedaquilina,True
+184,benzilpenicilina benzatina,False
+185,claritromicina,True
+186,clofazimina,True
+187,cloranfenicol,False
+188,cloridrato de bupropiona,True
+189,cloridrato de doxiciclina,True
+190,cloridrato de etambutol,False
+191,cloridrato de hidroxocobalamina,False
+192,cloridrato de minociclina,False
+193,cloridrato de moxifloxacino,False
+194,cloridrato de piridoxina,True
+195,complexo protrombinico,False
+197,complexo protrombinico,False
+199,complexo protrombinico,False
+200,parcialmente ativado,False
+201,daclatasvir,True
+202,dapsona,False
+203,doxiciclina,False
+204,efavirenz,False
+205,elbasvir  grazoprevir,False
+206,monidratado,True
+207,emicizumabe,False
+208,enfuvirtida,False
+209,entecavir,False
+210,espiramicina,False
+211,estolato de eritromicina,False
+212,etionamida,False
+213,etravirina,True
+214,fator IX de coagulacao,True
+215,fator VIII de coagulacao,True
+216,fator VIII de coagulacao,False
+217,contendo fator de von,True
+218,Willebrand,True
+219,fator VIII de coagulacao,False
+220,recombinante,False
+221,fator XIII de coagulacao,True
+222,fenoximetilpenicilina potassica,False
+223,fibrinogenio,False
+224,flucitosina,False
+225,fluconazol,False
+226,folinato de calcio,False
+227,fosamprenavir,False
+228,fosfato de oseltamivir,False
+229,fumarato de tenofovir,False
+230,desoproxila,False
+231,fumarato de tenofovir,True
+232,desoproxila  entricitabina,False
+233,fumarato de tenofovir,False
+234,imunoglobulina humana,True
+235,anti-hepatite B,False
+236,imunoglobulina humana,True
+237,antirrabica,True
+238,imunoglobulina humana,False
+239,antivaricela zoster,False
+240,isetionato de pentamidina,True
+241,isoniazida,False
+242,itraconazol,True
+243,lamivudina,False
+244,ledipasvir  sofosbovir,False
+245,levofloxacino,True
+246,linezolida,False
+247,lopinavir  ritonavir,False
+248,maraviroque,True
+249,micronutrientes,True
+250,miltefosina,True
+251,nevirapina,True
+252,nicotina,False
+253,ofloxacino,True
+254,oxamniquina,False
+255,palivizumabe,False
+256,palmitato de retinol,True
+257,prednisona,False
+258,raltegravir potassico,False
+259,ribavirina,True
+260,rifabutina,False
+261,rifampicina ,True
+262,rifampicina  isoniazida,False
+263,rifampicina  isoniazida ,False
+264,pirazinamida,False
+265,rifampicina  isoniazida ,False
+266,pirazinamida  cloridrato de,True
+267,etambutol,False
+268,rifapentina,False
+269,ritonavir,True
+270,sofosbuvir,False
+271,sofosbuvir  velpatasvir,True
+272,soro antiaracnidico,False
+273,Loxosceles Phoneutria,False
+274,e Tityus,False
+275,soro antibotropico,False
+276,pentavalente e anticrotalico,True
+277,soro antibotropico,False
+278,pentavalente e antilaquetico,False
+279,soro antibotulinico,True
+280,AB bivalente,True
+281,soro anticrotalico,True
+282,soro antidifterico,True
+283,soro antilonomico,False
+284,soro antiloxoscelico trivalente,True
+285,soro antirrabico,True
+286,soro antitetanico,False
+287,succinato de tafenoquina,True
+288,sulfadiazina,True
+289,sulfato de abacavir,True
+290,sulfato de amicacina,True
+291,sulfato de atazanavir,True
+292,sulfato de estreptomicina,True
+293,e pertussis,False
+294,vacina adsorvida difteria tetano,False
+295,e pertussis acelular adulto,True
+296,vacina adsorvida difteria tetano,True
+297,e pertussis acelular infantil,False
+298,vacina adsorvida difteria,False
+299,tetano pertussis hepatite B,False
+300,recombinante e Haemophilus,False
+301,influenzae B conjugada,True
+302,vacina adsorvida hepatite A,False
+303,inativada adulto,True
+304,vacina adsorvida hepatite A,True
+305,inativada infantil,True
+306,vacina BCG,False
+307,vacina colera inativada,True
+308,vacina febre amarela,True
+310,vacina febre tifoide,False
+311,polissacaridica,False
+312,vacina Haemophilus influenzae,False
+313,B conjugada,False
+314,vacina hepatite B,False
+315,recombinante,False
+316,vacina influenza trivalente,False
+317,fragmentada inativada,False
+318,vacina meningococica ACWY,False
+319,conjugada,False
+320,vacina meningococica C,True
+321,conjugada,True
+323,vacina poliomielite   e ,True
+324,inativada,False
+325,vacina raiva inativada,False
+328,vacina sarampo caxumba,False
+329,rubeola,True
+330,vacina sarampo caxumba,False
+333,zanamivir  ,False
+334, ,False
+335,zidovudina  /mL,False
+336, /mL,True
+337,zidovudina  lamivudina     ,False
+339,Assistencia Farmaceutica,True
+342,po para,False
+343,  solucao,False
+344,injetavel,True
+345,acetato de,False
+346,desmopressina,True
+347,acetato de,True
+348,fludrocortisona,True
+349,acetato de,True
+350,glatiramer,True
+351,acetato de,False
+352,gosserrelina,False
+353,acetato de,False
+354,lanreotida,False
+355,acetato de,True
+356,octreotida,False
+357,acetato de,True
+358,octreotida,False
+359,acetazolamida,True
+360,acido nicotinico,True
+361,acido,False
+362,ursodesoxicolico,False
+363,acido zoledronico,False
+364,adalimumabe,True
+365,aflibercepte,False
+366,alentuzumabe,False
+367,alfa-alglicosidade,True
+368,alfacalcidol,False
+369,alfadornase,True
+370,alfaepoetina,False
+371,alfainterferona b,False
+372,alfataliglicerase,True
+373,alfavelaglicerase,True
+374,alfavestronidase,False
+375,ambrisentana,False
+376,atorvastatina,True
+377,calcica,False
+378,azatioprina,False
+379,baricitinibe,False
+380,betainterferona b,False
+381,bezafibrato,False
+382,bimatoprosta,False
+383,biotina,False
+384,bosentana,True
+385,brinzolamida,False
+386,brometo de,True
+387,piridostigmina,True
+388,brometo,False
+389,de tiotropio,False
+390,monoidratado,True
+391, cloridrato de,True
+392,bromidrato de galantamina,False
+393,budesonida,True
+394,burosumabe,True
+395,calcitriol,False
+396,certolizumabe,False
+397,pegol,False
+398,ciclofosfamida,False
+399,ciclosporina,False
+400,ciclosporina,False
+401,ciclosporina,False
+402,ciclosporina,False
+403,ciclosporina,False
+404,ciprofibrato,False
+405,clopidogrel,False
+406,cloridrato de,False
+407,amantadina,False
+408,cloridrato de,False
+409,cinacalcete,False
+410,cloridrato de,False
+411,donepezila,False
+412,cloridrato de dorzolamida,False
+413,cloridrato de,False
+414,metadona,False
+415,cloridrato de,False
+416,pilocarpina,False
+417,cloridrato de,False
+418,raloxifeno,False
+419,clozapina,False
+420,complemento,False
+421,alimentar,False
+422,para paciente,False
+423,fenilcetonurico,False
+424,maior de  ano,False
+425,formula de,False
+426,aminoacidos,False
+427,isenta de,False
+428,fenilalanina,False
+429,complemento,False
+430,alimentar,False
+431,para paciente,False
+432,fenilcetonurico,False
+433,menor de  ano,False
+434,formula de,False
+435,aminoacidos,False
+436,isenta de,False
+437,fenilalanina,False
+438,danazol,False
+439,dapagliflozina,False
+440,deferasirox,False
+441,deferiprona,False
+442,dextrotartarato de,False
+443,brimonidina,False
+444,eculizumabe,False
+445,eltrombopague,False
+446,olamina,False
+447,enoxaparina,False
+448,sodica,False
+449,entacapona,False
+450,etanercepte,False
+451,everolimo,False
+452,fenofibrato,False
+453,filgrastim,False
+454,fingolimode,False
+455,fosfato de codeina,False
+456,fumarato de,False
+457,dimetila,False
+458,fumarato de,False
+459,formoterol,False
+460,fumarato de,False
+461,formoterol ,False
+462,gabapentina,False
+463,galsulfase,False
+464,genfibrozila,False
+465,golimumabe,False
+466,hemifumarato de,False
+467,quetiapina,False
+468,idursulfase,False
+469,iloprosta,False
+470,imiglucerase,False
+471,imunoglobulina,False
+472,humana,False
+473,imunoglobulina,False
+474,humana,False
+475,imunoglobulina,False
+476,humana,False
+477,imunoglobulina,False
+478,humana,False
+479,insulina analoga,False
+480,de acao,False
+481,prolongada,False
+482,insulina analoga de acao rapida,False
+483,isotretinoina,False
+484,ivacaftor,False
+485,lamotrigina,False
+486,levetiracetam,False
+487,maleato de timolol,False
+488,memantina,False
+489,mepolizumabe,False
+490,mesalazina,False
+491,mesilato de rasagilina,False
+492,metilprednisolona,False
+493,metotrexato,False
+494,micofenolato,False
+495,de mofetila,False
+496,micofenolato,False
+497,de sodio,False
+498,miglustate,False
+499,nusinersena,False
+500,olanzapina,False
+501,omalizumabe,False
+502,pamidronato dissodico,False
+503,pancreatina,False
+504,paricalcitol,False
+505,pravastatina sodica,False
+506,primidona,False
+507,propionato de,False
+508,clobetasol,False
+509,riluzol,False
+510,risanquizumabe,False
+511,risedronato sodico,False
+512,risperidona,False
+513,rituximabe,False
+514,rivastigmina,False
+515,sacarato de,False
+516,hidroxido ferrico,False
+517,sacubitril,False
+518,valsartana sodica,False
+519,hidratada,False
+520,secuquinumabe,False
+521,selexipague,False
+522,sirolimo,False
+523,somatropina,False
+524,somatropina,False
+525,sulfassalazina,False
+526,sulfato de,False
+527,hidroxicloroquina,False
+528,tacrolimo,False
+529,tafamidis,False
+530,teriflunomida,False
+531,tobramicina,False
+532,tocilizumabe,False
+533, unidades,False
+534,PCDT Espasticidadetoxina botulinica A,False
+535, unidades,False
+536,travoprosta  /mL,False
+537,trientina  ,False
+538, ,False
+539,Precoce Centraltriptorrelina,False
+540, ,False
+541,upadacitinibe  ,False
+542,ustequinumabe  ,False
+543,vedolizumabe  ,False
+544,vigabatrina  ,False
+545,xinafoato de ,False
+546,salmeterol microgramas,False
+547, ,False
+548,Esquizoafetivoziprasidona,False
+549,agua para injetaveis,False
+550,agulha para caneta aplicadora,False
+551,de insulina,False
+552,alcool etilico,False
+553,caneta para aplicacao,False
+554,de insulina,False
+555,diafragma,False
+556,dispositivo intrauterino plastico,False
+557,com cobre,False
+558,gel lubrificante,False
+559,glutaral,False
+560,hipoclorito de sodio,False
+561,iodo  iodeto de potassio,False
+562,lancetas para puncao digital,False
+563,abciximabe,False
+564,albumina humana,False
+565,alfaporactanto surfactante pulmonar,False
+566,alteplase,False
+567,basiliximabe,False
+568,beractanto surfactante pulmonar,False
+569,cabergolina,False
+570,ciclosporina,False
+571,clopidogrel,False
+572,cloridrato de tirofibana,False
+573,complexo protrombinico,False
+575,daclizumabe,False
+576,estreptoquinase,False
+577,anti-hepatite B,False
+578,metilprednisolona,False
+579,micofenolato de mofetila,False
+580,micofenolato de sodio,False
+581,sirolimo,False
+582,tacrolimo,False
+583,tenecteplase,False

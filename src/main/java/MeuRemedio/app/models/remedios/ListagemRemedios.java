@@ -1,6 +1,7 @@
 package MeuRemedio.app.models.remedios;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
@@ -13,30 +14,24 @@ import java.time.LocalDate;
 @Getter
 @Setter
 @Table(name = "ListagemRemedios")
+@NoArgsConstructor
 public class ListagemRemedios implements Serializable {
 
     private static long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "RS_ID", nullable = false)
-    private long RS_ID;
+    private long id;
 
     @NotNull @NotBlank
-    private String RS_Nome;
+    @Column(name = "RS_Nome")
+    private String nome;
     @NotNull @NotBlank
-    private String RS_DisponivelSus;
+    @Column(name = "RS_DisponivelSus")
+    private Boolean disponivelSus;
 
-    @NotBlank
-    private LocalDate Criado_em = LocalDate.now();
-
-
-    public ListagemRemedios(){
-
-    }
-
-    public ListagemRemedios(String RS_Nome, String RS_DisponivelSus) {
-        this.RS_Nome = RS_Nome;
-        this.RS_DisponivelSus = RS_DisponivelSus;
-        this.Criado_em = LocalDate.now();
+    public ListagemRemedios(String nome, Boolean disponivelSus) {
+        this.nome = nome;
+        this.disponivelSus = disponivelSus;
     }
 }

@@ -1,0 +1,398 @@
+,RS_Nome-Remume
+0,DCB/Forma farmacêutica
+2,"abacavir, sulfato (ABC) 20 mg/mL solução oral"
+4,"abacavir, sulfato (ABC) 300 mg comprimido"
+6,aciclovir 30 mg/g (3%) pomada oftálmica
+10,aciclovir 50 mg/g (5%) creme
+13,aciclovir 200 mg comprimido
+15,aciclovir 400 mg comprimido
+17,ácido acetilsalicílico 100 mg comprimido
+19,"ácido fólico 0,2 mg/mL solução oral (gotas)"
+21,ácido fólico 5 mg comprimido
+23,ácido paraminossalicílico 4g sachê granulado
+25,revestido
+27,albendazol 40 mg/mL suspensão oral
+2,alfapeginterferona 2A 180 mcg seringa
+4,preenchida
+6,alopurinol 100 mg comprimido
+8,"amiodarona, cloridrato 200 mg comprimido"
+10,"amitriptilina, cloridrato 25 mg comprimido"
+12,amoxicilina 50 mg/mL pó para suspensão oral
+14,amoxicilina 500 mg cápsula
+16,"anlodipino, besilato 5 mg comprimido"
+18,"anlodipino, besilato 10 mg comprimido"
+20,"atazanavir, sulfato (ATV) 300 mg cápsula"
+22,atenolol 50 mg comprimido
+24,atorvastatina 10 mg comprimido
+26,azitromicina 40 mg/mL suspensão oral
+0,medicamento disponível nas Unidades de Saúde
+1,aerossol nasal
+2,benzilpenicilina benzatina 600.000 UI pó para
+3,medicamento disponível nas Unidades de Saúde
+4,suspensão injetável fam
+5,benzilpenicilina benzatina 1.200.000 UI pó
+6,medicamento disponível nas Unidades de Saúde
+7,para suspensão injetável fam
+9,benzoilmetronidazol 40 mg/mL (equivalente a
+10,25 mg de metronidazol) suspensão oral ou medicamento disponível nas Unidades de Saúde
+11,secnidazol 30 mg/mL suspensão oral
+13,"biperideno, cloridrato 2 mg comprimido medicamento disponível nas Unidades de Saúde"
+15,medicamento disponível em unidades de referência em
+16,"brimonidina 2 mg/mL (0,2%) solução oftálmica"
+17,oftalmologia - a receita deve ser de oftalmologista
+18,medicamento para pacientes cadastrados no Programa de
+19,"bupropiona, cloridrato 150 mg comprimido"
+20,Tabagismo da SMS disponível em unidades de referência
+22,"cabergolina 0,5 mg comprimido medicamento disponível em SAE/IST/AIDS"
+24,captopril 25 mg comprimido medicamento disponível nas Unidades de Saúde
+26,carbamazepina 20 mg/mL (2%) suspensão oral medicamento disponível nas Unidades de Saúde
+28,carbamazepina 200 mg comprimido medicamento disponível nas Unidades de Saúde
+29,"medicamento disponível em unidades de referência, conforme"
+30,carbonato de cálcio 1.250 mg (equivalente a
+31,normas específicas (link para o formulário a ser preenchido pelo
+32,500 mg de Ca++) comprimido
+33,médico)
+0,cefalexina 50 mg/mL suspensão oral medicamento disponível nas Unidades de Saúde
+2,cefalexina comprimido 500 mg medicamento disponível nas Unidades de Saúde
+4,cetoconazol 20 mg/g (2%) creme medicamento disponível nas Unidades de Saúde
+6,"cianocobalamina (vit. B12) 2,5 mg/mL (2.500"
+7,medicamento disponível nas Unidades de Saúde
+8,mcg) solução injetável
+10,"ciprofloxacino, cloridrato 500 mg comprimido medicamento disponível nas Unidades de Saúde"
+11,medicamento disponível em unidades de referência;
+12,ciproterona 50 mg comprimido medicamento utilizado exclusivamente no Programa de
+13,Transsexualização da SMS
+14,claritromicina 50 mg/mL pó para suspensão
+15,medicamento disponível nas Unidades de Saúde
+16,oral
+17,medicamento disponível nas Unidades de Saúde e em
+18,claritromicina 500 mg comprimido unidades de referência para tratamento de esquemas especiais
+19,de TB/MNT
+21,"clindamicina, cloridrato 300 mg cápsula medicamento disponível nas Unidades de Saúde"
+23,medicamento disponível em unidades de referência - exclusivo
+24,clofazimina 100 mg comprimido
+25,para tratamento de esquemas especiais de TB/MNT
+27,clofazimina 100 mg + clofazimina 50 mg +
+28,medicamento disponível em unidades de referência para o
+29,rifampicina 300 mg + dapsona 100 mg
+30,tratamento da hanseníase
+31,(multibacilar) adulto comprimidos em blister
+0,gotas
+2,"clonazepam 0,5 mg comprimido"
+4,clonazepam 2 mg comprimido
+6,"cloranfenicol 5 mg/g + retinol, acetato 10.000"
+7,UI/g + aminoácidos 25 mg/g + metionina 5
+8,mg/g pomada oftálmica
+10,"cloreto de sódio 9 mg/mL (0,9 % - 0,154"
+12,mEq/mL) solução injetável ampola
+13,"cloreto de sódio 9 mg/mL (0,9%) solução nasal"
+15,gotas
+17,"clorpromazina, cloridrato 40 mg/mL (4%)"
+19,solução oral (gotas)
+21,"clorpromazina, cloridrato 25 mg comprimido"
+23,"clorpromazina, cloridrato 100 mg comprimido"
+25,colecalciferol (vitamina D3) 200 UI a 220
+27,UI/gota solução oral
+29,dapsona 100 mg comprimido
+30,dapsona 50 mg + rifampicina 300 mg +
+32,rifampicina 150 mg comprimidos (paucibacilar)
+34,pediátrico blister
+0,darunavir (DRV) 600 mg comprimido
+2,darunavir (DRV) 800 mg comprimido
+4,"dexametasona 0,1 mg/mL solução oral"
+6,"dexametasona 1 mg/g (0,1%) creme"
+8,"dexametasona 1 mg/mL (0,1%) solução"
+10,oftálmica
+12,"dexclorfeniramina, maleato 0,4 mg/mL solução"
+14,oral
+16,dextrana 1 mg/mL + hipromelose 3 mg/mL
+18,"(0,3%) solução oftálmica"
+20,diazepam 5 mg comprimido
+22,diclofenaco 50 mg comprimido
+24,"digoxina 0,25 mg comprimido"
+26,"dimenidrinato 25 mg/mL + piridoxina, cloridrato"
+28,(vit. B6) 5 mg/mL solução oral gotas
+30,dipirona sódica 500 mg/mL solução oral gotas
+0,"doxiciclina, cloridrato 100 mg comprimido medicamento disponível nas Unidades de Saúde"
+2,efavirenz (EFZ) 30 mg/mL solução oral medicamento disponível em SAE/IST/AIDS
+4,efavirenz (EFZ) 200 mg comprimido medicamento disponível em SAE/IST/AIDS
+6,efavirenz (EFZ) 600 mg comprimido medicamento disponível em SAE/IST/AIDS
+8,"enalapril, maleato 5 mg comprimido medicamento disponível nas Unidades de Saúde"
+10,"enalapril, maleato 20 mg comprimido medicamento disponível nas Unidades de Saúde"
+11,enfuvirtida (T-20) 90 mg/mL pó para solução
+12,medicamento disponível em SAE/IST/AIDS
+13,injetavel
+16,medicamento disponível em unidades de referência.
+17,enoxaparina sódica 20 mg (equivalente a 100 Dispensação exclusiva para usuários em tratamento na Rede
+19,"mg/mL) solução injetável seringa 0,2 mL SC Municipal de Saúde e deve seguir normas específicas (link para"
+20,o formulário a ser preenchido pelo médico)
+24,medicamento disponível em unidades de referência.
+25,enoxaparina sódica 40 mg (equivalente a 100 Dispensação exclusiva para usuários em tratamento na Rede
+27,"mg/mL) solução injetável seringa 0,4 mL SC Municipal de Saúde e deve seguir normas específicas (link para"
+28,o formulário a ser preenchido pelo médico)
+2,"entecavir 0,5 mg comprimido"
+4,escopolamina 10 mg/mL solução oral gotas ou
+6,comprimido 10 mg
+7,"escopolamina 6,67 mg/mL + dipirona sódica"
+9,"333,4 mg/mL solução oral gotas"
+10,espiramicina 500 mg (equivalente a 1.500.000
+12,UI) comprimido
+14,espironolactona 25 mg comprimido
+16,espironolactona 100 mg comprimido
+18,"estradiol, valerato 1mg"
+20,"estradiol, valerato 2mg comprimido"
+23,"estriol 1 mg/g (0,1%) creme vaginal"
+26,"etambutol, cloridrato 400 mg comprimido"
+30,etionamida 250 mg comprimido
+0,fenobarbital 100 mg comprimido
+2,fenobarbital 40 mg/mL (4%) solução oral gotas
+4,fenoterol 5 mg/mL solução inalante gotas
+7,finasterida 5 mg comprimido
+11,fluconazol 100 mg cápsula
+13,fluconazol 150 mg cápsula
+15,"fluoxetina, cloridrato 20 mg cápsula"
+17,folinato de cálcio 15 mg comprimido
+19,formoterol 6 mcg + budesonida 200 mcg pó em
+21,cápsula para inalação
+23,formoterol 12 mcg + budesonida 400 mcg pó
+25,em cápsula para inalação
+27,furosemida 40 mg comprimido
+29,gabapentina 300 mg comprimido
+0,Saúde da SMS
+2,"haloperidol 2 mg/mL (0,2%) solução oral gotas medicamento disponível nas Unidades de Saúde"
+4,haloperidol 1 mg comprimido medicamento disponível nas Unidades de Saúde
+6,haloperidol 5 mg comprimido medicamento disponível nas Unidades de Saúde
+7,"haloperidol, decanoato 70,52 mg/mL"
+8,(equivalente a 50 mg/mL de haloperidol) medicamento disponível nas Unidades de Saúde
+9,solução injetável
+10,Harpagophytum procumbens (Burch.) medicamento disponível em unidades de referência
+11,DC.(garra do diabo) harpagosídeo 5 mg a 50 exclusivamente para pacientes em tratamento nas Unidades de
+12,mg comprimido Saúde da SMS
+14,hidroclorotiazida 25 mg comprimido medicamento disponível nas Unidades de Saúde
+16,"hidrocortisona, acetato 10 mg/g (1%) creme medicamento disponível nas Unidades de Saúde"
+18,hidróxido de alumínio 60 mg/mL a 63 mg/mL
+19,medicamento disponível nas Unidades de Saúde
+20,suspensão oral
+21,hipoclorito de sódio 25 mg/mL de cloro ativo
+22,disponível nas Unidades de Saúde
+23,"(2,5 %) solução"
+25,ibuprofeno 50 mg/mL suspensão oral gotas medicamento disponível nas Unidades de Saúde
+27,ibuprofeno 300 mg comprimido medicamento disponível nas Unidades de Saúde
+29,"imipramina, cloridrato 25 mg comprimido medicamento disponível nas Unidades de Saúde"
+0,insulina humana NPH 100 UI/mL suspensão
+1,medicamento disponível nas Unidades de Saúde
+2,injetável caneta
+4,insulina humana regular 100 UI/mL solução
+5,medicamento disponível nas Unidades de Saúde
+6,injetável frasco
+8,insulina humana regular 100 UI/mL solução
+9,medicamento disponível nas Unidades de Saúde
+10,injetável caneta
+12,"ipratrópio, brometo 0,25 mg/mL (0,025%)"
+13,medicamento disponível nas Unidades de Saúde
+14,solução inalante gotas
+15,medicamento disponível em unidades de referência -
+16,medicamento exclusivo para tratamento de esquemas especiais
+17,isoniazida 100 mg comprimido
+18,de TB/MNT; tratamento da Infeccção Latente da Tuberculose
+19,(ILTB) e tratamento de crianças
+21,medicamento utilizado no tratamento de ILTB em unidades
+22,"isoniazida 300 mg comprimido IST/Aids; tratamento de ILTB, associado a rifapentina 150mg,"
+23,exclusivo em unidades de referência
+25,medicamento exclusivo para tratamento com esquema básico
+26,isoniazida 150 mg + rifampicina 300 mg
+27,de TB nas Unidades de Saúde; tratamento de esquemas
+28,comprimido
+29,especiais de TB em unidades de referência
+31,medicamento exclusivo para tratamento com esquema básico
+32,isoniazida 75 mg + rifampicina 150 mg
+33,de TB nas Unidades de Saúde; tratamento de esquemas
+34,comprimido
+35,especiais de TB em unidades de referência
+37,"isossorbida, dinitrato 5 mg comprimido"
+38,medicamento disponível nas Unidades de Saúde
+39,sublingual ou propatilnitrato 10 mg comprimido
+0,lamivudina (3TC) 10 mg/mL solução oral medicamento disponível em SAE/IST/AIDS
+2,lamivudina (3TC) 150 mg comprimido medicamento disponível em SAE/IST/AIDS
+3,levodopa 100 mg + benserazida 25 mg cápsula
+4,medicamento disponível em unidades de referência
+5,de liberação prolongada (HBS)
+6,levodopa 100 mg + benserazida 25 mg
+7,medicamento disponível em unidades de referência
+8,comprimido
+9,levodopa 100 mg + benserazida 25 mg
+10,medicamento disponível em unidades de referência
+11,comprimido dispersível
+12,levodopa 200 mg + benserazida 50 mg
+13,medicamento disponível em unidades de referência
+14,comprimido
+15,levodopa 250 mg + carbidopa 25 mg
+16,medicamento disponível em unidades de referência
+17,comprimido
+19,medicamento disponível em unidades de referência - exclusivo
+20,levofloxacino 250 mg comprimido
+21,para tratamento de esquemas especiais de TB/MNT
+23,medicamento disponível em unidades de referência - exclusivo
+24,levofloxacino 500 mg comprimido
+25,para tratamento de esquemas especiais de TB/MNT
+27,"levonorgestrel 0,75 mg comprimido cartela medicamento disponível nas Unidades de Saúde"
+28,"levonorgestrel 0,15 mg + etinilestradiol 0,03"
+29,medicamento disponível nas Unidades de Saúde
+30,mg comprimido cartela
+32,levotiroxina sódica 25 mcg comprimido medicamento disponível nas Unidades de Saúde
+0,loperamida 2 mg comprimido medicamento disponível em SAE/IST/AIDS
+2,lopinavir (LPV) 80 mg/mL + ritonavir (r) 20
+3,medicamento disponível em SAE/IST/AIDS
+4,mg/mL solução oral
+5,lopinavir (LPV) 100 mg + ritonavir (r) 25 mg
+6,medicamento disponível em SAE/IST/AIDS
+7,comprimido
+9,loratadina 1 mg/mL solução oral medicamento disponível nas Unidades de Saúde
+11,loratadina 10 mg comprimido medicamento disponível nas Unidades de Saúde
+13,losartana potássica 50 mg comprimido medicamento disponível nas Unidades de Saúde
+15,maraviroque (MVQ) 150 mg comprimido medicamento disponível em SAE/IST/AIDS
+16,Maytenus ilicifolia Mart. ex. medicamento disponível em unidades de referência
+17,Reissek.(espinheira santa) taninos totais 13 exclusivamente para pacientes em tratamento nas Unidades de
+18,mg a 20 mg comprimido Saúde da SMS
+20,mebendazol 20 mg/mL suspensão oral medicamento disponível nas Unidades de Saúde
+22,"medroxiprogesterona, acetato 10 mg"
+23,medicamento disponível nas Unidades de Saúde
+24,comprimido
+25,"medroxiprogesterona, acetato 150 mg/mL"
+26,medicamento disponível nas Unidades de Saúde
+27,suspensão injetável
+29,"metformina, cloridrato 500 mg comprimido medicamento disponível nas Unidades de Saúde"
+0,prescrição do medicamento deve seguir normas específicas
+2,disponíveis em protocolo.
+5,"metoclopramida, cloridrato 10 mg comprimido medicamento disponível nas Unidades de Saúde"
+6,metronidazol 100 mg/g (10%) creme ou gel
+7,medicamento disponível nas Unidades de Saúde
+8,vaginal
+10,metronidazol 250 mg comprimido medicamento disponível nas Unidades de Saúde
+12,"miconazol, nitrato 20 mg/g (2%) creme vaginal medicamento disponível nas Unidades de Saúde"
+14,"morfina, sulfato 30 mg comprimido de medicamento disponível exclusivamente para pacientes em"
+16,liberação modificada tratamento em Hospital Dia
+18,medicamento disponível em unidades de referência - exclusivo
+19,moxifloxacino 400 mg comprimido
+20,para tratamento de esquemas especiais de TB/MNT
+22,medicamento disponível exclusivamente para pacientes em
+23,mupirocaína 20 mg/g pomada bisnaga
+24,tratamento em Hospital Dia
+26,nevirapina (NVP) 10 mg/mL suspensão oral medicamento disponível em SAE/IST/AIDS
+28,nevirapina (NVP) 200 mg comprimido medicamento disponível em SAE/IST/AIDS
+29,medicamento para pacientes cadastrados no
+30,nicotina 2 mg goma de mascar Programa de Tabagismo da SMS disponível em unidades de
+31,referência
+33,medicamento para pacientes cadastrados no Programa de
+34,nicotina 7 mg adesivo transdérmico
+35,Tabagismo da SMS disponível em unidades de referência
+0,prolongada
+2,nistatina 100.000 UI/mL suspensão oral
+4,nitrofurantoína 100 mg comprimido
+6,"noretisterona 0,35 mg comprimido cartela"
+8,"noretisterona, enantato 50 mg/mL + estradiol,"
+10,valerato 5 mg/mL solução injetável
+12,norfloxacino 400 mg comprimido
+14,"nortriptilina, cloridrato 25 mg comprimido"
+16,óleo mineral frasco
+18,omeprazol 20 mg cápsula
+20,oseltamivir 30 mg cápsula
+22,oseltamivir 45 mg cápsula
+24,oseltamivir 75 mg cápsula
+25,óxido de zinco 150 a 250 mg/g + retinol (vit. A)
+27,+ colecalciferol pomada
+29,paracetamol 200 mg/mL solução oral gotas
+0,permetrina 10 mg/mL (1%) loção capilar
+2,permetrina 50 mg/mL (5%) creme ou loção
+4,"pilocarpina, cloridrato 20 mg/mL (2%) solução"
+6,oftálmica
+9,pirazinamida 500 mg comprimido
+12,pirazinamida 150 mg comprimido dispersível
+15,"piridoxina, cloridrato (vit. B6) 40 mg"
+17,comprimido
+20,pirimetamina 25 mg comprimido
+22,"polivitamínico (vitaminas A, C, D, E e do"
+24,complexo B) comprimido
+26,pravastatina 20 mg comprimido
+28,praziquantel 600 mg comprimido
+30,"prednisolona, fosfato sódico 4,02 mg/mL"
+31,(equivalente a 3 mg/mL de prednisolona)
+32,solução oral
+0,"prometazina, cloridrato 25 mg comprimido medicamento disponível nas Unidades de Saúde"
+2,propiltiuracila 100 mg comprimido medicamento disponível nas Unidades de Saúde
+4,"propranolol, cloridrato 40 mg comprimido medicamento disponível nas Unidades de Saúde"
+6,raltegravir (RAL) 100 mg comprimido medicamento disponível em SAE/IST/AIDS
+8,raltegravir (RAL) 100 mg granulado sachê medicamento disponível em SAE/IST/AIDS
+10,raltegravir (RAL) 400 mg comprimido medicamento disponível em SAE/IST/AIDS
+12,"retinol, acetato (vit. A) 50.000 UI/mL +"
+13,colecalciferol (vit. D) 10.000 UI/mL solução oral medicamento disponível nas Unidades de Saúde
+14,gotas
+16,medicamento disponível em unidades de referência para
+17,ribavirina 250 mg comprimido
+18,tratamento de hepatites virais.
+19,medicamento exclusivo para o tratamento de TB para pacientes
+20,rifabutina 150 mg cápsula em uso de inibidores de protease; exclusivo em unidades de
+21,referencia
+23,medicamento exclusivo para tratamento de TB em crianças;
+24,cobertura de foco de meningites bacterianas e doenca
+25,rifampicina 20 mg/mL (2%) suspensão oral miningocóccica; tratamento da Infeccção Latente da
+26,Tuberculose (ILTB); tratamento de esquemas especiais de TB
+27,em unidades de referência
+1,rifampicina 75 mg + isoniazida 50 mg + medicamento exclusivo para tratamento de tuberculose em
+3,pirazinamida 150 mg comprimido dispersível crianças em unidades de referência
+5,rifampicina 75 mg + isoniazida 50 mg medicamento exclusivo para tratamento de tuberculose em
+7,comprimido dispersível crianças em unidades de referência
+9,medicamento para tratamento da Infecção Latente de
+10,rifapentina 150 mg comprimido
+11,Tuberculose (ILTB) em unidades de referência
+13,risperidona 2 mg comprimido medicamento disponível nas Unidades de Saúde
+15,ritonavir 100 mg/mL pó para suspensão oral medicamento disponível em SAE/IST/AIDS
+17,ritonavir (RTV) 100 mg comprimido medicamento disponível em SAE/IST/AIDS
+19,sais para reidratação oral pó para solução oral medicamento disponível nas Unidades de Saúde
+20,"salbutamol, sulfato 100 mcg/dose aerossol oral"
+21,medicamento disponível nas Unidades de Saúde
+22,frasco
+24,sertralina 50 mg comprimido medicamento disponível nas Unidades de Saúde
+26,a prescrição do medicamento deve seguir normas específicas
+27,sinvastatina 10 mg comprimido disponíveis em (link para o formulário a ser preenchido pelo
+29,médico) - medicamento disponível nas Unidades de Saúde
+1,sofosbuvir 400 mg + velpatasvir 100 mg
+3,comprimido revestido
+5,sulfadiazina 500 mg comprimido
+6,sulfametoxazol 40 mg/mL + trimetoprima 8
+8,mg/mL suspensão oral
+9,sulfametoxazol 800 mg + trimetoprima 160 mg
+11,comprimido
+12,sulfato ferroso heptahidratado 125 mg/mL
+13,(equivalente a 25 mg de Fe++) solução oral
+14,gotas
+16,sulfato ferroso heptahidratado equivalente a 40
+18,mg de Fe++ comprimido
+20,talidomida 100 mg comprimido
+24,tenofovir 300 mg comprimido
+28,tenofovir alafenamida 25 mg comprimido
+31,tenofovir (TDF) 300 mg + lamivudina (3TC) 300
+33,mg + efavirenz (EFZ) 600 mg comprimido
+1,terizidona 250 mg comprimido
+5,"testosterona, undecanoato 250 mg/mL solução"
+7,injetável
+10,tiamazol 5 mg comprimido
+12,"tiamina, cloridrato (vit. B1) 300 mg comprimido"
+14,"timolol, maleato 2,5 mg/mL (0,25%) solução"
+16,oftálmica
+18,"timolol, maleato 5 mg/mL (0,5%) solução"
+20,oftálmica
+22,tinidazol 500 mg comprimido
+24,"tobramicina 3 mg/mL (0,3%) solução oftálmica"
+27,tramadol 50 mg comprimido
+30,ureia 100 mg/g (10%) creme
+33,valaciclovir 500 mg comprimido
+36,Valeriana officinalis L. (valeriana)
+38,"sesquiterpenos 0,8 mg a 3,5 mg comprimido"
+1,varfarina sódica 5 mg comprimido medicamento disponível nas Unidades de Saúde
+3,zidovudina (AZT) 10 mg/mL solução injetável medicamento disponível em SAE/IST/AIDS
+5,zidovudina (AZT) 10 mg/mL solução oral medicamento disponível em SAE/IST/AIDS
+7,zidovudina (AZT) 100 mg cápsula medicamento disponível em SAE/IST/AIDS
+8,zidovudina (AZT) 300 mg + lamivudina (3TC)
+9,medicamento disponível em SAE/IST/AIDS
+10,150 mg comprimido
