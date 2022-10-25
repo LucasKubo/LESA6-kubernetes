@@ -16,13 +16,12 @@ public class FirebaseMessagingService {
     }
 
     //TODO usar Note como parametro
-    public void sendNotification(String title, String body, String token, String image) throws FirebaseMessagingException {
+    public void sendNotification(String title, String body, String token) throws FirebaseMessagingException {
 
         Notification notification = Notification
                 .builder()
                 .setTitle(title)
                 .setBody(body)
-                .setImage(image)
                 .build();
 
         Message message = Message
