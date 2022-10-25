@@ -73,11 +73,12 @@
                                     <input class="form-control formulario-input" placeholder="Nome do Medicamento" type="text" id="RM_Nome" name="RM_Nome" required="required">
                                     <a id="buscarRemedio" onclick="montarParametro()">Buscar</a>
                                 </div>
-                                <div class="form-group" th:if="${result != null}">
-                                    <div class="" th:each="result : ${result}">
+                                <div class="form-group" th:if="${result != null}" style="max-height:150px; overflow-y:auto;">
+                                    <div class="buscar-sus" th:each="result : ${result}">
                                         <input name="botaoTeste" type="radio" th:value="${result.nome}" th:attr="onclick=|selecionarRemedio(this.value, '${result.disponivelSus}')|">
                                         <label class="input-label" th:text="${result.nome}"></label>
-                                        <label class="input-label" th:text="${result.disponivelSus}"></label>
+                                        <label class="input-label" th:if="${!result.disponivelSus}">- Indisponível no Sus</label>
+                                        <label class="input-label" th:if="${result.disponivelSus}">- Disponível no Sus</label>
                                     </div>
                                 </div>
                                 <div class="form-group">
