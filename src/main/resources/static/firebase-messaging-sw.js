@@ -32,8 +32,8 @@ messaging.onBackgroundMessage(function(payload) {
 
     const notificationOptions = {
         body: payload.notification.body,
-        icon: 'https://i.imgur.com/5aNuYP7.png',
-        badge: 'https://i.imgur.com/SzdcLud.png'
+        icon: 'https://i.imgur.com/dU2UDc4.png',
+        badge: 'https://i.imgur.com/5aNuYP7.png'
     };
 
     self.registration.showNotification(notificationTitle,
