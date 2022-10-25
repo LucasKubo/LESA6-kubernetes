@@ -3,6 +3,7 @@ package MeuRemedio.app.controllers;
 import MeuRemedio.app.enums.MensagemEmail;
 import MeuRemedio.app.models.remedios.Remedio;
 import MeuRemedio.app.models.usuarios.Usuario;
+import MeuRemedio.app.repository.UsuarioNotificationTokenRepository;
 import MeuRemedio.app.service.EmailService;
 import MeuRemedio.app.service.FirebaseMessagingService;
 import com.google.firebase.messaging.FirebaseMessagingException;
@@ -23,6 +24,9 @@ public class EnvioEmail {
     EmailService emailService;
     @Autowired
     JavaMailSender mailSender;
+
+    @Autowired
+    UsuarioNotificationTokenRepository usuarioNotificationTokenRepository;
 
     @Autowired
     private FirebaseMessagingService firebaseService;
@@ -69,7 +73,14 @@ public class EnvioEmail {
                 "! Agora são " + horaFormatada + " e já está na hora de tomar os seus remédios: \n" + remediosString;
 
         emailService.sendEmail(usuario, assunto, msg);
-        firebaseService.sendNotification(assunto, msg, "Receiver device token");
+        usuarioNotificationTokenRepository.findAllByIdUsuario(usuario.getId()).forEach(usuarioNotificationToken -> {
+            try {
+                firebaseService.sendNotification(assunto, msg, usuarioNotificationToken.getId().getToken());
+            } catch (FirebaseMessagingException e) {
+                throw new RuntimeException(e);
+            }
+        });
+
     }
 
     public void emailValidacaoCadastro(Usuario user, String siteURL)
