@@ -75,7 +75,7 @@ public class EnvioEmail {
         emailService.sendEmail(usuario, assunto, msg);
         usuarioNotificationTokenRepository.findAllByIdUsuario(usuario.getId()).forEach(usuarioNotificationToken -> {
             try {
-                firebaseService.sendNotification(assunto, msg, usuarioNotificationToken.getId().getToken());
+                firebaseService.sendNotification(assunto, msg, usuarioNotificationToken.getId().getToken(), "/static/images/logo-512-512.png");
             } catch (FirebaseMessagingException e) {
                 throw new RuntimeException(e);
             }
