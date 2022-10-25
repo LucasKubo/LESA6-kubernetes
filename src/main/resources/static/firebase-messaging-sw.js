@@ -32,7 +32,7 @@ messaging.onBackgroundMessage(function(payload) {
 
     const notificationOptions = {
         body: payload.notification.body,
-        icon: '/images/icon.svg'
+        icon: '/static/images/logo-192-192.png'
     };
 
     self.registration.showNotification(notificationTitle,
