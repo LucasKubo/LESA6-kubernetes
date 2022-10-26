@@ -84,6 +84,13 @@ body {
     margin-left: 2rem;
 }
 
+.card-img-top-gasto {
+    width: 60%;
+    border-top-left-radius: calc(0.35rem - 1px);
+    border-top-right-radius: calc(0.25rem - 1px);
+    margin-left: -1.5rem;
+}
+
 .rodapeIndex {
     padding: 2rem 1rem;
     margin-bottom: 2rem;
