@@ -44,9 +44,6 @@ public class IndexController {
 
     @Autowired
     FinanceiroRepository financeiroRepository;
-    
-    @Autowired
-    RemedioRepository remedioRepository;
 
     final String ZONEID = "America/Sao_Paulo";
 
@@ -85,7 +82,7 @@ public class IndexController {
             gastos.set(mes, gastos.get(mes) + financeiro.get(i).getValor());
         }
         model.addAttribute("gastos", gastos);
-        System.out.println(gastos);
+
         return "Home";
         }
 
@@ -96,6 +93,5 @@ public class IndexController {
         }
         return "redirect:/home";
     }
-
     LocalDateTime instanteAgora = LocalDateTime.now(ZoneId.of(ZONEID));
 }

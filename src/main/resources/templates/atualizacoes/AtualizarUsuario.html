@@ -7,13 +7,12 @@
 
         <link rel="icon" href="/images/icon.svg"/>
 
-        <title>Meu Remédio</title>
-
+        <title>Atualizar remedio</title>
 
         <!-- Bootstrap CSS CDN -->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
         <!-- Our Custom CSS -->
-        <link rel="stylesheet" href="/style/cadastroStyle.css">
+
         <link rel="stylesheet" href="/style/homeStyle.css">
         <link rel="stylesheet" href="/style/cadastroRemedioStyle.css">
         <link rel="stylesheet" href="/style/olho.css">
@@ -22,7 +21,6 @@
         <!-- Font Awesome JS -->
         <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
         <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
-
 
     </head>
     <body>
@@ -88,7 +86,7 @@
 
                         <div class="form-group">
                             <label>E-mail</label>
-                            <input type=""
+                            <input type="email"
                                    class="form-control formulario-input"
                                    th:value="${usuario.email}"
                                    name="US_Email"
@@ -102,14 +100,13 @@
 
                         <div class="form-group">
                             <label>Sexo</label>
-                            <select id="US_Sexo" name="US_Sexo" class="form-control formulario-input gender-select">
+                            <select id="US_Sexo" name="US_Sexo"  class="form-control formulario-input gender-select US_Sexo">
                                 <option th:text="#{cadususelect.female}" value="Feminino"></option>
                                 <option th:text="#{cadususelect.male}" value="Masculino"></option>
                                 <option th:text="#{cadususelect.other}" value="Outro"></option>
                                 <option th:text="#{cadususelect.null}" value="Não informar"></option>
                             </select>
                         </div>
-
 
                         <div class="form-group">
                             <label>Data de Nascimento</label>
@@ -153,7 +150,7 @@
                         </div>
 
                         <div id="btnS">
-                           <span><img alt="Visualizar senha" id="spnMostrarSenha" style="margin-right: 4px" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABDUlEQVQ4jd2SvW3DMBBGbwQVKlyo4BGC4FKFS4+TATKCNxAggkeoSpHSRQbwAB7AA7hQoUKFLH6E2qQQHfgHdpo0yQHX8T3exyPR/ytlQ8kOhgV7FvSx9+xglA3lM3DBgh0LPn/onbJhcQ0bv2SHlgVgQa/suFHVkCg7bm5gzB2OyvjlDFdDcoa19etZMN8Qp7oUDPEM2KFV1ZAQO2zPMBERO7Ra4JQNpRa4K4FDS0R0IdneCbQLb4/zh/c7QdH4NL40tPXrovFpjHQr6PJ6yr5hQV80PiUiIm1OKxZ0LICS8TWvpyyOf2DBQQtcXk8Zi3+JcKfNafVsjZ0WfGgJlZZQxZjdwzX+ykf6u/UF0Fwo5Apfcq8AAAAASUVORK5CYII="/> Visualizar Senha</span>
+                           <span><img alt="Visualizar senha" id="spnMostrarSenha" style="margin-right: 4px" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABDUlEQVQ4jd2SvW3DMBBGbwQVKlyo4BGC4FKFS4+TATKCNxAggkeoSpHSRQbwAB7AA7hQoUKFLH6E2qQQHfgHdpo0yQHX8T3exyPR/ytlQ8kOhgV7FvSx9+xglA3lM3DBgh0LPn/onbJhcQ0bv2SHlgVgQa/suFHVkCg7bm5gzB2OyvjlDFdDcoa19etZMN8Qp7oUDPEM2KFV1ZAQO2zPMBERO7Ra4JQNpRa4K4FDS0R0IdneCbQLb4/zh/c7QdH4NL40tPXrovFpjHQr6PJ6yr5hQV80PiUiIm1OKxZ0LICS8TWvpyyOf2DBQQtcXk8Zi3+JcKfNafVsjZ0WfGgJlZZQxZjdwzX+ykf6u/UF0Fwo5Apfcq8AAAAASUVORK5CYII="/> Visualizar Senhas</span>
                             <small> <strong>Campos com * são obrigatórios</strong></small>
                         </div>
 

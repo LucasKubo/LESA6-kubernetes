@@ -223,7 +223,7 @@ a.article:hover {
     margin-bottom: 2rem;
     background-color: #6bffe9;
     border-radius: 0.3rem;
-    margin-top: 70rem;
+    margin-top: 46rem;
 }
 
 /* Olho da senha */
@@ -267,6 +267,7 @@ a.button.new:hover{
     display: block;
     width: 100%;
     overflow-x: auto;
+    margin-bottom: 6rem;
 }
 
 /*.gastos {
@@ -280,11 +281,14 @@ a.button.new:hover{
     border-width: 0 0.1em 0.1em 0;
     transform: rotate(45deg) translateY(0.5rem);
 }
+#dashBoards{
+    width: 70%;
+    margin: 0 auto;
+}
 
 .btn.dropdown-toggle:focus {
     outline: none !important;
 }
-
 
 /* Calendario */
 #calendar {

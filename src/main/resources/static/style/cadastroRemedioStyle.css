@@ -54,6 +54,7 @@ body{
     border-width: 0;
 }
 
+
 .container-table{
     width: min(90vw, 800px);
     margin: auto;
@@ -275,6 +276,13 @@ td.expense{
     border: 3px solid #E6E6E6;
     border-radius: 15px;
 }
+
+.US_Sexo{
+    padding: 1% ;
+    height: 10%
+
+}
+
 .margin-bot {
     margin-bottom: 10%;
 }
