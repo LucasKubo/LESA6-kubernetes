@@ -223,7 +223,7 @@ a.article:hover {
     margin-bottom: 2rem;
     background-color: #6bffe9;
     border-radius: 0.3rem;
-    margin-top: 46rem;
+    margin-top: 48rem;
 }
 
 /* Olho da senha */
@@ -259,11 +259,12 @@ a.button.new:hover{
     color: var(--green);
 }
 #novoGasto{
-    color: var(--green);
+    color: var(--light-green);
     text-decoration: none;
+    margin-bottom: 5rem;
 }
 #novoGasto:hover{
-    color: var(--light-green);
+    color: var(--green);
 }
 
 #remedies{
@@ -290,7 +291,7 @@ a.button.new:hover{
     transform: rotate(45deg) translateY(0.5rem);
 }
 #dashBoards{
-    width: 70%;
+    width: 85%;
     margin: 0 auto;
 }
 

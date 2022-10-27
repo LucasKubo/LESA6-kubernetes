@@ -1,24 +1,26 @@
 <!DOCTYPE html>
 <html lang="pt-br" xmlns:th="http://www.w3.org/1999/xhtml">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="#38CFB8">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="#38CFB8">
+
+    <title>Meu Remédio</title>
 
     <link rel="icon" href="/static/images/icon.svg"/>
-
-        <title>Meu Remédio</title>
-        <link rel="icon" href="/images/icon.svg"/>
-        <link rel="manifest" href="/config/manifest.json">
-        <link rel="apple-touch-icon" href="/images/icon.svg">
-        <link rel="canonical" href="https://meuremedioapp.herokuapp.com">
-        <!-- Bootstrap CSS CDN -->
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"  integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
-        <!-- Our Custom CSS -->
-        <link rel="stylesheet" href="/style/homeStyle.css">
-        <!-- Scrollbar Custom CSS -->
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
+    <link rel="icon" href="/images/icon.svg"/>
+    <link rel="manifest" href="/config/manifest.json">
+    <link rel="apple-touch-icon" href="/images/icon.svg">
+    <link rel="canonical" href="https://meuremedioapp.herokuapp.com">
+    <!-- Bootstrap CSS CDN -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"
+          integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+    <!-- Our Custom CSS -->
+    <link rel="stylesheet" href="/style/homeStyle.css">
+    <!-- Scrollbar Custom CSS -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
 
     <!-- Font Awesome JS -->
     <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js"
@@ -27,7 +29,6 @@
     <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js"
             integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY"
             crossorigin="anonymous"></script>
-
 
     <!-- Imports do calendario -->
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap" rel="stylesheet">
@@ -41,7 +42,6 @@
     <!-- Style -->
     <link rel="stylesheet" href="css/style.css">
 
-
 </head>
 <body>
 <div class="wrapper conta-lg">
@@ -52,7 +52,6 @@
     <div id="content">
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
 
-
             <div class="container-fluid">
 
                 <button type="button" id="sidebarCollapse" class="btn btn-info">
@@ -62,7 +61,6 @@
                 <a href="/home" class="navbar-brand text-center col-09">
                     <img alt="Brand" src="/images/icon.svg" class="img-responsive text-center">
                 </a>
-
             </div>
         </nav>
 
@@ -71,7 +69,6 @@
                 <div class="container">
                     <h1 class="jumbotron-heading footer" th:text="#{indexwelcome.text}"></h1>
                     <p class="lead text-muted footer" th:text="#{indextext.text}"></p>
-
                 </div>
             </selection>
         </div>
@@ -80,7 +77,6 @@
         <!-- DIV 1 -->
         <div class="container-fluid">
             <div class="row">
-
                 <div class="content col-12 col-sm-12 col-md-7 col-lg-7 col-lx-7">
                     <h2 class="text-center">Calendário</h2>
                     <div id='calendar'></div>
@@ -114,7 +110,6 @@
                     </tr>
                 </div>
 
-
                 <!-- DIV 2 -->
                 <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-lx-4 text-center" id="data-table">
                     <h2 class="text-center">Agendamentos do dia</h2>
@@ -142,10 +137,8 @@
                         </table>
                     </section>
                 </div>
-
             </div>
         </div>
-
         <div class="line">
             <!-- DIV 3-->
 
@@ -198,7 +191,6 @@
                                     </svg>
                                 </a></td>
                             </tr>
-
                         </div>
                         </tbody>
                     </table>
@@ -222,7 +214,7 @@
                 <h5>
                     Meu Remédio - CNPJ: 00.000.000/0000-00 - SAC: (11) 0000-0000
                 </h5>
-                <h5>
+                <h5 style="font-size: 16px">
                     8balls.integratedproject@gmail.com
                 </h5>
                 <h5>
@@ -230,18 +222,12 @@
                 </h5>
             </div>
         </div>
-    </main>
     </div>
     <div class="overlay"></div>
 </div>
-        </main>
+<div class="overlay"></div>
 
-            </div>
-
-
-            <div class="overlay"></div>
-        </div>
-        <script>
+<script>
             if ('serviceWorker' in navigator) {
                 window.addEventListener('load', () => {
                     navigator.serviceWorker.register('sw.js', { scope: '/' })
@@ -253,7 +239,9 @@
                         });
                 })
             }
-        </script>
+
+
+</script>
 
 <!-- jQuery CDN - Slim version (=without AJAX) -->
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
@@ -290,6 +278,8 @@
                     $('a[aria-expanded=true]').attr('aria-expanded', 'false');
                 });
             });
+
+
 
 </script>
 
@@ -371,6 +361,8 @@
             });
 
 
+
+
 </script>
 <script src='/script/calendario4.js'></script>
 <script type="module" src="/script/requestPermisionToPushNotificaion.js"></script>
@@ -430,7 +422,6 @@
                     }]
             });
             });
-
 </script>
 </body>
 </html>
