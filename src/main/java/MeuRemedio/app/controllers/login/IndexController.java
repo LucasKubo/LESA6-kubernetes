@@ -19,8 +19,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.Objects;
@@ -69,16 +71,21 @@ public class IndexController {
         model.addAttribute("horarios", horarios);
 
         List <Financeiro> financeiro = financeiroRepository.findAllByUsuarioID(userSessionService.returnIdUsuarioLogado());
-        model.addAttribute("financeiro", financeiro);
-        List <Double> valores = financeiro.stream().map(Financeiro::getValor).collect(Collectors.toList());
-        model.addAttribute("valor", valores);
-        
-        Usuario usuarioID = new Usuario();
-        usuarioID.setId(userSessionService.returnIdUsuarioLogado());
-        List <Remedio> remedios = remedioRepository.findAllByUsuario(usuarioID);
-         List<String> nomesRemedios = remedios.stream().map(Remedio::getRM_Nome).collect(Collectors.toList());
-        model.addAttribute("remedio", nomesRemedios);
-        
+
+        List<Double> gastos = new ArrayList<>();
+
+        for (int i = 0; i < 12; i++){
+            gastos.add(i, 0.0);
+        }
+
+        for (int i = 0; i < financeiro.size(); i++){
+            var dataString = financeiro.get(i).getData();
+            LocalDate data = LocalDate.parse(dataString);
+            var mes = data.getMonth().ordinal();
+            gastos.set(mes, gastos.get(mes) + financeiro.get(i).getValor());
+        }
+        model.addAttribute("gastos", gastos);
+        System.out.println(gastos);
         return "Home";
         }
 

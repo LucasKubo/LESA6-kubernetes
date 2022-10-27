@@ -383,8 +383,12 @@
             function montarParametro(){
                 var texto = document.getElementById("RM_Nome").value;
                 console.log(texto)
-                var url = 'buscarRemedio?RM_Nome=' + texto;
-                document.getElementById("buscarRemedio").setAttribute("href",url);
+                if (texto.length < 4){
+                    document.getElementById("buscarRemedio").addRule("href",url);
+                } else {
+                    var url = 'buscarRemedio?RM_Nome=' + texto.toLowerCase();
+                    document.getElementById("buscarRemedio").setAttribute("href",url);
+                }
             }
         </script>
         <script type="text/javascript">

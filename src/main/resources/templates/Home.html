@@ -333,13 +333,13 @@
             type: 'column'
             },
                     title: {
-                    text: 'Organization'
+                    text: 'Gastos'
                     },
                     subtitle: {
-                    text: 'Details'
+                    text: 'Mensais'
                     },
                     xAxis: {
-                    categories: [[${remedio}]],
+                    categories: ["jan", "fev", "mar", "abr", "mai", "jun", "jul", "ago", "set", "out", "nov", "dez"],
                             crosshair: true
                     },
                     yAxis: {
@@ -369,8 +369,7 @@
                             }
                     },
                     series: [{
-                            name: 'Visualizar',
-                    data: [[${valor}]]
+                    data: [[${gastos}]]
                     }]
             });
             });
