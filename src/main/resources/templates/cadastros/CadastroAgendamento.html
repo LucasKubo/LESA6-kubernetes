@@ -147,7 +147,7 @@
                                     <input id="intervalo-check" 
                                            class="form-check-input checkbox-margin-top"
                                            type="checkbox" 
-                                           onclick="desabilitar('sim')" 
+                                           onclick="desabilitar()" 
                                            data-toggle="collapse" 
                                            data-target="#intervalo"
                                            min="0"
@@ -235,14 +235,15 @@
 
 
         <script type="text/javascript">
-        function desabilitar(valor) {
-            var status = document.getElementById('intervaloDias').disabled;
+        function desabilitar() {
+            var valor = document.getElementById('intervalo-check')
+            var status = document.getElementById('intervaloDias').enabled;
 
-            if (valor == 'sim' && status) {
-                document.getElementById('intervaloDias').disabled = false;
-            } else {
+            if (valor.checked && status) {
                 document.getElementById('intervaloDias').disabled = true;
                 document.getElementById('intervaloDias').value = null;
+            } else {
+                document.getElementById('intervaloDias').disabled = false;
             }
         }
     </script>

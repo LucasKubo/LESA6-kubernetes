@@ -107,12 +107,6 @@ public class RemedioController {
 
                 return "redirect:/remedios_cadastro?remedioExistente";
             }
-            if (RM_RetiradoSus.equals("Não")){
-                Dash dash = new Dash(usuarioID, GA_Valor, GA_Data);
-                dashBoardsRepository.save(dash);
-
-                return REDIRECT;
-            }
         }
 
         Remedio rem = remedioRepository.save(remedio);
