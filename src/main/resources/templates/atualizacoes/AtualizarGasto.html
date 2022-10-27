@@ -61,7 +61,7 @@
                             <label class="input-label" for="AG_Remedios">Escolha o Remédio</label>
                             <select id="AG_Remedios"
                                     class="form-control dosage-select d-flex justify-content-center agenda-select"
-                                    name="AG_Remedios" multiple required="required">
+                                    name="FK_RM_ID" multiple required="required">
                                 <option th:each  ="remedio : ${remedio}"
                                         th:value =" ${remedio.RM_ID}"
                                         th:text  =" ${remedio.RM_Nome}"
