@@ -258,6 +258,14 @@ a.button.new{
 a.button.new:hover{
     color: var(--green);
 }
+#novoGasto{
+    color: var(--green);
+    text-decoration: none;
+}
+#novoGasto:hover{
+    color: var(--light-green);
+}
+
 #remedies{
     display: block;
     width: 100%;
