@@ -256,7 +256,7 @@
                                             <input id="intervalo-check"
                                                    class="form-check-input checkbox-margin-top"
                                                    type="checkbox"
-                                                   onclick="desabilitar('sim')"
+                                                   onclick="desabilitar()"
                                                    data-toggle="collapse"
                                                    data-target="#intervalo"
 
@@ -370,14 +370,15 @@
 
 
         <script type="text/javascript">
-            function desabilitar(valor) {
+            function desabilitar() {
+                var valor = document.getElementById('intervalo-check')
                 var status = document.getElementById('intervaloDias').enabled;
 
-                if (valor == 'sim' && status) {
-                    document.getElementById('intervaloDias').disabled = false;
-                } else {
+                if (valor.checked && status) {
                     document.getElementById('intervaloDias').disabled = true;
                     document.getElementById('intervaloDias').value = null;
+                } else {
+                    document.getElementById('intervaloDias').disabled = false;
                 }
             }
         </script>
@@ -399,11 +400,11 @@
                  document.getElementById("RM_Nome").setAttribute('value', valor);
                  if (disponivel == 'false') {
                     var botao = document.getElementById("RM_RetiradoSusNo");
-                    botao.checked = true;
+                    botao.click()
                  } else {
                     console.log(disponivel)
                     var botao = document.getElementById("RM_RetiradoSus");
-                    botao.checked = true;
+                    botao.click()
                  }
             }
         </script>
