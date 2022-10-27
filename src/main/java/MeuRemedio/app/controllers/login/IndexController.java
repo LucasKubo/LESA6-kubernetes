@@ -79,7 +79,12 @@ public class IndexController {
             var dataString = financeiro.get(i).getData();
             LocalDate data = LocalDate.parse(dataString);
             var mes = data.getMonth().ordinal();
-            gastos.set(mes, gastos.get(mes) + financeiro.get(i).getValor());
+            Double valorPorParcela = financeiro.get(i).getValor() / financeiro.get(i).getQtdParcela();
+            for (int j = 0; j < financeiro.get(i).getQtdParcela(); j++){
+                var mesParcela = mes + j;
+                if (mesParcela < 12)
+                    gastos.set(mesParcela, gastos.get(mesParcela) + valorPorParcela);
+            }
         }
         model.addAttribute("gastos", gastos);
 
