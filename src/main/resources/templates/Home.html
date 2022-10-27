@@ -1,23 +1,24 @@
 <!DOCTYPE html>
 <html lang="pt-br" xmlns:th="http://www.w3.org/1999/xhtml">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="#38CFB8">
 
     <link rel="icon" href="/static/images/icon.svg"/>
 
-    <title>Meu Remédio</title>
-
-    <!-- Bootstrap CSS CDN -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"
-          integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
-    <!-- Our Custom CSS -->
-    <link rel="stylesheet" href="/style/homeStyle.css">
-    <!-- Scrollbar Custom CSS -->
-    <link rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
+        <title>Meu Remédio</title>
+        <link rel="icon" href="/images/icon.svg"/>
+        <link rel="manifest" href="/config/manifest.json">
+        <link rel="apple-touch-icon" href="/images/icon.svg">
+        <link rel="canonical" href="https://meuremedioapp.herokuapp.com">
+        <!-- Bootstrap CSS CDN -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"  integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+        <!-- Our Custom CSS -->
+        <link rel="stylesheet" href="/style/homeStyle.css">
+        <!-- Scrollbar Custom CSS -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
 
     <!-- Font Awesome JS -->
     <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js"
@@ -228,9 +229,24 @@
         </div>
         </main>
 
-    </div>
-    <div class="overlay"></div>
-</div>
+            </div>
+
+
+            <div class="overlay"></div>
+        </div>
+        <script>
+            if ('serviceWorker' in navigator) {
+                window.addEventListener('load', () => {
+                    navigator.serviceWorker.register('sw.js', { scope: '/' })
+                        .then(function (reg) {
+                            console.log('service worker registered',reg);
+                        })
+                        .catch(function (err) {
+                            console.warn('service worker failed',err);
+                        });
+                })
+            }
+        </script>
 
 <!-- jQuery CDN - Slim version (=without AJAX) -->
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
