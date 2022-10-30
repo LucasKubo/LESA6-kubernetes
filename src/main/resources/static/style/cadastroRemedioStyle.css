@@ -276,18 +276,45 @@ td.expense{
     border: 3px solid #E6E6E6;
     border-radius: 15px;
 }
+/*Botão de buscar remédio*/
 .buscar-remedio{
-    color: var(--light-green);
-    font-size: 1.2rem;
-    text-decoration: underline;
+    border-top: 1px solid #fcfcfc;
+    background: #6bffe9;
+    background: -webkit-gradient(linear, left top, left bottom, from(#6bffe9), to(#6bffe9));
+    background: -webkit-linear-gradient(top, #6bffe9, #6bffe9);
+    background: -moz-linear-gradient(top, #6bffe9, #6bffe9);
+    background: -ms-linear-gradient(top, #6bffe9, #6bffe9);
+    background: -o-linear-gradient(top, #6bffe9, #6bffe9);
+    padding: 7px 14px;
+    -webkit-border-radius: 14px;
+    -moz-border-radius: 14px;
+    border-radius: 14px;
+    -webkit-box-shadow: rgba(0,0,0,1) 0 1px 0;
+    -moz-box-shadow: rgba(0,0,0,1) 0 1px 0;
+    box-shadow: rgba(0,0,0,1) 0 1px 0;
+    text-shadow: rgba(0,0,0,.4) 0 1px 0;
+    color: #ffffff;
+    font-size: 14px;
+    font-family: Georgia, serif;
+    text-decoration: none;
+    vertical-align: middle;
 }
 .buscar-remedio:hover{
-    color: var(--green);
-    cursor: pointer;
+    border-top-color: #4ff4db;
+    background: #4ff4db;
+    color: #ffffff;
 }
 .buscar-remedio:active{
-    color: var(--gray);
+    border-top-color: #38cfb8;
+    background: #38cfb8;
 }
+
+
+.form-agendamento {
+    margin-bottom: 4.5rem;
+}
+
+
 .US_Sexo{
     padding: 1% ;
     height: 10%
