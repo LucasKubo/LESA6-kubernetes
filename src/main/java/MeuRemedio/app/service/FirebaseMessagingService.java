@@ -19,7 +19,6 @@ public class FirebaseMessagingService {
 
     //TODO usar Note como parametro
     public void sendNotification(String title, String body, String token) throws FirebaseMessagingException {
-
         Notification notification = Notification
                 .builder()
                 .setTitle(title)
@@ -30,8 +29,15 @@ public class FirebaseMessagingService {
                 .builder()
                 .setToken(token)
                 .setNotification(notification)
-                .putData("icon", "https://i.imgur.com/dU2UDc4.png")
-                .putData("badge", "https://i.imgur.com/czN0rck.png")
+//                .putData("icon", "https://i.imgur.com/dU2UDc4.png")
+//                .putData("badge", "https://i.imgur.com/czN0rck.png")
+                .setAndroidConfig(AndroidConfig.builder()
+                        .setNotification(AndroidNotification.builder()
+                                .setTitle(title)
+                                .setBody(body)
+                                .setIcon("https://i.imgur.com/dU2UDc4.png")
+                                .build())
+                        .build())
                 .build();
         firebaseMessaging.send(message);
     }
