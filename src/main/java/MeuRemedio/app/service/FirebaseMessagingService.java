@@ -25,11 +25,11 @@ public class FirebaseMessagingService {
         Message message = Message
                 .builder()
                 .setToken(token)
-                .setAndroidConfig(AndroidConfig.builder().setNotification(notification).build())
-//                .putData("title", title)
-//                .putData("body", body)
-//                .putData("icon", "https://i.imgur.com/dU2UDc4.png")
-//                .putData("badge", "https://i.imgur.com/czN0rck.png")
+//                .setNotification(notification)
+                .putData("title", title)
+                .putData("body", body)
+                .putData("icon", "https://i.imgur.com/dU2UDc4.png")
+                .putData("badge", "https://i.imgur.com/czN0rck.png")
                 .build();
         firebaseMessaging.send(message);
     }
