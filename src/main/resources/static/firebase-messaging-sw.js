@@ -27,13 +27,13 @@ const messaging = firebase.messaging();
 // https://firebase.google.com/docs/cloud-messaging/concept-options
 messaging.onBackgroundMessage(function(payload) {
     console.log('[firebase-messaging-sw.js] Received background message ', payload);
-    // Customize notification here
-    const notificationTitle = payload.notification.title;
+    //Customize notification here
+    const notificationTitle = payload.data.title;
 
     const notificationOptions = {
-        body: payload.notification.body,
+        body: payload.data.body,
         icon: 'https://i.imgur.com/dU2UDc4.png',
-        badge: 'https://i.imgur.com/czN0rck.png'
+        badge: 'https://i.imgur.com/czN0rck.png',
     };
 
     self.registration.showNotification(notificationTitle,

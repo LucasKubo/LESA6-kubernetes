@@ -33,8 +33,8 @@ getToken(messaging, { vapidKey: 'BGQ114U_v6SYU0cFpx3bzDcNcDIy40jbd60PhYG6v5Qqj5n
 });
 
 onMessage(messaging, (payload) => {
-    console.log('Message received. ', payload);
-    // ...
+    console.log('Message received', payload);
+    alert(payload.data.body)
 });
 //TODO set this for Heroku path
 const URL_RECIEVE_TOKEN = "https://meuremedioapp.herokuapp.com/getNotificationToken"
