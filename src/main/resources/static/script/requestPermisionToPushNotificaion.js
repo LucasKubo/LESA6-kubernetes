@@ -33,12 +33,12 @@ getToken(messaging, { vapidKey: 'BGQ114U_v6SYU0cFpx3bzDcNcDIy40jbd60PhYG6v5Qqj5n
 });
 
 onMessage(messaging, (payload) => {
-    console.log('Message received - foreground. ', payload);
-    navigator.serviceWorker.getRegistration('/firebase-cloud-messaging-push-scope').then(registration => {
-        registration.showNotification(
-            payload.notification.title,
-            payload.notification
-        )
+    console.log('Message received', payload);
+    // navigator.serviceWorker.getRegistration('/firebase-cloud-messaging-push-scope').then(registration => {
+    //     registration.showNotification(
+    //         payload.notification.title,
+    //         payload.notification.body
+    //     )
 });
 //TODO set this for Heroku path
 const URL_RECIEVE_TOKEN = "https://meuremedioapp.herokuapp.com/getNotificationToken"
