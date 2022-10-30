@@ -7,7 +7,7 @@
 
   <link rel="icon" href="/images/icon.svg"/>
 
-  <title>Meu Remédio</title>
+  <title th:text="#{excludeuser.title}"></title>
   <link rel="icon" href="/images/icon.svg"/>
   <link rel="manifest" href="/config/manifest.json">
   <link rel="apple-touch-icon" href="/images/icon.svg">
@@ -45,7 +45,7 @@
 </nav>
 
 <div style="text-align: center" class="alert alert-info" role="alert"
-     th:if="${param.senhaInvalida}"> Senha inválida. Digite sua senha atual para deletar a conta. </div>
+     th:if="${param.senhaInvalida}" th:text="#{excludeuser.invalidpassword}"></div>
 
 <!-- Container - Form -->
 <section class="container d-flex justify-content-center col-12 col-sm-12 col-md-8 col-lg-5 col-lx-6">
@@ -55,11 +55,11 @@
         <img class="formulario-icon" src="/images/icon.svg" alt="Ícone Meu Remédio">
       </a>
       <form class="justify-content-center" method="post">
-        <h4>Digite sua senha</h4>
-        <input class="formulario-input" type="password" name="US_Senha" id="US_Senha" placeholder="Informe a senha da conta para excluí-la" required>
+        <h4 th:text="#{excludeuser.passwordinput}"></h4>
+        <input class="formulario-input" type="password" name="US_Senha" id="US_Senha" required>
         <div class="input-group actions">
-          <a id="cancelar2" href="/home" class="button cancel">Voltar</a>
-          <button name="action" id="excluir" class="button save" type="submit">Excluir</button>
+          <a id="cancelar2" href="/home" class="button cancel" th:text="#{excludeuser.discardform}"></a>
+          <button name="action" id="excluir" class="button save" type="submit" th:text="#{excludeuser.submitform}"></button>
         </div>
       </form>
     </div>

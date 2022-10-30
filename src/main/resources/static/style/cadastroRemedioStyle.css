@@ -276,7 +276,18 @@ td.expense{
     border: 3px solid #E6E6E6;
     border-radius: 15px;
 }
-
+.buscar-remedio{
+    color: var(--light-green);
+    font-size: 1.2rem;
+    text-decoration: underline;
+}
+.buscar-remedio:hover{
+    color: var(--green);
+    cursor: pointer;
+}
+.buscar-remedio:active{
+    color: var(--gray);
+}
 .US_Sexo{
     padding: 1% ;
     height: 10%

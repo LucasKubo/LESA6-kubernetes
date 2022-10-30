@@ -57,7 +57,7 @@
 
                 <!-- MENSAGENS DE ERROS -->
                 <div class="alert-danger alert-info text-center" role="alert" th:if="${param.remedioExistente}">
-                    <span> Já existe um remédio semelhante cadastrado</span>
+                    <span th:text="#{cadremmessage.duplicateremedy}"></span>
                 </div>
 
 
@@ -68,26 +68,26 @@
                             <a href="/static">
                                 <img class="formulario-icon" src="/images/icon.svg" alt="Ícone Meu Remédio">
                             </a>
-                            <h2 class="form-h2">Cadastre um medicamento</h2>
+                            <h2 class="form-h2" th:text="#{cadremform.title}"></h2>
                             <form method="post" name="formCadastroRM" action="/remedios_cadastro">
 
                                 <div class="form-group">
-                                    <label class="input-label" for="RM_Nome">Remédio*</label>
-                                    <input class="form-control formulario-input" placeholder="Nome do Medicamento" type="text" id="RM_Nome" name="RM_Nome" required="required">
-                                    <a id="buscarRemedio" onclick="montarParametro()">Buscar</a>
+                                    <label class="input-label" for="RM_Nome" th:text="#{cadremform.remedy}"></label>
+                                    <input class="form-control formulario-input"  type="text" id="RM_Nome" name="RM_Nome" required="required">
+                                    <a id="buscarRemedio" onclick="montarParametro()" class="buscar-remedio" th:text="#{cadremform.search}"></a>
                                 </div>
                                 <div class="form-group" th:if="${result != null}" style="max-height:150px; overflow-y:auto;">
                                     <div class="buscar-sus" th:each="result : ${result}">
                                         <input name="botaoTeste" type="radio" th:value="${result.nome}" th:attr="onclick=|selecionarRemedio(this.value, '${result.disponivelSus}')|">
                                         <label class="input-label" th:text="${result.nome}"></label>
-                                        <label class="input-label" th:if="${!result.disponivelSus}">- Indisponível no Sus</label>
-                                        <label class="input-label" th:if="${result.disponivelSus}">- Disponível no Sus</label>
+                                        <label class="input-label" th:if="${!result.disponivelSus}" th:text="#{cadremmessage.susunavailable}"></label>
+                                        <label class="input-label" th:if="${result.disponivelSus}" th:text="#{cadremmessage.susavailable}"></label>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="input-label" for="RM_Dosagem">Dosagem*</label>
-                                    <input placeholder="Quantidade"
-                                           class="form-control formulario-input"
+                                    <label class="input-label" for="RM_Dosagem" th:text="#{cadremform.dosage}"></label>
+                                    <input class="form-control formulario-input"
+                                           th:placeholder="#{cadremform.dosagesmall}"
                                            type="number"
                                            id="RM_Dosagem"
                                            name="RM_Dosagem"
@@ -98,14 +98,14 @@
                                 <small><span id="mensagemDosagem" class="help"></span></small>
 
                                 <div class="form-group">
-                                    <label class="input-label" for="RM_UnidadeDosagem"> Unidade de medida* </label>
+                                    <label class="input-label" for="RM_UnidadeDosagem" th:text="#{cadremplaceholder.dosageunit}"></label>
                                     <select id="RM_UnidadeDosagem" class="form-control dosage-select" name="RM_UnidadeDosagem" required="required">
-                                        <option value="mg">Miligrama (mg)</option>
-                                        <option value="g">Grama (g)</option>
-                                        <option value="ml">Mililitro (mL)</option>
-                                        <option value="ui">Unidades Internacionais (UI)</option>
-                                        <option value="gts">Gotas e Microgotas</option>
-                                        <option value="cps">Comprimidos (CP)</option>
+                                        <option value="mg" th:text="#{cadremform.miligram}"></option>
+                                        <option value="g" th:text="#{cadremform.gram}"></option>
+                                        <option value="ml" th:text="#{cadremform.mililiter}"></option>
+                                        <option value="ui" th:text="#{cadremform.internationalunits}"></option>
+                                        <option value="gts" th:text="#{cadremform.gotas}"></option>
+                                        <option value="cps" th:text="#{cadremform.comprimidos}"></option>
                                     </select>
                                 </div>
 
@@ -125,7 +125,7 @@
                                                    data-target=".collapseOne.show"
                                                    checked
                                                    >
-                                            <label class="input-label" for="RM_RetiradoSus">Sim</label>
+                                            <label class="input-label" for="RM_RetiradoSus" th:text="#{cadremform.radioyes}"></label>
                                         </span>
                                         <span>
                                             <input class="radio-no"
@@ -138,7 +138,7 @@
                                                    data-target=".collapseOne:not(.show)"
 
                                                    >
-                                            <label class="input-label" for="RM_RetiradoSusNo">Não</label>
+                                            <label class="input-label" for="RM_RetiradoSusNo" th:text="#{cadremform.radiono}"></label>
                                         </span>
                                     </div>
                                 </div>
@@ -147,26 +147,26 @@
                                 <!-- Cadastro dos gastos -->
                                 <div class="collapseOne panel-collapse collapse">
                                     <div class="line-break"></div>
-                                    <h2 class="form-h2">Informe o gasto com o medicamento</h2>
+                                    <h2 class="form-h2"></h2>
 
                                     <div class="form-group">
-                                        <label class="input-label" for="GA_Data">Informe a data da compra.</label>
+                                        <label class="input-label" for="GA_Data" th:text="#{cadremfinance.dateinput}"></label>
                                         <div class="input-group" data-provide="datepicker" id="GaData">
                                             <input class="form-control formulario-input" type="date" id="GA_Data" name="GA_Data" value=null>
                                         </div>
                                     </div>
 
                                     <div class="form-group">
-                                        <label class="input-label" for="GA_Valor">Informe o valor</label>
+                                        <label class="input-label" for="GA_Valor" th:text="#{cadremfinance.value}"></label>
                                         <div class="input-group" data-provide="datepicker" id="GaValor">
                                             <input class="form-control formulario-input" type="number" step="0.01" id="GA_Valor" name="GA_Valor" min="0" value="0">
                                         </div>
                                     </div>
 
                                     <div class="form-group">
-                                        <label class="input-label" for="GA_Parcela">Informe a quantidade de parcelas</label>
+                                        <label class="input-label" for="GA_Parcela" th:text="#{cadremfinance.installments}"></label>
                                         <div class="input-group" data-provide="datepicker" id="GaParcela">
-                                            <input class="form-control formulario-input" type="number" id="GA_Parcela" name="GA_Parcela" min="1" placeholder="Ex: 1, 2, 3" value="1">
+                                            <input class="form-control formulario-input" type="number" id="GA_Parcela" name="GA_Parcela" min="1" value="1">
                                         </div>
                                     </div>
 
@@ -178,7 +178,7 @@
                                 <div class="d-flex justify-content-center form-group form-check">
                                     <label class="form-check-input input-label"
                                            for="exampleCheck1">
-                                        <h3 class="form-h3">Realizar Agendamento?</h3>
+                                        <h3 class="form-h3" th:text="#{cadremschedule.registerschedule}"></h3>
                                     </label>
                                     <input type="checkbox"
                                            class="form-check-input checkbox-margin-top"
@@ -186,7 +186,6 @@
                                            data-target="#demo"
                                            id="exampleCheck1"
                                            name="exampleCheck1"
-
                                            aria-expanded="true"
                                            onclick="checarBox()"
                                            >
@@ -194,38 +193,35 @@
 
                                 <!-- Parte do agendamento -->
                                 <div id="demo" class="collapse">
-                                    <label class="text-center input-label">Informe o período e o horário do agendamento</label>
+                                    <label class="text-center input-label" th:text="#{cadremschedule.datetime}"></label>
                                     <div class="input-group d-flex flex-column" data-provide="datepicker" id="AgInicio">
                                         <div class="form-group">
-                                            <label class="input-label" for="AG_DataInicio">Data Inicial</label>
+                                            <label class="input-label" for="AG_DataInicio" th:text="#{cadremschedule.initialdate}"></label>
                                             <input type="date"
                                                    class="form-control formulario-input margin-bot"
                                                    id="AG_DataInicio"
                                                    name="AG_DataInicio"
-                                                   placeholder="Data Inicial"
                                                    onBlur="validaDataFinal()"
 
                                                    >
                                         </div>
 
                                         <div class="form-group">
-                                            <label class="input-label" for="AG_DataFinal">Data Final</label>
+                                            <label class="input-label" for="AG_DataFinal" th:text="#{cadremschedule.finaldate}"></label>
                                             <input type="date"
                                                    class="form-control formulario-input margin-bot"
                                                    id="AG_DataFinal"
                                                    name="AG_DataFinal"
-                                                   placeholder="Data Final"
                                                    onBlur="validaDataFinal()"
 
                                                    >
                                         </div>
 
                                         <div class="form-group">
-                                            <label class="input-label" for="AG_HoraInicio">Horário Inicial</label>
+                                            <label class="input-label" for="AG_HoraInicio" th:text="#{cadremschedule.initialtime}"></label>
                                             <input id="AG_HoraInicio"
                                                    class="form-control formulario-input margin-bot"
                                                    type="time"
-                                                   placeholder="Hora Inicial"
                                                    name="AG_HoraInicio"
                                                    step="300"
                                                    value="00:00"
@@ -234,9 +230,9 @@
                                         </div>
 
                                         <div class="form-group">
-                                            <label class="input-label margin-top" for="AG_Periodicidade">Periodicidade (horas)</label>
-                                            <input placeholder="Periodicidade"
-                                                   class="form-control formulario-input margin-bot"
+                                            <label class="input-label margin-top" for="AG_Periodicidade" th:text="#{cadremschedule.periodicity}"></label>
+                                            <input class="form-control formulario-input margin-bot"
+                                                   th:placeholder="#{cadremschedule.periodicityplaceholder}"
                                                    type="number"
                                                    id="AG_Periodicidade"
                                                    name="AG_Periodicidade"
@@ -251,7 +247,7 @@
                                             <label id="intervalo-label"
                                                    class="input-label form-check-input"
                                                    for="intervalo-check">
-                                                <h3 class="form-h3">Adicionar Intervalo de Dias?</h3>
+                                                <h3 class="form-h3" th:text="#{cadremschedule.registerdayinterval}"></h3>
                                             </label>
                                             <input id="intervalo-check"
                                                    class="form-check-input checkbox-margin-top"
@@ -264,11 +260,11 @@
                                         </div>
                                         <div id="intervalo" class="input-group collapse">
 
-                                            <label class="input-label">Intervalo de dias</label>
+                                            <label class="input-label" th:text="#{cadremschedule.dayintervalinput}"></label>
 
                                             <input style="min-width:2px"
                                                    class="formulario-input form-control"
-                                                   placeholder="1,2,3"
+                                                   th:placeholder="#{cadremschedule.dayintervalplaceholder}"
                                                    type="number"
                                                    id="intervaloDias"
                                                    name="intervaloDias"
@@ -307,8 +303,8 @@
 
                                 <!-- botões principais -->
                                 <div class="input-group actions">
-                                    <a id="cancelar2" href="/remedios" class="button cancel">Voltar</a>
-                                    <button name="action" id="confirmar" class="button save" type="submit">Salvar</button>
+                                    <a id="cancelar2" href="/remedios" class="button cancel" th:text="#{cadremform.cancel}"></a>
+                                    <button name="action" id="confirmar" class="button save" type="submit" th:text="#{cadremform.submit}"></button>
                                 </div>
                             </form>
                         </div>

@@ -78,7 +78,7 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="content col-12 col-sm-12 col-md-7 col-lg-7 col-lx-7">
-                    <h2 class="text-center">Calendário</h2>
+                    <h2 class="text-center" th:text="#{homecalendar.title}"></h2>
                     <div id='calendar'></div>
                 </div>
                 <script src='/script/calendario1.js'></script>
@@ -112,14 +112,14 @@
 
                 <!-- DIV 2 -->
                 <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-lx-4 text-center" id="data-table">
-                    <h2 class="text-center">Agendamentos do dia</h2>
+                    <h2 class="text-center" th:text="#{homeschedule.dailyschedule}"></h2>
                     <section id="agendamentosDoDia" style="max-height:400px; overflow-y:auto;">
                         <table class="table table-striped ">
                             <caption></caption>
                             <thead>
                             <tr style="color: black" class="text-center">
-                                <th>Remédio</th>
-                                <th>Hora</th>
+                                <th th:text="#{hometable.remedyheader}"></th>
+                                <th th:text="#{hometable.timeheader}"></th>
                             </tr>
                             </thead>
                             <tbody>
@@ -204,7 +204,7 @@
                     <div id="container"></div>
                 </section>
                 <div style="text-align:center">
-                    <a id="novoGasto" href="/remedios/controle_de_gastos/cadastrar">+ Novo gasto</a>
+                    <a id="novoGasto" href="/remedios/controle_de_gastos/cadastrar" th:text="#{homefinace.newfinance}"></a>
                 </div>
             </div>
 

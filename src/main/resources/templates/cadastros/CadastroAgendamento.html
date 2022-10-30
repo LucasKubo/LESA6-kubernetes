@@ -10,7 +10,7 @@
         <link rel="manifest" href="/config/manifest.json">
         <link rel="apple-touch-icon" href="/images/icon.svg">
         <link rel="canonical" href="https://meuremedioapp.herokuapp.com">
-        <title>Meu Remédio</title>
+        <title th:text="#{cadage.title}"></title>
 
         <!-- Bootstrap CSS CDN -->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
@@ -62,14 +62,12 @@
                         <a href="/home">
                             <img class="formulario-icon" src="/images/icon.svg" alt="Ícone Meu Remédio">
                         </a>
-                        <h2 th:text="#{cadage.title}" class="form-h2">Novo Agendamento</h2>
+                        <h2 th:text="#{cadage.title}" class="form-h2"></h2>
                         <form method="post" name="formCadastroAG">
 
 
                             <div class="form-group d-flex justify-content-center align-items-center flex-column select-group">
-                                <label class="input-label text-center mar-top" for="AG_Remedios">
-                                    Adicione o remédio ao agendamento*
-                                </label>
+                                <label class="input-label text-center mar-top" for="AG_Remedios" th:text="#{cadageform.addremedy}"></label>
                                 <select id="AG_Remedios" 
                                         class="form-control dosage-select d-flex justify-content-center agenda-select" 
                                         name="AG_Remedios" multiple required="true">
@@ -82,7 +80,7 @@
 
                             <div class="input-group d-flex flex-column" data-provide="datepicker" id="AgInicio">
                                 <div class="form-group">
-                                    <label class="input-label" for="AG_DataInicio">Data Inicial*</label>
+                                    <label class="input-label" for="AG_DataInicio" th:text="#{cadageform.begindate}"></label>
                                     <input type="date"
                                            id="AG_DataInicio"
                                            class="form-control formulario-input margin-bot"
@@ -94,7 +92,7 @@
                                 </div> 
 
                                 <div class="form-group">
-                                    <label class="input-label" for="AG_DataFinal">Data Final*</label>
+                                    <label class="input-label" for="AG_DataFinal" th:text="#{cadageform.finaldate}"></label>
                                     <input type="date"
                                            id="AG_DataFinal"
                                            class="form-control formulario-input margin-bot"
@@ -106,7 +104,7 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label class="input-label timepicker" for="AG_HoraInicio">Horário Inicial*</label>
+                                    <label class="input-label timepicker" for="AG_HoraInicio" th:text="#{cadageform.initialhour}"></label>
                                     <input id="AG_HoraInicio"
                                            type="text"
                                            class="form-control formulario-input margin-bot"
@@ -120,7 +118,7 @@
                                 </div> 
 
                                 <div class="form-group">
-                                    <label class="input-label margin-top" for="AG_Periodicidade">Periodicidade (horas)*</label>
+                                    <label class="input-label margin-top" for="AG_Periodicidade" th:text="#{cadageform.frequency}"></label>
                                     <input th:placeholder="#{cadageform.frequency}"
                                            type="number"
                                            class="form-control formulario-input margin-bot"
@@ -141,8 +139,8 @@
                                 <div class="d-flex justify-content-center">
                                     <label id="intervalo-label" 
                                            class="input-label form-check-input" 
-                                           for="intervalo-check">
-                                        Adicionar Intervalo de Dias?
+                                           for="intervalo-check"
+                                           th:text="#{cadageform.registerdaysinterval}">
                                     </label>
                                     <input id="intervalo-check" 
                                            class="form-check-input checkbox-margin-top"
@@ -155,7 +153,7 @@
                                 </div>
 
                                 <div id="intervalo" class="input-group collapse">
-                                    <label class="input-label">Intervalo de dias</label>
+                                    <label class="input-label" th:text="#{cadageform.intervalofdays}"></label>
                                     <input style="min-width:2px"
                                            th:placeholder="#{cadageform.numberdays}"
                                            class="formulario-input form-control"

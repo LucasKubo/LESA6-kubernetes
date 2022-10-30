@@ -12,7 +12,7 @@
               integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         <!-- Custom CSS -->
         <link rel="stylesheet" href="/style/redefinirSenha.css"/>
-        <title>Recuperar senha</title>
+        <title th:text="#{recpassword.title}"></title>
         <link rel="icon" href="/images/icon.svg"/>
         <link rel="manifest" href="/config/manifest.json">
         <link rel="apple-touch-icon" href="/images/icon.svg">
@@ -51,7 +51,7 @@
         </nav>
 
         <div style="text-align: center" class="alert alert-info" role="alert"
-             th:if="${param.codigoErro}">CÓDIGO DE VERIFICAÇÃO INVÁLIDO</div>
+             th:if="${param.codigoErro}" th:text="#{recpassword.invalidverify}"></div>
 
         <section class="container d-flex justify-content-center col-12 col-sm-12 col-md-8 col-lg-5 col-lx-6">
             <div class="card formulario-card col-12">
@@ -60,33 +60,33 @@
                         <img class="formulario-icon" src="/images/icon.svg" alt="Ícone Meu Remédio">
                     </a>
                     <form class="justify-content-center" method="post">
-                        <h2 class="form-h2 text-center  ">Recuperar Senha</h2>
+                        <h2 class="form-h2 text-center" th:text="#{recpassword.formtitle}"></h2>
 
                         <div class="form-group">
-                            <label>Digite o código</label>
-                            <input type="text" class="form-control formulario-input" id="US_Codigo" placeholder="Informe o código"
+                            <label th:text="#{recpassword.codeinput}"></label>
+                            <input type="text" class="form-control formulario-input" id="US_Codigo" 
                                    name="password"
                                    required>
                         </div>
 
                         <div class="form-group">
-                            <label>Digite a senha</label>
+                            <label th:text="#{recpassword.passwordinput}"></label>
                             <input type="password" class="form-control formulario-input" minlength="8" id="US_Senha"
                                    required>
 
-                            <img id="spnMostrarSenha" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABDUlEQVQ4jd2SvW3DMBBGbwQVKlyo4BGC4FKFS4+TATKCNxAggkeoSpHSRQbwAB7AA7hQoUKFLH6E2qQQHfgHdpo0yQHX8T3exyPR/ytlQ8kOhgV7FvSx9+xglA3lM3DBgh0LPn/onbJhcQ0bv2SHlgVgQa/suFHVkCg7bm5gzB2OyvjlDFdDcoa19etZMN8Qp7oUDPEM2KFV1ZAQO2zPMBERO7Ra4JQNpRa4K4FDS0R0IdneCbQLb4/zh/c7QdH4NL40tPXrovFpjHQr6PJ6yr5hQV80PiUiIm1OKxZ0LICS8TWvpyyOf2DBQQtcXk8Zi3+JcKfNafVsjZ0WfGgJlZZQxZjdwzX+ykf6u/UF0Fwo5Apfcq8AAAAASUVORK5CYII="
-                            alt="Visualizar senha"/> Visualizar Senha
+                            <span><img id="spnMostrarSenha" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABDUlEQVQ4jd2SvW3DMBBGbwQVKlyo4BGC4FKFS4+TATKCNxAggkeoSpHSRQbwAB7AA7hQoUKFLH6E2qQQHfgHdpo0yQHX8T3exyPR/ytlQ8kOhgV7FvSx9+xglA3lM3DBgh0LPn/onbJhcQ0bv2SHlgVgQa/suFHVkCg7bm5gzB2OyvjlDFdDcoa19etZMN8Qp7oUDPEM2KFV1ZAQO2zPMBERO7Ra4JQNpRa4K4FDS0R0IdneCbQLb4/zh/c7QdH4NL40tPXrovFpjHQr6PJ6yr5hQV80PiUiIm1OKxZ0LICS8TWvpyyOf2DBQQtcXk8Zi3+JcKfNafVsjZ0WfGgJlZZQxZjdwzX+ykf6u/UF0Fwo5Apfcq8AAAAASUVORK5CYII="
+                            alt="Visualizar senha"/><span th:text="#{recpassword.showpassword}"></span></span>
                         </div>
                         <div class="form-group">
-                            <label>Digite novamente a senha</label>
+                            <label th:text="#{recpassword.passwordreinput}"></label>
                             <input type="password" class="form-control formulario-input" minlength="8" id="US_ConfirmSenha"
                                    required>
                             <!--                            <span id="spnMostrarSenha" class="glyphicon glyphicon glyphicon-eye-open form-control-feedback"></span>-->
 
-                            <img id="spnMostrarSenha1" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABDUlEQVQ4jd2SvW3DMBBGbwQVKlyo4BGC4FKFS4+TATKCNxAggkeoSpHSRQbwAB7AA7hQoUKFLH6E2qQQHfgHdpo0yQHX8T3exyPR/ytlQ8kOhgV7FvSx9+xglA3lM3DBgh0LPn/onbJhcQ0bv2SHlgVgQa/suFHVkCg7bm5gzB2OyvjlDFdDcoa19etZMN8Qp7oUDPEM2KFV1ZAQO2zPMBERO7Ra4JQNpRa4K4FDS0R0IdneCbQLb4/zh/c7QdH4NL40tPXrovFpjHQr6PJ6yr5hQV80PiUiIm1OKxZ0LICS8TWvpyyOf2DBQQtcXk8Zi3+JcKfNafVsjZ0WfGgJlZZQxZjdwzX+ykf6u/UF0Fwo5Apfcq8AAAAASUVORK5CYII="
-                            alt="Visualizar senha"/> Visualizar Senha
+                            <span><img id="spnMostrarSenha1" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABDUlEQVQ4jd2SvW3DMBBGbwQVKlyo4BGC4FKFS4+TATKCNxAggkeoSpHSRQbwAB7AA7hQoUKFLH6E2qQQHfgHdpo0yQHX8T3exyPR/ytlQ8kOhgV7FvSx9+xglA3lM3DBgh0LPn/onbJhcQ0bv2SHlgVgQa/suFHVkCg7bm5gzB2OyvjlDFdDcoa19etZMN8Qp7oUDPEM2KFV1ZAQO2zPMBERO7Ra4JQNpRa4K4FDS0R0IdneCbQLb4/zh/c7QdH4NL40tPXrovFpjHQr6PJ6yr5hQV80PiUiIm1OKxZ0LICS8TWvpyyOf2DBQQtcXk8Zi3+JcKfNafVsjZ0WfGgJlZZQxZjdwzX+ykf6u/UF0Fwo5Apfcq8AAAAASUVORK5CYII="
+                            alt="Visualizar senha"/><span th:text="#{recpassword.showpassword}"></span></span>
                         </div>
-                        <button class="formulario-button">Enviar</button>
+                        <button class="formulario-button" th:text="#{recpassword.submitform}"></button>
 
 
 

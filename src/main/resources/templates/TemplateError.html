@@ -13,7 +13,7 @@
 
     <link rel="icon" href="/static/images/icon.svg"/>
 
-    <title>Meu Remédio</title>
+    <title th:text="#{templateerror.title}"></title>
 
     <!-- Bootstrap CSS CDN -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
@@ -50,8 +50,8 @@
         </nav>
         <main class="container-table text-center">
             <section id="remedies">
-                <h2>Algo deu errado na solicitação. Tente novamente.</h2>
-                <a id="cancelar" href="javascript:history.back()" class="button cancel"> Voltar </a>
+                <h2 th:text="#{templateerror.errormessage}"></h2>
+                <a id="cancelar" href="javascript:history.back()" class="button cancel" th:text="#{templateerror.return}"></a>
             </section>
             <a href="javascript:history.back()"> <img alt="erro" src="/images/icon-home.png"> </a>
         </main>
