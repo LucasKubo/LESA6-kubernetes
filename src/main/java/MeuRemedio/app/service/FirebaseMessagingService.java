@@ -6,6 +6,9 @@ import com.google.firebase.messaging.Message;
 import com.google.firebase.messaging.Notification;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
+import java.util.Map;
+
 @Service
 public class FirebaseMessagingService {
 
@@ -18,18 +21,21 @@ public class FirebaseMessagingService {
     //TODO usar Note como parametro
     public void sendNotification(String title, String body, String token) throws FirebaseMessagingException {
 
-        Notification notification = Notification
-                .builder()
-                .setTitle(title)
-                .setBody(body)
-                .setImage("https://i.imgur.com/dU2UDc4.png")
-                .build();
+//        Notification notification = Notification
+//                .builder()
+//                .setTitle(title)
+//                .setBody(body)
+//                .build();
+
+        Map<String, String> map = new HashMap<>();
+        map.put("title", title);
+        map.put("body", body);
+
 
         Message message = Message
                 .builder()
                 .setToken(token)
-                .setNotification(notification)
-//              .putAllData(note.getData())
+                .putAllData(map)
                 .build();
         firebaseMessaging.send(message);
     }
