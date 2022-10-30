@@ -25,7 +25,7 @@ public class FirebaseMessagingService {
         Message message = Message
                 .builder()
                 .setToken(token)
-//                .setNotification(notification)
+                .setAndroidConfig(AndroidConfig.builder().setNotification(notification).build())
 //                .putData("title", title)
 //                .putData("body", body)
 //                .putData("icon", "https://i.imgur.com/dU2UDc4.png")
