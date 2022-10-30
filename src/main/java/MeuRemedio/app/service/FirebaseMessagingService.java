@@ -22,6 +22,7 @@ public class FirebaseMessagingService {
                 .builder()
                 .setTitle(title)
                 .setBody(body)
+                .setImage("https://i.imgur.com/dU2UDc4.png")
                 .build();
 
         Message message = Message

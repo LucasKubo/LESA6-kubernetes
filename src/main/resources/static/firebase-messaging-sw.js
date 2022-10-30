@@ -28,16 +28,16 @@ const messaging = firebase.messaging();
 messaging.onBackgroundMessage(function(payload) {
     console.log('[firebase-messaging-sw.js] Received background message ', payload);
     // Customize notification here
-    const notificationTitle = payload.notification.title;
+    // const notificationTitle = payload.notification.title;
 
-    const notificationOptions = {
-        body: payload.notification.body,
-        icon: 'https://i.imgur.com/dU2UDc4.png',
-        badge: 'https://i.imgur.com/czN0rck.png',
-        tag: "notification-1"
-    };
+    // const notificationOptions = {
+    //     body: payload.notification.body,
+    //     icon: 'https://i.imgur.com/dU2UDc4.png',
+    //     badge: 'https://i.imgur.com/czN0rck.png',
+    //     tag: "notification-1"
+    // };
 
-    self.registration.showNotification(notificationTitle,
-        notificationOptions);
-    console.log("notificacao recebida");
+    // self.registration.showNotification(notificationTitle,
+    //     notificationOptions);
+    // console.log("notificacao recebida");
 });
