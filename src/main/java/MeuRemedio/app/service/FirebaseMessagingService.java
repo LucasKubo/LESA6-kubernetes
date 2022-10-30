@@ -1,9 +1,6 @@
 package MeuRemedio.app.service;
 
-import com.google.firebase.messaging.FirebaseMessaging;
-import com.google.firebase.messaging.FirebaseMessagingException;
-import com.google.firebase.messaging.Message;
-import com.google.firebase.messaging.Notification;
+import com.google.firebase.messaging.*;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -18,17 +15,21 @@ public class FirebaseMessagingService {
     //TODO usar Note como parametro
     public void sendNotification(String title, String body, String token) throws FirebaseMessagingException {
 
-        Notification notification = Notification
+        AndroidNotification notification = AndroidNotification
                 .builder()
                 .setTitle(title)
                 .setBody(body)
+                .setIcon("https://i.imgur.com/dU2UDc4.png")
                 .build();
 
         Message message = Message
                 .builder()
                 .setToken(token)
-                .setNotification(notification)
-//              .putAllData(note.getData())
+//                .setNotification(notification)
+//                .putData("title", title)
+//                .putData("body", body)
+//                .putData("icon", "https://i.imgur.com/dU2UDc4.png")
+//                .putData("badge", "https://i.imgur.com/czN0rck.png")
                 .build();
         firebaseMessaging.send(message);
     }
