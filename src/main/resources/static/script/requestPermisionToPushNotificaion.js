@@ -35,9 +35,9 @@ getToken(messaging, { vapidKey: 'BGQ114U_v6SYU0cFpx3bzDcNcDIy40jbd60PhYG6v5Qqj5n
 onMessage(messaging, (payload) => {
     console.log('Message received', payload);
     alert(payload.notification.body)
-    const notification = new Notification(payload.title, {
-        body: payload.body
-      });
+//    const notification = new Notification(payload.title, {
+//        body: payload.body
+//      });
     // navigator.serviceWorker.getRegistration('/firebase-cloud-messaging-push-scope').then(registration => {
     //     registration.showNotification(
     //         payload.notification.title,
