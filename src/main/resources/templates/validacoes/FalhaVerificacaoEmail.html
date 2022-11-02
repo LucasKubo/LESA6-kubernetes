@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title th:text="#{logintitle.text}"></title>
+    <title th:text="#{failverifemail.title}"></title>
     <link rel="icon" href="/images/icon.svg"/>
     <link rel="manifest" href="/config/manifest.json">
     <link rel="apple-touch-icon" href="/images/icon.svg">
@@ -35,12 +35,14 @@
                 <img class="aviso-icon" src="/images/icon-home.png" alt="Ícone Meu Remédio">
                 <!--                <img class="aviso-icon" src="../../static/images/icon-home.png" alt="Ícone Meu Remédio">-->
             </a>
-            <h4> Desculpe, não conseguimos verificar sua conta. Talvez esta já foi verificada, ou o código de verificação está incorreto. </h4>
-            <a href="/" class="login-redirect-link-button" style="text-decoration: none; color: #081816">Voltar para a página principal</a>
+            <h4 th:text="#{failverifemail.message}"></h4>
+            <a href="/" class="login-redirect-link-button" style="text-decoration: none; color: #081816" th:text="#{failverifemail.gotoindex}"></a>
         </div>
     </div>
 </div>
 
+
+<script src="/script/cadastroRemedio.jsp"></script>
 <!-- Link do bootstrap (JS) -->
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossorigin="anonymous"></script>

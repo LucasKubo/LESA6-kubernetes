@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title th:text="#{logintitle.text}"></title>
+    <title th:text="#{verifemail.title}"></title>
     <link rel="icon" href="/images/icon.svg"/>
     <meta name="theme-color" content="#6bffe9">
     <link rel="manifest" href="/config/manifest.json">
@@ -21,6 +21,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300&display=swap" rel="stylesheet">
+
+
 <body>
 
 <!-- Menu Simples -->
@@ -35,12 +37,14 @@
                 <img class="aviso-icon" src="/images/icon-home.png" alt="Ícone Meu Remédio">
 <!--                <img class="aviso-icon" src="../../static/images/icon-home.png" alt="Ícone Meu Remédio">-->
             </a>
-            <h4> Te enviamos um link para você validar sua conta. <br> <strong>Por favor, verifique sua caixa de e-mail.</strong></h4>
-            <a href="/login" class="login-redirect-link-button" style="text-decoration: none; color: #081816">Ir para Login</a>
+            <h4 th:text="#{verifemail.message}">  <br> <strong th:text="#{verifemail.strongmessage}"></strong></h4>
+            <a href="/login" class="login-redirect-link-button" style="text-decoration: none; color: #081816" th:text="#{verifemail.gotologin}"></a>
         </div>
     </div>
 </div>
 
+
+<script src="/script/cadastroRemedio.jsp"></script>
 <!-- Link do bootstrap (JS) -->
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossorigin="anonymous"></script>

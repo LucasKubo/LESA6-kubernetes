@@ -13,7 +13,7 @@
 
     <link rel="icon" href="/static/images/icon.svg"/>
 
-    <title>Meu Remédio</title>
+    <title th:text="#{listfin.title}"></title>
     <meta name="theme-color" content="#6bffe9">
     <link rel="manifest" href="/config/manifest.json">
     <link rel="apple-touch-icon" href="/images/icon.svg">
@@ -53,14 +53,14 @@
 
         <main class="container-table text-center">
             <section id="gasto">
-                <h2>Lista de Gastos</h2>
+                <h2 th:text="#{listfin.formtitle}"></h2>
                 <table class="table table-striped container-table" id = "data-table">
                     <caption> </caption>
                     <thead>
                     <tr style="color: black" class="text-center">
-                        <th>Remédio</th>
-                        <th>Data</th>
-                        <th>Valor</th>
+                        <th th:text="#{cadageform.medication}"></th>
+                        <th th:text="#{listfin.tableheaderdate}"></th>
+                        <th th:text="#{listfin.tableheadervalue}"></th>
                     </tr>
                     </thead>
                     <tbody>
@@ -84,7 +84,7 @@
                     </div>
                     </tbody>
                 </table>
-                <a id="new-cad" href="/remedios/controle_de_gastos/cadastrar" class="button new">Novo Gasto</a>
+                <a id="new-cad" href="/remedios/controle_de_gastos/cadastrar" class="button new" th:text="#{cadfin.title}"></a>
             </section>
         </main>
         <div class="overlay"></div>

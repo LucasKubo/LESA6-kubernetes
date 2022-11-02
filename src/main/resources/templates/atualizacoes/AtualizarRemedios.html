@@ -57,7 +57,7 @@
 
         <!-- MENSAGENS DE ERROS -->
         <div class="alert-danger alert-info text-center" role="alert" th:if="${param.remedioExistente}">
-            <span> Já existe um remédio semelhante cadastrado</span>
+            <span th:text="#{cadremmessage.duplicateremedy}"></span>
         </div>
 
 
@@ -68,17 +68,18 @@
                     <a href="/">
                         <img class="formulario-icon" src="/images/icon.svg" alt="Ícone Meu Remédio">
                     </a>
-                    <h2 class='form-h2' th:text="#{Attremform.title}"></h2>
+                    <h2 class='form-h2' th:text="#{attrem.formtitle}"></h2>
                     <form method="post" name="formCadastroRM">
 
                         <div class="form-group">
-                            <label class="input-label" for="RM_Nome">Remédio*</label>
-                            <input class="form-control formulario-input" th:value="${remedio.RM_Nome}" placeholder="Nome do Medicamento" type="text" id="RM_Nome" name="RM_Nome" required="required">
+                            <label class="input-label" for="RM_Nome" th:text="#{cadremform.remedy}"></label>
+                            <input class="form-control formulario-input" th:value="${remedio.RM_Nome}" 
+                                   th:placeholder="#{cadremplaceholder.remedy}" type="text" id="RM_Nome" name="RM_Nome" required="required">
                         </div>
 
                         <div class="form-group">
-                            <label class="input-label" for="RM_Dosagem">Dosagem*</label>
-                            <input placeholder="Quantidade"
+                            <label class="input-label" for="RM_Dosagem" th:text="#{cadremform.dosage}"></label>
+                            <input th:placeholder="#{cadremplaceholder.dosage}"
                                    class="form-control formulario-input"
                                    type="number"
                                    id="RM_Dosagem"
@@ -91,14 +92,14 @@
                         <small><span id="mensagemDosagem" class="help"></span></small>
 
                         <div class="form-group">
-                            <label class="input-label" for="RM_UnidadeDosagem"> Unidade de medida* </label>
+                            <label class="input-label" for="RM_UnidadeDosagem" th:text="#{cadremplaceholder.dosageunit}"></label>
                             <select id="RM_UnidadeDosagem" class="form-control dosage-select" name="RM_UnidadeDosagem" required="required">
-                                <option value="mg">Miligrama (mg)</option>
-                                <option value="g">Grama (g)</option>
-                                <option value="ml">Mililitro (mL)</option>
-                                <option value="ui">Unidades Internacionais (UI)</option>
-                                <option value="gts">Gotas e Microgotas</option>
-                                <option value="cps">Comprimidos (CP)</option>
+                                <option value="mg" th:text="#{cadremform.miligram}">)</option>
+                                <option value="g" th:text="#{cadremform.gram}"></option>
+                                <option value="ml" th:text="#{cadremform.mililiter}"></option>
+                                <option value="ui" th:text="#{cadremform.internationalunits}"></option>
+                                <option value="gts" th:text="#{cadremform.gotas}"></option>
+                                <option value="cps" th:text="#{cadremform.comprimidos}"></option>
                             </select>
                         </div>
 
@@ -120,7 +121,7 @@
 
 
                                             >
-                                            <label class="input-label" for="RM_RetiradoSus">Sim</label>
+                                            <label class="input-label" for="RM_RetiradoSus" th:text="#{cadremform.radioyes}"></label>
                                         </span>
                                 <span>
                                             <input class="radio-no"
@@ -133,14 +134,14 @@
                                                    data-target=".collapseOne:not(.show)"
 
                                             >
-                                            <label class="input-label" for="RM_RetiradoSusNo">Não</label>
+                                            <label class="input-label" for="RM_RetiradoSusNo" th:text="#{cadremform.radiono}"></label>
                                         </span>
                             </div>
                         </div>
                         <!-- botões principais -->
                         <div class="input-group actions">
-                            <a id="cancelar2" href="/remedios" class="button cancel">Voltar</a>
-                            <button name="action" id="confirmar" class="button save" type="submit">Salvar</button>
+                            <a id="cancelar2" href="/remedios" class="button cancel" th:text="#{cadremform.cancel}"></a>
+                            <button name="action" id="confirmar" class="button save" type="submit" th:text="#{cadremform.submit}"></button>
                         </div>
                     </form>
                 </div>

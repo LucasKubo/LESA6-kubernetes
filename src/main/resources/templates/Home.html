@@ -1,266 +1,266 @@
 <!DOCTYPE html>
 <html lang="pt-br" xmlns:th="http://www.w3.org/1999/xhtml">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="#38CFB8">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="#38CFB8">
 
-    <title>Meu Remédio</title>
+        <title>Home - Meu Remédio</title>
 
-    <link rel="icon" href="/static/images/icon.svg"/>
-    <link rel="icon" href="/images/icon.svg"/>
-    <link rel="manifest" href="/config/manifest.json">
-    <link rel="apple-touch-icon" href="/images/icon.svg">
-    <link rel="canonical" href="https://meuremedioapp.herokuapp.com">
-    <!-- Bootstrap CSS CDN -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"
-          integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
-    <!-- Our Custom CSS -->
-    <link rel="stylesheet" href="/style/homeStyle.css">
-    <!-- Scrollbar Custom CSS -->
-    <link rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
+        <link rel="icon" href="/static/images/icon.svg"/>
+        <link rel="icon" href="/images/icon.svg"/>
+        <link rel="manifest" href="/config/manifest.json">
+        <link rel="apple-touch-icon" href="/images/icon.svg">
+        <link rel="canonical" href="https://meuremedioapp.herokuapp.com">
+        <!-- Bootstrap CSS CDN -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"
+              integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+        <!-- Our Custom CSS -->
+        <link rel="stylesheet" href="/style/homeStyle.css">
+        <!-- Scrollbar Custom CSS -->
+        <link rel="stylesheet"
+              href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
 
-    <!-- Font Awesome JS -->
-    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js"
-            integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ"
-            crossorigin="anonymous"></script>
-    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js"
-            integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY"
-            crossorigin="anonymous"></script>
+        <!-- Font Awesome JS -->
+        <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js"
+                integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ"
+        crossorigin="anonymous"></script>
+        <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js"
+                integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY"
+        crossorigin="anonymous"></script>
 
-    <!-- Imports do calendario -->
-    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap" rel="stylesheet">
+        <!-- Imports do calendario -->
+        <link href="https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap" rel="stylesheet">
 
-    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/style/calendario1.css">
-    <link rel="stylesheet" href="/style/calendario2.css">
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="css/bootstrap.min.css">
+        <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="/style/calendario1.css">
+        <link rel="stylesheet" href="/style/calendario2.css">
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="css/bootstrap.min.css">
 
-    <!-- Style -->
-    <link rel="stylesheet" href="css/style.css">
+        <!-- Style -->
+        <link rel="stylesheet" href="css/style.css">
 
-</head>
-<body>
-<div class="wrapper conta-lg">
-    <!-- Menu bolado  -->
-    <nav th:replace="~{MenuLateral :: menuLateral}"></nav>
+    </head>
+    <body>
+        <div class="wrapper conta-lg">
+            <!-- Menu bolado  -->
+            <nav th:replace="~{MenuLateral :: menuLateral}"></nav>
 
-    <!-- Local para digitar o texto na página  -->
-    <div id="content">
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <!-- Local para digitar o texto na página  -->
+            <div id="content">
+                <nav class="navbar navbar-expand-lg navbar-light bg-light">
 
-            <div class="container-fluid">
+                    <div class="container-fluid">
 
-                <button type="button" id="sidebarCollapse" class="btn btn-info">
-                    <em class="fas fa-align-left"></em>
-                    <span>Menu</span>
-                </button>
-                <a href="/home" class="navbar-brand text-center col-09">
-                    <img alt="Brand" src="/images/icon.svg" class="img-responsive text-center">
-                </a>
-            </div>
-        </nav>
+                        <button type="button" id="sidebarCollapse" class="btn btn-info">
+                            <em class="fas fa-align-left"></em>
+                            <span>Menu</span>
+                        </button>
+                        <a href="/home" class="navbar-brand text-center col-09">
+                            <img alt="Brand" src="/images/icon.svg" class="img-responsive text-center">
+                        </a>
+                    </div>
+                </nav>
 
-        <div class="jumbotron">
-            <selection class="jumbotron text-center">
-                <div class="container">
-                    <h1 class="jumbotron-heading footer" th:text="#{indexwelcome.text}"></h1>
-                    <p class="lead text-muted footer" th:text="#{indextext.text}"></p>
+                <div class="jumbotron">
+                    <selection class="jumbotron text-center">
+                        <div class="container">
+                            <h1 class="jumbotron-heading footer" th:text="#{indextext.welcome}"></h1>
+                            <p class="lead text-muted footer" th:text="#{indextext.text}"></p>
+                        </div>
+                    </selection>
                 </div>
-            </selection>
-        </div>
-        <div class="line"></div>
+                <div class="line"></div>
 
-        <!-- DIV 1 -->
-        <div class="container-fluid">
-            <div class="row">
-                <div class="content col-12 col-sm-12 col-md-7 col-lg-7 col-lx-7">
-                    <h2 class="text-center" th:text="#{homecalendar.title}"></h2>
-                    <div id='calendar'></div>
-                </div>
-                <script src='/script/calendario1.js'></script>
-                <script src='/script/calendario2.js'></script>
-                <script src='/script/calendario3.js'></script>
+                <!-- DIV 1 -->
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="content col-12 col-sm-12 col-md-7 col-lg-7 col-lx-7">
+                            <h2 class="text-center" th:text="#{homecalendar.title}"></h2>
+                            <div id='calendar'></div>
+                        </div>
+                        <script src='/script/calendario1.js'></script>
+                        <script src='/script/calendario2.js'></script>
+                        <script src='/script/calendario3.js'></script>
 
-                <!-- Pegar o valor do agendamento -->
-                <div class="" th:each="agendamento : ${agendamento}">
-                    <tr>
-                        <td><p><span th:text="${agendamento.id}" class="idAgendamento" hidden="true"></span></td>
-                        <td><p><span
-                                th:text="${#strings.substring(agendamento.remedio, 1, #strings.length(agendamento.remedio)-1)}"
-                                class="remedios" hidden="true"></span></td>
-                        <td><p><span th:text="${agendamento.dataInicio}" class="dataInicio" hidden="true"></span></td>
-                        <td><p><span th:text="${agendamento.dataFinal}" class="dataFinal" hidden="true"></span></td>
-                    </tr>
-                </div>
-                <div class="" th:each="intervaloDias : ${intervaloDias}">
-                    <tr>
-                        <td><p><span th:text="${intervaloDias.id}" class="idIntervaloDias" hidden="true"></span></td>
-                        <td><p><span
-                                th:text="${#strings.substring(intervaloDias.remedio, 1, #strings.length(intervaloDias.remedio)-1)}"
-                                class="remediosIT" hidden="true"></span></td>
-                        <td><p><span th:text="${intervaloDias.dataInicio}" class="dataInicioIT" hidden="true"></span>
-                        </td>
-                        <td><p><span th:text="${intervaloDias.dataFinal}" class="dataFinalIT" hidden="true"></span></td>
-                        <td><p><span th:text="${intervaloDias.intervaloDias}" class="intervaloDias"
-                                     hidden="true"></span></td>
-                    </tr>
-                </div>
-
-                <!-- DIV 2 -->
-                <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-lx-4 text-center" id="data-table">
-                    <h2 class="text-center" th:text="#{homeschedule.dailyschedule}"></h2>
-                    <section id="agendamentosDoDia" style="max-height:400px; overflow-y:auto;">
-                        <table class="table table-striped ">
-                            <caption></caption>
-                            <thead>
-                            <tr style="color: black" class="text-center">
-                                <th th:text="#{hometable.remedyheader}"></th>
-                                <th th:text="#{hometable.timeheader}"></th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <div class="" th:each="horarios : ${horarios}">
-                                <tr>
-                                    <td><p><span
-                                            th:text="${#strings.substring(horarios.agendamento.remedio, 1, #strings.length(horarios.agendamento.remedio)-1)}"></span>
-                                    </td>
-                                    <td><p><span
-                                            th:text="${#temporals.format(horarios.id.horaDataNotificacao, 'HH:mm')}"
-                                            class="horarios"></span></td>
-                                </tr>
-                            </div>
-                            </tbody>
-                        </table>
-                    </section>
-                </div>
-            </div>
-        </div>
-        <div class="line">
-            <!-- DIV 3-->
-
-            <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-lx-12 text-center">
-                <section class="container-table" id="agendamentos">
-                    <h2 th:text="#{navbar.schedules}"></h2>
-                    <table class="table table-striped" id="data-table1">
-                        <caption></caption>
-                        <thead>
-                        <tr>
-                            <th th:text="#{cadageform.medication}"></th>
-                            <th th:text="#{cadageform.begindate}"></th>
-                            <th th:text="#{cadageform.initialhour}"></th>
-                            <th th:text="#{cadageform.finaldate}"></th>
-                            <th th:text="#{cadageform.frequency}"></th>
-
-                        </tr>
-                        </thead>
-                        <tbody>
+                        <!-- Pegar o valor do agendamento -->
                         <div class="" th:each="agendamento : ${agendamento}">
                             <tr>
+                                <td><p><span th:text="${agendamento.id}" class="idAgendamento" hidden="true"></span></td>
                                 <td><p><span
-                                        th:text="${#strings.substring(agendamento.remedio, 1, #strings.length(agendamento.remedio)-1)}"></span>
-                                </td>
-                                <th:block th:with="sdf = ${new java.text.SimpleDateFormat('yyyy-MM-dd')}">
-                                    <td><p><span
-                                            th:text="${#dates.format(sdf.parse(agendamento.dataInicio), 'dd/MM/yyyy')}"> </span>
-                                    </td>
-                                    <td><p><span th:text="${agendamento.horaInicio}"></span></td>
-                                    <td><p><span
-                                            th:text="${#dates.format(sdf.parse(agendamento.dataFinal), 'dd/MM/yyyy')}"> </span>
-                                    </td>
-                                </th:block>
-                                <td><p><span th:text="${agendamento.periodicidade} + 'h'"></span></td>
-                                <td><a th:href="@{/atualizar_agendamento/{id} (id = ${agendamento.id})}">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                         class="bi bi-pencil-square" viewBox="0 0 16 16">
-                                        <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
-                                        <path fill-rule="evenodd"
-                                              d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
-                                    </svg>
-                                </a></td>
-
-                                <td><a th:href="@{/deletar_agendamento/{id} (id = ${agendamento.id})}">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                         class="bi bi-trash" viewBox="0 0 16 16">
-                                        <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
-                                        <path fill-rule="evenodd"
-                                              d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
-                                    </svg>
-                                </a></td>
+                                            th:text="${#strings.substring(agendamento.remedio, 1, #strings.length(agendamento.remedio)-1)}"
+                                            class="remedios" hidden="true"></span></td>
+                                <td><p><span th:text="${agendamento.dataInicio}" class="dataInicio" hidden="true"></span></td>
+                                <td><p><span th:text="${agendamento.dataFinal}" class="dataFinal" hidden="true"></span></td>
                             </tr>
                         </div>
-                        </tbody>
-                    </table>
-                    <a id="new-form" href="/cadastro_agendamentos" class="button new"
-                       th:text="#{cadremregister.newschedule}"></a>
-                </section>
-            </div>
-            <!-- DASHBOARD DE CONTROLE FINANCEIRO -->
-            <div id="dashBoards">
-                <section class="col-12 col-sm-12 col-md-12 col-lg-12 col-lx-12 mt-3 text-center">
-                    <div id="container"></div>
-                </section>
-                <div style="text-align:center">
-                    <a id="novoGasto" href="/remedios/controle_de_gastos/cadastrar" th:text="#{homefinace.newfinance}"></a>
+                        <div class="" th:each="intervaloDias : ${intervaloDias}">
+                            <tr>
+                                <td><p><span th:text="${intervaloDias.id}" class="idIntervaloDias" hidden="true"></span></td>
+                                <td><p><span
+                                            th:text="${#strings.substring(intervaloDias.remedio, 1, #strings.length(intervaloDias.remedio)-1)}"
+                                            class="remediosIT" hidden="true"></span></td>
+                                <td><p><span th:text="${intervaloDias.dataInicio}" class="dataInicioIT" hidden="true"></span>
+                                </td>
+                                <td><p><span th:text="${intervaloDias.dataFinal}" class="dataFinalIT" hidden="true"></span></td>
+                                <td><p><span th:text="${intervaloDias.intervaloDias}" class="intervaloDias"
+                                             hidden="true"></span></td>
+                            </tr>
+                        </div>
+
+                        <!-- DIV 2 -->
+                        <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-lx-4 text-center" id="data-table">
+                            <h2 class="text-center" th:text="#{homeschedule.dailyschedule}"></h2>
+                            <section id="agendamentosDoDia" style="max-height:400px; overflow-y:auto;">
+                                <table class="table table-striped ">
+                                    <caption></caption>
+                                    <thead>
+                                        <tr style="color: black" class="text-center">
+                                            <th th:text="#{hometable.remedyheader}"></th>
+                                            <th th:text="#{hometable.timeheader}"></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    <div class="" th:each="horarios : ${horarios}">
+                                        <tr>
+                                            <td><p><span
+                                                        th:text="${#strings.substring(horarios.agendamento.remedio, 1, #strings.length(horarios.agendamento.remedio)-1)}"></span>
+                                            </td>
+                                            <td><p><span
+                                                        th:text="${#temporals.format(horarios.id.horaDataNotificacao, 'HH:mm')}"
+                                                        class="horarios"></span></td>
+                                        </tr>
+                                    </div>
+                                    </tbody>
+                                </table>
+                            </section>
+                        </div>
+                    </div>
+                </div>
+                <div class="line">
+                    <!-- DIV 3-->
+
+                    <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-lx-12 text-center">
+                        <section class="container-table" id="agendamentos">
+                            <h2 th:text="#{navbar.schedules}"></h2>
+                            <table class="table table-striped" id="data-table1">
+                                <caption></caption>
+                                <thead>
+                                    <tr>
+                                        <th th:text="#{cadageform.medication}"></th>
+                                        <th th:text="#{cadageform.begindate}"></th>
+                                        <th th:text="#{cadageform.initialhour}"></th>
+                                        <th th:text="#{cadageform.finaldate}"></th>
+                                        <th th:text="#{cadageform.frequency}"></th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                <div class="" th:each="agendamento : ${agendamento}">
+                                    <tr>
+                                        <td><p><span
+                                                    th:text="${#strings.substring(agendamento.remedio, 1, #strings.length(agendamento.remedio)-1)}"></span>
+                                        </td>
+                                    <th:block th:with="sdf = ${new java.text.SimpleDateFormat('yyyy-MM-dd')}">
+                                        <td><p><span
+                                                    th:text="${#dates.format(sdf.parse(agendamento.dataInicio), 'dd/MM/yyyy')}"> </span>
+                                        </td>
+                                        <td><p><span th:text="${agendamento.horaInicio}"></span></td>
+                                        <td><p><span
+                                                    th:text="${#dates.format(sdf.parse(agendamento.dataFinal), 'dd/MM/yyyy')}"> </span>
+                                        </td>
+                                    </th:block>
+                                    <td><p><span th:text="${agendamento.periodicidade} + 'h'"></span></td>
+                                    <td><a th:href="@{/atualizar_agendamento/{id} (id = ${agendamento.id})}">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                                 class="bi bi-pencil-square" viewBox="0 0 16 16">
+                                            <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+                                            <path fill-rule="evenodd"
+                                                  d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
+                                            </svg>
+                                        </a></td>
+
+                                    <td><a th:href="@{/deletar_agendamento/{id} (id = ${agendamento.id})}">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                                 class="bi bi-trash" viewBox="0 0 16 16">
+                                            <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+                                            <path fill-rule="evenodd"
+                                                  d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+                                            </svg>
+                                        </a></td>
+                                    </tr>
+                                </div>
+                                </tbody>
+                            </table>
+                            <a id="new-form" href="/cadastro_agendamentos" class="button new"
+                               th:text="#{cadremregister.newschedule}"></a>
+                        </section>
+                    </div>
+                    <!-- DASHBOARD DE CONTROLE FINANCEIRO -->
+                    <div id="dashBoards">
+                        <section class="col-12 col-sm-12 col-md-12 col-lg-12 col-lx-12 mt-3 text-center">
+                            <div id="container"></div>
+                        </section>
+                        <div style="text-align:center">
+                            <a id="novoGasto" href="/remedios/controle_de_gastos/cadastrar" th:text="#{homefinace.newfinance}"></a>
+                        </div>
+                    </div>
+
+                    <div class="rodape" id="rodapeHome">
+                        <div class="informacoes-footer text-center">
+                            <h5>
+                                Meu Remédio - CNPJ: 00.000.000/0000-00 - SAC: (11) 0000-0000
+                            </h5>
+                            <h5 style="font-size: 16px">
+                                8balls.integratedproject@gmail.com
+                            </h5>
+                            <h5>
+                                R. Pedro Vicente, 625 - Canindé, São Paulo - SP, 01109-010
+                            </h5>
+                        </div>
+                    </div>
                 </div>
             </div>
-
-        <div class="rodape" id="rodapeHome">
-            <div class="informacoes-footer text-center">
-                <h5>
-                    Meu Remédio - CNPJ: 00.000.000/0000-00 - SAC: (11) 0000-0000
-                </h5>
-                <h5 style="font-size: 16px">
-                    8balls.integratedproject@gmail.com
-                </h5>
-                <h5>
-                    R. Pedro Vicente, 625 - Canindé, São Paulo - SP, 01109-010
-                </h5>
-            </div>
+            <div class="overlay"></div>
         </div>
-    </div>
-    </div>
-    <div class="overlay"></div>
-</div>
-<div class="overlay"></div>
+        <div class="overlay"></div>
 
-<script>
+        <script>
             if ('serviceWorker' in navigator) {
                 window.addEventListener('load', () => {
-                    navigator.serviceWorker.register('sw.js', { scope: '/' })
-                        .then(function (reg) {
-                            console.log('service worker registered',reg);
-                        })
-                        .catch(function (err) {
-                            console.warn('service worker failed',err);
-                        });
+                    navigator.serviceWorker.register('sw.js', {scope: '/'})
+                            .then(function (reg) {
+                                console.log('service worker registered', reg);
+                            })
+                            .catch(function (err) {
+                                console.warn('service worker failed', err);
+                            });
                 })
             }
 
 
-</script>
+        </script>
 
-<!-- jQuery CDN - Slim version (=without AJAX) -->
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        <!-- jQuery CDN - Slim version (=without AJAX) -->
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+                integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossorigin="anonymous"></script>
-<!-- Popper.JS -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"
-        integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ"
+        <!-- Popper.JS -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"
+                integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ"
         crossorigin="anonymous"></script>
-<!-- Bootstrap JS -->
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"
-        integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm"
+        <!-- Bootstrap JS -->
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"
+                integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm"
         crossorigin="anonymous"></script>
-<!-- jQuery Custom Scroller CDN -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"
-        integrity="sha384-QHPBqENOg6UKmsoXiXjrEEu2W4rJZaCHDTqIOI9JqSg6dI3chbQ+0kXAYUQLEDYn"
+        <!-- jQuery Custom Scroller CDN -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"
+                integrity="sha384-QHPBqENOg6UKmsoXiXjrEEu2W4rJZaCHDTqIOI9JqSg6dI3chbQ+0kXAYUQLEDYn"
         crossorigin="anonymous"></script>
 
-<script type="text/javascript">
+        <script type="text/javascript">
             $(document).ready(function () {
                 $("#sidebar").mCustomScrollbar({
                     theme: "minimal"
@@ -281,11 +281,11 @@
 
 
 
-</script>
+        </script>
 
-<!-- Calendario -->
+        <!-- Calendario -->
 
-<script th:inline="javascript">
+        <script th:inline="javascript">
             document.addEventListener('DOMContentLoaded', function () {
                 var calendarEl = document.getElementById('calendar');
                 const dataConst = Date.now();
@@ -360,63 +360,61 @@
                 calendar.render();
             });
 
-</script>
-<script src='/script/calendario4.js'></script>
-<script type="module" src="/script/requestPermisionToPushNotificaion.js"></script>
+        </script>
+        <script src='/script/calendario4.js'></script>
+        <script type="module" src="/script/requestPermisionToPushNotificaion.js"></script>
 
-<!-- DASHBOARD -->
-<script src="https://code.highcharts.com/highcharts.js"
-        crossorigin="anonymous"></script>
-<script src="https://code.highcharts.com/modules/exporting.js"
-        crossorigin="anonymous"></script>
-<script th:inline="javascript">
-            $(function(){
-            Highcharts.chart('container', {
-            chart: {
-            type: 'column'
-            },
+        <!-- DASHBOARD -->
+        <script src="https://code.highcharts.com/highcharts.js" crossorigin="anonymous"></script>
+        <script src="https://code.highcharts.com/modules/exporting.js" crossorigin="anonymous"></script>
+        <script th:inline="javascript">
+            $(function () {
+                Highcharts.chart('container', {
+                    chart: {
+                        type: 'column'
+                    },
                     title: {
-                    text: 'Gastos'
+                        text: 'Gastos'
                     },
                     subtitle: {
-                    text: 'Mensais'
+                        text: 'Mensais'
                     },
                     xAxis: {
-                    categories: ["JAN",  "FEV", "MAR", "ABR", "MAI", "JUN", "JUL", "AGO", "SET", "OUT", "NOV", "DEZ"],
-                            crosshair: true
+                        categories: ["JAN", "FEV", "MAR", "ABR", "MAI", "JUN", "JUL", "AGO", "SET", "OUT", "NOV", "DEZ"],
+                        crosshair: true
                     },
                     yAxis: {
-                    min: 0,
-                            max:500,
-                            title: {
+                        min: 0,
+                        max: 500,
+                        title: {
                             text: 'Gastos R$'
-                            }
+                        }
                     },
                     tooltip: {
-                    headerFormat: '<span style="font-size:20px">{point.key}</span><table>',
-                            pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-                            '<td style="padding:0"><b>{point.y:.1f} R$</b></td></tr>',
-                            footerFormat: '</table>',
-                            shared: true,
-                            useHTML: true
+                        headerFormat: '<span style="font-size:20px">{point.key}</span><table>',
+                        pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                                '<td style="padding:0"><b>{point.y:.1f} R$</b></td></tr>',
+                        footerFormat: '</table>',
+                        shared: true,
+                        useHTML: true
                     },
                     plotOptions: {
-                    column: {
-                    pointPadding: 0.2,
+                        column: {
+                            pointPadding: 0.2,
                             borderWidth: 0
-                    },
-                            line: {
+                        },
+                        line: {
                             dataLabels: {
-                            enabled: true
+                                enabled: true
                             }
-                            }
+                        }
                     },
                     series: [{
-                    name: "Gasto",
-                    data: [[${gastos}]]
-                    }]
+                            name: "Gasto",
+                            data: [[${gastos}]]
+                        }]
+                });
             });
-            });
-</script>
-</body>
+        </script>
+    </body>
 </html>

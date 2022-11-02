@@ -13,7 +13,7 @@
 
     <link rel="icon" href="/static/images/icon.svg"/>
 
-    <title>Meu Remédio</title>
+    <title th:text="#{listrem.title}"></title>
     <meta name="theme-color" content="#6bffe9">
     <link rel="manifest" href="/config/manifest.json">
     <link rel="apple-touch-icon" href="/images/icon.svg">
@@ -53,7 +53,7 @@
     </nav>
     <main class="container-table text-center">
         <section id="remedies">
-            <h2>Lista de Remédios</h2>
+            <h2 th:text="#{listrem.formtitle}"></h2>
             <table class="table table-striped container-table" id = "data-table">
                 <caption> </caption>
                 <thead>
