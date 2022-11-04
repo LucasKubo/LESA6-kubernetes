@@ -1,9 +1,7 @@
-
-
-//Esta função se encarrega de trocar o idioma da página
+//Esta funï¿½ï¿½o se encarrega de trocar o idioma da pï¿½gina
 $(document).ready(function () {
         
-        //id do elemento html = "#locales" (é um select)
+        //id do elemento html = "#locales" (ï¿½ um select)
         $("#locales").change(function () {
             
             //Variavel armazena o value do elemento "#locales"

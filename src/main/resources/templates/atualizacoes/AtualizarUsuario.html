@@ -103,10 +103,10 @@
                     <div class="form-group">
                         <label th:text="#{attusu.gender}"></label>
                         <select id="US_Sexo" name="US_Sexo"  class="form-control formulario-input gender-select US_Sexo">
-                            <option th:text="#{cadususelect.female}" value="Feminino"></option>
-                            <option th:text="#{cadususelect.male}" value="Masculino"></option>
-                            <option th:text="#{cadususelect.other}" value="Outro"></option>
-                            <option th:text="#{cadususelect.null}" value="Não informar"></option>
+                            <option th:text="#{cadususelect.female}" value="Feminino" th:selected="${usuario.sexo.equals('Feminino')}"></option>
+                            <option th:text="#{cadususelect.male}" value="Masculino" th:selected="${usuario.sexo.equals('Masculino')}"></option>
+                            <option th:text="#{cadususelect.other}" value="Outro" th:selected="${usuario.sexo.equals('Outro')}"></option>
+                            <option th:text="#{cadususelect.null}" value="Não informar" th:selected="${usuario.sexo.equals('Não informar';;;;;;;;;)}"></option>
                         </select>
                     </div>
 
