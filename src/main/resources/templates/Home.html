@@ -369,6 +369,16 @@
         <script src="https://code.highcharts.com/modules/exporting.js" crossorigin="anonymous"></script>
         <script th:inline="javascript">
             $(function () {
+                var linguagem =  [[${#locale.language}]]
+                console.log(linguagem)
+                if (linguagem != 'en'){
+                    var lista = ["JAN", "FEV", "MAR", "ABR", "MAI", "JUN", "JUL", "AGO", "SET", "OUT", "NOV", "DEZ"]
+                } else {
+                    var lista = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEZ"]
+                }
+
+                var maiorValor = Math.max.apply(Math, [[${gastos}]].concat([[${gastosAnoAnterior}]]).concat([[${gastosAnoSeguinte}]])); 
+                var gasto = "Gastos "
                 Highcharts.chart('container', {
                     chart: {
                         type: 'column'
@@ -380,12 +390,12 @@
                         text: 'Mensais'
                     },
                     xAxis: {
-                        categories: ["JAN", "FEV", "MAR", "ABR", "MAI", "JUN", "JUL", "AGO", "SET", "OUT", "NOV", "DEZ"],
+                        categories: lista,
                         crosshair: true
                     },
                     yAxis: {
                         min: 0,
-                        max: 500,
+                        max: maiorValor,
                         title: {
                             text: 'Gastos R$'
                         }
@@ -407,11 +417,36 @@
                             dataLabels: {
                                 enabled: true
                             }
+                        },
+                        series: {
+                            events: {
+                                legendItemClick: function() {
+                                    this.chart.series.forEach(function(s) {
+                                        if (s !== this && s.visible) {
+                                            s.hide();
+                                        }
+                                    });
+
+                                    return !this.visible ? true : false
+                                }
+                            }
                         }
                     },
-                    series: [{
-                            name: "Gasto",
+                    series: [
+                        {
+                            name: gasto + new Date(new Date().setFullYear(new Date().getFullYear() - 1)).getFullYear(),
+                            data: [[${gastosAnoAnterior}]],
+                            visible: false,
+                            
+                        },
+                        {
+                            name: gasto + new Date().getFullYear(),
                             data: [[${gastos}]]
+                        },
+                        {
+                            name: gasto + new Date(new Date().setFullYear(new Date().getFullYear() + 1)).getFullYear(),
+                            data: [[${gastosAnoSeguinte}]],
+                            visible: false,  
                         }]
                 });
             });

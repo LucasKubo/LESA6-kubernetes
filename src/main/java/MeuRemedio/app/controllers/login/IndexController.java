@@ -4,9 +4,7 @@ package MeuRemedio.app.controllers.login;
 import MeuRemedio.app.models.agendamentos.Agendamento;
 import MeuRemedio.app.models.agendamentos.AgendamentosHorarios;
 import MeuRemedio.app.models.agendamentos.IntervaloDias;
-import MeuRemedio.app.models.remedios.Remedio;
 import MeuRemedio.app.models.usuarios.Financeiro;
-import MeuRemedio.app.models.usuarios.Usuario;
 import MeuRemedio.app.repository.*;
 import MeuRemedio.app.service.UserSessionService;
 import MeuRemedio.app.service.utils.ValidateAuthentication;
@@ -24,7 +22,6 @@ import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 import java.util.Objects;
 
 
@@ -70,9 +67,15 @@ public class IndexController {
         List <Financeiro> financeiro = financeiroRepository.findAllByUsuarioID(userSessionService.returnIdUsuarioLogado());
 
         List<Double> gastos = new ArrayList<>();
+        List<Double> gastosAnoSeguinte = new ArrayList<>();
+        List<Double> gastosAnoAnterior = new ArrayList<>();
+
+        int anoAtual = LocalDate.now().getYear();
 
         for (int i = 0; i < 12; i++){
             gastos.add(i, 0.0);
+            gastosAnoSeguinte.add(i, 0.0);
+            gastosAnoAnterior.add(i, 0.0);
         }
 
         for (int i = 0; i < financeiro.size(); i++){
@@ -80,13 +83,54 @@ public class IndexController {
             LocalDate data = LocalDate.parse(dataString);
             var mes = data.getMonth().ordinal();
             Double valorPorParcela = financeiro.get(i).getValor() / financeiro.get(i).getQtdParcela();
-            for (int j = 0; j < financeiro.get(i).getQtdParcela(); j++){
-                var mesParcela = mes + j;
-                if (mesParcela < 12)
-                    gastos.set(mesParcela, gastos.get(mesParcela) + valorPorParcela);
+
+            //Adicionar valores na lista se o ano for igual ao atual
+            if (data.getYear() == anoAtual){
+                for (int j = 0; j < financeiro.get(i).getQtdParcela(); j++){
+                    var mesParcela = mes + j;
+                    if (mesParcela < 12) {
+                        gastos.set(mesParcela, gastos.get(mesParcela) + valorPorParcela);
+                    } else {
+                        gastosAnoSeguinte.set(mesParcela - 12, gastosAnoSeguinte.get(mesParcela - 12) + valorPorParcela);
+                    }
             }
         }
+
+            //Adicionar valores na lista se o ano for anterior ao atual
+            else if (data.getYear() == anoAtual - 1){
+                for (int j = 0; j < financeiro.get(i).getQtdParcela(); j++){
+                    var mesParcela = mes + j;
+                    if (mesParcela < 12) {
+                        gastosAnoAnterior.set(mesParcela, gastosAnoAnterior.get(mesParcela) + valorPorParcela);
+                    } else {
+                        gastos.set(mesParcela - 12, gastos.get(mesParcela - 12) + valorPorParcela);
+                    }
+                }
+            }
+
+            //Adicionar valores na lista se o ano for seguinte ao atual
+            else if (data.getYear() == anoAtual + 1){
+                for (int j = 0; j < financeiro.get(i).getQtdParcela(); j++){
+                    var mesParcela = mes + j;
+                    if (mesParcela < 12) {
+                        gastosAnoSeguinte.set(mesParcela, gastosAnoSeguinte.get(mesParcela) + valorPorParcela);
+                    }
+                }
+            }
+
+            else if (data.getYear() == anoAtual - 2){
+                for (int j = 0; j < financeiro.get(i).getQtdParcela(); j++) {
+                    var mesParcela = mes + j;
+                    if (mesParcela > 11) {
+                        gastosAnoAnterior.set(mesParcela - 12, gastosAnoAnterior.get(mesParcela - 12) + valorPorParcela);
+                    }
+                }
+            }
+        }
+
         model.addAttribute("gastos", gastos);
+        model.addAttribute("gastosAnoSeguinte", gastosAnoSeguinte);
+        model.addAttribute("gastosAnoAnterior", gastosAnoAnterior);
 
         return "Home";
         }
