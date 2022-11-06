@@ -87,9 +87,9 @@ body{
 .formulario-card form{
     width: 100%;
 }
-.collapse.show{
-    margin-left: 80%;
-}
+/*.collapse.show{*/
+/*    margin-left: 80%;*/
+/*}*/
 
 .formulario-card label{
     margin-bottom: 0;

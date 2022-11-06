@@ -135,9 +135,9 @@ header{
     padding-right: 20px;
 }
 
-.collapse.show{
-    margin-left: 80%;
-}
+/*.collapse.show{*/
+/*    margin-left: 80%;*/
+/*}*/
 
 .formulario-card form{
     width: 100%;

@@ -12,6 +12,7 @@
               integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         <!-- Custom CSS -->
         <link rel="stylesheet" href="/style/redefinirSenha.css"/>
+        <link rel="stylesheet" href="/style/olho.css">
         <title th:text="#{recpassword.title}"></title>
         <link rel="icon" href="/images/icon.svg"/>
         <link rel="manifest" href="/config/manifest.json">
@@ -20,6 +21,12 @@
     </head>
     <body>
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span  class="navbar-toggler-icon"></span>
+            </button>
+
+            <!--            <div th:text="#{indextitle.text}" class="title-home"></div>-->
+
             <div>
                 <a class="navbar-brand" href="/static">
                     <img alt="logo-icon" width="140px" src="/images/icon-home.png">
@@ -27,9 +34,7 @@
             </div>
             <!--            <div th:text="#{indextitle.text}" class="title-home"></div>-->
 
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span  class="navbar-toggler-icon"></span>
-            </button>
+
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ml-auto">
@@ -41,7 +46,7 @@
                         </select>
                     </li>
                     <li class="nav-item">
-                        <a th:text="#{navbar.index}" class="nav-link inicio-btn" href="/static"></a>
+                        <a th:text="#{navbar.index}" class="nav-link inicio-btn" href="/"></a>
                     </li>
                     <li class="nav-item">
                         <a th:text="#{indexbutton.login}" class="nav-link cadastrar-btn" href="/login"></a>
@@ -74,8 +79,6 @@
                             <input type="password" class="form-control formulario-input" minlength="8" id="US_Senha"
                                    required>
 
-                            <span><img id="spnMostrarSenha" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABDUlEQVQ4jd2SvW3DMBBGbwQVKlyo4BGC4FKFS4+TATKCNxAggkeoSpHSRQbwAB7AA7hQoUKFLH6E2qQQHfgHdpo0yQHX8T3exyPR/ytlQ8kOhgV7FvSx9+xglA3lM3DBgh0LPn/onbJhcQ0bv2SHlgVgQa/suFHVkCg7bm5gzB2OyvjlDFdDcoa19etZMN8Qp7oUDPEM2KFV1ZAQO2zPMBERO7Ra4JQNpRa4K4FDS0R0IdneCbQLb4/zh/c7QdH4NL40tPXrovFpjHQr6PJ6yr5hQV80PiUiIm1OKxZ0LICS8TWvpyyOf2DBQQtcXk8Zi3+JcKfNafVsjZ0WfGgJlZZQxZjdwzX+ykf6u/UF0Fwo5Apfcq8AAAAASUVORK5CYII="
-                            alt="Visualizar senha"/><span th:text="#{recpassword.showpassword}"></span></span>
                         </div>
                         <div class="form-group">
                             <label th:text="#{recpassword.passwordreinput}"></label>
@@ -83,9 +86,12 @@
                                    required>
                             <!--                            <span id="spnMostrarSenha" class="glyphicon glyphicon glyphicon-eye-open form-control-feedback"></span>-->
 
-                            <span><img id="spnMostrarSenha1" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABDUlEQVQ4jd2SvW3DMBBGbwQVKlyo4BGC4FKFS4+TATKCNxAggkeoSpHSRQbwAB7AA7hQoUKFLH6E2qQQHfgHdpo0yQHX8T3exyPR/ytlQ8kOhgV7FvSx9+xglA3lM3DBgh0LPn/onbJhcQ0bv2SHlgVgQa/suFHVkCg7bm5gzB2OyvjlDFdDcoa19etZMN8Qp7oUDPEM2KFV1ZAQO2zPMBERO7Ra4JQNpRa4K4FDS0R0IdneCbQLb4/zh/c7QdH4NL40tPXrovFpjHQr6PJ6yr5hQV80PiUiIm1OKxZ0LICS8TWvpyyOf2DBQQtcXk8Zi3+JcKfNafVsjZ0WfGgJlZZQxZjdwzX+ykf6u/UF0Fwo5Apfcq8AAAAASUVORK5CYII="
-                            alt="Visualizar senha"/><span th:text="#{recpassword.showpassword}"></span></span>
                         </div>
+                        <div id="btnS">
+                            <span><img alt="Visualizar senha" id="spnMostrarSenha" style="margin-right: 4px" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABDUlEQVQ4jd2SvW3DMBBGbwQVKlyo4BGC4FKFS4+TATKCNxAggkeoSpHSRQbwAB7AA7hQoUKFLH6E2qQQHfgHdpo0yQHX8T3exyPR/ytlQ8kOhgV7FvSx9+xglA3lM3DBgh0LPn/onbJhcQ0bv2SHlgVgQa/suFHVkCg7bm5gzB2OyvjlDFdDcoa19etZMN8Qp7oUDPEM2KFV1ZAQO2zPMBERO7Ra4JQNpRa4K4FDS0R0IdneCbQLb4/zh/c7QdH4NL40tPXrovFpjHQr6PJ6yr5hQV80PiUiIm1OKxZ0LICS8TWvpyyOf2DBQQtcXk8Zi3+JcKfNafVsjZ0WfGgJlZZQxZjdwzX+ykf6u/UF0Fwo5Apfcq8AAAAASUVORK5CYII="/><span th:text="#{attusu.showpassword}"></span></span>
+                            <small th:text="#{attusu.requiredfields}"> <strong></strong></small>
+                        </div>
+
                         <button class="formulario-button" th:text="#{recpassword.submitform}"></button>
 
 
@@ -95,6 +101,15 @@
             </div>
         </section>
 
+        <!-- Scripts da página -->
+        <!-- jQuery CDN - Slim version (=without AJAX) -->
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <!-- Popper.JS -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+        <!-- Bootstrap JS -->
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" ></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js" integrity="sha384-QHPBqENOg6UKmsoXiXjrEEu2W4rJZaCHDTqIOI9JqSg6dI3chbQ+0kXAYUQLEDYn" crossorigin="anonymous"></script>
 
         <script>
             var password = document.getElementById("US_Senha")
@@ -114,31 +129,28 @@
 
         <script>
             var $spnMostrarSenha = $('#spnMostrarSenha');
-            var $txtSenha = $('#txtSenha');
+
+            var $US_Senha = $('#US_Senha');
+
+            var $US_ConfirmSenha = $('#US_ConfirmSenha');
 
             $spnMostrarSenha
-                .on('mousedown mouseup', function() {
-                    var inputType = $txtSenha.attr('type') == 'password' ? 'text' : 'password';
-                    $txtSenha.attr('type', inputType);
+                .on('click', function () {
+                    var inputType = $US_Senha.attr('type') == 'password' ? 'text' : 'password';
+
+                    var inputTypeN = $US_ConfirmSenha.attr('type') == 'password' ? 'text' : 'password';
+
+                    $US_Senha.attr('type', inputType);
+
+                    $US_ConfirmSenha.attr('type', inputTypeN);
+
                 })
-                .on('mouseout', function() {
-                    $txtSenha.attr('type', 'password');
+                .on('dblclick', function () {
+                    $US_Senha.attr('type', 'password');
+                    $US_ConfirmSenha.attr('type', 'password');
                 });
         </script>
 
-<!--        <script>-->
-<!--            var $btnMostrarSenha = $('#btnMostrarSenha');-->
-<!--            var $txtSenha = $('#US_Senha');-->
-
-<!--            $btnMostrarSenha-->
-<!--                .on('mousedown mouseup', function() {-->
-<!--                    var inputType = $txtSenha.attr('type') == 'password' ? 'text' : 'password';-->
-<!--                    $txtSenha.attr('type', inputType);-->
-<!--                })-->
-<!--                .on('mouseout', function() {-->
-<!--                    $txtSenha.attr('type', 'password');-->
-<!--                });-->
-<!--        </script>-->
 
 
     </body>

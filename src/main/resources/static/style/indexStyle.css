@@ -88,7 +88,7 @@ body {
     width: 60%;
     border-top-left-radius: calc(0.35rem - 1px);
     border-top-right-radius: calc(0.25rem - 1px);
-    margin-left: -1.5rem;
+    margin-left: 2rem;
 }
 
 .rodapeIndex {
@@ -164,9 +164,9 @@ body {
     margin-left: 80%;
 }
 
-.collapse.show{
-    margin-left: 80%;
-}
+/*.collapse.show{*/
+/*    margin-left: 80%;*/
+/*}*/
 
 /*Botoes*/
 .entrar-btn {
