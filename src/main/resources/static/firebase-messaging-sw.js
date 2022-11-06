@@ -34,7 +34,7 @@ messaging.onBackgroundMessage(function(payload) {
         body: payload.data.body,
         icon: payload.data.icon,
         badge: payload.data.badge,
-        click_action: "https://meuremedioapp.herokuapp.com/home"
+        click_action: "https://meuremedioapp.herokuapp.com"
     };
 
     self.registration.showNotification(notificationTitle,
