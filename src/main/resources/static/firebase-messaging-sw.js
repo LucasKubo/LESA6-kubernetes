@@ -17,10 +17,19 @@ firebase.initializeApp({
 // messages.
 
 const messaging = firebase.messaging();
+const channel = new BroadcastChannel('sw-messages');
 
 self.addEventListener('notificationclick', function (payload) {
     console.log('SW notification click event', payload)
     const url = "https://meuremedioapp.herokuapp.com/home";
+
+    channel.postMessage({
+        type: 'notification_clicked',
+        data: {
+          title: payload.notification.title,
+          clickAction: url
+        }
+      });
 })
 // If you would like to customize notifications that are received in the
 // background (Web app is closed or not in browser focus) then you should
