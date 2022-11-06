@@ -19,14 +19,14 @@ firebase.initializeApp({
 const messaging = firebase.messaging();
 const channel = new BroadcastChannel('sw-messages');
 
-self.addEventListener('notificationclick', function (payload) {
-    console.log('SW notification click event', payload)
+self.addEventListener('notificationclick', function (event) {
+    console.log('SW notification click event', event)
     const url = "https://meuremedioapp.herokuapp.com/home";
 
     channel.postMessage({
         type: 'notification_clicked',
         data: {
-          title: payload.notification.title,
+          title: event.data.title,
           clickAction: url
         }
       });
