@@ -61,7 +61,14 @@ public class IndexController {
         List<IntervaloDias> intervaloDias = intervaloDiasRepository.findAllByUsuarioID(userSessionService.returnIdUsuarioLogado());
         model.addAttribute("intervaloDias", intervaloDias);
 
-        List<AgendamentosHorarios> horarios = agendamentosHorariosRepository.selecionarHorarios(userSessionService.returnIdUsuarioLogado(), instanteAgora);
+        List<AgendamentosHorarios> horariosAG = agendamentosHorariosRepository.selecionarHorarios(userSessionService.returnIdUsuarioLogado(), instanteAgora);
+        List<AgendamentosHorarios> horarios = new ArrayList<>();
+        for (AgendamentosHorarios agendamentosHorarios : horariosAG) {
+            if (agendamentosHorarios.getId().getHoraDataNotificacao().getDayOfMonth() == instanteAgora.getDayOfMonth()) {
+                horarios.add(agendamentosHorarios);
+            }
+        }
+
         model.addAttribute("horarios", horarios);
 
         List <Financeiro> financeiro = financeiroRepository.findAllByUsuarioID(userSessionService.returnIdUsuarioLogado());

@@ -17,7 +17,7 @@ firebase.initializeApp({
 // messages.
 
 const messaging = firebase.messaging();
-
+const channel = new BroadcastChannel('sw-messages');
 // If you would like to customize notifications that are received in the
 // background (Web app is closed or not in browser focus) then you should
 // implement this optional method.
@@ -32,11 +32,20 @@ messaging.onBackgroundMessage(function(payload) {
 
     const notificationOptions = {
         body: payload.data.body,
-        icon: 'https://i.imgur.com/dU2UDc4.png',
-        badge: 'https://i.imgur.com/czN0rck.png',
+        icon: payload.data.icon,
+        badge: payload.data.badge,
+        click_action: "https://meuremedioapp.herokuapp.com"
     };
 
     self.registration.showNotification(notificationTitle,
         notificationOptions);
     console.log("notificacao recebida");
 });
+
+function handleClick (event) {
+    event.notification.close();
+    // Open the url you set on notification.data
+    clients.openWindow("https://meuremedioapp.herokuapp.com/")
+  }
+
+  self.addEventListener('notificationclick', handleClick);
