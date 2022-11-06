@@ -18,6 +18,10 @@ firebase.initializeApp({
 
 const messaging = firebase.messaging();
 
+self.addEventListener('notificationclick', function (payload) {
+    console.log('SW notification click event', payload)
+    const url = "https://meuremedioapp.herokuapp.com/home";
+})
 // If you would like to customize notifications that are received in the
 // background (Web app is closed or not in browser focus) then you should
 // implement this optional method.
