@@ -34,6 +34,7 @@ messaging.onBackgroundMessage(function(payload) {
         body: payload.data.body,
         icon: 'https://i.imgur.com/dU2UDc4.png',
         badge: 'https://i.imgur.com/czN0rck.png',
+        click_action: 'https://meuremedioapp.herokuapp.com/home'
     };
 
     self.registration.showNotification(notificationTitle,
