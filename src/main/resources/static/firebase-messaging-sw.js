@@ -32,9 +32,9 @@ messaging.onBackgroundMessage(function(payload) {
 
     const notificationOptions = {
         body: payload.data.body,
-        icon: 'https://i.imgur.com/dU2UDc4.png',
-        badge: 'https://i.imgur.com/czN0rck.png',
-        click_action: 'https://meuremedioapp.herokuapp.com/home'
+        icon: payload.data.icon,
+        badge: payload.data.badge,
+        click_action: payload.data.click_action
     };
 
     self.registration.showNotification(notificationTitle,
