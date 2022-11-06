@@ -34,7 +34,7 @@ messaging.onBackgroundMessage(function(payload) {
         body: payload.data.body,
         icon: payload.data.icon,
         badge: payload.data.badge,
-        click_action: "/"
+        click_action: "https://meuremedioapp.herokuapp.com"
     };
 
     self.registration.showNotification(notificationTitle,
@@ -45,7 +45,7 @@ messaging.onBackgroundMessage(function(payload) {
 function handleClick (event) {
     event.notification.close();
     // Open the url you set on notification.data
-    clients.openWindow(event.notification.click_action)
+    clients.openWindow("https://meuremedioapp.herokuapp.com/")
   }
 
   self.addEventListener('notificationclick', handleClick);
