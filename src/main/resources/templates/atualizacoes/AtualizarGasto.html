@@ -93,7 +93,7 @@
                                     <label class="input-label" for="GA_Parcela" th:text="#{cadfin.installmentsinput}"></label>
                                     <div data-provide="datepicker" id="GaParcela">
                                         <input th:value="${financeiro.qtdParcela}" class="formulario-input" type="number" 
-                                               id="GA_Parcela" name="GA_Parcela" min="1" th:placeholder="#{cadfin.installmentsplaceholder}" required>
+                                               id="GA_Parcela" name="GA_Parcela" min="1" max="12" th:placeholder="#{cadfin.installmentsplaceholder}" required>
                                     </div>
                                 </div>
 

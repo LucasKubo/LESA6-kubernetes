@@ -85,7 +85,7 @@
                                        id="AG_DataInicio"
                                        class="form-control formulario-input margin-bot"
                                        name="AG_DataInicio"
-                                       onBlur= "validaDataFinal()"
+                                       onblur= "validaDataFinal()"
                                        required="required"
                                        th:value="${agendamento.dataInicio}"
                                 >
@@ -97,7 +97,7 @@
                                        id="AG_DataFinal"
                                        class="form-control formulario-input margin-bot"
                                        name="AG_DataFinal"
-                                       onBlur= "validaDataFinal()"
+                                       onblur= "validaDataFinal()"
                                        required=""
                                        th:value="${agendamento.dataFinal}"
                                 >
@@ -112,6 +112,7 @@
                                        value="00:00"
                                        step="300"
                                        required="required"
+                                       onblur="validarHora()"
                                        th:value="${agendamento.horaInicio}">
 
                             </div>
@@ -224,7 +225,16 @@
         }
     </script>
 
+    <script>
+        function validarHora(){
+            var valor = document.getElementById('AG_HoraInicio').value
+            var pattern=/^(0[0-9]|1[0-9]|2[0-3]):[0-5][0,5]$/
 
+            if (!pattern.test(valor)) {
+                document.getElementById('AG_HoraInicio').value = "00:00"
+            }
+        }
+    </script>
 </div>
 </body>
 </html>
