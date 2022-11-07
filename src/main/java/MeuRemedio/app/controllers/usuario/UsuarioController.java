@@ -16,6 +16,7 @@ import org.springframework.security.core.session.SessionRegistry;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
@@ -60,6 +61,8 @@ public class UsuarioController {
     @Autowired
     SessionRegistry sessionRegistryImpl;
 
+    @Autowired
+    DashBoardsRepository dashBoardsRepository;
     final String REDIRECT = "redirect:/home";
 
     @RequestMapping(value = "/cadastro")
@@ -158,6 +161,7 @@ public class UsuarioController {
     }
 
     @PostMapping(value = "/usuario/edit/deletar_usuario") /*Validar como vai ser a chamada front para o metodo*/
+    @Transactional
     public String deletarUsuario (@RequestParam("US_Senha") String senha, HttpServletRequest request) throws MessagingException, UnsupportedEncodingException {
 
         String EmailUsuarioLogado = userSessionService.returnUsernameUsuario();
@@ -174,6 +178,7 @@ public class UsuarioController {
                 List<Financeiro> gastos = financeiroRepository.findAllByUsuarioID(usuarioLogado.getId());
                 financeiroRepository.deleteAll(gastos);
                 remedioRepository.deleteAll(remedio);
+                dashBoardsRepository.deleteAllByUsuario(usuarioLogado);
                 usuarioRepository_2.deleteById(usuarioLogado.getId());
                 emailCadastro.emailDeletarCadastro(usuarioLogado);
                 HttpSession session= request.getSession();
