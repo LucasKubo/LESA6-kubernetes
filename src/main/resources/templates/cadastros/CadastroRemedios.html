@@ -50,16 +50,13 @@
                         <a href="/home" class="navbar-brand text-center col-09">
                             <img alt="Brand" src="/images/icon.svg" class="img-responsive text-center">
                         </a>
-
                     </div>
                 </nav>
-
 
                 <!-- MENSAGENS DE ERROS -->
                 <div class="alert-danger alert-info text-center" role="alert" th:if="${param.remedioExistente}">
                     <span th:text="#{cadremmessage.duplicateremedy}"></span>
                 </div>
-
 
                 <!-- FORMULÁRIO -->
                 <section class="container d-flex justify-content-center col-12 col-sm-10 col-md-8 col-lg-5 col-lx-6">
@@ -93,7 +90,7 @@
                                            name="RM_Dosagem"
                                            min="1"
                                            required="required"
-                                           >
+                                    >
                                 </div>
                                 <small><span id="mensagemDosagem" class="help"></span></small>
 
@@ -109,7 +106,6 @@
                                     </select>
                                 </div>
 
-
                                 <div class="input-group-radio">
                                     <label th:text="#{cadremform.susremedy}" class="input-label" for="RM_RetiradoSus"></label>
                                     <!--<label th:text="#{cadremform.susremedy}" class="sr-only" for="RM_RetiradoSus"></label>-->
@@ -124,7 +120,7 @@
                                                    data-toggle="collapse"
                                                    data-target=".collapseOne.show"
                                                    checked
-                                                   >
+                                            >
                                             <label class="input-label" for="RM_RetiradoSus" th:text="#{cadremform.radioyes}"></label>
                                         </span>
                                         <span>
@@ -136,13 +132,11 @@
                                                    required=""
                                                    data-toggle="collapse"
                                                    data-target=".collapseOne:not(.show)"
-
-                                                   >
+                                            >
                                             <label class="input-label" for="RM_RetiradoSusNo" th:text="#{cadremform.radiono}"></label>
                                         </span>
                                     </div>
                                 </div>
-
 
                                 <!-- Cadastro dos gastos -->
                                 <div class="collapseOne panel-collapse collapse">
@@ -282,23 +276,6 @@
                                 <span class="error-message" id="error-date"></span>
 
 
-                                <!--
-                                <div class="btn-group">
-                                 <button type="button" class="multiselect dropdown-toggle custom-select text-center" data-toggle="dropdown" title="None selected" aria-expanded="false">
-                                     <span class="multiselect-selected-text">Selecione o Remédio</span>
-                                 </button> -->
-                                <!--<div class="multiselect-container dropdown-menu"
-                                     x-placement="bottom-start"
-                                     style="position: absolute; transform: translate3d(0px, 38px, 0px); top: 0px; left: 0px; will-change: transform;"
-                                     >
-                                </div>
-                        </div>
-                                -->
-                                <!-- Fomulário de Gasto -->
-
-
-
-
                                 <!-- botões principais -->
                                 <div class="input-group actions">
                                     <a id="cancelar2" href="/remedios" class="button cancel" th:text="#{cadremform.cancel}"></a>
@@ -324,9 +301,9 @@
         </div>
 
         <script type="text/javascript">
-                                                       $(document).ready(function () {
-                                                           $('#RM_UnidadeDosagem')
-                                                       });
+            $(document).ready(function () {
+                $('#RM_UnidadeDosagem')
+            });
         </script>
 
         <script type="text/javascript">
@@ -355,13 +332,11 @@
             });
         </script>
 
-        <!--  -->
         <script type="text/javascript">
             $(document).ready(function () {
                 $('#AG_Remedios').multiselect()
             });
         </script>
-
 
         <script type="text/javascript">
             function desabilitar() {
@@ -426,7 +401,6 @@
              });
         </script>
         <div id="torrent-scanner-popup" style="display: none;">
-
         </div>
     </body>
 </html>
