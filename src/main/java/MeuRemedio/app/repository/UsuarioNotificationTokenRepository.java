@@ -11,4 +11,5 @@ import java.util.List;
 public interface UsuarioNotificationTokenRepository extends JpaRepository<UsuarioNotificationToken, Long> {
 
     List<UsuarioNotificationToken> findAllByIdUsuario(Long idUsuario);
+    UsuarioNotificationToken findByIdToken(String token);
 }
