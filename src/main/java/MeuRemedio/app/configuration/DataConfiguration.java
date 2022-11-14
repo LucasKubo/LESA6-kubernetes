@@ -13,6 +13,7 @@ import javax.sql.DataSource;
 public class DataConfiguration {
 
 
+
     // Metodo para base de dados locais
 //    @Bean
 //    public DataSource datasource() {

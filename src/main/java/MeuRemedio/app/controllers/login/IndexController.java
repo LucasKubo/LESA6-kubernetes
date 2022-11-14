@@ -15,6 +15,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.time.LocalDate;
@@ -41,6 +42,8 @@ public class IndexController {
 
     @Autowired
     FinanceiroRepository financeiroRepository;
+    @Autowired
+    UsuarioNotificationTokenRepository usuarioNotificationTokenRepository;
 
     final String ZONEID = "America/Sao_Paulo";
 
@@ -143,8 +146,18 @@ public class IndexController {
         }
 
     @RequestMapping(value = "/")
-    public String Index(){
+    public String Index(HttpServletRequest request){
         if (validateAuthentication.auth() != true){
+            Cookie[] cookies = request.getCookies();
+            if(cookies!=null) {
+                for (Cookie cookie : cookies) {
+                    if(cookie.getName().equals("tokenNotification")) {
+                        var token = usuarioNotificationTokenRepository.findByIdToken(cookie.getValue());
+                        usuarioNotificationTokenRepository.delete(token);
+                        cookie.setMaxAge(0);
+                    }
+                }
+            }
             return "Index";
         }
         return "redirect:/home";
