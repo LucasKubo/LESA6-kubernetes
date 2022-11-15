@@ -234,6 +234,16 @@ public class RemedioController {
         return "cadastros/CadastroRemedios";
     }
 
+    @RequestMapping(value = "/buscarRemedioSUS", method = RequestMethod.POST)
+    public String buscarRemedioSUS(@RequestParam(value="RM_Nome", required = false) String nome, Model model){
+        if(Objects.isNull(nome)){
+            return "listas/ListaRemediosSUS";
+        }
+        var result = listagemRemediosRepository.buscarPorNome(nome);
+        model.addAttribute("result", result);
+        return "listas/ListaRemediosSUS";
+    }
+
     //função responsável por achar um id dentro do banco. Retorna true se encontrar
     public boolean verificarPorId (long id ) {
         return remedioRepository.existsById(id);
@@ -242,5 +252,10 @@ public class RemedioController {
     //Essa função deve retornar uma tela customizada de erro.
     public String templateError(){
         return "TemplateError";
+    }
+
+    @RequestMapping(value="/verificarSus", method = RequestMethod.GET)
+    public String verificarSus(){
+        return "listas/ListaRemediosSUS";
     }
 }

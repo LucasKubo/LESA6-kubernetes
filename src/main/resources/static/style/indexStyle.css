@@ -75,6 +75,7 @@ body {
 
 .card {
     border: 0px solid rgba(0,0,0,.125);
+    text-align: center;
 }
 
 .card-img-top{
@@ -82,21 +83,14 @@ body {
     border-top-left-radius: calc(0.35rem - 1px);
     border-top-right-radius: calc(0.25rem - 1px);
     margin-left: 2rem;
-}
-
-.card-img-top-gasto {
-    width: 60%;
-    border-top-left-radius: calc(0.35rem - 1px);
-    border-top-right-radius: calc(0.25rem - 1px);
-    margin-left: 2rem;
+    margin-right: 2rem;
 }
 
 .rodapeIndex {
     padding: 2rem 1rem;
-    margin-bottom: 2rem;
     background-color: #6bffe9;
     border-radius: 0.3rem;
-    margin-top: 4rem
+    margin-top: 2rem;
 }
 
 
@@ -117,7 +111,7 @@ body {
 
 #H2Fun {
     font-size: 2rem;
-    margin-top: 5%;
+    margin: 1rem 0 2rem 0;
 }
 
 .btn-sus-home-back {
