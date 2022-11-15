@@ -236,8 +236,9 @@ public class RemedioController {
 
     @RequestMapping(value = "/buscarRemedioSUS", method = RequestMethod.POST)
     public String buscarRemedioSUS(@RequestParam(value="RM_Nome", required = false) String nome, Model model){
-        if(Objects.isNull(nome)){
-            return "listas/ListaRemediosSUS";
+        model.addAttribute("nome", nome);
+        if(Objects.isNull(nome) || nome.length() < 4 ){
+            return "redirect:/buscarRemedioSUS?SemCorrespondencia";
         }
         var result = listagemRemediosRepository.buscarPorNome(nome);
         model.addAttribute("result", result);
@@ -254,7 +255,7 @@ public class RemedioController {
         return "TemplateError";
     }
 
-    @RequestMapping(value="/verificarSus", method = RequestMethod.GET)
+    @RequestMapping(value="/buscarRemedioSUS", method = RequestMethod.GET)
     public String verificarSus(){
         return "listas/ListaRemediosSUS";
     }
