@@ -60,6 +60,7 @@ public class RemedioController {
     @Autowired
     ListagemRemediosRepository listagemRemediosRepository;
 
+
     final String REDIRECT="redirect:/remedios";
 
     @RequestMapping(value = "/remedios_cadastro")
@@ -258,5 +259,24 @@ public class RemedioController {
     @RequestMapping(value="/buscarRemedioSUS", method = RequestMethod.GET)
     public String verificarSus(){
         return "listas/ListaRemediosSUS";
+    }
+
+    @RequestMapping(value="/buscarRemedioSUSVisitante", method = RequestMethod.GET)
+    public String verificarSuss(){
+        if (!validateAuthentication.auth()){
+            return "listas/ListaRemediosSUSUsuario";
+        }
+        return "redirect:/";
+    }
+
+    @RequestMapping(value = "/buscarRemedioSUSVisitante", method = RequestMethod.POST)
+    public String buscarRemedioSUSDeslogado(@RequestParam(value="RM_Nome", required = false) String nome, Model model){
+        model.addAttribute("nome", nome);
+        if(Objects.isNull(nome) || nome.length() < 4 ){
+            return "redirect:/buscarRemedioSUSVisitante?SemCorrespondencia";
+        }
+        var result = listagemRemediosRepository.buscarPorNome(nome);
+        model.addAttribute("result", result);
+        return "listas/ListaRemediosSUSUsuario";
     }
 }

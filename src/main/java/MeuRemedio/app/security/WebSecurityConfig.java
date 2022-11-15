@@ -40,7 +40,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     public void configure (HttpSecurity http) throws Exception {
         http.csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/login", "/cadastro", "/", "/enviarEmail","/recuperar_senha","/verificar_cadastro","/sw.js","/firebase-messaging-sw.js", "/.well-known/assetlinks.json").permitAll()
+                .antMatchers("/login", "/cadastro", "/", "/enviarEmail","/recuperar_senha","/verificar_cadastro","/buscarRemedioSUSVisitante", "/sw.js","/firebase-messaging-sw.js", "/.well-known/assetlinks.json").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
