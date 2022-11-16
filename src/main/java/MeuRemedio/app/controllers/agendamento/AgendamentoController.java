@@ -140,8 +140,9 @@ public class AgendamentoController {
             model.addAttribute("agendamento", agendamento);
 
             Optional<IntervaloDias> intervaloDias = intervaloDiasRepository.findById(id);
-            model.addAttribute("intervaloDias", intervaloDias);
-
+            if (intervaloDias.isPresent()) {
+                model.addAttribute("intervaloDias", intervaloDias.get());
+            }
             return "atualizacoes/AtualizarAgendamento";
         }
     }

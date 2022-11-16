@@ -160,6 +160,7 @@
                                        id="intervaloDias"
                                        name="intervaloDias"
                                        min="1"
+                                       th:value="${intervaloDias?.intervaloDias}"
                                 />
                             </div>
                         </div>
@@ -198,6 +199,14 @@
         });
     </script>
 
+    <script type="text/javascript">
+        $(document).ready(function () {
+            if ([[${intervaloDias?.intervaloDias}]] != null){
+                var botao = document.getElementById("intervalo-check");
+                botao.click();
+            }
+        });
+    </script>
 
     <script type="text/javascript">
         $(function () {
@@ -215,13 +224,11 @@
     <script type="text/javascript">
         function desabilitar() {
             var valor = document.getElementById('intervalo-check')
-            var status = document.getElementById('intervaloDias').enabled;
 
-            if (valor.checked && status) {
-                document.getElementById('intervaloDias').disabled = true;
-                document.getElementById('intervaloDias').value = null;
-            } else {
-                document.getElementById('intervaloDias').disabled = false;
+
+            if (!valor.checked) {
+            var intervalo = document.getElementById('intervaloDias')
+            intervalo.value = null;
             }
         }
     </script>
