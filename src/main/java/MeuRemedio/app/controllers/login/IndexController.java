@@ -83,7 +83,7 @@ public class IndexController {
             }
         }
 
-        model.addAttribute("horarios", horarios);
+        model.addAttribute("horarios", horariosAG);
 
         List <Financeiro> financeiro = financeiroRepository.findAllByUsuarioID(userSessionService.returnIdUsuarioLogado());
 
