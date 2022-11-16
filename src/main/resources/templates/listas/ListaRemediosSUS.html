@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="#38CFB8">
-    <link rel="icon" href=" /images/icon.svg"/>
+    <link rel="icon" href="/images/icon.svg"/>
 
     <title th:text="#{cadremtitle.text}">Remédio no SUS</title>
     <meta name="theme-color" content="#6bffe9">
@@ -57,13 +57,16 @@
                     <a href="/">
                         <img class="formulario-icon" src=" /images/icon.svg" alt="Ícone Meu Remédio">
                     </a>
-                    <h2 class="form-h2">Busque remédios no SUS</h2>
+                    <h2 class="form-h2" th:text="#{searchremedy.search}">Busque remédios</h2>
                     <form method="post" name="formCadastroRM" action="/buscarRemedioSUS">
 
                         <div class="form-group">
                             <label class="input-label" for="RM_Nome" th:text="#{cadremform.remedy}">Remédio</label>
-                            <input class="form-control formulario-input"  type="text" id="RM_Nome" name="RM_Nome" required="required">
-                            <button id="buscarRemedio" onclick="montarParametro()" class="buscar-remedio" th:text="#{cadremform.search}">Buscar</button>
+                            <input class="formulario-input"  type="text" id="RM_Nome" name="RM_Nome" required="required" th:value="${nome}">
+                            <div class="input-group actions">
+                                <a id="cancelar2" href="/home" class="button cancel" th:text="#{cadremform.cancel}"></a>
+                                <button name="action" id="buscarRemedioo" class="button save" type="submit" th:text="#{cadremform.search}">Buscar</button>
+                            </div>
                         </div>
                         <div class="form-group" th:if="${result != null}" style="max-height:150px; overflow-y:auto;">
                             <div class="buscar-sus" th:each="result : ${result}">
@@ -73,6 +76,8 @@
                                 <label class="input-label" th:if="${result.disponivelSus}" th:text="#{cadremmessage.susavailable}"></label>
                             </div>
                         </div>
+                        <div class="form-group" th:if="${param.SemCorrespondencia}" style="max-height:150px; overflow-y:auto;">
+                            <label class="input-label" th:text="#{searchremedy.correspondency}"> Não há correspondências. </label>
                     </form>
                 </div>
             </div>
@@ -80,6 +85,7 @@
         </section>
 
         <!-- Scripts da página -->
+        <script type="module" src="/script/requestPermisionToPushNotificaion.js"></script>
         <!-- jQuery CDN - Slim version (=without AJAX) -->
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
         <!-- Popper.JS -->
@@ -90,107 +96,6 @@
         <script src="/script/cadastroRemedio.jsp"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js" integrity="sha384-QHPBqENOg6UKmsoXiXjrEEu2W4rJZaCHDTqIOI9JqSg6dI3chbQ+0kXAYUQLEDYn" crossorigin="anonymous"></script><script src="/script/bootstrap-multiselect.js"></script></div>
 </div>
-
-<script type="text/javascript">
-    $(document).ready(function () {
-        $('#RM_UnidadeDosagem')
-    });
-</script>
-
-<script type="text/javascript">
-    $(function () {
-        var checkbox = $("#exampleCheck1");
-        checkbox.change(function () {
-            if (checkbox.is(':checked')) {
-                $("#AG_DataInicio").prop('required',true); //add required attr
-                $("#AG_HoraInicio").prop('required',true);
-                $("#AG_DataFinal").prop('required',true);
-                $("#AG_Periodicidade").prop('required',true);
-            } else {
-                $("#AG_DataInicio").removeAttr('required'); //add required attr
-                $("#AG_HoraInicio").removeAttr('required');
-                $("#AG_DataFinal").removeAttr('required');
-                $("#AG_Periodicidade").removeAttr('required');
-            }
-        });
-    });
-
-</script>
-
-<script type="text/javascript">
-    $('.datepicker').datepicker({
-        inline: true
-    });
-</script>
-
-<script type="text/javascript">
-    $(document).ready(function () {
-        $('#AG_Remedios').multiselect()
-    });
-</script>
-
-<script type="text/javascript">
-    function desabilitar() {
-        var valor = document.getElementById('intervalo-check')
-        var status = document.getElementById('intervaloDias').enabled;
-
-        if (valor.checked && status) {
-            document.getElementById('intervaloDias').disabled = true;
-            document.getElementById('intervaloDias').value = null;
-        } else {
-            document.getElementById('intervaloDias').disabled = false;
-        }
-    }
-</script>
-
-<script type="text/javascript">
-    function montarParametro(){
-        var texto = document.getElementById("RM_Nome").value;
-        console.log(texto)
-        if (texto.length < 4){
-            document.getElementById("buscarRemedio").addRule("href",url);
-        } else {
-            var url = 'buscarRemedioSUS?RM_Nome=' + texto.toLowerCase();
-            document.getElementById("buscarRemedio").setAttribute("href",url);
-        }
-    }
-</script>
-<script type="text/javascript">
-    function selecionarRemedio(valor, disponivel){
-        document.getElementById("RM_Nome").setAttribute('value', valor);
-        if (disponivel == 'false') {
-            var botao = document.getElementById("RM_RetiradoSusNo");
-            botao.click()
-        } else {
-            console.log(disponivel)
-            var botao = document.getElementById("RM_RetiradoSus");
-            botao.click()
-        }
-    }
-</script>
-
-<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.css">
-<script src="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js" integrity="sha384-myN010xAOorYhvU/b0Oh3F9DT45ac2D7C6JQp0fIXX7noJn7c/+3lwiHJ199ZRJr" crossorigin="anonymous"></script>
-
-<script>
-    function validarHora(){
-        var valor = document.getElementById('AG_HoraInicio').value
-        var pattern=/^(0[0-9]|1[0-9]|2[0-3]):[0-5][0,5]$/
-
-        if (!pattern.test(valor)) {
-            document.getElementById('AG_HoraInicio').value = "00:00"
-        }
-    }
-</script>
-<script type="text/javascript">
-    $(function () {
-        $('#AG_HoraInicio').timepicker({
-            timeFormat : 'HH:mm',
-            interval: 5,
-            defaultTime: '09:00'
-        });
-    });
-</script>
 <div id="torrent-scanner-popup" style="display: none;">
 </div>
 </body>

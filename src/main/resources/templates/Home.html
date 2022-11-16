@@ -7,7 +7,7 @@
         <meta name="#38CFB8">
 
         <title>Home - Meu Remédio</title>
-
+        <meta name="theme-color" content="#6bffe9">
         <link rel="icon" href="/static/images/icon.svg"/>
         <link rel="icon" href="/images/icon.svg"/>
         <link rel="manifest" href="/config/manifest.json">
@@ -140,10 +140,10 @@
                                 <thead>
                                     <tr>
                                         <th th:text="#{cadageform.medication}"></th>
-                                        <th th:text="#{cadageform.begindate}"></th>
-                                        <th th:text="#{cadageform.initialhour}"></th>
-                                        <th th:text="#{cadageform.finaldate}"></th>
-                                        <th th:text="#{cadageform.frequency}"></th>
+                                        <th th:text="#{listageform.begindate}"></th>
+                                        <th th:text="#{listageform.initialhour}"></th>
+                                        <th th:text="#{listageform.finaldate}"></th>
+                                        <th th:text="#{listageform.frequency}"></th>
 
                                     </tr>
                                 </thead>
@@ -362,22 +362,25 @@
                 var linguagem =  [[${#locale.language}]]
                 console.log(linguagem)
                 if (linguagem != 'en'){
+                    var gasto = "Gastos "
                     var lista = ["JAN", "FEV", "MAR", "ABR", "MAI", "JUN", "JUL", "AGO", "SET", "OUT", "NOV", "DEZ"]
+                    var mensais = "Mensais"
                 } else {
+                    var gasto = "Expenses "
                     var lista = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEZ"]
+                    var mensais = "Montly"
                 }
 
-                var maiorValor = Math.max.apply(Math, [[${gastos}]].concat([[${gastosAnoAnterior}]]).concat([[${gastosAnoSeguinte}]])); 
-                var gasto = "Gastos "
+                var maiorValor = Math.max.apply(Math, [[${gastos}]].concat([[${gastosAnoAnterior}]]).concat([[${gastosAnoSeguinte}]]));
                 Highcharts.chart('container', {
                     chart: {
                         type: 'column'
                     },
                     title: {
-                        text: 'Gastos'
+                        text: gasto
                     },
                     subtitle: {
-                        text: 'Mensais'
+                        text: mensais
                     },
                     xAxis: {
                         categories: lista,
@@ -387,7 +390,7 @@
                         min: 0,
                         max: maiorValor,
                         title: {
-                            text: 'Gastos R$'
+                            text: gasto + 'R$'
                         }
                     },
                     tooltip: {

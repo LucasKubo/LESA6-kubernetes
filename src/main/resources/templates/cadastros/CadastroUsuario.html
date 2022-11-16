@@ -62,7 +62,7 @@
          th:if="${param.emailExistente}" th:text="#{cadusuvalid.usedemail}">
     </div>
     <div class="alert-danger alert-info text-center" role="alert" id="error-email"></div>
-    <div class="alert-danger alert-info text-center" role="alert" id="error-date"></div>
+
 
 </article>
 
@@ -162,6 +162,7 @@
                     <small><strong th:text="#{cadusumessage.requiredfields}"></strong></small>
                 </div>
 
+                <span class="error-message" id="error-date"></span>
                 <button th:text="#{cadusubutton.createacc}" id="cadastrar" name="action" class="formulario-button"
                         type="submit"></button>
             </form>

@@ -4,7 +4,9 @@ package MeuRemedio.app.controllers.login;
 import MeuRemedio.app.models.agendamentos.Agendamento;
 import MeuRemedio.app.models.agendamentos.AgendamentosHorarios;
 import MeuRemedio.app.models.agendamentos.IntervaloDias;
+import MeuRemedio.app.models.remedios.Remedio;
 import MeuRemedio.app.models.usuarios.Financeiro;
+import MeuRemedio.app.models.usuarios.Usuario;
 import MeuRemedio.app.repository.*;
 import MeuRemedio.app.service.UserSessionService;
 import MeuRemedio.app.service.utils.ValidateAuthentication;
@@ -15,6 +17,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.time.LocalDate;
@@ -41,6 +44,13 @@ public class IndexController {
 
     @Autowired
     FinanceiroRepository financeiroRepository;
+    @Autowired
+    UsuarioNotificationTokenRepository usuarioNotificationTokenRepository;
+
+    @Autowired
+    UsuarioRepository usuarioRepository;
+    @Autowired
+    RemedioRepository remedioRepository;
 
     final String ZONEID = "America/Sao_Paulo";
 
@@ -54,6 +64,10 @@ public class IndexController {
         if (!validateAuthentication.auth()) {
             return "Login";
         }
+
+        Usuario usuario = usuarioRepository.findById(userSessionService.returnIdUsuarioLogado());
+        List<Remedio> remedios = remedioRepository.findAllByUsuario(usuario);
+        model.addAttribute("remedios", remedios);
 
         List<Agendamento> agendamentos = agendamentoRepository.findAllByUsuarioID(userSessionService.returnIdUsuarioLogado());
         model.addAttribute("agendamento", agendamentos);
@@ -69,7 +83,7 @@ public class IndexController {
             }
         }
 
-        model.addAttribute("horarios", horarios);
+        model.addAttribute("horarios", horariosAG);
 
         List <Financeiro> financeiro = financeiroRepository.findAllByUsuarioID(userSessionService.returnIdUsuarioLogado());
 
@@ -143,8 +157,18 @@ public class IndexController {
         }
 
     @RequestMapping(value = "/")
-    public String Index(){
+    public String Index(HttpServletRequest request){
         if (validateAuthentication.auth() != true){
+            Cookie[] cookies = request.getCookies();
+            if(cookies!=null) {
+                for (Cookie cookie : cookies) {
+                    if(cookie.getName().equals("tokenNotification")) {
+                        var token = usuarioNotificationTokenRepository.findByIdToken(cookie.getValue());
+                        usuarioNotificationTokenRepository.delete(token);
+                        cookie.setMaxAge(0);
+                    }
+                }
+            }
             return "Index";
         }
         return "redirect:/home";

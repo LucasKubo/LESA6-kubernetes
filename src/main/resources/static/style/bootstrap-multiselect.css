@@ -62,6 +62,7 @@ span.multiselect-native-select select {
 .multiselect {
   overflow: hidden;
   text-overflow: ellipsis;
+   width:12rem;
 }
 .multiselect-container {
   position: absolute;

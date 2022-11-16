@@ -70,7 +70,7 @@
 
                                 <div class="form-group">
                                     <label class="input-label" for="RM_Nome" th:text="#{cadremform.remedy}"></label>
-                                    <input class="form-control formulario-input"  type="text" id="RM_Nome" name="RM_Nome" required="required">
+                                    <input class="formulario-input"  type="text" id="RM_Nome" name="RM_Nome" required="required">
                                     <a id="buscarRemedio" onclick="montarParametro()" class="buscar-remedio" th:text="#{cadremform.search}"></a>
                                 </div>
                                 <div class="form-group" th:if="${result != null}" style="max-height:150px; overflow-y:auto;">
@@ -83,7 +83,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label class="input-label" for="RM_Dosagem" th:text="#{cadremform.dosage}"></label>
-                                    <input class="form-control formulario-input"
+                                    <input class="formulario-input"
                                            th:placeholder="#{cadremform.dosagesmall}"
                                            type="number"
                                            id="RM_Dosagem"
@@ -146,21 +146,21 @@
                                     <div class="form-group">
                                         <label class="input-label" for="GA_Data" th:text="#{cadremfinance.dateinput}"></label>
                                         <div class="input-group" data-provide="datepicker" id="GaData">
-                                            <input class="form-control formulario-input" type="date" id="GA_Data" name="GA_Data" value=null>
+                                            <input class="formulario-input" type="date" id="GA_Data" name="GA_Data" value=null>
                                         </div>
                                     </div>
 
                                     <div class="form-group">
                                         <label class="input-label" for="GA_Valor" th:text="#{cadremfinance.value}"></label>
                                         <div class="input-group" data-provide="datepicker" id="GaValor">
-                                            <input class="form-control formulario-input" type="number" step="0.01" id="GA_Valor" name="GA_Valor" min="0" value="0">
+                                            <input class="formulario-input" type="number" step="0.01" id="GA_Valor" name="GA_Valor" min="0" value="0">
                                         </div>
                                     </div>
 
                                     <div class="form-group">
                                         <label class="input-label" for="GA_Parcela" th:text="#{cadremfinance.installments}"></label>
                                         <div class="input-group" data-provide="datepicker" id="GaParcela">
-                                            <input class="form-control formulario-input" type="number" id="GA_Parcela" name="GA_Parcela" min="1" max="12" value="1">
+                                            <input class="formulario-input" type="number" id="GA_Parcela" name="GA_Parcela" min="1" max="12" value="1">
                                         </div>
                                     </div>
 
@@ -192,7 +192,7 @@
                                         <div class="form-agendamento form-group">
                                             <label class="input-label" for="AG_DataInicio" th:text="#{cadremschedule.initialdate}"></label>
                                             <input type="date"
-                                                   class="form-control formulario-input margin-bot"
+                                                   class="formulario-input"
                                                    id="AG_DataInicio"
                                                    name="AG_DataInicio"
                                                    onblur="validaDataFinal()"
@@ -202,7 +202,7 @@
                                         <div class="form-agendamento form-group">
                                             <label class="input-label" for="AG_DataFinal" th:text="#{cadremschedule.finaldate}"></label>
                                             <input type="date"
-                                                   class="form-control formulario-input margin-bot"
+                                                   class="formulario-input"
                                                    id="AG_DataFinal"
                                                    name="AG_DataFinal"
                                                    onblur="validaDataFinal()"
@@ -212,7 +212,7 @@
                                         <div class="form-agendamento form-group">
                                             <label class="input-label timepicker" for="AG_HoraInicio" th:text="#{cadremschedule.initialtime}"></label>
                                             <input id="AG_HoraInicio"
-                                                   class="form-control formulario-input margin-bot"
+                                                   class="formulario-input"
                                                    type="text"
                                                    name="AG_HoraInicio"
                                                    step="300"
@@ -223,7 +223,7 @@
 
                                         <div class="form-agendamento form-group">
                                             <label class="input-label margin-top" for="AG_Periodicidade" th:text="#{cadremschedule.periodicity}"></label>
-                                            <input class="form-control formulario-input margin-bot"
+                                            <input class="formulario-input"
                                                    th:placeholder="#{cadremschedule.periodicityplaceholder}"
                                                    type="number"
                                                    id="AG_Periodicidade"
@@ -255,7 +255,7 @@
                                             <label class="input-label" th:text="#{cadremschedule.dayintervalinput}"></label>
 
                                             <input style="min-width:2px"
-                                                   class="formulario-input form-control"
+                                                   class="formulario-input"
                                                    th:placeholder="#{cadremschedule.dayintervalplaceholder}"
                                                    type="number"
                                                    id="intervaloDias"
@@ -289,6 +289,7 @@
                 <div class="overlay"></div>
 
                 <!-- Scripts da página -->
+                <script type="module" src="/script/requestPermisionToPushNotificaion.js"></script>
                 <!-- jQuery CDN - Slim version (=without AJAX) -->
                 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
                 <!-- Popper.JS -->

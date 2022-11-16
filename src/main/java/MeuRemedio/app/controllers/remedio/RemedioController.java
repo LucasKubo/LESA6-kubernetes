@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Locale;
 import java.util.Objects;
 
 @Controller
@@ -59,6 +60,7 @@ public class RemedioController {
 
     @Autowired
     ListagemRemediosRepository listagemRemediosRepository;
+
 
     final String REDIRECT="redirect:/remedios";
 
@@ -236,10 +238,12 @@ public class RemedioController {
 
     @RequestMapping(value = "/buscarRemedioSUS", method = RequestMethod.POST)
     public String buscarRemedioSUS(@RequestParam(value="RM_Nome", required = false) String nome, Model model){
-        if(Objects.isNull(nome)){
-            return "listas/ListaRemediosSUS";
+        model.addAttribute("nome", nome);
+        if(Objects.isNull(nome) || nome.length() < 4 ){
+            return "redirect:/buscarRemedioSUS?SemCorrespondencia";
         }
-        var result = listagemRemediosRepository.buscarPorNome(nome);
+        var nomeLower = nome.toLowerCase(Locale.ROOT);
+        var result = listagemRemediosRepository.buscarPorNome(nomeLower);
         model.addAttribute("result", result);
         return "listas/ListaRemediosSUS";
     }
@@ -254,8 +258,28 @@ public class RemedioController {
         return "TemplateError";
     }
 
-    @RequestMapping(value="/verificarSus", method = RequestMethod.GET)
+    @RequestMapping(value="/buscarRemedioSUS", method = RequestMethod.GET)
     public String verificarSus(){
         return "listas/ListaRemediosSUS";
+    }
+
+    @RequestMapping(value="/buscarRemedioSUSVisitante", method = RequestMethod.GET)
+    public String verificarSuss(){
+        if (!validateAuthentication.auth()){
+            return "listas/ListaRemediosSUSUsuario";
+        }
+        return "redirect:/";
+    }
+
+    @RequestMapping(value = "/buscarRemedioSUSVisitante", method = RequestMethod.POST)
+    public String buscarRemedioSUSDeslogado(@RequestParam(value="RM_Nome", required = false) String nome, Model model){
+        model.addAttribute("nome", nome);
+        if(Objects.isNull(nome) || nome.length() < 4 ){
+            return "redirect:/buscarRemedioSUSVisitante?SemCorrespondencia";
+        }
+        var nomeLower = nome.toLowerCase(Locale.ROOT);
+        var result = listagemRemediosRepository.buscarPorNome(nomeLower);
+        model.addAttribute("result", result);
+        return "listas/ListaRemediosSUSUsuario";
     }
 }
