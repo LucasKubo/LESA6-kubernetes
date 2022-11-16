@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Locale;
 import java.util.Objects;
 
 @Controller
@@ -241,7 +242,8 @@ public class RemedioController {
         if(Objects.isNull(nome) || nome.length() < 4 ){
             return "redirect:/buscarRemedioSUS?SemCorrespondencia";
         }
-        var result = listagemRemediosRepository.buscarPorNome(nome);
+        var nomeLower = nome.toLowerCase(Locale.ROOT);
+        var result = listagemRemediosRepository.buscarPorNome(nomeLower);
         model.addAttribute("result", result);
         return "listas/ListaRemediosSUS";
     }
@@ -275,7 +277,8 @@ public class RemedioController {
         if(Objects.isNull(nome) || nome.length() < 4 ){
             return "redirect:/buscarRemedioSUSVisitante?SemCorrespondencia";
         }
-        var result = listagemRemediosRepository.buscarPorNome(nome);
+        var nomeLower = nome.toLowerCase(Locale.ROOT);
+        var result = listagemRemediosRepository.buscarPorNome(nomeLower);
         model.addAttribute("result", result);
         return "listas/ListaRemediosSUSUsuario";
     }

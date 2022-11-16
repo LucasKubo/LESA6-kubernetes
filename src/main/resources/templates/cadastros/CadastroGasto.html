@@ -63,9 +63,9 @@
                             <h2 class="form-h2" th:text="#{cadfin.formtitle}"></h2>
                             <form method="post" name="formCadastroRM">
 
-                                <div class="form-group d-flex justify-content-center align-items-center flex-column select-group">
+                                <div class="form-group">
                                     <label class="input-label" for="AG_Remedios" th:text="#{cadfin.remedyinput}"></label>
-                                    <select id="AG_Remedios" 
+                                    <select id="AG_Remedios"
                                             class="form-control dosage-select d-flex justify-content-center agenda-select" 
                                             name="AG_Remedios" multiple required="required">
                                         <option th:each  ="remedio : ${remedio}"
@@ -78,7 +78,7 @@
                                 <div class="form-group">
                                     <label class="input-label" for="GA_Data" th:text="#{cadfin.dateinput}"></label>
                                     <div data-provide="datepicker" id="GaData">
-                                        <input class="form-control formulario-input margin-bot" type="date" id="GA_Data" 
+                                        <input class="formulario-input" type="date" id="GA_Data"
                                                name="GA_Data" onmouseover="mensagemDataFim()" onmouseout="retirarMensagemDataFim()" 
                                                required="">
                                     </div>
@@ -87,7 +87,7 @@
                                 <div class="form-group">
                                     <label class="input-label" for="GA_Valor" th:text="#{cadfin.valueinput}"></label>
                                     <div data-provide="datepicker" id="GaValor">
-                                        <input class="form-control formulario-input margin-bot" type="number" step="0.01" 
+                                        <input class="formulario-input" type="number" step="0.01"
                                                id="GA_Valor" name="GA_Valor" min="0" th:placeholder="#{cadfin.valueplaceholder}" required>
                                     </div>
                                 </div>
@@ -95,7 +95,7 @@
                                 <div class="form-group">
                                     <label class="input-label" for="GA_Parcela" th:text="#{cadfin.installmentsinput}"></label>
                                     <div data-provide="datepicker" id="GaParcela">
-                                        <input class="form-control formulario-input margin-bot" type="number" id="GA_Parcela" 
+                                        <input class="formulario-input" type="number" id="GA_Parcela"
                                                name="GA_Parcela" min="1" max="12" th:placeholder="#{cadfin.installmentsplaceholder}" required>
                                     </div>
                                 </div>
