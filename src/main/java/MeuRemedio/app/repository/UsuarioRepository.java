@@ -8,7 +8,7 @@ import org.springframework.data.repository.CrudRepository;
 
 public interface UsuarioRepository extends CrudRepository<Usuario, String> {
     Usuario findByEmail(String email);
-//    Usuario findById(long id);
+    Usuario findById(long id);
 //    Usuario deleteByID(long id);
 
 

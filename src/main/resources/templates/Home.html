@@ -64,15 +64,16 @@
                     </div>
                 </nav>
 
-                <div class="jumbotron">
+                <div class="jumbotron" th:if="${#lists.isEmpty(remedios)}">
                     <selection class="jumbotron text-center">
                         <div class="container">
                             <h1 class="jumbotron-heading footer" th:text="#{indextext.welcome}"></h1>
                             <p class="lead text-muted footer" th:text="#{indextext.text}"></p>
+                            <a href="remedios_cadastro" ><p class="lead text-muted footer" th:text="#{homeremedy.here}" style="color:blue !important;"></p></a>
                         </div>
                     </selection>
                 </div>
-                <div class="line"></div>
+                <div class="line" th:if="${#lists.isEmpty(remedios)}"></div>
 
                 <!-- DIV 1 -->
                 <div class="container-fluid">
@@ -372,22 +373,25 @@
                 var linguagem =  [[${#locale.language}]]
                 console.log(linguagem)
                 if (linguagem != 'en'){
+                    var gasto = "Gastos "
                     var lista = ["JAN", "FEV", "MAR", "ABR", "MAI", "JUN", "JUL", "AGO", "SET", "OUT", "NOV", "DEZ"]
+                    var mensais = "Mensais"
                 } else {
+                    var gasto = "Expenses "
                     var lista = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEZ"]
+                    var mensais = "Montly"
                 }
 
-                var maiorValor = Math.max.apply(Math, [[${gastos}]].concat([[${gastosAnoAnterior}]]).concat([[${gastosAnoSeguinte}]])); 
-                var gasto = "Gastos "
+                var maiorValor = Math.max.apply(Math, [[${gastos}]].concat([[${gastosAnoAnterior}]]).concat([[${gastosAnoSeguinte}]]));
                 Highcharts.chart('container', {
                     chart: {
                         type: 'column'
                     },
                     title: {
-                        text: 'Gastos'
+                        text: gasto
                     },
                     subtitle: {
-                        text: 'Mensais'
+                        text: mensais
                     },
                     xAxis: {
                         categories: lista,
@@ -397,7 +401,7 @@
                         min: 0,
                         max: maiorValor,
                         title: {
-                            text: 'Gastos R$'
+                            text: gasto + 'R$'
                         }
                     },
                     tooltip: {

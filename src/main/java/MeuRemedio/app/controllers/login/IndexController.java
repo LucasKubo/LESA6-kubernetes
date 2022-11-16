@@ -4,7 +4,9 @@ package MeuRemedio.app.controllers.login;
 import MeuRemedio.app.models.agendamentos.Agendamento;
 import MeuRemedio.app.models.agendamentos.AgendamentosHorarios;
 import MeuRemedio.app.models.agendamentos.IntervaloDias;
+import MeuRemedio.app.models.remedios.Remedio;
 import MeuRemedio.app.models.usuarios.Financeiro;
+import MeuRemedio.app.models.usuarios.Usuario;
 import MeuRemedio.app.repository.*;
 import MeuRemedio.app.service.UserSessionService;
 import MeuRemedio.app.service.utils.ValidateAuthentication;
@@ -45,6 +47,11 @@ public class IndexController {
     @Autowired
     UsuarioNotificationTokenRepository usuarioNotificationTokenRepository;
 
+    @Autowired
+    UsuarioRepository usuarioRepository;
+    @Autowired
+    RemedioRepository remedioRepository;
+
     final String ZONEID = "America/Sao_Paulo";
 
     @RequestMapping(value = "/home")
@@ -57,6 +64,10 @@ public class IndexController {
         if (!validateAuthentication.auth()) {
             return "Login";
         }
+
+        Usuario usuario = usuarioRepository.findById(userSessionService.returnIdUsuarioLogado());
+        List<Remedio> remedios = remedioRepository.findAllByUsuario(usuario);
+        model.addAttribute("remedios", remedios);
 
         List<Agendamento> agendamentos = agendamentoRepository.findAllByUsuarioID(userSessionService.returnIdUsuarioLogado());
         model.addAttribute("agendamento", agendamentos);
