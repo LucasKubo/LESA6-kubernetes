@@ -14,7 +14,7 @@ public class DataConfiguration {
 
 
 
-    // Metodo para base de dados locais
+//    // Metodo para base de dados locais
 //    @Bean
 //    public DataSource datasource() {
 //        try {
@@ -23,8 +23,7 @@ public class DataConfiguration {
 //            driver.setUrl("jdbc:postgresql://localhost:5432/meuremediobd");
 //            driver.setUsername("postgres");
 //            driver.setPassword("root");
-//            return driver;
-//        } catch (Exception e) {
+//            return driver; } catch (Exception e) {
 //            throw new IllegalStateException("Erro de conexão com o banco" + e);
 //        }
 //    }
