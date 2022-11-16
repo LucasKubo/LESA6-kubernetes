@@ -78,14 +78,14 @@
           <a href="/">
             <img class="formulario-icon" src=" /images/icon.svg" alt="Ícone Meu Remédio">
           </a>
-          <h2 class="form-h2">Busque remédios no SUS</h2>
+          <h2 class="form-h2" th:text="#{searchremedy.search}">Busque remédios</h2>
           <form method="post" name="formCadastroRM" action="/buscarRemedioSUSVisitante">
 
             <div class="form-group">
               <label class="input-label" for="RM_Nome" th:text="#{cadremform.remedy}">Remédio</label>
               <input class="form-control formulario-input"  type="text" id="RM_Nome" name="RM_Nome" required="required" th:value="${nome}">
               <div class="input-group actions">
-                <a id="cancelar2" href="/remedios" class="button cancel" th:text="#{cadremform.cancel}"></a>
+                <a id="cancelar2" href="/" class="button cancel" th:text="#{cadremform.cancel}"></a>
                 <button name="action" id="buscarRemedioo" class="button save" type="submit" th:text="#{cadremform.search}">Buscar</button>
               </div>
             </div>
@@ -98,7 +98,7 @@
               </div>
             </div>
             <div class="form-group" th:if="${param.SemCorrespondencia}" style="max-height:150px; overflow-y:auto;">
-              <label class="input-label"> Não há correspondências. </label>
+              <label class="input-label" th:text="#{searchremedy.correspondency}"> Não há correspondências. </label>
           </form>
         </div>
       </div>
