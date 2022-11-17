@@ -14,7 +14,9 @@ public class DataConfiguration {
 
 
 
-/*    Metodo para base de dados locais
+
+/* Metodo para base de dados locais
+
     @Bean
     public DataSource datasource() {
         try {
