@@ -232,7 +232,9 @@ public class RemedioController {
             return "cadastros/CadastroRemedios";
         }
         var result = listagemRemediosRepository.buscarPorNome(nome);
-
+        if (result.isEmpty()){
+            return "redirect:/buscarRemedio?NotFound";
+        }
         model.addAttribute("result", result);
         return "cadastros/CadastroRemedios";
     }
