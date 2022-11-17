@@ -82,6 +82,9 @@
 
                                     </div>
                                 </div>
+                                <div class="form-group" th:if="${param.NotFound}" style="max-height:150px; overflow-y:auto;">
+                                        <label class="input-label" th:text="#{searchremedy.correspondency}"> Não há correspondencias</label>
+                                </div>
                                 <div class="form-group">
                                     <label class="input-label" for="RM_Dosagem" th:text="#{cadremform.dosage}"></label>
                                     <input class="formulario-input"

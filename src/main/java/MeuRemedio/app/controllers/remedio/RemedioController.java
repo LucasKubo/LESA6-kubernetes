@@ -232,7 +232,9 @@ public class RemedioController {
             return "cadastros/CadastroRemedios";
         }
         var result = listagemRemediosRepository.buscarPorNome(nome);
-
+        if (result.isEmpty()){
+            return "redirect:/buscarRemedio?NotFound";
+        }
         model.addAttribute("result", result);
         return "cadastros/CadastroRemedios";
     }
@@ -246,7 +248,7 @@ public class RemedioController {
         var nomeLower = nome.toLowerCase(Locale.ROOT);
         var result = listagemRemediosRepository.buscarPorNome(nomeLower);
         if (result.isEmpty()){
-            return "redirect:/buscarRemedioSUSV?SemCorrespondencia";
+            return "redirect:/buscarRemedioSUS?SemCorrespondencia";
         }
         model.addAttribute("result", result);
         return "listas/ListaRemediosSUS";
