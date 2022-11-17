@@ -17,18 +17,18 @@ public class DataConfiguration {
 
 
 
-    @Bean
-    public DataSource datasource() {
-        try {
-            DriverManagerDataSource driver = new DriverManagerDataSource();
-            driver.setDriverClassName("org.postgresql.Driver");
-            driver.setUrl("jdbc:postgresql://localhost:5432/meuremediobd");
-            driver.setUsername("postgres");
-            driver.setPassword("root");
-            return driver; } catch (Exception e) {
-            throw new IllegalStateException("Erro de conexão com o banco" + e);
-        }
-    }
+//    @Bean
+//    public DataSource datasource() {
+//        try {
+//            DriverManagerDataSource driver = new DriverManagerDataSource();
+//            driver.setDriverClassName("org.postgresql.Driver");
+//            driver.setUrl("jdbc:postgresql://localhost:5432/meuremediobd");
+//            driver.setUsername("postgres");
+//            driver.setPassword("root");
+//            return driver; } catch (Exception e) {
+//            throw new IllegalStateException("Erro de conexão com o banco" + e);
+//        }
+//    }
 
 
     @Bean
