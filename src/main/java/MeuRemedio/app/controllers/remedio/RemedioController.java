@@ -246,7 +246,7 @@ public class RemedioController {
         var nomeLower = nome.toLowerCase(Locale.ROOT);
         var result = listagemRemediosRepository.buscarPorNome(nomeLower);
         if (result.isEmpty()){
-            return "redirect:/buscarRemedioSUSV?SemCorrespondencia";
+            return "redirect:/buscarRemedioSUS?SemCorrespondencia";
         }
         model.addAttribute("result", result);
         return "listas/ListaRemediosSUS";
