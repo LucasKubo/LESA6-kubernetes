@@ -79,6 +79,7 @@
                                         <label class="input-label" th:text="${result.nome}"></label>
                                         <label class="input-label" th:if="${!result.disponivelSus}" th:text="#{cadremmessage.susunavailable}"></label>
                                         <label class="input-label" th:if="${result.disponivelSus}" th:text="#{cadremmessage.susavailable}"></label>
+
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -108,7 +109,6 @@
 
                                 <div class="input-group-radio">
                                     <label th:text="#{cadremform.susremedy}" class="input-label" for="RM_RetiradoSus"></label>
-                                    <!--<label th:text="#{cadremform.susremedy}" class="sr-only" for="RM_RetiradoSus"></label>-->
                                     <div class="radio-container">
                                         <span>
                                             <input class="radio-yes"
