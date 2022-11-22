@@ -72,7 +72,7 @@
                                     name="AG_Remedios" multiple required="true">
                                 <option th:each  ="remedio : ${remedio}"
                                         th:value =" ${remedio.RM_ID}"
-                                        th:text  =" ${remedio.RM_Nome}"
+                                        th:text  =" ${remedio.toString()}"
                                         th:selected = "${agendamento.remedio.contains(remedio)}">
                                 </option>
                             </select>

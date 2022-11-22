@@ -67,7 +67,7 @@
                                             name="FK_RM_ID" multiple required="required">
                                         <option th:each  ="remedio : ${remedio}"
                                                 th:value =" ${remedio.RM_ID}"
-                                                th:text  =" ${remedio.RM_Nome}"
+                                                th:text  =" ${remedio.toString()}"
                                                 th:selected = "${financeiro.remedio.contains(remedio)}"
                                                 ></option>
                                     </select>
