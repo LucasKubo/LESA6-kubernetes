@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -121,10 +122,11 @@ public class AgendamentoController {
 
 
     @RequestMapping(value="/deletar_agendamento/{id}")
-    public String deletarAgendamento(@PathVariable("id") long id){
+    public String deletarAgendamento(@PathVariable("id") long id, HttpServletRequest request){
         Agendamento agendamento = agendamentoRepository.findById(id);
+        String url = request.getHeader("referer");
         agendamentoRepository.delete(agendamento);
-        return "redirect:/home";
+        return "redirect:" + url;
     }
 
     @RequestMapping(value = "/atualizar_agendamento/{id}", method = RequestMethod.GET)
