@@ -182,8 +182,9 @@ public class UsuarioController {
                 usuarioRepository_2.deleteById(usuarioLogado.getId());
                 emailCadastro.emailDeletarCadastro(usuarioLogado);
                 HttpSession session= request.getSession();
-                SecurityContextHolder.clearContext();
-                session.invalidate();
+                if(session != null) {
+                    session.invalidate();
+                }
                 return "redirect:/login?contaExcluida";
             } else {
                 return "redirect:/usuario/edit/deletar_usuario?senhaInvalida";
