@@ -24,7 +24,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Controller
 @RequiredArgsConstructor
@@ -84,6 +86,8 @@ public class AgendamentoController {
         Usuario usuarioID = new Usuario();
         usuarioID.setId(userSessionService.returnIdUsuarioLogado());
         List <Remedio> remedio  = remedioRepository.findAllByUsuario(usuarioID);
+        if (!remedio.isEmpty()){
+            Collections.sort(remedio, Remedio::compareTo);}
         model.addAttribute("remedio", remedio);
         return "cadastros/CadastroAgendamento";
     }
@@ -118,10 +122,11 @@ public class AgendamentoController {
 
 
     @RequestMapping(value="/deletar_agendamento/{id}")
-    public String deletarAgendamento(@PathVariable("id") long id){
+    public String deletarAgendamento(@PathVariable("id") long id, HttpServletRequest request){
         Agendamento agendamento = agendamentoRepository.findById(id);
+        String url = request.getHeader("referer");
         agendamentoRepository.delete(agendamento);
-        return "redirect:/home";
+        return "redirect:" + url;
     }
 
     @RequestMapping(value = "/atualizar_agendamento/{id}", method = RequestMethod.GET)
@@ -133,7 +138,10 @@ public class AgendamentoController {
             Usuario usuarioID = new Usuario();
             usuarioID.setId(userSessionService.returnIdUsuarioLogado());
 
-            Iterable <Remedio> remedio = remedioRepository.findAllByUsuario(usuarioID);
+            List <Remedio> remedio = remedioRepository.findAllByUsuario(usuarioID);
+            if (!remedio.isEmpty()){
+                Collections.sort(remedio, Remedio::compareTo);
+            }
             model.addAttribute("remedio", remedio);
 
             Agendamento agendamento = agendamentoRepository.findById(id);

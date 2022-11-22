@@ -14,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.ServiceConfigurationError;
@@ -52,6 +53,7 @@ public class FinanceiroController {
         usuarioID.setId(userSessionService.returnIdUsuarioLogado());
 
         List <Remedio> remedio = remedioRepository.findAllByUsuario(usuarioID);
+        Collections.sort(remedio, Remedio::compareTo);
         model.addAttribute("remedio", remedio);
         return "cadastros/CadastroGasto";
     }
@@ -98,7 +100,9 @@ public class FinanceiroController {
             Usuario usuarioID = new Usuario();
             usuarioID.setId(userSessionService.returnIdUsuarioLogado());
 
-            Iterable <Remedio> remedio = remedioRepository.findAllByUsuario(usuarioID);
+            List <Remedio> remedio = remedioRepository.findAllByUsuario(usuarioID);
+            if (!remedio.isEmpty()){
+                Collections.sort(remedio, Remedio::compareTo);}
             model.addAttribute("remedio", remedio);
 
             return "atualizacoes/AtualizarGasto";
