@@ -309,6 +309,9 @@
                 var listaAgendamentos = new Array();
 
                 for (var i = 0; i < remediosIT.length; i++) {
+                    if(intervaloIT[i].innerHTML == 1){
+                        break;
+                    }
                     var dataFinalDate = new Date(dataFinalIT[i].innerHTML)
                     var dataFinalAjustada = new Date();
                     dataFinalAjustada.setMonth(dataFinalDate.getMonth())
@@ -328,7 +331,7 @@
                         }
                         console.log(ag)
                         listaAgendamentos.push(ag);
-                        dataInicioIntervalo.setDate(dataInicioIntervalo.getDate() + parseInt(intervaloIT[i].innerHTML) + 1);
+                        dataInicioIntervalo.setDate(dataInicioIntervalo.getDate() + parseInt(intervaloIT[i].innerHTML));
                     }
                 }
 
