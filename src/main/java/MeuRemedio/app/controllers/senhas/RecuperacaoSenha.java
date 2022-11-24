@@ -61,7 +61,7 @@ public class RecuperacaoSenha {
 
            Usuario_code userEmail = usuarioCode.findByEmail(email);
            envioEmail.emailRecuperarSenha(userEmail.getEmail(), userEmail.getCodigo());
-
+           System.out.println("Email enviado");
            return "redirect:/login?em_env";
 
        } else

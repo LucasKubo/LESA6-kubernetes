@@ -254,12 +254,11 @@ public class RemedioController {
         return "listas/ListaRemediosSUS";
     }
 
-    //função responsável por achar um id dentro do banco. Retorna true se encontrar
+
     public boolean verificarPorId (long id ) {
         return remedioRepository.existsById(id);
     }
 
-    //Essa função deve retornar uma tela customizada de erro.
     public String templateError(){
         return "TemplateError";
     }
