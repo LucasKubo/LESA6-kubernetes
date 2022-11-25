@@ -1,16 +1,12 @@
 package MeuRemedio.app.controllers.senhas;
 
 import MeuRemedio.app.controllers.EnvioEmail;
-import MeuRemedio.app.models.usuarios.TokenResetarSenha;
 import MeuRemedio.app.models.usuarios.Usuario;
-import MeuRemedio.app.models.usuarios.Usuario_code;
 import MeuRemedio.app.repository.TokenResetarSenhaRepository;
-import MeuRemedio.app.repository.UserCodeRepository;
 import MeuRemedio.app.repository.UsuarioRepository;
 import MeuRemedio.app.service.RecuperarSenhaService;
 import MeuRemedio.app.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,9 +17,6 @@ import javax.mail.MessagingException;
 import javax.servlet.http.HttpServletRequest;
 import javax.transaction.Transactional;
 import java.io.UnsupportedEncodingException;
-import java.security.SecureRandom;
-import java.util.Objects;
-import java.util.Random;
 import java.util.UUID;
 
 @Controller
@@ -32,8 +25,6 @@ public class RecuperacaoSenha {
     EnvioEmail envioEmail;
     @Autowired
     private UsuarioRepository usuarioRepository;
-    @Autowired
-    UserCodeRepository usuarioCode;
     @Autowired
     UsuarioService usuarioService;
     @Autowired
