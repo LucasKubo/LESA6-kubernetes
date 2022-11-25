@@ -118,7 +118,6 @@ public class AgendamentoController {
         calculaHorariosNotificacao.calcular(id);
     }
 
-
     @RequestMapping(value = "/deletar_agendamento/{id}")
     public String deletarAgendamento(@PathVariable("id") long id, HttpServletRequest request) {
         Agendamento agendamento = agendamentoRepository.findById(id);
@@ -135,7 +134,6 @@ public class AgendamentoController {
             templateError();
         }
         model.addAttribute("remedioD", remedio);
-
         return "cadastros/CadastroAgendamentoDireto";
     }
 

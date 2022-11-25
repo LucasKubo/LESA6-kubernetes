@@ -61,7 +61,7 @@ public class FinanceiroController {
     @PostMapping(value ="/remedios/controle_de_gastos/cadastrar")
     public String cadastrarGasto (@RequestParam("GA_Valor") double valor, @RequestParam("GA_Data") String data,
                                   @RequestParam("GA_Parcela") long qtdParcela, @RequestParam(value = "AG_Remedios", required = false) List<Remedio> remedio,
-                                  @RequestParam( value = "RM_Nome", required = false) String RM_Nome){
+                                  @RequestParam(value = "RM_Nome", required = false) String RM_Nome){
         try {
             Usuario usuarioID = new Usuario();
             usuarioID.setId(userSessionService.returnIdUsuarioLogado());
@@ -146,9 +146,7 @@ public class FinanceiroController {
 
     @PostMapping(value = "/gasto/remedio/{id}")
     public String cadastroGastoRemedioDireto(@PathVariable("id") long idRemedio, @RequestParam("GA_Valor") double valor,
-                                             @RequestParam("GA_Data") String data, @RequestParam("GA_Parcela") long qtdParcela,
-                                             @RequestParam(value = "AG_Remedios", required = false) Remedio remedio,
-                                             @RequestParam( value = "RM_Nome", required = false) String RM_Nome){
+                                             @RequestParam("GA_Data") String data, @RequestParam("GA_Parcela") long qtdParcela){
         Usuario usuarioID = new Usuario();
         usuarioID.setId(userSessionService.returnIdUsuarioLogado());
 
@@ -157,7 +155,7 @@ public class FinanceiroController {
         if (Objects.isNull(remedioParaControle)){
             templateError();
         }
-        Financeiro financeiroMedicamento = new Financeiro(Collections.singletonList(remedio), data, valor, qtdParcela, usuarioID.getId());
+        Financeiro financeiroMedicamento = new Financeiro(Collections.singletonList(remedioParaControle), data, valor, qtdParcela, usuarioID.getId());
         Dash dash = new Dash(usuarioID, valor, data);
 
         dashBoardsRepository.save(dash);
