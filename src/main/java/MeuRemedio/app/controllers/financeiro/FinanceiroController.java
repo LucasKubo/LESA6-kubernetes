@@ -34,7 +34,6 @@ public class FinanceiroController {
     @Autowired
     UserSessionService userSessionService;
 
-
     @GetMapping(value = "/remedios/controle_de_gastos")
     public String telaDeGastos (Model model){
         Usuario usuarioID = new Usuario();
@@ -103,9 +102,9 @@ public class FinanceiroController {
 
             List <Remedio> remedio = remedioRepository.findAllByUsuario(usuarioID);
             if (!remedio.isEmpty()){
-                Collections.sort(remedio, Remedio::compareTo);}
+                Collections.sort(remedio, Remedio::compareTo);
+            }
             model.addAttribute("remedio", remedio);
-
             return "atualizacoes/AtualizarGasto";
         }
     }
@@ -123,7 +122,6 @@ public class FinanceiroController {
                 financeiro.setRemedio(remedio);
                 controleFinanceiro.save(financeiro);
             }
-
             return "redirect:/remedios/controle_de_gastos";
 
         }catch (NullPointerException e){
@@ -142,7 +140,6 @@ public class FinanceiroController {
 
         return "cadastros/CadastroGastoDireto";
     }
-
 
     @PostMapping(value = "/gasto/remedio/{id}")
     public String cadastroGastoRemedioDireto(@PathVariable("id") long idRemedio, @RequestParam("GA_Valor") double valor,
@@ -164,7 +161,6 @@ public class FinanceiroController {
 
         return "redirect:/remedios/controle_de_gastos";
     }
-
 
     public boolean verificarPorId (long id ) {
         return controleFinanceiro.existsById(id);

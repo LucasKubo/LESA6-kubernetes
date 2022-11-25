@@ -147,6 +147,7 @@ public class AgendamentoController {
 
         Remedio remedio = remedioRepository.findById(idRemedio);
         Agendamento id;
+
         if (intervaloDias != null) {
             IntervaloDias intervalo = new IntervaloDias(AG_DataInicio, AG_horaInicio, AG_DataFinal, AG_Periodicidade,
                     Collections.singletonList(remedio) , userSessionService.returnIdUsuarioLogado(), intervaloDias);
@@ -206,7 +207,6 @@ public class AgendamentoController {
         if (intervaloExiste.isPresent() && intervaloDias == null) {
             Agendamento agendamento = new Agendamento();
 
-            //agendamento.setId(intervaloExiste.get().getId());
             agendamento.setRemedio(remedios);
             agendamento.setDataInicio(AG_DataInicio);
             agendamento.setHoraInicio(AG_horaInicio);
@@ -259,7 +259,7 @@ public class AgendamentoController {
 
 
     public boolean verificarPorId(long id) {
-        return agendamentoRepository.existsById(id); // retorna false se não achar o ID do remédio
+        return agendamentoRepository.existsById(id);
     }
 
     public String templateError() {
