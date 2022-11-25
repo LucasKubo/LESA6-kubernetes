@@ -84,6 +84,7 @@ public class FinanceiroController {
     public String deletarGasto (@PathVariable("id") long id){
         if (verificarPorId(id)) {
             controleFinanceiro.deleteById(id);
+
             return "redirect:/remedios/controle_de_gastos";
         }
         return templateError();
@@ -109,9 +110,6 @@ public class FinanceiroController {
         }
     }
 
-    public String templateError(){
-        return "TemplateError";
-    }
     @PostMapping(value ="/remedios/controle_de_gastos/atualizar/{id}")
     public String atualizar (@PathVariable("id") long id, @RequestParam("GA_Valor") double valor, @RequestParam("GA_Data") String data,
                             @RequestParam("GA_Parcela") long qtdParcela, @RequestParam("FK_RM_ID") List<Remedio> remedio){
@@ -132,7 +130,50 @@ public class FinanceiroController {
             return templateError() + e;
         }
     }
+
+    @GetMapping(value = "/gasto/remedio/{id}")
+    public String gastoRemedioDireto(@PathVariable("id") long id, Model model){
+        Remedio remedio = remedioRepository.findById(id);
+
+        if (Objects.isNull(remedio)){
+            templateError();
+        }
+        model.addAttribute("remedioD", remedio);
+
+        return "cadastros/CadastroGastoDireto";
+    }
+
+
+    @PostMapping(value = "/gasto/remedio/{id}")
+    public String cadastroGastoRemedioDireto(@PathVariable("id") long idRemedio, @RequestParam("GA_Valor") double valor,
+                                             @RequestParam("GA_Data") String data, @RequestParam("GA_Parcela") long qtdParcela,
+                                             @RequestParam(value = "AG_Remedios", required = false) Remedio remedio,
+                                             @RequestParam( value = "RM_Nome", required = false) String RM_Nome){
+        Usuario usuarioID = new Usuario();
+        usuarioID.setId(userSessionService.returnIdUsuarioLogado());
+
+        Remedio remedioParaControle = remedioRepository.findById(idRemedio);
+
+        if (Objects.isNull(remedioParaControle)){
+            templateError();
+        }
+        Financeiro financeiroMedicamento = new Financeiro(Collections.singletonList(remedio), data, valor, qtdParcela, usuarioID.getId());
+        Dash dash = new Dash(usuarioID, valor, data);
+
+        dashBoardsRepository.save(dash);
+        controleFinanceiro.save(financeiroMedicamento);
+
+
+        return "redirect:/remedios/controle_de_gastos";
+
+    }
+
+
     public boolean verificarPorId (long id ) {
         return controleFinanceiro.existsById(id);
+    }
+
+    public String templateError(){
+        return "TemplateError";
     }
 }
