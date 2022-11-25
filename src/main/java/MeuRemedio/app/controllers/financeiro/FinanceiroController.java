@@ -155,15 +155,14 @@ public class FinanceiroController {
         if (Objects.isNull(remedioParaControle)){
             templateError();
         }
+
         Financeiro financeiroMedicamento = new Financeiro(Collections.singletonList(remedioParaControle), data, valor, qtdParcela, usuarioID.getId());
         Dash dash = new Dash(usuarioID, valor, data);
 
         dashBoardsRepository.save(dash);
         controleFinanceiro.save(financeiroMedicamento);
 
-
         return "redirect:/remedios/controle_de_gastos";
-
     }
 
 

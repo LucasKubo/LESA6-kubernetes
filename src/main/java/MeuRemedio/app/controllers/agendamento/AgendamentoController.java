@@ -150,7 +150,6 @@ public class AgendamentoController {
         if (intervaloDias != null) {
             IntervaloDias intervalo = new IntervaloDias(AG_DataInicio, AG_horaInicio, AG_DataFinal, AG_Periodicidade,
                     Collections.singletonList(remedio) , userSessionService.returnIdUsuarioLogado(), intervaloDias);
-
             id = intervaloDiasRepository.save(intervalo);
         } else {
             Agendamento agendamento = new Agendamento(AG_DataInicio, AG_horaInicio, AG_DataFinal, AG_Periodicidade,
