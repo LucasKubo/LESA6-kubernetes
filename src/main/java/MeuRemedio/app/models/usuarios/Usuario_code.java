@@ -12,6 +12,9 @@ import javax.persistence.*;
 @Entity
 @NoArgsConstructor
 public class Usuario_code {
+
+    private static final int EXPIRACAO = 60 * 24;
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "ID", nullable = false)

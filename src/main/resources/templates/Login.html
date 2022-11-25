@@ -65,6 +65,10 @@
               th:if="${param.em_env}" th:text="#{loginmessage.verifyemail}"></div>
         <div  class="alert alert-info text-center" role="alert"
               th:if="${param.att}" th:text="#{loginmessage.changedpassword}"></div>
+        <div  class="alert alert-danger text-center" role="alert"
+              th:if="${param.em_fail}" th:text="#{loginmessage.invalidresetpasswordtoken}"></div>
+        <div  class="alert alert-danger text-center" role="alert"
+              th:if="${param.exp_token}" th:text="#{loginmessage.expiredrestepasswordtoken}"></div>
         <div  class="alert alert-info text-center" role="alert"
               th:if="${param.contaExcluida}" th:text="#{loginmessage.deletedaccount}"></div>
         <div class="error" th:if="${param.error}"

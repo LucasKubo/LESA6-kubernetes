@@ -68,15 +68,8 @@
                         <h2 class="form-h2 text-center" th:text="#{recpassword.formtitle}"></h2>
 
                         <div class="form-group">
-                            <label th:text="#{recpassword.codeinput}"></label>
-                            <input type="text" class="form-control formulario-input" id="US_Codigo" 
-                                   name="password"
-                                   required>
-                        </div>
-
-                        <div class="form-group">
                             <label th:text="#{recpassword.passwordinput}"></label>
-                            <input type="password" class="form-control formulario-input" minlength="8" id="US_Senha"
+                            <input type="password" class="form-control formulario-input" minlength="8" id="US_Senha" name="US_Senha"
                                    required>
 
                         </div>
@@ -86,6 +79,7 @@
                                    class="form-control formulario-input"
                                    minlength="8"
                                    id="US_ConfirmSenha"
+                                   name="US_ConfirmSenha"
                                    required
                             >
                         </div>

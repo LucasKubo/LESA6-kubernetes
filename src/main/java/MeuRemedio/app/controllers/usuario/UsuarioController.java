@@ -99,7 +99,6 @@ public class UsuarioController {
     public String verifyUser(@Param("code") String code) {
         if (usuarioService.verificarCodigoDeCadastro(code)) {
             return "validacoes/SucessoVerificacaoEmail";
-            //TODO enviar confirmação de cadastro por email
         } else {
             return "validacoes/FalhaVerificacaoEmail";
         }
