@@ -118,7 +118,6 @@ public class AgendamentoController {
         calculaHorariosNotificacao.calcular(id);
     }
 
-
     @RequestMapping(value = "/deletar_agendamento/{id}")
     public String deletarAgendamento(@PathVariable("id") long id, HttpServletRequest request) {
         Agendamento agendamento = agendamentoRepository.findById(id);
@@ -135,7 +134,6 @@ public class AgendamentoController {
             templateError();
         }
         model.addAttribute("remedioD", remedio);
-
         return "cadastros/CadastroAgendamentoDireto";
     }
 
@@ -149,10 +147,10 @@ public class AgendamentoController {
 
         Remedio remedio = remedioRepository.findById(idRemedio);
         Agendamento id;
+
         if (intervaloDias != null) {
             IntervaloDias intervalo = new IntervaloDias(AG_DataInicio, AG_horaInicio, AG_DataFinal, AG_Periodicidade,
                     Collections.singletonList(remedio) , userSessionService.returnIdUsuarioLogado(), intervaloDias);
-
             id = intervaloDiasRepository.save(intervalo);
         } else {
             Agendamento agendamento = new Agendamento(AG_DataInicio, AG_horaInicio, AG_DataFinal, AG_Periodicidade,
@@ -209,7 +207,6 @@ public class AgendamentoController {
         if (intervaloExiste.isPresent() && intervaloDias == null) {
             Agendamento agendamento = new Agendamento();
 
-            //agendamento.setId(intervaloExiste.get().getId());
             agendamento.setRemedio(remedios);
             agendamento.setDataInicio(AG_DataInicio);
             agendamento.setHoraInicio(AG_horaInicio);
@@ -262,7 +259,7 @@ public class AgendamentoController {
 
 
     public boolean verificarPorId(long id) {
-        return agendamentoRepository.existsById(id); // retorna false se não achar o ID do remédio
+        return agendamentoRepository.existsById(id);
     }
 
     public String templateError() {
