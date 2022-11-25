@@ -232,6 +232,9 @@ public class RemedioController {
             return "cadastros/CadastroRemedios";
         }
         var result = listagemRemediosRepository.buscarPorNome(nome);
+        if (result.isEmpty()){
+            return "redirect:/buscarRemedio?NotFound";
+        }
         model.addAttribute("result", result);
         return "cadastros/CadastroRemedios";
     }
@@ -244,16 +247,18 @@ public class RemedioController {
         }
         var nomeLower = nome.toLowerCase(Locale.ROOT);
         var result = listagemRemediosRepository.buscarPorNome(nomeLower);
+        if (result.isEmpty()){
+            return "redirect:/buscarRemedioSUS?SemCorrespondencia";
+        }
         model.addAttribute("result", result);
         return "listas/ListaRemediosSUS";
     }
 
-    //função responsável por achar um id dentro do banco. Retorna true se encontrar
+
     public boolean verificarPorId (long id ) {
         return remedioRepository.existsById(id);
     }
 
-    //Essa função deve retornar uma tela customizada de erro.
     public String templateError(){
         return "TemplateError";
     }
@@ -279,6 +284,10 @@ public class RemedioController {
         }
         var nomeLower = nome.toLowerCase(Locale.ROOT);
         var result = listagemRemediosRepository.buscarPorNome(nomeLower);
+
+        if (result.isEmpty()){
+            return "redirect:/buscarRemedioSUSVisitante?SemCorrespondencia";
+        }
         model.addAttribute("result", result);
         return "listas/ListaRemediosSUSUsuario";
     }

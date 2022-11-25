@@ -87,9 +87,9 @@ public class Remedio implements Comparable<Remedio>, Serializable  {
 
     @Override
     public int compareTo(Remedio seguinte) {
-        if (this.RM_Nome.compareTo(seguinte.RM_Nome) > 0)
+        if (this.RM_Nome.compareToIgnoreCase(seguinte.RM_Nome) > 0)
             return 1;
-        if (this.RM_Nome.compareTo(seguinte.RM_Nome) < 0)
+        if (this.RM_Nome.compareToIgnoreCase(seguinte.RM_Nome) < 0)
             return -1;
         return 0;
     }

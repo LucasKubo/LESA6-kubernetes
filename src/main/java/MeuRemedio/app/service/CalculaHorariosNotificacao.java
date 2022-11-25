@@ -52,7 +52,7 @@ public class CalculaHorariosNotificacao {
                 if(instanteInicio.getDayOfMonth() == dia){
                     horasRemedio.add(instanteInicio);
                 } else {
-                    instanteInicio = instanteInicio.plusDays(intervalo.getIntervaloDias());
+                    instanteInicio = instanteInicio.plusDays(intervalo.getIntervaloDias() - 1);
                 }
             }
         } else {

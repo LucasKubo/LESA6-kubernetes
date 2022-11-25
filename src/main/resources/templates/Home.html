@@ -64,6 +64,17 @@
                     </div>
                 </nav>
 
+                <div class="jumbotron" th:if="${#lists.isEmpty(remedios)}">
+                    <selection class="jumbotron text-center">
+                        <div class="container">
+                            <h1 class="jumbotron-heading footer" th:text="#{indextext.welcome}"></h1>
+                            <p class="lead text-muted footer" th:text="#{indextext.text}"></p>
+                            <a href="remedios_cadastro" ><p class="lead text-muted footer" th:text="#{homeremedy.here}" style="color:blue !important;"></p></a>
+                        </div>
+                    </selection>
+                </div>
+                <div class="line" th:if="${#lists.isEmpty(remedios)}"></div>
+
                 <!-- DIV 1 -->
                 <div class="container-fluid">
                     <div class="row">
@@ -200,8 +211,8 @@
 
                     <div class="rodape" id="rodapeHome">
                         <div class="informacoes-footer text-center">
-                            <h5>
-                                Meu Remédio - CNPJ: 00.000.000/0000-00 - SAC: (11) 0000-0000
+                            <h5 style="text-align:center">
+                                Meu Remédio
                             </h5>
                             <h5 style="font-size: 16px">
                                 8balls.integratedproject@gmail.com
@@ -298,6 +309,9 @@
                 var listaAgendamentos = new Array();
 
                 for (var i = 0; i < remediosIT.length; i++) {
+                    if(intervaloIT[i].innerHTML == 1){
+                        break;
+                    }
                     var dataFinalDate = new Date(dataFinalIT[i].innerHTML)
                     var dataFinalAjustada = new Date();
                     dataFinalAjustada.setMonth(dataFinalDate.getMonth())
@@ -317,7 +331,7 @@
                         }
                         console.log(ag)
                         listaAgendamentos.push(ag);
-                        dataInicioIntervalo.setDate(dataInicioIntervalo.getDate() + parseInt(intervaloIT[i].innerHTML) + 1);
+                        dataInicioIntervalo.setDate(dataInicioIntervalo.getDate() + parseInt(intervaloIT[i].innerHTML));
                     }
                 }
 
