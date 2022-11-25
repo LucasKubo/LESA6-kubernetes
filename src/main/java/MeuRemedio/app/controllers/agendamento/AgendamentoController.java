@@ -18,15 +18,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.*;
-import java.util.stream.Collectors;
 
 @Controller
 @RequiredArgsConstructor
@@ -131,39 +127,42 @@ public class AgendamentoController {
         return "redirect:" + url;
     }
 
-
-    @RequestMapping(value = "/agendamentos/remedio/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/agendamento/remedio/{id}", method = RequestMethod.GET)
     public String cadastrarAgendamentoRemedio(@PathVariable("id") long id, Model model) {
-        if (!remedioController.verificarPorId(id)){
+        Remedio remedio = remedioRepository.findById(id);
+
+        if (Objects.isNull(remedio)){
             templateError();
         }
+        model.addAttribute("remedioD", remedio);
 
-        return "REDIRECT";
+        return "cadastros/CadastroAgendamentoDireto";
     }
 
-    @RequestMapping(value = "/agendamentos/remedio/{id}", method = RequestMethod.POST)
-
-    public String cadastrarAgendamentoRemedio (@RequestParam("AG_Remedios") List<Remedio> remedios,
+    @RequestMapping(value = "/agendamento/remedio/{id}", method = RequestMethod.POST)
+    public String cadastrarAgendamentoRemedio (@PathVariable("id") long idRemedio,
                                               @RequestParam("AG_DataInicio") String AG_DataInicio,
                                               @RequestParam("AG_HoraInicio") String AG_horaInicio,
                                               @RequestParam("AG_DataFinal") String AG_DataFinal,
                                               @RequestParam("AG_Periodicidade") long AG_Periodicidade,
                                               @RequestParam(value = "intervaloDias", required = false) Long intervaloDias) {
 
+        Remedio remedio = remedioRepository.findById(idRemedio);
         Agendamento id;
         if (intervaloDias != null) {
             IntervaloDias intervalo = new IntervaloDias(AG_DataInicio, AG_horaInicio, AG_DataFinal, AG_Periodicidade,
-                    remedios, userSessionService.returnIdUsuarioLogado(), intervaloDias);
+                    Collections.singletonList(remedio) , userSessionService.returnIdUsuarioLogado(), intervaloDias);
 
             id = intervaloDiasRepository.save(intervalo);
         } else {
             Agendamento agendamento = new Agendamento(AG_DataInicio, AG_horaInicio, AG_DataFinal, AG_Periodicidade,
-                    remedios, userSessionService.returnIdUsuarioLogado());
+                    Collections.singletonList(remedio), userSessionService.returnIdUsuarioLogado());
 
             id = agendamentoRepository.save(agendamento);
         }
         salvarHorariosAgendamentos(id);
-        return "REDIRECT";
+
+        return "redirect:/agendamentos";
     }
 
     @RequestMapping(value = "/atualizar_agendamento/{id}", method = RequestMethod.GET)
