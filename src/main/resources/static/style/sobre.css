@@ -1,0 +1,9 @@
+p{
+text-align: justify;
+  text-justify: inter-word;
+ }
+
+ a:hover {
+   color: pink;
+   text-decoration: none;
+ }
