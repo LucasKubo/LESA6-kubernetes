@@ -130,7 +130,7 @@ public class AgendamentoController {
     public String cadastrarAgendamentoRemedio(@PathVariable("id") long id, Model model) {
         Remedio remedio = remedioRepository.findById(id);
 
-        if (Objects.isNull(remedio)){
+        if (Objects.isNull(remedio)) {
             templateError();
         }
         model.addAttribute("remedioD", remedio);
@@ -138,7 +138,7 @@ public class AgendamentoController {
     }
 
     @RequestMapping(value = "/agendamento/remedio/{id}", method = RequestMethod.POST)
-    public String cadastrarAgendamentoRemedio (@PathVariable("id") long idRemedio,
+    public String cadastrarAgendamentoRemedio(@PathVariable("id") long idRemedio,
                                               @RequestParam("AG_DataInicio") String AG_DataInicio,
                                               @RequestParam("AG_HoraInicio") String AG_horaInicio,
                                               @RequestParam("AG_DataFinal") String AG_DataFinal,
@@ -150,7 +150,7 @@ public class AgendamentoController {
 
         if (intervaloDias != null) {
             IntervaloDias intervalo = new IntervaloDias(AG_DataInicio, AG_horaInicio, AG_DataFinal, AG_Periodicidade,
-                    Collections.singletonList(remedio) , userSessionService.returnIdUsuarioLogado(), intervaloDias);
+                    Collections.singletonList(remedio), userSessionService.returnIdUsuarioLogado(), intervaloDias);
             id = intervaloDiasRepository.save(intervalo);
         } else {
             Agendamento agendamento = new Agendamento(AG_DataInicio, AG_horaInicio, AG_DataFinal, AG_Periodicidade,
