@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+ <html lang ="pt-br">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="/images/icon.svg"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/style/sobre.css">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"
+            integrity="sha384-Qg00WFl9r0Xr6rUqNLv1ffTSSKEFFCDCKVyHZ+sVt8KuvG99nWw5RNvbhuKgif9z"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+            integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF"
+            crossorigin="anonymous"></script>
+
+    <link rel="icon" href="/static/images/icon.svg"/>
+
+    <title>Sobre nós</title>
+
+    <!-- Bootstrap CSS CDN -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"
+          integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+    <!-- Our Custom CSS -->
+    <link rel="stylesheet" href="/style/homeStyle.css">
+    <!--   <link rel="stylesheet" href="/style/cadastroRemedioStyle.css">-->
+
+    <!-- Scrollbar Custom CSS -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
+
+    <!-- Font Awesome JS -->
+    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js"
+            integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ"
+            crossorigin="anonymous"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js"
+            integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY"
+            crossorigin="anonymous"></script>
+
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+
+        <button type="button" id="sidebarCollapse" class="btn btn-info">
+            <em class="fas fa-align-left"></em>
+            <span>Menu</span>
+        </button>
+
+        <a href="/home" class="navbar-brand text-center col-09">
+            <img alt="Brand" src="/images/icon.svg" class="img-responsive text-center">
+        </a>
+    </div>
+</nav>
+<main>
+    <div class="container">
+
+        <p>
+            A aplicação 'Meu Remédio' foi inicialmente idealizada e desenvolvida por :
+            <a target="Any" href="https://github.com/any-gomes"><b>Any Gomes</b></a>,
+            <a target="Eric" href="https://github.com/EricJSCabral"><b>Eric Cabral</b></a>,
+            <a target="Guilherme" href="https://github.com/FernandesGuilherme"><b>Guilherme Lima</b></a>,
+            <a target="Lucas" href="https://github.com/LucasKubo"><b>Lucas Kubo</b></a>,
+            <a target="Marcus" href="https://github.com/MarcusVini26"><b>Marcus Vinícius</b></a> e
+            <a target="Pedro" href="https://github.com/PedroHaka"><b>Pedro Haka</b></a>.
+            Discentes do Curso de Análise e Desenvolvimento de Sistemas pelo Instituto Federal de São Paulo (SPO).
+        </p>
+
+        <p>
+            O projeto consiste em auxiliar um devido grupo de usuários que realizam algum tipo de tratamento médico que
+            por sua fez fazem jus ao uso de medicamentos controlados.
+            Auxilia em um controle financeiro, verificação da disponibilidade de medicamentos na rede pública de saúde,
+            controle de horários de uso dos médicos.
+        </p>
+
+        <p>
+            Esse projeto compõe parte do trabalho de conclusão de curso (TCC), orientado pelos professores:
+            José Brás de Araújo e Carlos Henrique Veríssimo, juntamente com Ivan Francolin Martinez como professor
+            convidado para compor a banca.
+        </p>
+
+        <p>
+            Desde já, fica aqui nosso agradecimento a todos os visitantes.<br>
+            Obrigado !
+        </p>
+
+        <p>
+            Atenciosamente, <br>
+            Equipe Meu remédio !
+        </p>
+        <div style="text-align: left">
+            <img src="/images/AssMeuRemedio.png">
+        </div>
+    </div>
+</main>
+
+<script>
+            if ('serviceWorker' in navigator) {
+                window.addEventListener('load', () => {
+                    navigator.serviceWorker.register('sw.js', {scope: '/'})
+                            .then(function (reg) {
+                                console.log('service worker registered', reg);
+                            })
+                            .catch(function (err) {
+                                console.warn('service worker failed', err);
+                            });
+                })
+            }
+
+
+
+</script>
+
+<!-- jQuery CDN - Slim version (=without AJAX) -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+<!-- Popper.JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"
+        integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ"
+        crossorigin="anonymous"></script>
+<!-- Bootstrap JS -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"
+        integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm"
+        crossorigin="anonymous"></script>
+<!-- jQuery Custom Scroller CDN -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"
+        integrity="sha384-QHPBqENOg6UKmsoXiXjrEEu2W4rJZaCHDTqIOI9JqSg6dI3chbQ+0kXAYUQLEDYn"
+        crossorigin="anonymous">
+</script>
+
+<script type="text/javascript">
+            $(document).ready(function () {
+                $("#sidebar").mCustomScrollbar({
+                    theme: "minimal"
+                });
+
+                $('#dismiss, .overlay').on('click', function () {
+                    $('#sidebar').removeClass('active');
+                    $('.overlay').removeClass('active');
+                });
+
+                $('#sidebarCollapse').on('click', function () {
+                    $('#sidebar').addClass('active');
+                    $('.overlay').addClass('active');
+                    $('.collapse.in').toggleClass('in');
+                    $('a[aria-expanded=true]').attr('aria-expanded', 'false');
+                });
+            });
+
+
+</script>
+
+</body>
+</html>
+
