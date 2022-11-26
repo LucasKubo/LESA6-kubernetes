@@ -12,7 +12,8 @@ public enum MensagemEmail {
 
         //Corpo dos E-MAILs a serem desparadas
         CADASTRO_MENSAGEM(". Queremos agradecer por ter se registrado na plataforma Meu Remédio. \n Acesse a plataforma em:"),
-        RECUPERACAO_MENSAGEM("Olá, vimos que perdeu a senha, mas não se preocupe ! Para recuperar sua senha acesse o link: "),
+        RECUPERACAO_MENSAGEM("Olá, vimos que perdeu a senha, mas não se preocupe, acesse o link https://meuremedioapp.herokuapp.com/recuperar_senha" +
+                " para recuperar e digite o código:  "),
 
         CADASTRO_REMEDIO("Olá, vimos que você cadastrou um novo remédio, ''"),
 
