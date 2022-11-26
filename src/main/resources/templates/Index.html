@@ -125,72 +125,62 @@
                 <div class="row">
 
                     <!-- Notificações -->
-                    <div class="col-sm-12 col-md-6 col-lg-3">
-                        <div class="card">
+
+                        <div class="card align-items-center col-sm-12 col-md-6 col-lg-3">
                             <img class="card-img-top" src="/images/Prin_Alert.jpg" alt="Card image cap">
                             <div class="card-body">
                                 <h5 class="card-title" th:text="#{indexfunctions.notifications}"></h5>
                                 <p class="card-text" th:text="#{indextext.notifications}"></p>
-                                <!--<a href="#" class="btn btn-primary">Go somewhere</a>-->
                             </div>
                         </div>
-                    </div>
+
 
                     <!-- Controle de gastos -->
 
-                    <div class="col-sm-12 col-md-6 col-lg-3">
-
-                        <div class="card" >
-                            <img class="card-img-top-gasto" src="/images/Prin_Money.png" alt="Card image cap">
+                        <div class="card align-items-center col-sm-12 col-md-6 col-lg-3">
+                            <img class="card-img-top" src="/images/Prin_Money.png" alt="Card image cap">
                             <div class="card-body">
                                 <h5 class="card-title" th:text="#{indexfunctions.balance}"></h5>
                                 <p class="card-text" th:text="#{indextext.balance}"></p>
-                                <!--<a href="#" class="btn btn-primary">Go somewhere</a>-->
                             </div>
                         </div>
-                    </div>
 
                     <!-- Calendário -->
-                    <div class="col-sm-12 col-md-6 col-lg-3">
-                        <div class="card" >
+                        <div class="card align-items-center col-sm-12 col-md-6 col-lg-3">
                             <img class="card-img-top" src="/images/Prin_Calendanrio.png" alt="Card image cap">
                             <div class="card-body">
                                 <h5 class="card-title" th:text="#{indexfunctions.calendar}"></h5>
                                 <p class="card-text" th:text="#{indextext.calendar}"></p>
-                                <!--<a href="#" class="btn btn-primary">Go somewhere</a>-->
                             </div>
                         </div>
-                    </div>
 
                     <!-- Categorização -->
-                    <div class="col-sm-12 col-md-6 col-lg-3">
-                        <div class="card" >
+                        <div class="card align-items-center col-sm-12 col-md-6 col-lg-3">
                             <img class="card-img-top" src="/images/Prin_Remedio.png" alt="Card image cap">
                             <div class="card-body">
                                 <h5 class="card-title" th:text="#{indexfunctions.categories}"></h5>
                                 <p class="card-text" th:text="#{indextext.categories}"></p>
-                                <!--<a href="#" class="btn btn-primary">Go somewhere</a>-->
+                                <a href="/buscarRemedioSUSVisitante"><p class="card-text" th:text="#{indextext.categorieshere}"> Verifique aqui. </p> </a>
                             </div>
                         </div>
-                    </div>
                 <!-- Fim da Row -->
                 </div>
             </div>
 
-            <div class="rodapeIndex" id="rodapeIndex">
+            <footer class="rodapeIndex" id="rodapeIndex">
                 <div class="informacoes-footer text-center">
 
-                    <h5>
-                        Meu Remédio - CNPJ: 00.000.000/0000-00 - SAC: (11) 0000-0000
+                    <h5 style="text-align: center">
+                        Meu Remédio
                     </h5>
                     <h5>
-                        <a href="mailto:8balls.integratedproject@gmail.com"></a>
+                        8balls.integratedproject@gmail.com
                     </h5>
                     <h5>
                         R. Pedro Vicente, 625 - Canindé, São Paulo - SP, 01109-010
                     </h5>
                 </div>
-            </div>
+            </footer>
         </div>
 
     <!-- Estes scripts tratam dos arquivos .jsp correspondentes a cada página html -->

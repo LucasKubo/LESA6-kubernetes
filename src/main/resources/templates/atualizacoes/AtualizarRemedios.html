@@ -73,14 +73,14 @@
 
                         <div class="form-group">
                             <label class="input-label" for="RM_Nome" th:text="#{cadremform.remedy}"></label>
-                            <input class="form-control formulario-input" th:value="${remedio.RM_Nome}" 
+                            <input class="formulario-input" th:value="${remedio.RM_Nome}"
                                    th:placeholder="#{cadremplaceholder.remedy}" type="text" id="RM_Nome" name="RM_Nome" required="required">
                         </div>
 
                         <div class="form-group">
                             <label class="input-label" for="RM_Dosagem" th:text="#{cadremform.dosage}"></label>
                             <input th:placeholder="#{cadremplaceholder.dosage}"
-                                   class="form-control formulario-input"
+                                   class="formulario-input"
                                    type="number"
                                    id="RM_Dosagem"
                                    name="RM_Dosagem"
@@ -93,7 +93,7 @@
 
                         <div class="form-group">
                             <label class="input-label" for="RM_UnidadeDosagem" th:text="#{cadremplaceholder.dosageunit}"></label>
-                            <select id="RM_UnidadeDosagem" class="form-control dosage-select" name="RM_UnidadeDosagem" required="required">
+                            <select id="RM_UnidadeDosagem" class="formulario-input" name="RM_UnidadeDosagem" required="required">
                                 <option value="mg" th:text="#{cadremform.miligram}">)</option>
                                 <option value="g" th:text="#{cadremform.gram}"></option>
                                 <option value="ml" th:text="#{cadremform.mililiter}"></option>
@@ -151,6 +151,7 @@
         <div class="overlay"></div>
 
         <!-- Scripts da página -->
+        <script type="module" src="/script/requestPermisionToPushNotificaion.js"></script>
         <!-- jQuery CDN - Slim version (=without AJAX) -->
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
         <!-- Popper.JS -->

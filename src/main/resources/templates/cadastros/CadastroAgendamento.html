@@ -66,14 +66,14 @@
                         <form method="post" name="formCadastroAG">
 
 
-                            <div class="form-group d-flex justify-content-center align-items-center flex-column select-group">
-                                <label class="input-label text-center mar-top" for="AG_Remedios" th:text="#{cadageform.addremedy}"></label>
+                            <div class="form-group">
+                                <label class="input-label" for="AG_Remedios" th:text="#{cadageform.addremedy}"></label>
                                 <select id="AG_Remedios" 
                                         class="form-control dosage-select d-flex justify-content-center agenda-select" 
                                         name="AG_Remedios" multiple required="true">
                                     <option th:each  ="remedio : ${remedio}"
                                             th:value =" ${remedio.RM_ID}"
-                                            th:text  =" ${remedio.RM_Nome}">     
+                                            th:text  =" ${remedio.toString()}">
                                     </option>
                                 </select>
                             </div>
@@ -83,10 +83,10 @@
                                     <label class="input-label" for="AG_DataInicio" th:text="#{cadageform.begindate}"></label>
                                     <input type="date"
                                            id="AG_DataInicio"
-                                           class="form-control formulario-input margin-bot"
+                                           class="formulario-input"
                                            name="AG_DataInicio"
                                            th:placeholder="#{cadageform.begindate}"
-
+                                           value=""
                                            onblur= "validaDataFinal()"
                                            required="required">
                                 </div> 
@@ -95,7 +95,7 @@
                                     <label class="input-label" for="AG_DataFinal" th:text="#{cadageform.finaldate}"></label>
                                     <input type="date"
                                            id="AG_DataFinal"
-                                           class="form-control formulario-input margin-bot"
+                                           class="formulario-input"
                                            name="AG_DataFinal"
                                            th:placeholder="#{cadageform.finaldate}"
                                            onblur= "validaDataFinal()"
@@ -107,7 +107,7 @@
                                     <label class="input-label timepicker" for="AG_HoraInicio" th:text="#{cadageform.initialhour}"></label>
                                     <input id="AG_HoraInicio"
                                            type="text"
-                                           class="form-control formulario-input margin-bot"
+                                           class="formulario-input"
                                            th:placeholder="#{cadageform.initialhour}"
                                            name="AG_HoraInicio"
                                            value="00:00"
@@ -122,7 +122,7 @@
                                     <label class="input-label margin-top" for="AG_Periodicidade" th:text="#{cadageform.frequency}"></label>
                                     <input th:placeholder="#{cadageform.frequency}"
                                            type="number"
-                                           class="form-control formulario-input margin-bot"
+                                           class="formulario-input"
                                            id="AG_Periodicidade"
                                            name="AG_Periodicidade"
                                            required="required"
@@ -143,6 +143,7 @@
                                            for="intervalo-check"
                                            th:text="#{cadageform.registerdaysinterval}">
                                     </label>
+
                                     <input id="intervalo-check" 
                                            class="form-check-input checkbox-margin-top"
                                            type="checkbox" 
@@ -157,11 +158,11 @@
                                     <label class="input-label" th:text="#{cadageform.intervalofdays}"></label>
                                     <input style="min-width:2px"
                                            th:placeholder="#{cadageform.numberdays}"
-                                           class="formulario-input form-control"
+                                           class="formulario-input"
                                            type="number"
                                            id="intervaloDias"
                                            name="intervaloDias"
-                                           min="1"
+                                           min="2"
                                            />
                                 </div>
                             </div>
@@ -179,6 +180,7 @@
 
 
         <div class="overlay"></div>
+        <script type="module" src="/script/requestPermisionToPushNotificaion.js"></script>
         <!-- Scripts da página -->
         <!-- jQuery CDN - Slim version (=without AJAX) -->
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
@@ -199,6 +201,18 @@
                                                });
     </script>
 
+        <script>
+                Date.prototype.toDateInputValue = (function() {
+                var local = new Date(this);
+                local.setMinutes(this.getMinutes() - this.getTimezoneOffset());
+                return local.toJSON().slice(0,10);
+                });
+        </script>
+        <script>
+            $(document).ready( function() {
+                $('#AG_DataInicio').val(new Date().toDateInputValue());
+            });
+        </script>
 
     <script type="text/javascript">
         $(function () {

@@ -12,7 +12,6 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
 
     <link rel="icon" href="/static/images/icon.svg"/>
-
     <title th:text="#{listfin.title}"></title>
     <meta name="theme-color" content="#6bffe9">
     <link rel="manifest" href="/config/manifest.json">
@@ -65,7 +64,7 @@
                     </thead>
                     <tbody>
                     <div th:each ="financeiro : ${financeiro}">
-                        <tr >
+                        <tr>
                             <td><p style="color: black"><span th:text="${#strings.substring(financeiro.remedio, 1, #strings.length(financeiro.remedio)-1)}"></span></td>
                              <th:block th:with="sdf = ${new java.text.SimpleDateFormat('yyyy-MM-dd')}">
                             <td><p style="color: black"><span th:text="${#dates.format(sdf.parse(financeiro.data), 'dd/MM/yyyy')}"> </span></td> </th:block>
@@ -91,6 +90,7 @@
     </div>
 
     <!-- Scripts da página -->
+    <script type="module" src="/script/requestPermisionToPushNotificaion.js"></script>
     <!-- jQuery CDN - Slim version (=without AJAX) -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <!-- Popper.JS -->

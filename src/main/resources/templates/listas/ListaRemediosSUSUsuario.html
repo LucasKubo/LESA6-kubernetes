@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="#38CFB8">
+  <link rel="icon" href=" /images/icon.svg"/>
+
+  <title th:text="#{cadremtitle.text}">Remédio no SUS</title>
+  <meta name="theme-color" content="#6bffe9">
+  <link rel="manifest" href="/config/manifest.json">
+  <link rel="apple-touch-icon" href=" /images/icon.svg">
+  <link rel="canonical" href="https://meuremedioapp.herokuapp.com">
+  <!-- Bootstrap CSS CDN -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <!-- Our Custom CSS -->
+  <link rel="stylesheet" href="/style/cadastroRemedioStyle.css">
+  <link rel="stylesheet" href="/style/loginStyle.css">
+  <link rel="stylesheet" href=" /style/listaRemedioSUS.css">
+  <!-- Bootstrap Multiselect -->
+  <link rel="stylesheet" href=" /style/bootstrap-multiselect.css">
+  <!-- Scrollbar Custom CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
+  <!-- fonts-->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300&display=swap" rel="stylesheet">
+  <!-- Font Awesome JS -->
+  <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
+  <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
+
+</head>
+<body>
+<div class="wrapper conta-lg">
+  <!-- Menu  -->
+
+  <div id="content">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light bg-gradient">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span  class="navbar-toggler-icon"></span>
+      </button>
+      <!--<div th:text="#{indextitle.text}" class="title-home"></div>-->
+
+      <div>
+        <a class="navbar-brand" href="/">
+          <img alt="logo-icon" width="140px" src="/images/icon-home.png">
+        </a>
+      </div>
+
+
+
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ml-auto">
+          <li>
+            <select class="inter" id="locales">
+              <option value="" th:text="#{alllanguage.change}"></option>
+              <option value="en" th:text="#{alllanguage.english}"></option>
+              <option value="pt_BR" th:text="#{alllanguage.portuguese}"></option>
+            </select>
+          </li>
+          <li class="nav-item" >
+            <a th:text="#{navbar.login}" class="nav-link inicio-btn" href="/login"></a>
+          </li>
+          <li class="nav-item" id="">
+            <a th:text="#{cadusubutton.createacc}" class="nav-link cadastrar-btn" href="/cadastro"></a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- FORMULÁRIO -->
+    <section class="container d-flex justify-content-center col-12 col-sm-10 col-md-8 col-lg-5 col-lx-6">
+      <div class="card formulario-card col-12" id="form-card">
+        <div class="card-body d-flex flex-wrap justify-content-center">
+          <a href="/">
+            <img class="formulario-icon" src=" /images/icon.svg" alt="Ícone Meu Remédio">
+          </a>
+          <h2 class="form-h2" th:text="#{searchremedy.search}">Busque remédios</h2>
+          <form method="post" name="formCadastroRM" action="/buscarRemedioSUSVisitante">
+
+            <div class="form-group">
+              <label class="input-label" for="RM_Nome" th:text="#{cadremform.remedy}">Remédio</label>
+              <input class="formulario-input"  type="text" id="RM_Nome" name="RM_Nome" required="required" th:value="${nome}">
+              <small>Obs: As informações podem sofrer alterações por Estado. </small>
+              <div class="input-group actions">
+                <a id="cancelar2" href="/" class="button cancel" th:text="#{cadremform.cancel}"></a>
+                <button name="action" id="buscarRemedioo" class="button save" type="submit" th:text="#{cadremform.search}">Buscar</button>
+              </div>
+            </div>
+            <div class="form-group" th:if="${result != null}" style="max-height:150px; overflow-y:auto;">
+              <div class="buscar-sus" th:each="result : ${result}">
+                <p name="botaoTeste" type="radio" th:value="${result.nome}" th:attr="onclick=|selecionarRemedio(this.value, '${result.disponivelSus}')|"></p>
+                <label class="input-label" th:text="${result.nome}"></label>
+                <label class="input-label" th:if="${!result.disponivelSus}" th:text="#{cadremmessage.susunavailable}"></label>
+                <label class="input-label" th:if="${result.disponivelSus}" th:text="#{cadremmessage.susavailable}"></label>
+              </div>
+            </div>
+
+            <div class="form-group" th:if="${param.SemCorrespondencia}" style="max-height:150px; overflow-y:auto;">
+              <label class="input-label" th:text="#{searchremedy.correspondency}"></label>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="overlay"></div>
+    </section>
+
+    <!-- Scripts da página -->
+    <!-- jQuery CDN - Slim version (=without AJAX) -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <!-- Popper.JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+    <script src="/script/cadastroRemedio.jsp"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js" integrity="sha384-QHPBqENOg6UKmsoXiXjrEEu2W4rJZaCHDTqIOI9JqSg6dI3chbQ+0kXAYUQLEDYn" crossorigin="anonymous"></script><script src="/script/bootstrap-multiselect.js"></script></div>
+</div>
+
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js" integrity="sha384-myN010xAOorYhvU/b0Oh3F9DT45ac2D7C6JQp0fIXX7noJn7c/+3lwiHJ199ZRJr" crossorigin="anonymous"></script>
+<div id="torrent-scanner-popup" style="display: none;">
+</div>
+</body>
+</html>

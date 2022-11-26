@@ -7,7 +7,7 @@
         <meta name="#38CFB8">
 
         <title>Home - Meu Remédio</title>
-
+        <meta name="theme-color" content="#6bffe9">
         <link rel="icon" href="/static/images/icon.svg"/>
         <link rel="icon" href="/images/icon.svg"/>
         <link rel="manifest" href="/config/manifest.json">
@@ -64,15 +64,16 @@
                     </div>
                 </nav>
 
-                <div class="jumbotron">
+                <div class="jumbotron" th:if="${#lists.isEmpty(remedios)}">
                     <selection class="jumbotron text-center">
                         <div class="container">
                             <h1 class="jumbotron-heading footer" th:text="#{indextext.welcome}"></h1>
                             <p class="lead text-muted footer" th:text="#{indextext.text}"></p>
+                            <a href="remedios_cadastro" ><p class="lead text-muted footer" th:text="#{homeremedy.here}" style="color:blue !important;"></p></a>
                         </div>
                     </selection>
                 </div>
-                <div class="line"></div>
+                <div class="line" th:if="${#lists.isEmpty(remedios)}"></div>
 
                 <!-- DIV 1 -->
                 <div class="container-fluid">
@@ -150,10 +151,10 @@
                                 <thead>
                                     <tr>
                                         <th th:text="#{cadageform.medication}"></th>
-                                        <th th:text="#{cadageform.begindate}"></th>
-                                        <th th:text="#{cadageform.initialhour}"></th>
-                                        <th th:text="#{cadageform.finaldate}"></th>
-                                        <th th:text="#{cadageform.frequency}"></th>
+                                        <th th:text="#{listageform.begindate}"></th>
+                                        <th th:text="#{listageform.initialhour}"></th>
+                                        <th th:text="#{listageform.finaldate}"></th>
+                                        <th th:text="#{listageform.frequency}"></th>
 
                                     </tr>
                                 </thead>
@@ -210,8 +211,8 @@
 
                     <div class="rodape" id="rodapeHome">
                         <div class="informacoes-footer text-center">
-                            <h5>
-                                Meu Remédio - CNPJ: 00.000.000/0000-00 - SAC: (11) 0000-0000
+                            <h5 style="text-align:center">
+                                Meu Remédio
                             </h5>
                             <h5 style="font-size: 16px">
                                 8balls.integratedproject@gmail.com
@@ -278,9 +279,6 @@
                     $('a[aria-expanded=true]').attr('aria-expanded', 'false');
                 });
             });
-
-
-
         </script>
 
         <!-- Calendario -->
@@ -308,6 +306,9 @@
                 var listaAgendamentos = new Array();
 
                 for (var i = 0; i < remediosIT.length; i++) {
+                    if(intervaloIT[i].innerHTML == 1){
+                        break;
+                    }
                     var dataFinalDate = new Date(dataFinalIT[i].innerHTML)
                     var dataFinalAjustada = new Date();
                     dataFinalAjustada.setMonth(dataFinalDate.getMonth())
@@ -327,7 +328,7 @@
                         }
                         console.log(ag)
                         listaAgendamentos.push(ag);
-                        dataInicioIntervalo.setDate(dataInicioIntervalo.getDate() + parseInt(intervaloIT[i].innerHTML) + 1);
+                        dataInicioIntervalo.setDate(dataInicioIntervalo.getDate() + parseInt(intervaloIT[i].innerHTML));
                     }
                 }
 
@@ -372,22 +373,25 @@
                 var linguagem =  [[${#locale.language}]]
                 console.log(linguagem)
                 if (linguagem != 'en'){
+                    var gasto = "Gastos "
                     var lista = ["JAN", "FEV", "MAR", "ABR", "MAI", "JUN", "JUL", "AGO", "SET", "OUT", "NOV", "DEZ"]
+                    var mensais = "Mensais"
                 } else {
+                    var gasto = "Expenses "
                     var lista = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEZ"]
+                    var mensais = "Montly"
                 }
 
-                var maiorValor = Math.max.apply(Math, [[${gastos}]].concat([[${gastosAnoAnterior}]]).concat([[${gastosAnoSeguinte}]])); 
-                var gasto = "Gastos "
+                var maiorValor = Math.max.apply(Math, [[${gastos}]].concat([[${gastosAnoAnterior}]]).concat([[${gastosAnoSeguinte}]]));
                 Highcharts.chart('container', {
                     chart: {
                         type: 'column'
                     },
                     title: {
-                        text: 'Gastos'
+                        text: gasto
                     },
                     subtitle: {
-                        text: 'Mensais'
+                        text: mensais
                     },
                     xAxis: {
                         categories: lista,
@@ -397,7 +401,7 @@
                         min: 0,
                         max: maiorValor,
                         title: {
-                            text: 'Gastos R$'
+                            text: gasto + 'R$'
                         }
                     },
                     tooltip: {

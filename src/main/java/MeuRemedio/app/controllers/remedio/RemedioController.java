@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Locale;
 import java.util.Objects;
 
 @Controller
@@ -59,6 +60,7 @@ public class RemedioController {
 
     @Autowired
     ListagemRemediosRepository listagemRemediosRepository;
+
 
     final String REDIRECT="redirect:/remedios";
 
@@ -230,17 +232,63 @@ public class RemedioController {
             return "cadastros/CadastroRemedios";
         }
         var result = listagemRemediosRepository.buscarPorNome(nome);
+        if (result.isEmpty()){
+            return "redirect:/buscarRemedio?NotFound";
+        }
         model.addAttribute("result", result);
         return "cadastros/CadastroRemedios";
     }
 
-    //função responsável por achar um id dentro do banco. Retorna true se encontrar
+    @RequestMapping(value = "/buscarRemedioSUS", method = RequestMethod.POST)
+    public String buscarRemedioSUS(@RequestParam(value="RM_Nome", required = false) String nome, Model model){
+        model.addAttribute("nome", nome);
+        if(Objects.isNull(nome) || nome.length() < 4 ){
+            return "redirect:/buscarRemedioSUS?SemCorrespondencia";
+        }
+        var nomeLower = nome.toLowerCase(Locale.ROOT);
+        var result = listagemRemediosRepository.buscarPorNome(nomeLower);
+        if (result.isEmpty()){
+            return "redirect:/buscarRemedioSUS?SemCorrespondencia";
+        }
+        model.addAttribute("result", result);
+        return "listas/ListaRemediosSUS";
+    }
+
+
     public boolean verificarPorId (long id ) {
         return remedioRepository.existsById(id);
     }
 
-    //Essa função deve retornar uma tela customizada de erro.
     public String templateError(){
         return "TemplateError";
+    }
+
+    @RequestMapping(value="/buscarRemedioSUS", method = RequestMethod.GET)
+    public String verificarSus(){
+        return "listas/ListaRemediosSUS";
+    }
+
+    @RequestMapping(value="/buscarRemedioSUSVisitante", method = RequestMethod.GET)
+    public String verificarSuss(){
+        if (!validateAuthentication.auth()){
+            return "listas/ListaRemediosSUSUsuario";
+        }
+        return "redirect:/";
+    }
+
+    @RequestMapping(value = "/buscarRemedioSUSVisitante", method = RequestMethod.POST)
+    public String buscarRemedioSUSDeslogado(@RequestParam(value="RM_Nome", required = false) String nome, Model model){
+        model.addAttribute("nome", nome);
+        if(Objects.isNull(nome) || nome.length() < 4 ){
+            return "redirect:/buscarRemedioSUSVisitante?SemCorrespondencia";
+        }
+        var nomeLower = nome.toLowerCase(Locale.ROOT);
+        var result = listagemRemediosRepository.buscarPorNome(nomeLower);
+
+        if (result.isEmpty()){
+            return "redirect:/buscarRemedioSUSVisitante?SemCorrespondencia";
+        }
+        model.addAttribute("result", result);
+        return "listas/ListaRemediosSUSUsuario";
     }
 }

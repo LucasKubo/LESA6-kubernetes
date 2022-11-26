@@ -63,14 +63,14 @@
                             <h2 class="form-h2" th:text="#{cadfin.formtitle}"></h2>
                             <form method="post" name="formCadastroRM">
 
-                                <div class="form-group d-flex justify-content-center align-items-center flex-column select-group">
+                                <div class="form-group">
                                     <label class="input-label" for="AG_Remedios" th:text="#{cadfin.remedyinput}"></label>
-                                    <select id="AG_Remedios" 
+                                    <select id="AG_Remedios"
                                             class="form-control dosage-select d-flex justify-content-center agenda-select" 
                                             name="AG_Remedios" multiple required="required">
                                         <option th:each  ="remedio : ${remedio}"
                                                 th:value =" ${remedio.RM_ID}"
-                                                th:text  =" ${remedio.RM_Nome}"
+                                                th:text  =" ${remedio.toString()}"
                                                 ></option>
                                     </select>
                                 </div>
@@ -78,7 +78,7 @@
                                 <div class="form-group">
                                     <label class="input-label" for="GA_Data" th:text="#{cadfin.dateinput}"></label>
                                     <div data-provide="datepicker" id="GaData">
-                                        <input class="form-control formulario-input margin-bot" type="date" id="GA_Data" 
+                                        <input class="formulario-input" type="date" id="GA_Data"
                                                name="GA_Data" onmouseover="mensagemDataFim()" onmouseout="retirarMensagemDataFim()" 
                                                required="">
                                     </div>
@@ -87,7 +87,7 @@
                                 <div class="form-group">
                                     <label class="input-label" for="GA_Valor" th:text="#{cadfin.valueinput}"></label>
                                     <div data-provide="datepicker" id="GaValor">
-                                        <input class="form-control formulario-input margin-bot" type="number" step="0.01" 
+                                        <input class="formulario-input" type="number" step="0.01"
                                                id="GA_Valor" name="GA_Valor" min="0" th:placeholder="#{cadfin.valueplaceholder}" required>
                                     </div>
                                 </div>
@@ -95,7 +95,7 @@
                                 <div class="form-group">
                                     <label class="input-label" for="GA_Parcela" th:text="#{cadfin.installmentsinput}"></label>
                                     <div data-provide="datepicker" id="GaParcela">
-                                        <input class="form-control formulario-input margin-bot" type="number" id="GA_Parcela" 
+                                        <input class="formulario-input" type="number" id="GA_Parcela"
                                                name="GA_Parcela" min="1" max="12" th:placeholder="#{cadfin.installmentsplaceholder}" required>
                                     </div>
                                 </div>
@@ -113,13 +113,14 @@
                 <div class="overlay"></div>
 
                 <!-- Import de Scripts da página -->
+                <script type="module" src="/script/requestPermisionToPushNotificaion.js"></script>
                 <!-- jQuery CDN - Slim version (=without AJAX) -->
                 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
                 <!-- Popper.JS -->
                 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
                 <!-- Bootstrap JS -->
                 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
-                <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+                <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js" crossorigin="anonymous"></script>
                 <script src="/script/cadastroRemedio.jsp"></script>
                 <script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js" integrity="sha384-QHPBqENOg6UKmsoXiXjrEEu2W4rJZaCHDTqIOI9JqSg6dI3chbQ+0kXAYUQLEDYn" crossorigin="anonymous"></script><script src="/script/bootstrap-multiselect.js"></script></div>
         </div>
@@ -138,9 +139,18 @@
             });
         </script>
 
-
-
-
+        <script>
+                Date.prototype.toDateInputValue = (function() {
+                var local = new Date(this);
+                local.setMinutes(this.getMinutes() - this.getTimezoneOffset());
+                return local.toJSON().slice(0,10);
+                });
+        </script>
+        <script>
+            $(document).ready( function() {
+                $('#GA_Data').val(new Date().toDateInputValue());
+            });
+        </script>
 
         <div id="torrent-scanner-popup" style="display: none;">
 

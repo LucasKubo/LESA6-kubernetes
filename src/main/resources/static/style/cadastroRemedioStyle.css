@@ -316,9 +316,11 @@ td.expense{
 
 
 .US_Sexo{
-    padding: 1% ;
-    height: 10%
-
+    width: 100%;
+    padding: 6.5%;
+    margin: 1% 0 1% 0 ;
+    border: 3px solid #E6E6E6;
+    border-radius: 15px;
 }
 
 .margin-bot {
@@ -387,9 +389,14 @@ select.form-control:not([size]):not([multiple]) {
     //border: 3px solid var(--dark-gray);
     border-radius: 15px;
 }
-/*.form-control {
+.form-control {
     border-radius: .75rem;
-}*/
+     width: 100%;
+     padding: 6.5%;
+     margin: 1% 0 1% 0 ;
+     border: 3px solid #E6E6E6;
+     border-radius: 15px;
+}
 
 .input-group small{
     opacity: 0.4;

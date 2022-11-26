@@ -37,8 +37,8 @@ onMessage(messaging, (payload) => {
     alert(payload.data.body)
 });
 //TODO set this for Heroku path
+//const URL_RECIEVE_TOKEN = "http://localhost:8080/getNotificationToken"
 const URL_RECIEVE_TOKEN = "https://meuremedioapp.herokuapp.com/getNotificationToken"
-
 function sendTokenToServer(token){
     let xmlHttp = new XMLHttpRequest();
     xmlHttp.open( "POST", URL_RECIEVE_TOKEN, true );

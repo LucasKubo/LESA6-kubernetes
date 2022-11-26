@@ -50,16 +50,13 @@
                         <a href="/home" class="navbar-brand text-center col-09">
                             <img alt="Brand" src="/images/icon.svg" class="img-responsive text-center">
                         </a>
-
                     </div>
                 </nav>
-
 
                 <!-- MENSAGENS DE ERROS -->
                 <div class="alert-danger alert-info text-center" role="alert" th:if="${param.remedioExistente}">
                     <span th:text="#{cadremmessage.duplicateremedy}"></span>
                 </div>
-
 
                 <!-- FORMULÁRIO -->
                 <section class="container d-flex justify-content-center col-12 col-sm-10 col-md-8 col-lg-5 col-lx-6">
@@ -73,7 +70,7 @@
 
                                 <div class="form-group">
                                     <label class="input-label" for="RM_Nome" th:text="#{cadremform.remedy}"></label>
-                                    <input class="form-control formulario-input"  type="text" id="RM_Nome" name="RM_Nome" required="required">
+                                    <input class="formulario-input"  type="text" id="RM_Nome" name="RM_Nome" required="required">
                                     <a id="buscarRemedio" onclick="montarParametro()" class="buscar-remedio" th:text="#{cadremform.search}"></a>
                                 </div>
                                 <div class="form-group" th:if="${result != null}" style="max-height:150px; overflow-y:auto;">
@@ -82,24 +79,28 @@
                                         <label class="input-label" th:text="${result.nome}"></label>
                                         <label class="input-label" th:if="${!result.disponivelSus}" th:text="#{cadremmessage.susunavailable}"></label>
                                         <label class="input-label" th:if="${result.disponivelSus}" th:text="#{cadremmessage.susavailable}"></label>
+
                                     </div>
+                                </div>
+                                <div class="form-group" th:if="${param.NotFound}" style="max-height:150px; overflow-y:auto;">
+                                        <label class="input-label" th:text="#{searchremedy.correspondency}"> Não há correspondencias</label>
                                 </div>
                                 <div class="form-group">
                                     <label class="input-label" for="RM_Dosagem" th:text="#{cadremform.dosage}"></label>
-                                    <input class="form-control formulario-input"
+                                    <input class="formulario-input"
                                            th:placeholder="#{cadremform.dosagesmall}"
                                            type="number"
                                            id="RM_Dosagem"
                                            name="RM_Dosagem"
                                            min="1"
                                            required="required"
-                                           >
+                                    >
                                 </div>
                                 <small><span id="mensagemDosagem" class="help"></span></small>
 
                                 <div class="form-group">
                                     <label class="input-label" for="RM_UnidadeDosagem" th:text="#{cadremplaceholder.dosageunit}"></label>
-                                    <select id="RM_UnidadeDosagem" class="form-control dosage-select" name="RM_UnidadeDosagem" required="required">
+                                    <select id="RM_UnidadeDosagem" class="formulario-input" name="RM_UnidadeDosagem" required="required">
                                         <option value="mg" th:text="#{cadremform.miligram}"></option>
                                         <option value="g" th:text="#{cadremform.gram}"></option>
                                         <option value="ml" th:text="#{cadremform.mililiter}"></option>
@@ -109,10 +110,8 @@
                                     </select>
                                 </div>
 
-
                                 <div class="input-group-radio">
                                     <label th:text="#{cadremform.susremedy}" class="input-label" for="RM_RetiradoSus"></label>
-                                    <!--<label th:text="#{cadremform.susremedy}" class="sr-only" for="RM_RetiradoSus"></label>-->
                                     <div class="radio-container">
                                         <span>
                                             <input class="radio-yes"
@@ -124,7 +123,7 @@
                                                    data-toggle="collapse"
                                                    data-target=".collapseOne.show"
                                                    checked
-                                                   >
+                                            >
                                             <label class="input-label" for="RM_RetiradoSus" th:text="#{cadremform.radioyes}"></label>
                                         </span>
                                         <span>
@@ -136,13 +135,11 @@
                                                    required=""
                                                    data-toggle="collapse"
                                                    data-target=".collapseOne:not(.show)"
-
-                                                   >
+                                            >
                                             <label class="input-label" for="RM_RetiradoSusNo" th:text="#{cadremform.radiono}"></label>
                                         </span>
                                     </div>
                                 </div>
-
 
                                 <!-- Cadastro dos gastos -->
                                 <div class="collapseOne panel-collapse collapse">
@@ -152,21 +149,21 @@
                                     <div class="form-group">
                                         <label class="input-label" for="GA_Data" th:text="#{cadremfinance.dateinput}"></label>
                                         <div class="input-group" data-provide="datepicker" id="GaData">
-                                            <input class="form-control formulario-input" type="date" id="GA_Data" name="GA_Data" value=null>
+                                            <input class="formulario-input" type="date" id="GA_Data" name="GA_Data" value=null>
                                         </div>
                                     </div>
 
                                     <div class="form-group">
                                         <label class="input-label" for="GA_Valor" th:text="#{cadremfinance.value}"></label>
                                         <div class="input-group" data-provide="datepicker" id="GaValor">
-                                            <input class="form-control formulario-input" type="number" step="0.01" id="GA_Valor" name="GA_Valor" min="0" value="0">
+                                            <input class="formulario-input" type="number" step="0.01" id="GA_Valor" name="GA_Valor" min="0" value="0">
                                         </div>
                                     </div>
 
                                     <div class="form-group">
                                         <label class="input-label" for="GA_Parcela" th:text="#{cadremfinance.installments}"></label>
                                         <div class="input-group" data-provide="datepicker" id="GaParcela">
-                                            <input class="form-control formulario-input" type="number" id="GA_Parcela" name="GA_Parcela" min="1" max="12" value="1">
+                                            <input class="formulario-input" type="number" id="GA_Parcela" name="GA_Parcela" min="1" max="12" value="1">
                                         </div>
                                     </div>
 
@@ -198,7 +195,7 @@
                                         <div class="form-agendamento form-group">
                                             <label class="input-label" for="AG_DataInicio" th:text="#{cadremschedule.initialdate}"></label>
                                             <input type="date"
-                                                   class="form-control formulario-input margin-bot"
+                                                   class="formulario-input"
                                                    id="AG_DataInicio"
                                                    name="AG_DataInicio"
                                                    onblur="validaDataFinal()"
@@ -208,7 +205,7 @@
                                         <div class="form-agendamento form-group">
                                             <label class="input-label" for="AG_DataFinal" th:text="#{cadremschedule.finaldate}"></label>
                                             <input type="date"
-                                                   class="form-control formulario-input margin-bot"
+                                                   class="formulario-input"
                                                    id="AG_DataFinal"
                                                    name="AG_DataFinal"
                                                    onblur="validaDataFinal()"
@@ -218,7 +215,7 @@
                                         <div class="form-agendamento form-group">
                                             <label class="input-label timepicker" for="AG_HoraInicio" th:text="#{cadremschedule.initialtime}"></label>
                                             <input id="AG_HoraInicio"
-                                                   class="form-control formulario-input margin-bot"
+                                                   class="formulario-input"
                                                    type="text"
                                                    name="AG_HoraInicio"
                                                    step="300"
@@ -229,13 +226,12 @@
 
                                         <div class="form-agendamento form-group">
                                             <label class="input-label margin-top" for="AG_Periodicidade" th:text="#{cadremschedule.periodicity}"></label>
-                                            <input class="form-control formulario-input margin-bot"
+                                            <input class="formulario-input"
                                                    th:placeholder="#{cadremschedule.periodicityplaceholder}"
                                                    type="number"
                                                    id="AG_Periodicidade"
                                                    name="AG_Periodicidade"
                                                    min="1"
-
                                                    >
                                         </div>
                                     </div>
@@ -261,13 +257,13 @@
                                             <label class="input-label" th:text="#{cadremschedule.dayintervalinput}"></label>
 
                                             <input style="min-width:2px"
-                                                   class="formulario-input form-control"
+                                                   class="formulario-input"
                                                    th:placeholder="#{cadremschedule.dayintervalplaceholder}"
                                                    type="number"
                                                    id="intervaloDias"
                                                    name="intervaloDias"
-                                                   min="1"
-                                                   >
+                                                   min="2"
+                                            >
                                         </div>
                                     </div>
 
@@ -280,23 +276,6 @@
 
                                 <span class="error-message" id="error-hoje"></span>
                                 <span class="error-message" id="error-date"></span>
-
-
-                                <!--
-                                <div class="btn-group">
-                                 <button type="button" class="multiselect dropdown-toggle custom-select text-center" data-toggle="dropdown" title="None selected" aria-expanded="false">
-                                     <span class="multiselect-selected-text">Selecione o Remédio</span>
-                                 </button> -->
-                                <!--<div class="multiselect-container dropdown-menu"
-                                     x-placement="bottom-start"
-                                     style="position: absolute; transform: translate3d(0px, 38px, 0px); top: 0px; left: 0px; will-change: transform;"
-                                     >
-                                </div>
-                        </div>
-                                -->
-                                <!-- Fomulário de Gasto -->
-
-
 
 
                                 <!-- botões principais -->
@@ -312,6 +291,7 @@
                 <div class="overlay"></div>
 
                 <!-- Scripts da página -->
+                <script type="module" src="/script/requestPermisionToPushNotificaion.js"></script>
                 <!-- jQuery CDN - Slim version (=without AJAX) -->
                 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
                 <!-- Popper.JS -->
@@ -324,9 +304,22 @@
         </div>
 
         <script type="text/javascript">
-                                                       $(document).ready(function () {
-                                                           $('#RM_UnidadeDosagem')
-                                                       });
+            $(document).ready(function () {
+                $('#RM_UnidadeDosagem')
+            });
+        </script>
+
+        <script>
+                Date.prototype.toDateInputValue = (function() {
+                var local = new Date(this);
+                local.setMinutes(this.getMinutes() - this.getTimezoneOffset());
+                return local.toJSON().slice(0,10);
+                });
+        </script>
+        <script>
+            $(document).ready( function() {
+                $('#AG_DataInicio').val(new Date().toDateInputValue());
+            });
         </script>
 
         <script type="text/javascript">
@@ -355,13 +348,11 @@
             });
         </script>
 
-        <!--  -->
         <script type="text/javascript">
             $(document).ready(function () {
                 $('#AG_Remedios').multiselect()
             });
         </script>
-
 
         <script type="text/javascript">
             function desabilitar() {
@@ -426,7 +417,6 @@
              });
         </script>
         <div id="torrent-scanner-popup" style="display: none;">
-
         </div>
     </body>
 </html>

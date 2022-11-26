@@ -18,12 +18,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.*;
 
 @Controller
@@ -52,7 +50,7 @@ public class AgendamentoController {
 
     private final CalculaHorariosNotificacao calculaHorariosNotificacao;
 
-    final String REDIRECT="redirect:/agendamentos";
+    final String REDIRECT = "redirect:/agendamentos";
 
 
     @RequestMapping(value = "/agendamentos")
@@ -61,7 +59,7 @@ public class AgendamentoController {
             return "Login";
         }
 
-        List <Agendamento> agendamentos = agendamentoRepository.findAllByUsuarioID(userSessionService.returnIdUsuarioLogado());
+        List<Agendamento> agendamentos = agendamentoRepository.findAllByUsuarioID(userSessionService.returnIdUsuarioLogado());
         model.addAttribute("agendamento", agendamentos);
 
         List<IntervaloDias> intervaloDias = new ArrayList<>();
@@ -83,7 +81,10 @@ public class AgendamentoController {
 
         Usuario usuarioID = new Usuario();
         usuarioID.setId(userSessionService.returnIdUsuarioLogado());
-        List <Remedio> remedio  = remedioRepository.findAllByUsuario(usuarioID);
+        List<Remedio> remedio = remedioRepository.findAllByUsuario(usuarioID);
+        if (!remedio.isEmpty()) {
+            Collections.sort(remedio, Remedio::compareTo);
+        }
         model.addAttribute("remedio", remedio);
         return "cadastros/CadastroAgendamento";
     }
@@ -92,13 +93,13 @@ public class AgendamentoController {
     public String cadastrarAgendamento(@RequestParam("AG_Remedios") List<Remedio> remedios,
                                        @RequestParam("AG_DataInicio") String AG_DataInicio,
                                        @RequestParam("AG_HoraInicio") String AG_horaInicio,
-                                       @RequestParam("AG_DataFinal")  String AG_DataFinal ,
+                                       @RequestParam("AG_DataFinal") String AG_DataFinal,
                                        @RequestParam("AG_Periodicidade") long AG_Periodicidade,
-                                       @RequestParam(value = "intervaloDias", required = false) Long intervaloDias){
+                                       @RequestParam(value = "intervaloDias", required = false) Long intervaloDias) {
 
         Agendamento id;
-        if(intervaloDias != null){
-            IntervaloDias intervalo = new IntervaloDias(AG_DataInicio,AG_horaInicio,AG_DataFinal,AG_Periodicidade,
+        if (intervaloDias != null) {
+            IntervaloDias intervalo = new IntervaloDias(AG_DataInicio, AG_horaInicio, AG_DataFinal, AG_Periodicidade,
                     remedios, userSessionService.returnIdUsuarioLogado(), intervaloDias);
 
             id = intervaloDiasRepository.save(intervalo);
@@ -112,20 +113,58 @@ public class AgendamentoController {
         return REDIRECT;
     }
 
-    public void salvarHorariosAgendamentos(Agendamento id){
+
+    public void salvarHorariosAgendamentos(Agendamento id) {
         calculaHorariosNotificacao.calcular(id);
     }
 
-
-    @RequestMapping(value="/deletar_agendamento/{id}")
-    public String deletarAgendamento(@PathVariable("id") long id){
+    @RequestMapping(value = "/deletar_agendamento/{id}")
+    public String deletarAgendamento(@PathVariable("id") long id, HttpServletRequest request) {
         Agendamento agendamento = agendamentoRepository.findById(id);
+        String url = request.getHeader("referer");
         agendamentoRepository.delete(agendamento);
-        return "redirect:/home";
+        return "redirect:" + url;
+    }
+
+    @RequestMapping(value = "/agendamento/remedio/{id}", method = RequestMethod.GET)
+    public String cadastrarAgendamentoRemedio(@PathVariable("id") long id, Model model) {
+        Remedio remedio = remedioRepository.findById(id);
+
+        if (Objects.isNull(remedio)) {
+            templateError();
+        }
+        model.addAttribute("remedioD", remedio);
+        return "cadastros/CadastroAgendamentoDireto";
+    }
+
+    @RequestMapping(value = "/agendamento/remedio/{id}", method = RequestMethod.POST)
+    public String cadastrarAgendamentoRemedio(@PathVariable("id") long idRemedio,
+                                              @RequestParam("AG_DataInicio") String AG_DataInicio,
+                                              @RequestParam("AG_HoraInicio") String AG_horaInicio,
+                                              @RequestParam("AG_DataFinal") String AG_DataFinal,
+                                              @RequestParam("AG_Periodicidade") long AG_Periodicidade,
+                                              @RequestParam(value = "intervaloDias", required = false) Long intervaloDias) {
+
+        Remedio remedio = remedioRepository.findById(idRemedio);
+        Agendamento id;
+
+        if (intervaloDias != null) {
+            IntervaloDias intervalo = new IntervaloDias(AG_DataInicio, AG_horaInicio, AG_DataFinal, AG_Periodicidade,
+                    Collections.singletonList(remedio), userSessionService.returnIdUsuarioLogado(), intervaloDias);
+            id = intervaloDiasRepository.save(intervalo);
+        } else {
+            Agendamento agendamento = new Agendamento(AG_DataInicio, AG_horaInicio, AG_DataFinal, AG_Periodicidade,
+                    Collections.singletonList(remedio), userSessionService.returnIdUsuarioLogado());
+
+            id = agendamentoRepository.save(agendamento);
+        }
+        salvarHorariosAgendamentos(id);
+
+        return "redirect:/agendamentos";
     }
 
     @RequestMapping(value = "/atualizar_agendamento/{id}", method = RequestMethod.GET)
-    public String atualizarRemedio (@PathVariable("id") long id, Model model) {
+    public String atualizarRemedio(@PathVariable("id") long id, Model model) {
         if (!verificarPorId(id)) {
             return templateError();
 
@@ -133,38 +172,41 @@ public class AgendamentoController {
             Usuario usuarioID = new Usuario();
             usuarioID.setId(userSessionService.returnIdUsuarioLogado());
 
-            Iterable <Remedio> remedio = remedioRepository.findAllByUsuario(usuarioID);
+            List<Remedio> remedio = remedioRepository.findAllByUsuario(usuarioID);
+            if (!remedio.isEmpty()) {
+                Collections.sort(remedio, Remedio::compareTo);
+            }
             model.addAttribute("remedio", remedio);
 
             Agendamento agendamento = agendamentoRepository.findById(id);
             model.addAttribute("agendamento", agendamento);
 
             Optional<IntervaloDias> intervaloDias = intervaloDiasRepository.findById(id);
-            model.addAttribute("intervaloDias", intervaloDias);
-
+            if (intervaloDias.isPresent()) {
+                model.addAttribute("intervaloDias", intervaloDias.get());
+            }
             return "atualizacoes/AtualizarAgendamento";
         }
     }
 
     @RequestMapping(value = "/atualizar_agendamento/{id}", method = RequestMethod.POST)
     @Transactional
-    public  String atualizarDadosAgendamento(@PathVariable("id") long id,
+    public String atualizarDadosAgendamento(@PathVariable("id") long id,
                                             @RequestParam("AG_Remedios") List<Remedio> remedios,
                                             @RequestParam("AG_DataInicio") String AG_DataInicio,
                                             @RequestParam("AG_HoraInicio") String AG_horaInicio,
-                                            @RequestParam("AG_DataFinal")  String AG_DataFinal ,
+                                            @RequestParam("AG_DataFinal") String AG_DataFinal,
                                             @RequestParam("AG_Periodicidade") long AG_Periodicidade,
-                                            @RequestParam(value = "intervaloDias", required = false) Long intervaloDias){
+                                            @RequestParam(value = "intervaloDias", required = false) Long intervaloDias) {
         if (!verificarPorId(id)) {
             return remedioController.
                     templateError();
         }
 
         Optional<IntervaloDias> intervaloExiste = intervaloDiasRepository.findById(id);
-        if (intervaloExiste.isPresent() && intervaloDias == null){
+        if (intervaloExiste.isPresent() && intervaloDias == null) {
             Agendamento agendamento = new Agendamento();
 
-            //agendamento.setId(intervaloExiste.get().getId());
             agendamento.setRemedio(remedios);
             agendamento.setDataInicio(AG_DataInicio);
             agendamento.setHoraInicio(AG_horaInicio);
@@ -175,33 +217,32 @@ public class AgendamentoController {
             Agendamento ag = agendamentoRepository.save(agendamento);
             salvarHorariosAgendamentos(ag);
 
-        } else
-            if (intervaloExiste.isPresent() && intervaloDias != null){
-                IntervaloDias atualizarIntervalo = intervaloExiste.get();
+        } else if (intervaloExiste.isPresent() && intervaloDias != null) {
+            IntervaloDias atualizarIntervalo = intervaloExiste.get();
 
-                atualizarIntervalo.setId(id);
-                atualizarIntervalo.setRemedio(remedios);
-                atualizarIntervalo.setDataInicio(AG_DataInicio);
-                atualizarIntervalo.setHoraInicio(AG_horaInicio);
-                atualizarIntervalo.setDataFinal(AG_DataFinal);
-                atualizarIntervalo.setPeriodicidade(AG_Periodicidade);
-                atualizarIntervalo.setIntervaloDias(intervaloDias);
+            atualizarIntervalo.setId(id);
+            atualizarIntervalo.setRemedio(remedios);
+            atualizarIntervalo.setDataInicio(AG_DataInicio);
+            atualizarIntervalo.setHoraInicio(AG_horaInicio);
+            atualizarIntervalo.setDataFinal(AG_DataFinal);
+            atualizarIntervalo.setPeriodicidade(AG_Periodicidade);
+            atualizarIntervalo.setIntervaloDias(intervaloDias);
 
-                agendamentosHorariosRepository.deleteAllByIdAgendamento(id);
-                IntervaloDias it = intervaloDiasRepository.save(atualizarIntervalo);
-                salvarHorariosAgendamentos(it);
-        } else if (intervaloDias == null){
-                Agendamento agendamento = agendamentoRepository.findById(id);
+            agendamentosHorariosRepository.deleteAllByIdAgendamento(id);
+            IntervaloDias it = intervaloDiasRepository.save(atualizarIntervalo);
+            salvarHorariosAgendamentos(it);
+        } else if (intervaloDias == null) {
+            Agendamento agendamento = agendamentoRepository.findById(id);
 
-                agendamento.setRemedio(remedios);
-                agendamento.setDataInicio(AG_DataInicio);
-                agendamento.setHoraInicio(AG_horaInicio);
-                agendamento.setDataFinal(AG_DataFinal);
-                agendamento.setPeriodicidade(AG_Periodicidade);
+            agendamento.setRemedio(remedios);
+            agendamento.setDataInicio(AG_DataInicio);
+            agendamento.setHoraInicio(AG_horaInicio);
+            agendamento.setDataFinal(AG_DataFinal);
+            agendamento.setPeriodicidade(AG_Periodicidade);
 
-                agendamentosHorariosRepository.deleteAllByIdAgendamento(id);
-                Agendamento ag = agendamentoRepository.save(agendamento);
-                salvarHorariosAgendamentos(ag);
+            agendamentosHorariosRepository.deleteAllByIdAgendamento(id);
+            Agendamento ag = agendamentoRepository.save(agendamento);
+            salvarHorariosAgendamentos(ag);
 
         } else {
             IntervaloDias adicionarIntervalo = new IntervaloDias(AG_DataInicio, AG_horaInicio, AG_DataFinal, AG_Periodicidade,
@@ -213,15 +254,15 @@ public class AgendamentoController {
             IntervaloDias it = intervaloDiasRepository.save(adicionarIntervalo);
             salvarHorariosAgendamentos(it);
         }
-            return REDIRECT;
+        return REDIRECT;
     }
 
 
-    public boolean verificarPorId (long id ) {
-        return agendamentoRepository.existsById(id); // retorna false se não achar o ID do remédio
+    public boolean verificarPorId(long id) {
+        return agendamentoRepository.existsById(id);
     }
 
-    public String templateError(){
+    public String templateError() {
         return "TemplateError";
     }
 }

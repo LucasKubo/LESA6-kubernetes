@@ -64,26 +64,27 @@
                 </a>
                 <h2 th:text="#{attusu.formtitle}"></h2>
                 <form method="post" name="formCadastro">
+
                     <div class="form-group">
                         <label th:text="#{attusu.firstname}"></label>
                         <input th:value="${usuario.nome}"
                                type="text"
-                               class="form-control formulario-input"
+                               class="formulario-input"
                                id="US_Nome"
                                name="US_Nome"
                                required="required"
-                               >
+                        >
                     </div>
 
                     <div class="form-group">
                         <label th:text="#{attusu.lastname}"></label>
                         <input th:value="${usuario.sobrenome}"
                                type="text"
-                               class="form-control formulario-input"
+                               class="formulario-input"
                                id="US_Sobrenome"
                                name="US_Sobrenome"
                                required="required"
-                               >
+                        >
                     </div>
 
                     <div class="form-group">
@@ -97,12 +98,12 @@
                                required="required"
                                onblur="checarEmail();"
                                disabled
-                               >
+                        >
                     </div>
 
                     <div class="form-group">
                         <label th:text="#{attusu.gender}"></label>
-                        <select id="US_Sexo" name="US_Sexo"  class="form-control formulario-input gender-select US_Sexo">
+                        <select id="US_Sexo" name="US_Sexo"  class="formulario-input US_Sexo">
                             <option th:text="#{cadususelect.female}" value="Feminino" th:selected="${usuario.sexo.equals('Feminino')}"></option>
                             <option th:text="#{cadususelect.male}" value="Masculino" th:selected="${usuario.sexo.equals('Masculino')}"></option>
                             <option th:text="#{cadususelect.other}" value="Outro" th:selected="${usuario.sexo.equals('Outro')}"></option>
@@ -115,14 +116,14 @@
                         <input
                             th:value="${usuario.dataNascimento}"
                             type="date"
-                            class="form-control formulario-input"
+                            class="formulario-input"
                             id="US_DataNascimento"
                             name="US_DataNascimento"
                             maxlength="10"
                             onBlur="validaData()"
                             required=""
                             disabled
-                            >
+                        >
                     </div>
 
                     <div class="form-group">
@@ -131,29 +132,29 @@
                                type="password"
                                id="US_Senha"
                                name="US_Senha"
-                               class="form-control formulario-input"
+                               class="formulario-input"
                                minlength="8"
                                required
-                               >
+                        >
                     </div>
 
                     <div class="form-group">
                         <label th:text="#{attusu.newpassword}"></label>
-                        <input type="password" class="form-control formulario-input" minlength="8" id="US_NovaSenha"
+                        <input type="password" class="formulario-input" minlength="8" id="US_NovaSenha"
                                name="US_NovaSenha"
-                               >
+                        >
                     </div>
 
                     <div class="form-group">
                         <label th:text="#{attusu.reinputnewpassword}"></label>
-                        <input type="password" class="form-control formulario-input" minlength="8" id="US_ConfirmSenha"
+                        <input type="password" class="formulario-input" minlength="8" id="US_ConfirmSenha"
                                name="US_ConfirmSenha"
-                               >
+                        >
                     </div>
 
                     <div id="btnS">
                         <span><img alt="Visualizar senha" id="spnMostrarSenha" style="margin-right: 4px" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABDUlEQVQ4jd2SvW3DMBBGbwQVKlyo4BGC4FKFS4+TATKCNxAggkeoSpHSRQbwAB7AA7hQoUKFLH6E2qQQHfgHdpo0yQHX8T3exyPR/ytlQ8kOhgV7FvSx9+xglA3lM3DBgh0LPn/onbJhcQ0bv2SHlgVgQa/suFHVkCg7bm5gzB2OyvjlDFdDcoa19etZMN8Qp7oUDPEM2KFV1ZAQO2zPMBERO7Ra4JQNpRa4K4FDS0R0IdneCbQLb4/zh/c7QdH4NL40tPXrovFpjHQr6PJ6yr5hQV80PiUiIm1OKxZ0LICS8TWvpyyOf2DBQQtcXk8Zi3+JcKfNafVsjZ0WfGgJlZZQxZjdwzX+ykf6u/UF0Fwo5Apfcq8AAAAASUVORK5CYII="/><span th:text="#{attusu.showpassword}"></span></span>
-                        <small th:text="#{attusu.requiredfields}"> <strong></strong></small>
+                        <small th:text="#{attusu.requiredfields}">s <strong></strong></small>
                     </div>
 
                     <div class="input-group actions">
@@ -167,6 +168,7 @@
 
     <div class="overlay"></div>
     <!-- Scripts da página -->
+        <script type="module" src="/script/requestPermisionToPushNotificaion.js"></script>
     <!-- jQuery CDN - Slim version (=without AJAX) -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <!-- Popper.JS -->
