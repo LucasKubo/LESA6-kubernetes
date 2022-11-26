@@ -31,23 +31,32 @@ public class EnvioEmail {
     @Autowired
     private FirebaseMessagingService firebaseService;
 
-    public void emailRecuperarSenha (String email, String codigo) throws MessagingException, UnsupportedEncodingException {
-        String assunto = MensagemEmail.RECUPERACAO_SENHA.getDescricao();
-        String mensagem = MensagemEmail.RECUPERACAO_MENSAGEM.getDescricao() + codigo ;
+    public void emailRecuperarSenha (Usuario usuario, String codigo, String contextPath) throws MessagingException, UnsupportedEncodingException {
+        String fromAddress = "8balls.integratedproject@gmail.com";
+        String senderName = "Meu Remédio";
+        String subject = "Recuperar senha";
+        String content = "Prezado, "
+                + "Por favor, clique no link abaixo para recuperar sua senha:<br>"
+                + "<h3><a href=\"[[URL]]\" target=\"_self\">RECUPERAR SENHA</a></h3>"
+                + "Atenção ! O link é válido por <b>30 minutos</b> <br>"
+                + "<br>"
+                + "Obrigado,<br>"
+                + "Meu Remédio.";
 
-       emailService.sendEmail(email, assunto, mensagem );
+        MimeMessage message = mailSender.createMimeMessage();
+        MimeMessageHelper helper = new MimeMessageHelper(message);
+
+        helper.setFrom(fromAddress, senderName);
+        helper.setTo(usuario.getEmail());
+        helper.setSubject(subject);
+
+        String verifyURL = contextPath + "/recuperar_senha?code=" + codigo;
+
+        content = content.replace("[[URL]]", verifyURL);
+
+        helper.setText(content, true);
+        mailSender.send(message);
     }
-
-
-    public void emailConfirmCadastro (Usuario usuario) throws MessagingException {
-        String link = "https://meuremedioapp.herokuapp.com/login";
-        String msgBoasVindas = "Olá, " + usuario.getNome() + " " + usuario.getSobrenome();
-        String assunto = MensagemEmail.CADASTRO_REALIZADO.getDescricao();
-        String mensagem = msgBoasVindas + MensagemEmail.CADASTRO_MENSAGEM.getDescricao() + link;
-
-        emailService.sendEmail(usuario, assunto, mensagem );
-    }
-
 
 
     public void emailCadastroRemedio(Usuario usuario, Remedio remedios) throws MessagingException {

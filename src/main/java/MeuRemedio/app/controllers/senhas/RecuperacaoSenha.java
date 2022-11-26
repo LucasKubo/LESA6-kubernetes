@@ -2,11 +2,11 @@ package MeuRemedio.app.controllers.senhas;
 
 import MeuRemedio.app.controllers.EnvioEmail;
 import MeuRemedio.app.models.usuarios.Usuario;
-import MeuRemedio.app.models.usuarios.Usuario_code;
-import MeuRemedio.app.repository.UserCodeRepository;
+import MeuRemedio.app.repository.TokenResetarSenhaRepository;
 import MeuRemedio.app.repository.UsuarioRepository;
+import MeuRemedio.app.service.RecuperarSenhaService;
+import MeuRemedio.app.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,10 +14,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.mail.MessagingException;
+import javax.servlet.http.HttpServletRequest;
+import javax.transaction.Transactional;
 import java.io.UnsupportedEncodingException;
-import java.security.SecureRandom;
-import java.util.Objects;
-import java.util.Random;
+import java.util.UUID;
 
 @Controller
 public class RecuperacaoSenha {
@@ -26,77 +26,57 @@ public class RecuperacaoSenha {
     @Autowired
     private UsuarioRepository usuarioRepository;
     @Autowired
-    UserCodeRepository usuarioCode;
+    UsuarioService usuarioService;
+    @Autowired
+    RecuperarSenhaService recuperarSenhaService;
+    @Autowired
+    TokenResetarSenhaRepository tokenResetarSenhaRepository;
 
 
     protected String emailUsuario;
     @RequestMapping(value = "/enviarEmail", method = RequestMethod.GET)
-    public String receberEmail(){
+    public String receberEmail(){return "EmailRecuperacao";}
 
-        return "EmailRecuperacao";
+    @RequestMapping(value = "/enviarEmail", method = RequestMethod.POST)
+    public String receberEmail (@RequestParam("US_Email") String email, HttpServletRequest request) throws MessagingException, UnsupportedEncodingException {
+
+        Usuario usuario =  usuarioRepository.findByEmail(email);
+
+        if(usuario == null){
+            return "redirect:/enviarEmail?emailFail";
+        }
+
+        String token = UUID.randomUUID().toString();
+        usuarioService.criarTokenResetarSenha(usuario, token);
+        envioEmail.emailRecuperarSenha(usuario,token, getSiteURL(request));
+        return "redirect:/login?em_env";
     }
 
     @RequestMapping(value = "/recuperar_senha", method = RequestMethod.GET)
-    public String atualizarSenha(){
-        return "RecuperarSenha";
-    }
-
-    @RequestMapping(value = "/enviarEmail", method = RequestMethod.POST)
-    public String receberEmail (@RequestParam("US_Email") String email) throws MessagingException, UnsupportedEncodingException {
-
-       Usuario verificarEmailUsuarioExistente =  usuarioRepository.findByEmail(email);
-       Usuario_code verificarEmailCod = usuarioCode.findByEmail(email);
-
-       /*Se quebrar o envio de email, remover esse IF*/
-
-        if(Objects.nonNull(verificarEmailCod)) {
-                verificarEmailCod.setCodigo(codigoValidacao());
-                usuarioCode.save(verificarEmailCod);
-                envioEmail.emailRecuperarSenha(verificarEmailCod.getEmail(), verificarEmailCod.getCodigo());
+    public String atualizarSenha(@RequestParam("code") String token){
+        String validadeToken = recuperarSenhaService.validarTokenResetarSenha(token);
+        if(validadeToken == null){
+            return "RecuperarSenha";
+        } else if (validadeToken.equals("invalidToken")) {
+            return "redirect:/login?em_fail";
+        }else{
+            return "redirect:/login?exp_token";
         }
-
-       if (Objects.nonNull(verificarEmailUsuarioExistente) && (Objects.isNull(verificarEmailCod))) {
-           Usuario_code user = new Usuario_code(email, codigoValidacao());
-           usuarioCode.save(user);
-
-           Usuario_code userEmail = usuarioCode.findByEmail(email);
-           envioEmail.emailRecuperarSenha(userEmail.getEmail(), userEmail.getCodigo());
-           System.out.println("Email enviado");
-           return "redirect:/login?em_env";
-
-       } else
-           if (Objects.nonNull(verificarEmailUsuarioExistente) && (Objects.nonNull(verificarEmailCod))) {
-                return "redirect:/enviarEmail?code_env";
-       }
-           return "redirect:/enviarEmail?emailFail";
     }
 
     @RequestMapping(value = "/recuperar_senha", method = RequestMethod.POST)
-    public String atualizarSenha (@RequestParam("US_Codigo") String codigo, @RequestParam("US_Senha") String senha) {
-        Usuario_code userCodigo = usuarioCode.findByCodigo(codigo);
-
-      if (Objects.nonNull(userCodigo) ){
-           Usuario usuario = usuarioRepository.findByEmail(userCodigo.getEmail());
-           usuario.setSenha(new BCryptPasswordEncoder().encode(senha));
-
-           usuarioRepository.save(usuario);
-           usuarioCode.delete(userCodigo);
-
-           return "redirect:/login?att";
-      }
-            return "redirect:/recuperar_senha?codigoErro";
+    @Transactional
+    public String atualizarSenha (@RequestParam("code") String token, @RequestParam("US_Senha") String senha) {
+        Usuario usuario = tokenResetarSenhaRepository.findByToken(token).getUsuario();
+        usuario.setSenha(new BCryptPasswordEncoder().encode(senha));
+        usuarioRepository.save(usuario);
+        tokenResetarSenhaRepository.deleteByToken(token);
+        return "redirect:/login?att";
     }
 
-    public String codigoValidacao (){
-        int[] codigo = new int [8];
-        SecureRandom random = new SecureRandom();
-        String codValidacao= "";
-
-        for (int i = 0; i < 8; i ++ ){
-            codigo[i] = random. nextInt(10);
-            codValidacao += "" + codigo[i];
-        }
-        return codValidacao;
+    private String getSiteURL(HttpServletRequest request) {
+        String siteURL = request.getRequestURL().toString();
+        return siteURL.replace(request.getServletPath(), "");
     }
 }
 
