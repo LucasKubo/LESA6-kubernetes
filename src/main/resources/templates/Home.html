@@ -151,12 +151,31 @@
                                 <caption></caption>
                                 <thead>
                                     <tr>
-                                        <th th:text="#{cadageform.medication}"></th>
-                                        <th th:text="#{listageform.begindate}"></th>
-                                        <th th:text="#{listageform.initialhour}"></th>
-                                        <th th:text="#{listageform.finaldate}"></th>
-                                        <th th:text="#{listageform.frequency}"></th>
-
+                                        <th onclick="ordenar(0, false)"> <span th:text="#{cadageform.medication}"> </span>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-down-up" viewBox="0 0 16 16">
+                                                <path fill-rule="evenodd" d="M11.5 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L11 2.707V14.5a.5.5 0 0 0 .5.5zm-7-14a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L4 13.293V1.5a.5.5 0 0 1 .5-.5z"/>
+                                            </svg>
+                                        </th>
+                                        <th onclick="ordenar(1, false)"> <span th:text="#{listageform.begindate}"> </span>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-down-up" viewBox="0 0 16 16">
+                                                <path fill-rule="evenodd" d="M11.5 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L11 2.707V14.5a.5.5 0 0 0 .5.5zm-7-14a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L4 13.293V1.5a.5.5 0 0 1 .5-.5z"/>
+                                            </svg>
+                                        </th>
+                                        <th onclick="ordenar(2, false)"> <span th:text="#{listageform.initialhour}"></span>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-down-up" viewBox="0 0 16 16">
+                                                <path fill-rule="evenodd" d="M11.5 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L11 2.707V14.5a.5.5 0 0 0 .5.5zm-7-14a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L4 13.293V1.5a.5.5 0 0 1 .5-.5z"/>
+                                            </svg>
+                                        </th>
+                                        <th onclick="ordenar(3, false)"> <span th:text="#{listageform.finaldate}"> </span>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-down-up" viewBox="0 0 16 16">
+                                                <path fill-rule="evenodd" d="M11.5 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L11 2.707V14.5a.5.5 0 0 0 .5.5zm-7-14a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L4 13.293V1.5a.5.5 0 0 1 .5-.5z"/>
+                                            </svg>
+                                        </th>
+                                        <th onclick="ordenar(4, true)"> <span th:text="#{listageform.frequency}"></span>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-down-up" viewBox="0 0 16 16">
+                                                <path fill-rule="evenodd" d="M11.5 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L11 2.707V14.5a.5.5 0 0 0 .5.5zm-7-14a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L4 13.293V1.5a.5.5 0 0 1 .5-.5z"/>
+                                            </svg>
+                                        </th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -262,6 +281,8 @@
                 integrity="sha384-QHPBqENOg6UKmsoXiXjrEEu2W4rJZaCHDTqIOI9JqSg6dI3chbQ+0kXAYUQLEDYn"
         crossorigin="anonymous"></script>
 
+        <script src="/script/ordenacao.js"> </script>
+
         <script type="text/javascript">
             $(document).ready(function () {
                 $("#sidebar").mCustomScrollbar({
@@ -284,85 +305,7 @@
 
         <!-- Calendario -->
 
-        <script th:inline="javascript">
-            document.addEventListener('DOMContentLoaded', function () {
-                var calendarEl = document.getElementById('calendar');
-                const dataConst = Date.now();
-                const hoje = new Date(dataConst);
-
-                var id = document.getElementsByClassName('idAgendamento');
-                var remedios = document.getElementsByClassName('remedios');
-                var dataInicio = document.getElementsByClassName('dataInicio');
-                var dataFinal = document.getElementsByClassName('dataFinal');
-
-                var idIT = document.getElementsByClassName('idIntervaloDias');
-                var remediosIT = document.getElementsByClassName('remediosIT');
-                var dataInicioIT = document.getElementsByClassName('dataInicioIT');
-                var dataFinalIT = document.getElementsByClassName('dataFinalIT');
-                var intervaloIT = document.getElementsByClassName('intervaloDias');
-
-
-                console.log(remediosIT)
-                console.log(intervaloIT)
-                var listaAgendamentos = new Array();
-
-                for (var i = 0; i < remediosIT.length; i++) {
-                    if(intervaloIT[i].innerHTML == 1){
-                        break;
-                    }
-                    var dataFinalDate = new Date(dataFinalIT[i].innerHTML)
-                    var dataFinalAjustada = new Date();
-                    dataFinalAjustada.setMonth(dataFinalDate.getMonth())
-                    dataFinalAjustada.setDate(dataFinalDate.getDate() + 2);
-                    var dataInicioAjustada = new Date(dataInicioIT[i].innerHTML);
-                    var dataInicioIntervalo = new Date();
-                    dataInicioIntervalo.setMonth(dataInicioAjustada.getMonth())
-                    dataInicioIntervalo.setDate(dataInicioAjustada.getDate() + 1)
-                    console.log(dataInicioIntervalo.toLocaleDateString('en-CA'))
-                    console.log(dataFinalAjustada.toLocaleDateString('en-CA'))
-                    while (dataInicioIntervalo < dataFinalAjustada) {
-                        var ag = {
-                            "groupId": idIT[i].innerHTML,
-                            "title": remediosIT[i].innerHTML,
-                            "start": dataInicioIntervalo.toLocaleDateString('en-CA'),
-                            "end": dataInicioIntervalo.toLocaleDateString('en-CA')
-                        }
-                        console.log(ag)
-                        listaAgendamentos.push(ag);
-                        dataInicioIntervalo.setDate(dataInicioIntervalo.getDate() + parseInt(intervaloIT[i].innerHTML));
-                    }
-                }
-
-                for (var i = 0; i < remedios.length; i++) {
-
-                    if (listaAgendamentos.filter(e => e.groupId === id[i].innerHTML).length > 0) {
-                        console.log("Já adicionado")
-                    } else {
-                        var dataFinalDate = new Date(dataFinal[i].innerHTML)
-                        var dataFinalAjustada = new Date();
-                        dataFinalAjustada.setMonth(dataFinalDate.getMonth())
-                        dataFinalAjustada.setDate(dataFinalDate.getDate() + 2);
-                        var ag = {
-                            "groupId": id[i].innerHTML,
-                            "title": remedios[i].innerHTML,
-                            "start": dataInicio[i].innerHTML,
-                            "end": dataFinalAjustada.toLocaleDateString('en-CA')
-                        }
-                        listaAgendamentos.push(ag);
-                    }
-                }
-                var calendar = new FullCalendar.Calendar(calendarEl, {
-                    plugins: ['interaction', 'dayGrid'],
-                    defaultDate: hoje,
-                    editable: false,
-                    eventLimit: true, // allow "more" link when too many events
-                    events: listaAgendamentos
-                });
-
-                calendar.render();
-            });
-
-        </script>
+        <script src="/script/calendarioExibir.js">  </script>
         <script src='/script/calendario4.js'></script>
         <script type="module" src="/script/requestPermisionToPushNotificaion.js"></script>
 
