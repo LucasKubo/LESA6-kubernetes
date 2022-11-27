@@ -122,17 +122,21 @@
                                         <tr style="color: black" class="text-center">
                                             <th th:text="#{hometable.remedyheader}"></th>
                                             <th th:text="#{hometable.timeheader}"></th>
+                                            <th> Dia </th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                     <div class="" th:each="horarios : ${horarios}">
-                                        <tr>
+                                        <tr class="horariosExibir">
                                             <td><p><span
                                                         th:text="${#strings.substring(horarios.agendamento.remedio, 1, #strings.length(horarios.agendamento.remedio)-1)}"></span>
                                             </td>
                                             <td><p><span
                                                         th:text="${#temporals.format(horarios.id.horaDataNotificacao, 'HH:mm')}"
                                                         class="horarios"></span></td>
+                                            <td><p><span
+                                                th:text="${#temporals.format(horarios.id.horaDataNotificacao, 'dd/MM/YYYY')}"
+                                                class="datasAgendamento"></span></td>
                                         </tr>
                                     </div>
                                     </tbody>
@@ -247,7 +251,6 @@
             <div class="overlay"></div>
         </div>
         <div class="overlay"></div>
-
         <script>
             if ('serviceWorker' in navigator) {
                 window.addEventListener('load', () => {
@@ -282,6 +285,21 @@
         crossorigin="anonymous"></script>
 
         <script src="/script/ordenacao.js"> </script>
+
+        <!-- <script>
+            $(function () {
+                var horariosData = document.getElementsByClassName("datasAgendamento")
+                var horariosExibir = document.getElementsByClassName("horariosExibir")
+                var currentDate = new Date().toLocaleDateString("pt-BR");
+                console.log(currentDate)
+                for (i = 0; i< horariosData.length; i++){
+                    console.log(horariosData[i].innerHTML)
+                    if (horariosData[i].innerHTML != currentDate){
+                        horariosExibir[i].setAttribute("hidden", true)
+                    }
+                }
+             });
+        </script> -->
 
         <script type="text/javascript">
             $(document).ready(function () {
