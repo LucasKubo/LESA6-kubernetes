@@ -115,6 +115,13 @@
                         <!-- DIV 2 -->
                         <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-lx-4 text-center" id="data-table">
                             <h2 class="text-center" th:text="#{homeschedule.dailyschedule}"></h2>
+                            <h6> <span onclick="diminuirData()"> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-left-fill" viewBox="0 0 16 16">
+                                <path d="m3.86 8.753 5.482 4.796c.646.566 1.658.106 1.658-.753V3.204a1 1 0 0 0-1.659-.753l-5.48 4.796a1 1 0 0 0 0 1.506z"/>
+                              </svg> </span>
+                            <span id="dataSelecionar"></span> 
+                            <span onclick="aumentarData()"> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-right-fill" viewBox="0 0 16 16">
+                                <path d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z"/>
+                              </svg> </span> </h4>
                             <section id="agendamentosDoDia" style="max-height:400px; overflow-y:auto;">
                                 <table class="table table-striped ">
                                     <caption></caption>
@@ -286,11 +293,13 @@
 
         <script src="/script/ordenacao.js"> </script>
 
-        <!-- <script>
+        <script>
             $(function () {
+                var dataSelecionar = document.getElementById("dataSelecionar")
                 var horariosData = document.getElementsByClassName("datasAgendamento")
                 var horariosExibir = document.getElementsByClassName("horariosExibir")
                 var currentDate = new Date().toLocaleDateString("pt-BR");
+                dataSelecionar.innerHTML = currentDate;
                 console.log(currentDate)
                 for (i = 0; i< horariosData.length; i++){
                     console.log(horariosData[i].innerHTML)
@@ -299,7 +308,9 @@
                     }
                 }
              });
-        </script> -->
+        </script>
+
+        <script src="/script/agendamentosDia.js"></script>
 
         <script type="text/javascript">
             $(document).ready(function () {
