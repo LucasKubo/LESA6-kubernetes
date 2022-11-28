@@ -147,6 +147,9 @@ public class RemedioController {
         usuarioID.setId(userSessionService.returnIdUsuarioLogado());
 
         List <Remedio> remedio = remedioRepository.findAllByUsuario(usuarioID);
+        if (!remedio.isEmpty()) {
+            Collections.sort(remedio, Remedio::compareTo);
+        }
         model.addAttribute("remedio", remedio);
 
         return "listas/ListaRemedios";

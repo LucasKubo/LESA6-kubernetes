@@ -274,7 +274,7 @@ a.button.new:hover{
 }
 #agendamentos{
     display: block;
-    width: 100%;
+    width: 110%;
     overflow-x: auto;
     margin-bottom: 6rem;
 }
@@ -310,3 +310,8 @@ a.button.new:hover{
 /*.rodapeHome {
     margin-top: 20rem;
 } */
+
+th {
+    cursor: pointer;
+   /*white-space: nowrap;*/
+}

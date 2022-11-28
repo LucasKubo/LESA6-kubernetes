@@ -195,42 +195,42 @@ td.expense{
     color: var(--red);
 }
 
-/*Modal ==========================*/
-.modal-overlay{
-    width:100%;
-    height: auto;
-    /*background-color: rgba(0,0,0,0.7);*/
-    margin-bottom: 50px;
-    padding-bottom: 50vh;
+/*!*Modal ==========================*!*/
+/*.modal-overlay{*/
+/*    width:100%;*/
+/*    height: auto;*/
+/*    !*background-color: rgba(0,0,0,0.7);*!*/
+/*    margin-bottom: 50px;*/
+/*    padding-bottom: 50vh;*/
 
-    position: absolute;
-    /*top: 0%;*/
-    /*z-index: 2;*/
+/*    position: absolute;*/
+/*    !*top: 0%;*!*/
+/*    !*z-index: 2;*!*/
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+/*    display: flex;*/
+/*    align-items: center;*/
+/*    justify-content: center;*/
 
-    /*opacity: 0;
-    visibility: hidden;*/
-}
-/*.modal-overlay.active{
-    opacity: 1;
-    visibility: visible;
-}*/
-.modal{
-    /*background-color: var(--light-gray);*/
-    /*padding: 2.4rem;*/
-    width: 100%;
-    padding: 2%;
-    max-width: 500px;
-    max-height: 1000px;
-    padding-bottom: 10px;
-    display: block;
-    position: relative;
-    z-index: 0;
+/*    !*opacity: 0;*/
+/*    visibility: hidden;*!*/
+/*}*/
+/*!*.modal-overlay.active{*/
+/*    opacity: 1;*/
+/*    visibility: visible;*/
+/*}*!*/
+/*.modal{*/
+/*    !*background-color: var(--light-gray);*!*/
+/*    !*padding: 2.4rem;*!*/
+/*    width: 100%;*/
+/*    padding: 2%;*/
+/*    max-width: 500px;*/
+/*    max-height: 1000px;*/
+/*    padding-bottom: 10px;*/
+/*    display: block;*/
+/*    position: relative;*/
+/*    z-index: 0;*/
 
-}
+/*}*/
 
 /* Form ==========================*/
 .formulario-card{
