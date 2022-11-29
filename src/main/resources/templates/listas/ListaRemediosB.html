@@ -148,6 +148,33 @@
         </section>
     </main>
 
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Cadastre seus Remedios</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Deseja cadatrar um novo remédio? </p>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" href="/agendamentos/listar" class="btn btn-danger" name="Modal" data-dismiss="modal">Não</button>
+                    <a href="/cadastro_agendamentos"><button type="button" class="btn btn-primary">Sim</button></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="overlay"></div>
+</div>
+
+    <script type="text/javascript">
+    $(window).on('load',function(){
+    $('#exampleModalCenter').modal('show'); });
+</script>
 
     <div class="overlay"></div>
 </div>
