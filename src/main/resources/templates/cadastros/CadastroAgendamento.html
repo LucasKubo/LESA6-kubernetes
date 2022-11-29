@@ -63,9 +63,8 @@
                             <img class="formulario-icon" src="/images/icon.svg" alt="Ícone Meu Remédio">
                         </a>
                         <h2 th:text="#{cadage.title}" class="form-h2"></h2>
+
                         <form method="post" name="formCadastroAG">
-
-
                             <div class="form-group">
                                 <label class="input-label" for="AG_Remedios" th:text="#{cadageform.addremedy}"></label>
                                 <select id="AG_Remedios" 
@@ -128,8 +127,7 @@
                                            required="required"
                                            min="1"
                                            />
-                                </div> 
-
+                                </div>
                             </div>
                             <small><span id="mensagemPeriodocidade" class="help"></span></small>
                             <small><span id="mensagemFimAgendamento" class="help"></span></small>
@@ -163,7 +161,7 @@
                                            id="intervaloDias"
                                            name="intervaloDias"
                                            min="2"
-                                           />
+                                    />
                                 </div>
                             </div>
                             <span class="error-message" id="error-hoje"></span>

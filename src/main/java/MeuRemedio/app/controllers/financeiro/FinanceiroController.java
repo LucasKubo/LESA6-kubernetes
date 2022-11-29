@@ -45,6 +45,17 @@ public class FinanceiroController {
         return "listas/ListarGasto";
     }
 
+    @GetMapping(value = "/remedios/controle_de_gastos/listar")
+    public String telaDeGastosB (Model model){
+        Usuario usuarioID = new Usuario();
+        usuarioID.setId(userSessionService.returnIdUsuarioLogado());
+
+        Iterable<Financeiro> financeiro = controleFinanceiro.findAllByUsuarioID(usuarioID.getId());
+        model.addAttribute("financeiro", financeiro);
+
+        return "listas/ListarGastoB";
+    }
+
     @GetMapping(value = "/remedios/controle_de_gastos/cadastrar")
     public String telaDeGastosCadastro(Model model){
 
@@ -71,7 +82,6 @@ public class FinanceiroController {
             dashBoardsRepository.save(dash);
             controleFinanceiro.save(financeiroMedicamento);
 
-
             return "redirect:/remedios/controle_de_gastos";
 
         }catch (ServiceConfigurationError serviceConfigurationError) {
@@ -84,7 +94,7 @@ public class FinanceiroController {
         if (verificarPorId(id)) {
             controleFinanceiro.deleteById(id);
 
-            return "redirect:/remedios/controle_de_gastos";
+            return "redirect:/remedios/controle_de_gastos/listar";
         }
         return templateError();
     }
@@ -101,6 +111,7 @@ public class FinanceiroController {
             usuarioID.setId(userSessionService.returnIdUsuarioLogado());
 
             List <Remedio> remedio = remedioRepository.findAllByUsuario(usuarioID);
+
             if (!remedio.isEmpty()){
                 Collections.sort(remedio, Remedio::compareTo);
             }
@@ -122,7 +133,7 @@ public class FinanceiroController {
                 financeiro.setRemedio(remedio);
                 controleFinanceiro.save(financeiro);
             }
-            return "redirect:/remedios/controle_de_gastos";
+            return "redirect:/remedios/controle_de_gastos/listar";
 
         }catch (NullPointerException e){
             return templateError() + e;
@@ -159,7 +170,7 @@ public class FinanceiroController {
         dashBoardsRepository.save(dash);
         controleFinanceiro.save(financeiroMedicamento);
 
-        return "redirect:/remedios/controle_de_gastos";
+        return "redirect:/remedios/controle_de_gastos/listar";
     }
 
     public boolean verificarPorId (long id ) {
