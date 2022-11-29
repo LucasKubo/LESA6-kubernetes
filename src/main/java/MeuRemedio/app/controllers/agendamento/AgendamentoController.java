@@ -108,16 +108,16 @@ public class AgendamentoController {
         }
         model.addAttribute("intervaloDias", intervaloDias);
 
-        return "listas/ListarAgendamentoB";
+        return "listas/ListarAg";
     }
 
     @RequestMapping(value = "/cadastro_agendamentos", method = RequestMethod.POST)
     public String cadastrarAgendamento (@RequestParam("AG_Remedios") List<Remedio> remedios,
-                                       @RequestParam("AG_DataInicio") String AG_DataInicio,
-                                       @RequestParam("AG_HoraInicio") String AG_horaInicio,
-                                       @RequestParam("AG_DataFinal") String AG_DataFinal,
-                                       @RequestParam("AG_Periodicidade") long AG_Periodicidade,
-                                       @RequestParam(value = "intervaloDias", required = false) Long intervaloDias) {
+                                        @RequestParam("AG_DataInicio") String AG_DataInicio,
+                                        @RequestParam("AG_HoraInicio") String AG_horaInicio,
+                                        @RequestParam("AG_DataFinal") String AG_DataFinal,
+                                        @RequestParam("AG_Periodicidade") long AG_Periodicidade,
+                                        @RequestParam(value = "intervaloDias", required = false) Long intervaloDias) {
 
         Agendamento id;
         if (intervaloDias != null) {
@@ -269,7 +269,7 @@ public class AgendamentoController {
 
         } else {
             IntervaloDias adicionarIntervalo = new IntervaloDias(AG_DataInicio, AG_horaInicio, AG_DataFinal, AG_Periodicidade,
-            remedios, userSessionService.returnIdUsuarioLogado(), intervaloDias);
+                    remedios, userSessionService.returnIdUsuarioLogado(), intervaloDias);
 
             adicionarIntervalo.setId(id);
             agendamentoRepository.deleteById(id);
