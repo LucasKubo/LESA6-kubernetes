@@ -269,7 +269,7 @@ public class AgendamentoController {
 
         } else {
             IntervaloDias adicionarIntervalo = new IntervaloDias(AG_DataInicio, AG_horaInicio, AG_DataFinal, AG_Periodicidade,
-                    remedios, userSessionService.returnIdUsuarioLogado(), intervaloDias);
+            remedios, userSessionService.returnIdUsuarioLogado(), intervaloDias);
 
             adicionarIntervalo.setId(id);
             agendamentoRepository.deleteById(id);
@@ -279,7 +279,6 @@ public class AgendamentoController {
         }
         return REDIRECT;
     }
-
 
     public boolean verificarPorId(long id) {
         return agendamentoRepository.existsById(id);

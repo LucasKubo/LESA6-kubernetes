@@ -175,6 +175,7 @@ public class RemedioController {
         if (verificarPorId(id)) {
             var remedio = remedioRepository.findById(id);
             var gastos = controleFinanceiro.findAllByRemedio(remedio);
+
             for (int i = 0; i < gastos.size(); i++) {
                 if (gastos.get(i).getRemedio().contains(remedio)){
                     gastos.get(i).getRemedio().remove(remedio);

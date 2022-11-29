@@ -111,6 +111,7 @@ public class FinanceiroController {
             usuarioID.setId(userSessionService.returnIdUsuarioLogado());
 
             List <Remedio> remedio = remedioRepository.findAllByUsuario(usuarioID);
+
             if (!remedio.isEmpty()){
                 Collections.sort(remedio, Remedio::compareTo);
             }
