@@ -2,150 +2,144 @@
 
 <html lang="pt-br" xmlns:th="http://www.w3.org/1999/xhtml">
 
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <!-- Google Fonts API -->
-        <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet"/>
-        <!-- Bootstrap CSS CDN -->
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
-              integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-        <!-- Custom CSS -->
-        <link rel="stylesheet" href="/style/redefinirSenha.css"/>
-        <link rel="stylesheet" href="/style/olho.css">
-        <title th:text="#{recpassword.title}"></title>
-        <link rel="icon" href="/images/icon.svg"/>
-        <link rel="manifest" href="/config/manifest.json">
-        <link rel="apple-touch-icon" href="/images/icon.svg">
-        <link rel="canonical" href="https://meuremedioapp.herokuapp.com">
-    </head>
-    <body>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span  class="navbar-toggler-icon"></span>
-            </button>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Google Fonts API -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet"/>
+    <!-- Bootstrap CSS CDN -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/style/redefinirSenha.css"/>
+    <link rel="stylesheet" href="/style/olho.css">
+    <title th:text="#{recpassword.title}"></title>
+    <link rel="icon" href="/images/icon.svg"/>
+    <link rel="manifest" href="/config/manifest.json">
+    <link rel="apple-touch-icon" href="/images/icon.svg">
+    <link rel="canonical" href="https://meuremedioapp.herokuapp.com">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span  class="navbar-toggler-icon"></span>
+    </button>
 
-            <!--            <div th:text="#{indextitle.text}" class="title-home"></div>-->
+    <!--            <div th:text="#{indextitle.text}" class="title-home"></div>-->
 
-            <div>
-                <a class="navbar-brand" href="/static">
-                    <img alt="logo-icon" width="140px" src="/images/icon-home.png">
-                </a>
-            </div>
-            <!--            <div th:text="#{indextitle.text}" class="title-home"></div>-->
+    <div>
+        <a class="navbar-brand" href="/static">
+            <img alt="logo-icon" width="140px" src="/images/icon-home.png">
+        </a>
+    </div>
+    <!--            <div th:text="#{indextitle.text}" class="title-home"></div>-->
 
 
 
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav ml-auto">
-                    <li>
-                        <select class="inter" id="locales">
-                            <option value="" th:text="#{alllanguage.change}"></option>
-                            <option value="en" th:text="#{alllanguage.english}"></option>
-                            <option value="pt_BR" th:text="#{alllanguage.portuguese}"></option>
-                        </select>
-                    </li>
-                    <li class="nav-item">
-                        <a th:text="#{navbar.index}" class="nav-link inicio-btn" href="/"></a>
-                    </li>
-                    <li class="nav-item">
-                        <a th:text="#{indexbutton.login}" class="nav-link cadastrar-btn" href="/login"></a>
-                    </li>
-                </ul>
-            </div>
-        </nav>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ml-auto">
+            <li>
+                <select class="inter" id="locales">
+                    <option value="" th:text="#{alllanguage.change}"></option>
+                    <option value="en" th:text="#{alllanguage.english}"></option>
+                    <option value="pt_BR" th:text="#{alllanguage.portuguese}"></option>
+                </select>
+            </li>
+            <li class="nav-item">
+                <a th:text="#{navbar.index}" class="nav-link inicio-btn" href="/"></a>
+            </li>
+            <li class="nav-item">
+                <a th:text="#{indexbutton.login}" class="nav-link cadastrar-btn" href="/login"></a>
+            </li>
+        </ul>
+    </div>
+</nav>
 
-        <div style="text-align: center" class="alert alert-info" role="alert"
-             th:if="${param.codigoErro}" th:text="#{recpassword.invalidverify}"></div>
+<div style="text-align: center" class="alert alert-info" role="alert"
+     th:if="${param.codigoErro}" th:text="#{recpassword.invalidverify}"></div>
 
-        <section class="container d-flex justify-content-center col-12 col-sm-12 col-md-8 col-lg-5 col-lx-6">
-            <div class="card formulario-card col-12">
-                <div class="card-body d-flex flex-wrap justify-content-center content">
-                    <a href="/">
-                        <img class="formulario-icon" src="/images/icon.svg" alt="Ícone Meu Remédio">
-                    </a>
-                    <form class="justify-content-center" method="post">
-                        <h2 class="form-h2 text-center" th:text="#{recpassword.formtitle}"></h2>
+<section class="container d-flex justify-content-center col-12 col-sm-12 col-md-8 col-lg-5 col-lx-6">
+    <div class="card formulario-card col-12">
+        <div class="card-body d-flex flex-wrap justify-content-center content">
+            <a href="/static">
+                <img class="formulario-icon" src="/images/icon.svg" alt="Ícone Meu Remédio">
+            </a>
+            <form class="justify-content-center" method="post">
+                <h2 class="form-h2 text-center" th:text="#{recpassword.formtitle}"></h2>
 
-                        <div class="form-group">
-                            <label th:text="#{recpassword.codeinput}"></label>
-                            <input type="text" class="form-control formulario-input" id="US_Codigo" 
-                                   name="US_Codigo"
-                                   required>
-                        </div>
+                <div class="form-group">
+                    <label th:text="#{recpassword.passwordinput}"></label>
+                    <input type="password" class="form-control formulario-input" minlength="8" id="US_Senha" name="US_Senha"
+                           required>
 
-                        <div class="form-group">
-                            <label th:text="#{recpassword.passwordinput}"></label>
-                            <input type="password" class="form-control formulario-input" minlength="8" id="US_Senha" name="US_Senha"
-                                   required>
-
-                        </div>
-                        <div class="form-group">
-                            <label th:text="#{recpassword.passwordreinput}"></label>
-                            <input type="password"
-                                   class="form-control formulario-input"
-                                   minlength="8"
-                                   id="US_ConfirmSenha"
-                                   required
-                            >
-                        </div>
-                        <div id="btnS">
-                            <span><img alt="Visualizar senha" id="spnMostrarSenha" style="margin-right: 4px" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABDUlEQVQ4jd2SvW3DMBBGbwQVKlyo4BGC4FKFS4+TATKCNxAggkeoSpHSRQbwAB7AA7hQoUKFLH6E2qQQHfgHdpo0yQHX8T3exyPR/ytlQ8kOhgV7FvSx9+xglA3lM3DBgh0LPn/onbJhcQ0bv2SHlgVgQa/suFHVkCg7bm5gzB2OyvjlDFdDcoa19etZMN8Qp7oUDPEM2KFV1ZAQO2zPMBERO7Ra4JQNpRa4K4FDS0R0IdneCbQLb4/zh/c7QdH4NL40tPXrovFpjHQr6PJ6yr5hQV80PiUiIm1OKxZ0LICS8TWvpyyOf2DBQQtcXk8Zi3+JcKfNafVsjZ0WfGgJlZZQxZjdwzX+ykf6u/UF0Fwo5Apfcq8AAAAASUVORK5CYII="/><span th:text="#{attusu.showpassword}"></span></span>
-                            <small th:text="#{attusu.requiredfields}"> <strong></strong></small>
-                        </div>
-                        <button class="formulario-button" th:text="#{recpassword.submitform}"></button>
-
-                    </form>
                 </div>
-            </div>
-        </section>
+                <div class="form-group">
+                    <label th:text="#{recpassword.passwordreinput}"></label>
+                    <input type="password"
+                           class="form-control formulario-input"
+                           minlength="8"
+                           id="US_ConfirmSenha"
+                           name="US_ConfirmSenha"
+                           required
+                    >
+                </div>
+                <div id="btnS">
+                    <span><img alt="Visualizar senha" id="spnMostrarSenha" style="margin-right: 4px" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABDUlEQVQ4jd2SvW3DMBBGbwQVKlyo4BGC4FKFS4+TATKCNxAggkeoSpHSRQbwAB7AA7hQoUKFLH6E2qQQHfgHdpo0yQHX8T3exyPR/ytlQ8kOhgV7FvSx9+xglA3lM3DBgh0LPn/onbJhcQ0bv2SHlgVgQa/suFHVkCg7bm5gzB2OyvjlDFdDcoa19etZMN8Qp7oUDPEM2KFV1ZAQO2zPMBERO7Ra4JQNpRa4K4FDS0R0IdneCbQLb4/zh/c7QdH4NL40tPXrovFpjHQr6PJ6yr5hQV80PiUiIm1OKxZ0LICS8TWvpyyOf2DBQQtcXk8Zi3+JcKfNafVsjZ0WfGgJlZZQxZjdwzX+ykf6u/UF0Fwo5Apfcq8AAAAASUVORK5CYII="/><span th:text="#{attusu.showpassword}"></span></span>
+                    <small th:text="#{attusu.requiredfields}"> <strong></strong></small>
+                </div>
+                <button class="formulario-button" th:text="#{recpassword.submitform}"></button>
 
-        <!-- Scripts da página -->
-        <!-- jQuery CDN - Slim version (=without AJAX) -->
-        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-        <!-- Popper.JS -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
-        <!-- Bootstrap JS -->
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" ></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js" integrity="sha384-QHPBqENOg6UKmsoXiXjrEEu2W4rJZaCHDTqIOI9JqSg6dI3chbQ+0kXAYUQLEDYn" crossorigin="anonymous"></script>
+            </form>
+        </div>
+    </div>
+</section>
 
-        <script>
-            var password = document.getElementById("US_Senha")
-                , confirm_password = document.getElementById("US_ConfirmSenha");
+<!-- Scripts da página -->
+<!-- jQuery CDN - Slim version (=without AJAX) -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<!-- Popper.JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+<!-- Bootstrap JS -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" ></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js" integrity="sha384-QHPBqENOg6UKmsoXiXjrEEu2W4rJZaCHDTqIOI9JqSg6dI3chbQ+0kXAYUQLEDYn" crossorigin="anonymous"></script>
 
-            function validatePassword(){
-                if(password.value != confirm_password.value) {
-                    confirm_password.setCustomValidity("Senhas diferentes!");
-                } else {
-                    confirm_password.setCustomValidity('');
-                }
-            }
+<script>
+    var password = document.getElementById("US_Senha")
+        , confirm_password = document.getElementById("US_ConfirmSenha");
 
-            password.onchange = validatePassword;
-            confirm_password.onkeyup = validatePassword;
-        </script>
+    function validatePassword(){
+        if(password.value != confirm_password.value) {
+            confirm_password.setCustomValidity("Senhas diferentes!");
+        } else {
+            confirm_password.setCustomValidity('');
+        }
+    }
 
-        <script>
-            var $spnMostrarSenha = $('#spnMostrarSenha');
-            var $US_Senha = $('#US_Senha');
-            var $US_ConfirmSenha = $('#US_ConfirmSenha');
+    password.onchange = validatePassword;
+    confirm_password.onkeyup = validatePassword;
+</script>
 
-            $spnMostrarSenha
-                .on('click', function () {
-                    var inputType = $US_Senha.attr('type') == 'password' ? 'text' : 'password';
-                    var inputTypeN = $US_ConfirmSenha.attr('type') == 'password' ? 'text' : 'password';
+<script>
+    var $spnMostrarSenha = $('#spnMostrarSenha');
+    var $US_Senha = $('#US_Senha');
+    var $US_ConfirmSenha = $('#US_ConfirmSenha');
 
-                    $US_Senha.attr('type', inputType);
-                    $US_ConfirmSenha.attr('type', inputTypeN);
+    $spnMostrarSenha
+        .on('click', function () {
+            var inputType = $US_Senha.attr('type') == 'password' ? 'text' : 'password';
+            var inputTypeN = $US_ConfirmSenha.attr('type') == 'password' ? 'text' : 'password';
 
-                })
-                .on('dblclick', function () {
-                    $US_Senha.attr('type', 'password');
-                    $US_ConfirmSenha.attr('type', 'password');
-                });
-        </script>
-    </body>
+            $US_Senha.attr('type', inputType);
+            $US_ConfirmSenha.attr('type', inputTypeN);
+
+        })
+        .on('dblclick', function () {
+            $US_Senha.attr('type', 'password');
+            $US_ConfirmSenha.attr('type', 'password');
+        });
+</script>
+</body>
 </html>
 
 
