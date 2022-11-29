@@ -53,7 +53,7 @@ public class AgendamentoController {
     final String REDIRECT = "redirect:/agendamentos";
 
 
-    @RequestMapping(value = "/agendamentos")
+    @RequestMapping(value = "/agendamentos", method = RequestMethod.GET)
     public String viewAgendamentos(ModelMap model) {
         if (!validateAuthentication.auth()) {
             return "Login";
@@ -73,7 +73,7 @@ public class AgendamentoController {
         return "listas/ListaAgendamentos";
     }
 
-    @RequestMapping(value = "/cadastro_agendamentos")
+    @RequestMapping(value = "/cadastro_agendamentos", method = RequestMethod.GET)
     public String viewCadastroAgendamento(ModelMap model) {
         if (!validateAuthentication.auth()) {
             return "Login";
@@ -86,11 +86,33 @@ public class AgendamentoController {
             Collections.sort(remedio, Remedio::compareTo);
         }
         model.addAttribute("remedio", remedio);
+
         return "cadastros/CadastroAgendamento";
     }
 
+    @RequestMapping(value = "/agendamentos/listar", method = RequestMethod.GET)
+    public String viewAgendamentosB(ModelMap model) {
+        if (!validateAuthentication.auth()) {
+            return "Login";
+        }
+
+        List<Agendamento> agendamentos = agendamentoRepository.findAllByUsuarioID(userSessionService.returnIdUsuarioLogado());
+        model.addAttribute("agendamento", agendamentos);
+
+        List<IntervaloDias> intervaloDias = new ArrayList<>();
+        for (Agendamento agendamento : agendamentos) {
+            Optional<IntervaloDias> intervalo = intervaloDiasRepository.findById(agendamento.getId());
+            if (intervalo.isPresent()) {
+                intervaloDias.add(intervalo.get());
+            }
+        }
+        model.addAttribute("intervaloDias", intervaloDias);
+
+        return "listas/ListarAgendamentoB";
+    }
+
     @RequestMapping(value = "/cadastro_agendamentos", method = RequestMethod.POST)
-    public String cadastrarAgendamento(@RequestParam("AG_Remedios") List<Remedio> remedios,
+    public String cadastrarAgendamento (@RequestParam("AG_Remedios") List<Remedio> remedios,
                                        @RequestParam("AG_DataInicio") String AG_DataInicio,
                                        @RequestParam("AG_HoraInicio") String AG_horaInicio,
                                        @RequestParam("AG_DataFinal") String AG_DataFinal,
@@ -110,7 +132,8 @@ public class AgendamentoController {
             id = agendamentoRepository.save(agendamento);
         }
         salvarHorariosAgendamentos(id);
-        return REDIRECT;
+
+        return "redirect:/agendamentos/listar";
     }
 
 
@@ -160,7 +183,7 @@ public class AgendamentoController {
         }
         salvarHorariosAgendamentos(id);
 
-        return "redirect:/agendamentos";
+        return "redirect:/agendamentos/listar";
     }
 
     @RequestMapping(value = "/atualizar_agendamento/{id}", method = RequestMethod.GET)

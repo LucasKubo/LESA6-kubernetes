@@ -78,6 +78,20 @@ public class RemedioController {
 
         return "cadastros/CadastroRemedios";
     }
+    @RequestMapping(value = "/remedios/remedios_cadastro")
+    public String telaCadastroRemedioModal(ModelMap model) {
+        if (!validateAuthentication.auth()) {
+            return "Login";
+        }
+        Usuario usuarioID = new Usuario();
+        usuarioID.setId(userSessionService.returnIdUsuarioLogado());
+
+        List <Remedio> remedio  = remedioRepository.findAllByUsuario(usuarioID);
+        model.addAttribute("remedio", remedio);
+
+
+        return "listas/ListaRemediosB";
+    }
 
     @RequestMapping(value = "/remedios_cadastro", method = RequestMethod.POST)
     public String CadastroRemedio (@RequestParam("RM_Nome") String RM_Nome, @RequestParam("RM_Dosagem") String RM_Dosagem,
@@ -124,7 +138,7 @@ public class RemedioController {
 
         Usuario usuario = usuarioRepository.findByEmail(userSessionService.returnUsernameUsuario());
 
-        return REDIRECT;
+        return "redirect:/remedios/remedios_cadastro";
     }
 
     public void cadastrarAgendamento (List<Remedio> remedios, String AG_DataInicio, String AG_horaInicio,
