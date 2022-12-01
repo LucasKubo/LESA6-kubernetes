@@ -4468,10 +4468,12 @@ Docs & License: https://fullcalendar.io/
     }
 
     var config = {}; // TODO: make these options
-    const params = new URLSearchParams(window.location.search)
-    var lang = params.get("lang")
-    if(lang === null || lang === "pt_BR"){
-        lang = "pt-br"
+
+    var calendario = document.getElementById("calendarioTitulo").innerHTML
+    if(calendario === "Calendário" || calendario === "Calendario"){
+        var lang = "pt-br"
+    } else {
+        var lang = "en"
     }
     var globalDefaults = {
         defaultRangeSeparator: ' - ',
