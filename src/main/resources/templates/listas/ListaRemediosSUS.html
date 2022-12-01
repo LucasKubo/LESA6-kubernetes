@@ -69,7 +69,7 @@
                                    required="required"
                                    th:value="${nome}"
                             >
-                            <small>Obs: As informações podem sofrer alterações por Estado. </small>
+                            <small  th:text="#{searchremedy.obs}">Obs: As informações podem sofrer alterações por Estado. </small>
                             <div class="input-group actions">
                                 <a id="cancelar2" href="/home" class="button cancel" th:text="#{cadremform.cancel}"></a>
                                 <button name="action" id="buscarRemedioo" class="button save" type="submit" th:text="#{cadremform.search}">Buscar</button>

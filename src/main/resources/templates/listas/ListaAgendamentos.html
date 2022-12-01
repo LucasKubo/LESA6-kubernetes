@@ -129,11 +129,10 @@
                    th:text="#{cadremregister.newschedule}">
                 </a>
                 <br>
-                <a id="view-remedy" href="/remedios" class="button new">- Visualizar remedios</a>
+                <a id="view-remedy" href="/remedios" class="button new" th:text="#{cadage.visu}"> Visualizar remedios</a>
             </section>
         </main>
 
-        <div class="overlay"></div>
         <!-- Scripts da página -->
         <script type="module" src="/script/requestPermisionToPushNotificaion.js"></script>
         <!-- jQuery CDN - Slim version (=without AJAX) -->
@@ -158,6 +157,7 @@
         <script src="/script/bootstrap-multiselect.js"></script>
     </div>
 </div>
+<div class="overlay"></div>
 <script src="/script/ordenacao.js"> </script>
 </body>
 </html>

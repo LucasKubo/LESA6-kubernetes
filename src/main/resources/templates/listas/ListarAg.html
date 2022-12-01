@@ -130,7 +130,7 @@
                    th:text="#{cadremregister.newschedule}">
                 </a>
                 <br>
-                <a id="view-remedy" href="/remedios" class="button new">- Visualizar remedios</a>
+                <a id="view-remedy" href="/remedios" class="button new" th:text="#{cadage.visu}">- Visualizar remedios</a>
             </section>
         </main>
 
@@ -139,17 +139,17 @@
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLongTitle">Cadastro realizado com sucesso ! </h5>
+                        <h5 class="modal-title" id="exampleModalLongTitle" th:text="#{modal.cad}">Cadastro realizado com sucesso ! </h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <div class="modal-body">
-                        <p>Deseja cadastrar um novo agendamento ? </p>
+                        <p th:text="#{modal.newschedule}">Deseja cadastrar um novo agendamento? </p>
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" href="/agendamentos" class="btn btn-danger" name="Modal" data-dismiss="modal">Não</button>
-                        <a href="/cadastro_agendamentos"><button type="button" class="btn btn-primary">Sim</button></a>
+                        <button type="submit" href="/agendamentos" class="btn btn-danger" name="Modal" data-dismiss="modal" th:text="#{yes}">Não</button>
+                        <a href="/cadastro_agendamentos"><button type="button" class="btn btn-primary" th:text="#{no}">Sim</button></a>
                     </div>
                 </div>
             </div>
