@@ -14,9 +14,6 @@ document.addEventListener('DOMContentLoaded', function () {
     var dataFinalIT = document.getElementsByClassName('dataFinalIT');
     var intervaloIT = document.getElementsByClassName('intervaloDias');
 
-
-    console.log(remediosIT)
-    console.log(intervaloIT)
     var listaAgendamentos = new Array();
 
     for (var i = 0; i < remediosIT.length; i++) {
@@ -27,12 +24,12 @@ document.addEventListener('DOMContentLoaded', function () {
         var dataFinalAjustada = new Date();
         dataFinalAjustada.setMonth(dataFinalDate.getMonth())
         dataFinalAjustada.setDate(dataFinalDate.getDate() + 2);
+        dataFinalAjustada.setFullYear(dataFinalDate.getFullYear())
         var dataInicioAjustada = new Date(dataInicioIT[i].innerHTML);
         var dataInicioIntervalo = new Date();
         dataInicioIntervalo.setMonth(dataInicioAjustada.getMonth())
         dataInicioIntervalo.setDate(dataInicioAjustada.getDate() + 1)
-        console.log(dataInicioIntervalo.toLocaleDateString('en-CA'))
-        console.log(dataFinalAjustada.toLocaleDateString('en-CA'))
+        dataInicioIntervalo.setFullYear(dataInicioAjustada.getFullYear())
         while (dataInicioIntervalo < dataFinalAjustada) {
             var ag = {
                 "groupId": idIT[i].innerHTML,
@@ -40,7 +37,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 "start": dataInicioIntervalo.toLocaleDateString('en-CA'),
                 "end": dataInicioIntervalo.toLocaleDateString('en-CA')
             }
-            console.log(ag)
             listaAgendamentos.push(ag);
             dataInicioIntervalo.setDate(dataInicioIntervalo.getDate() + parseInt(intervaloIT[i].innerHTML));
         }
@@ -55,6 +51,7 @@ document.addEventListener('DOMContentLoaded', function () {
             var dataFinalAjustada = new Date();
             dataFinalAjustada.setMonth(dataFinalDate.getMonth())
             dataFinalAjustada.setDate(dataFinalDate.getDate() + 2);
+            dataFinalAjustada.setFullYear(dataFinalDate.getFullYear())
             var ag = {
                 "groupId": id[i].innerHTML,
                 "title": remedios[i].innerHTML,
@@ -69,7 +66,10 @@ document.addEventListener('DOMContentLoaded', function () {
         defaultDate: hoje,
         editable: false,
         eventLimit: true, // allow "more" link when too many events
-        events: listaAgendamentos
+        events: listaAgendamentos,
+        dateClick: function(info){
+            window.location.href="/cadastro_agendamentos?date=" + info.dateStr
+        }
     });
 
     calendar.render();

@@ -207,6 +207,7 @@ temporary rendered events).
   position: relative;
   z-index: 4;
   padding-bottom: 2px;
+  cursor: pointer
   /* matches the space above the events */
 }
 
@@ -521,6 +522,7 @@ a.fc-more:hover {
 /* popover that appears when "more" link is clicked */
 .fc-day-grid .fc-row {
   z-index: 1;
+  cursor:pointer
   /* make the "more" popover one higher than this */
 }
 

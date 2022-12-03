@@ -208,7 +208,16 @@
         </script>
         <script>
             $(document).ready( function() {
-                $('#AG_DataInicio').val(new Date().toDateInputValue());
+                const queryString = window.location.search;
+                const urlParams = new URLSearchParams(queryString);
+                const data = urlParams.get('date')
+                if(data != null){
+                    var date = new Date(data)
+                    date.setDate(date.getDate() + 1)
+                    $('#AG_DataInicio').val(date.toDateInputValue());
+                } else {
+                    $('#AG_DataInicio').val(new Date().toDateInputValue());
+                }    
             });
         </script>
 
