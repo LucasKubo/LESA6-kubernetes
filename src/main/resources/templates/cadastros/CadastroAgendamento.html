@@ -120,7 +120,7 @@
 
                                 <div class="form-agendamento form-group">
                                     <label class="input-label margin-top">Frequencia de Horas*</label>
-                                    <select id="FrequenciaHoras" class="formulario-input">
+                                    <select id="FrequenciaHoras" class="formulario-input" onchange="Converter()">
                                         <option value="6">A cada 6 horas</option>
                                         <option value="8">A cada 8 horas</option>
                                         <option value="12">A cada 12 horas</option>
@@ -206,27 +206,8 @@
         <script src="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js" integrity="sha384-myN010xAOorYhvU/b0Oh3F9DT45ac2D7C6JQp0fIXX7noJn7c/+3lwiHJ199ZRJr" crossorigin="anonymous"></script>
 
 
-        <!-- Script para aparecer a DIV de Intervalo de dias-->
-<!--        <script>-->
-<!--            $(document).ready(function() {-->
-<!--                $.viewMap = {-->
-<!--                    '6' : $([]),-->
-<!--                    '8' : $([]),-->
-<!--                    '12' : $([]),-->
-<!--                    '24' : $([]),-->
-<!--                    'Periodicidade' : $('#Periodicidade')-->
-<!--                };-->
 
-<!--                $('#FrequenciaHoras').change(function() {-->
-<!--                    // hide all-->
-<!--                    $.each($.viewMap, function() { this.hide(); });-->
-<!--                    // show current-->
-<!--                    $.viewMap[$(this).val()].show();-->
-<!--                });-->
-<!--            });-->
-<!--        </script>-->
-
-        <!-- Script para aparecer a DIV de Periodicidade (de quantas em quantas horas) -->
+        <!-- Script para aparecer a DIV de Periodicidade (de quantas em quantas horas) e intervalo de dias -->
         <script>
             $(document).ready(function() {
                 $.viewMap = {
@@ -255,11 +236,48 @@
                     $.each($.freqH, function() { this.hide(); });
                     // show current
                     $.freqH[$(this).val()].show();
+
+                    $.op = $(this).val();
+                    if ($.op == "6"){
+                        $('AG_Periodicidade').val(6);
+                    }
+                    else if ($.op == '8'){
+                        $('AG_Periodicidade').val(8);
+                    }
+                    else if ($.op == '12'){
+                        $('AG_Periodicidade').val(12);
+                    }
+                    else if ($.op == '24'){
+                        $('AG_Periodicidade').val(24);
+                    }
+                    console.log($('AG_Periodicidade').val());
+
                 });
+
             });
         </script>
 
 
+        <script>
+            function Converter(){
+                $('#FrequenciaHoras').change(function () {
+                    var op = $(this).val();
+                    if (op == "6"){
+                        $('AG_Periodicidade').val(6);
+                    }
+                    else if (op == '8'){
+                        $('AG_Periodicidade').val(8);
+                    }
+                    else if (op == '12'){
+                        $('AG_Periodicidade').val(12);
+                    }
+                    else if (op == '24'){
+                        $('AG_Periodicidade').val(24);
+                    }
+                    console.log($('AG_Periodicidade'));
+                })
+            }
+        </script>
 
         <script type="text/javascript">
             $(document).ready(function () {
