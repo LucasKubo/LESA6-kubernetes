@@ -24,24 +24,33 @@ function ordenar(n, num) {
         if (num == true){
             var xnumero = x.innerHTML.replace(/\D/g, "");
             var ynumero = y.innerHTML.replace(/\D/g, "");
-            console.log(xnumero)
+            if (xnumero.length == 8 && ynumero.length == 8){
+                var xano = xnumero.slice(4)
+                var yano = ynumero.slice(4)
+                var xdia = xnumero.slice(0,2)
+                var ydia = ynumero.slice(0,2)
+                var xmes = xnumero.slice(2,4)
+                var ymes = ynumero.slice(2,4)
+                xnumero = xano + xmes + xdia
+                ynumero = yano + ymes + ydia
+                console.log(xnumero)
+                console.log(ynumero)
+            }
             if (dir == "asc") {
                 if (Number(xnumero) > Number(ynumero)) {
                     //if so, mark as a switch and break the loop:
                     shouldSwitch = true;
-                    console.log(shouldSwitch)
                     break;
                 } 
             } else if (dir == "desc") {
                 if (Number(xnumero) < Number(ynumero)) {
                   // If so, mark as a switch and break the loop:
                   shouldSwitch = true;
-                  console.log(shouldSwitch)
                   break;
                 }
               }
         } else if (num == false){
-            console.log(dir)
+          //do something here
             if (dir == "asc") {
                 if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
                     // If so, mark as a switch and break the loop:
