@@ -118,40 +118,45 @@
                             </div>
 
                             <div class="form-agendamento form-group">
-                                <label class="input-label margin-top" for="AG_Periodicidade" th:text="#{cadageform.frequency}"></label>
-                                <input type="number"
+                                <label class="input-label margin-top">Frequência de Horas*</label>
+                                <select id="FrequenciaHoras" class="formulario-input">
+                                    <option value="24">Uma vez por dia</option>
+                                    <option value="6">A cada 6 horas</option>
+                                    <option value="8">A cada 8 horas</option>
+                                    <option value="12">A cada 12 horas</option>
+                                    <option value="Periodicidade">Personalizado</option>
+                                </select>
+
+                            </div>
+
+
+
+                            <div id="Periodicidade" class="form-agendamento form-group" style="display: none;">
+                                <label class="input-label margin-top" for="AG_Periodicidade">Horas</label>
+                                <input th:placeholder="#{cadageform.frequency}"
+                                       type="number"
                                        class="formulario-input"
                                        id="AG_Periodicidade"
                                        name="AG_Periodicidade"
                                        required="required"
-                                       min="1"
+                                       min="0"
                                        th:value="${agendamento.periodicidade}"
                                 />
+                                <div class="line-break"></div>
                             </div>
 
-                        </div>
-                        <small><span id="mensagemPeriodocidade" class="help"></span></small>
-                        <small><span id="mensagemFimAgendamento" class="help"></span></small>
-                        <small><span id="mensagemInicioAgendamento" class="help"></span></small>
-                        <small><span id="mensagemHora" class="help"></span></small>
-
-                        <div id="intervaloDiasGrup" class="d-flex flex-column justify-content-center align-content-center">
-                            <div class="d-flex justify-content-center">
-                                <label id="intervalo-label"
-                                       class="input-label form-check-input"
-                                       for="intervalo-check" th:text="#{cadageform.registerdaysinterval}">
-                                </label>
-                                <input id="intervalo-check"
-                                       class="form-check-input checkbox-margin-top"
-                                       type="checkbox"
-                                       onclick="desabilitar()"
-                                       data-toggle="collapse"
-                                       data-target="#intervalo"
-                                       min="0"
-                                >
+                            <div class="form-agendamento form-group">
+                                <label class="input-label margin-top">Frequência de Dias*</label>
+                                <select id="FrequenciaDias" class="formulario-input" >
+                                    <option value="1">Todos os dias</option>
+                                    <option value="2">A cada 2 dias</option>
+                                    <option value="5">A cada 5 dias</option>
+                                    <option value="7">A cada 7 dias</option>
+                                    <option value="intervalo">Personalizado</option>
+                                </select>
                             </div>
 
-                            <div id="intervalo" class="input-group collapse">
+                            <div id="intervalo" class="input-group" style="display: none;">
                                 <label class="input-label" th:text="#{cadageform.intervalofdays}"></label>
                                 <input style="min-width:2px"
                                        th:placeholder="#{cadageform.numberdays}"
@@ -159,16 +164,16 @@
                                        type="number"
                                        id="intervaloDias"
                                        name="intervaloDias"
-                                       min="2"
+                                       min="1"
                                        th:value="${intervaloDias?.intervaloDias}"
                                 />
                             </div>
-                        </div>
                         <span class="error-message" id="error-hoje"></span>
                         <span class="error-message" id="error-date"></span>
-                        <div class="input-group actions">
-                            <a th:text="#{cadremform.cancel}" id="cancelar" href="/agendamentos" class="button cancel"></a>
-                            <button th:text="#{cadremform.submit}" name="action" id="confirmar" class="button save" type="submit"></button>
+                            <div class="input-group actions">
+                                <a th:text="#{cadremform.cancel}" id="cancelar" href="/agendamentos" class="button cancel"></a>
+                                <button th:text="#{cadremform.submit}" name="action" id="confirmar" class="button save" type="submit"></button>
+                            </div>
                         </div>
                     </form>
                 </div>
@@ -242,6 +247,76 @@
                 document.getElementById('AG_HoraInicio').value = "00:00"
             }
         }
+    </script>
+
+    <!-- Script para aparecer a DIV de Periodicidade (de quantas em quantas horas) e intervalo de dias -->
+    <script>
+        $(document).ready(function() {
+            $.viewMap = {
+                '1' : $([]),
+                '2' : $([]),
+                '5' : $([]),
+                '7' : $([]),
+                'intervalo' : $('#intervalo')
+
+            };
+            $.freqH = {
+                '6' : $([]),
+                '8' : $([]),
+                '12' : $([]),
+                '24' : $([]),
+                'Periodicidade' : $('#Periodicidade')
+            };
+
+            $('#AG_Periodicidade').val(24);
+            $('#intervaloDias').val(null);
+
+            $('#FrequenciaDias').change(function() {
+                // hide all
+                $.each($.viewMap, function() { this.hide(); });
+                // show current
+                $.viewMap[$(this).val()].show();
+                var op = $(this).val();
+                console.log(op)
+                if (op == '1'){
+                    $('#intervaloDias').val(null);
+                }
+                else if (op == '2'){
+                    $('#intervaloDias').val(2);
+                }
+                else if (op == '5'){
+                    $('#intervaloDias').val(5);
+                }
+                else if (op == '7'){
+                    $('#intervaloDias').val(7);
+                } else if (op == 'intervalo'){
+                    $('#intervaloDias').val(null);
+                }
+            });
+            $('#FrequenciaHoras').change(function() {
+                // hide all
+                $.each($.freqH, function() { this.hide(); });
+                // show current
+                $.freqH[$(this).val()].show();
+
+                $.op = $(this).val();
+                if ($.op == "6"){
+                    $('#AG_Periodicidade').val(6);
+                }
+                else if ($.op == '8'){
+                    $('#AG_Periodicidade').val(8);
+                }
+                else if ($.op == '12'){
+                    $('#AG_Periodicidade').val(12);
+                }
+                else if ($.op == '24'){
+                    $('#AG_Periodicidade').val(24);
+                } else if ($.op == 'Periodicidade'){
+                    $('#AG_Periodicidade').val(null);
+                }
+            });
+
+        });
     </script>
 </div>
 </body>
