@@ -1,55 +1,62 @@
-//package MeuRemedio.app.service;
-//
-//import MeuRemedio.app.models.agendamentos.Agendamento;
-//import MeuRemedio.app.repository.AgendamentoRepository;
-//import org.junit.jupiter.api.DisplayName;
-//import org.junit.jupiter.api.Test;
-//import org.junit.runner.RunWith;
-//import org.mockito.InjectMocks;
-//
-//import org.mockito.Mock;
-//import org.mockito.Mockito;
-//import org.mockito.junit.MockitoJUnitRunner;
-//import org.springframework.beans.factory.annotation.Autowired;
-//
-//import java.time.LocalDate;
-//import java.util.ArrayList;
-//import static org.mockito.ArgumentMatchers.any;
-//import static org.mockito.Mockito.times;
-//
-//@RunWith(MockitoJUnitRunner.class)
-//class NotificationServiceTest {
-//
-//    @Mock
-//    private AgendamentoRepository agendamentoRepository;
-//
-//    @InjectMocks
-//    private NotificationService notificationService;
-//
-//    @DisplayName("Deve validar envio de notificações")
-//    @Test
-//    public void verificarDataAtualTest(){
-//        Agendamento agendamentoMock = agendamentoMock();
-//        Mockito.when(agendamentoRepository.save(any(Agendamento.class))).thenReturn(agendamentoMock);
-//        Mockito.verify(agendamentoRepository, times(1)).save(agendamentoMock);
-//        notificationService.enviarNotificacao();
-//    }
-//
-//    @Test
-//    public void getDadosUsuarioTest(){
-//        notificationService.getDadosUsuario(agendamentoMock());
-//    }
-//
-//    public Agendamento agendamentoMock(){
-//        Agendamento agendamento = new Agendamento();
-//        agendamento.setId(1L);
-//        agendamento.setDataInicio("2022-05-21");
-//        agendamento.setDataFinal("2022-05-25");
-//        agendamento.setPeriodicidade(8);
-//        agendamento.setHoraInicio("10:00");
-//        agendamento.setAG_Criado_em(LocalDate.now());
-//        agendamento.setRemedio(new ArrayList<>());
-//        return agendamento;
-//    }
-//
-//}
+package MeuRemedio.app.service;
+
+import MeuRemedio.app.controllers.EnvioEmail;
+import MeuRemedio.app.mocks.AgendamentoMock;
+import MeuRemedio.app.mocks.AgendamentosHorariosMock;
+import MeuRemedio.app.models.agendamentos.Agendamento;
+import MeuRemedio.app.models.agendamentos.AgendamentosHorarios;
+import MeuRemedio.app.repository.AgendamentoRepository;
+import MeuRemedio.app.repository.AgendamentosHorariosRepository;
+import MeuRemedio.app.repository.IntervaloDiasRepository;
+import MeuRemedio.app.repository.RecorrenciaRepository;
+import com.google.firebase.messaging.FirebaseMessagingException;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.*;
+import org.mockito.junit.jupiter.MockitoExtension;
+import javax.mail.MessagingException;
+import java.util.Collections;
+
+import static org.mockito.ArgumentMatchers.any;
+
+@ExtendWith(MockitoExtension.class)
+class NotificationServiceTest {
+
+    @Mock
+    private AgendamentoRepository agendamentoRepository;
+
+    @Spy
+    @InjectMocks
+    private NotificationService notificationService;
+
+    @Mock
+    EnvioEmail envioEmail;
+
+    @Mock
+    AgendamentosHorariosRepository agendamentosHorariosRepository;
+
+    @Mock
+    IntervaloDiasRepository intervaloDiasRepository;
+
+    @Mock
+    RecorrenciaRepository recorrenciaRepository;
+
+    @DisplayName("Deve validar envio de notificações")
+    @Test
+    public void verificarDataAtualTest() throws MessagingException, FirebaseMessagingException {
+        Agendamento agendamentoMock = AgendamentoMock.agendamentoMock();
+        AgendamentosHorarios agendamentosHorarios = AgendamentosHorariosMock.agendamentoHorariosMock();
+        Mockito.when(agendamentoRepository.findAll()).thenReturn(Collections.singletonList(agendamentoMock));
+        Mockito.when(agendamentosHorariosRepository.findAllByIdAgendamento(any())).thenReturn(Collections.singletonList(agendamentosHorarios));
+        Assertions.assertDoesNotThrow(() -> notificationService.enviarNotificacao());
+    }
+
+    @DisplayName("Deve validar deletes de horarios antigos")
+    @Test
+    public void deveDeletarAntigos()  {
+        Assertions.assertDoesNotThrow(() -> notificationService.deletarAntigos());
+    }
+
+}
