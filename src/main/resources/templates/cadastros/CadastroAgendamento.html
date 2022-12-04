@@ -239,18 +239,19 @@
 
                     $.op = $(this).val();
                     if ($.op == "6"){
-                        $('AG_Periodicidade').val(6);
+                        $('#AG_Periodicidade').val(6);
                     }
                     else if ($.op == '8'){
-                        $('AG_Periodicidade').val(8);
+                        $('#AG_Periodicidade').val(8);
                     }
                     else if ($.op == '12'){
-                        $('AG_Periodicidade').val(12);
+                        $('#AG_Periodicidade').val(12);
                     }
                     else if ($.op == '24'){
-                        $('AG_Periodicidade').val(24);
+                        $('#AG_Periodicidade').val(24);
                     }
-                    console.log($('AG_Periodicidade').val());
+                    console.log($('#AG_Periodicidade').val());
+                    console.log($.op);
 
                 });
 
