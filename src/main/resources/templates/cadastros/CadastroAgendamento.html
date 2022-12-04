@@ -239,28 +239,28 @@
                     'Periodicidade' : $('#Periodicidade')
                 };
 
-                $('#FrequenciaDias').change(function() {
+                $('#FrequenciaDias, #FrequenciaHoras').change(function() {
                     // hide all
                     $.each($.viewMap, function() { this.hide(); });
                     // show current
                     $.viewMap[$(this).val()].show();
                 });
-                $('#FrequenciaHoras').change(function() {
-                    // hide all
-                    $.each($.viewMap, function() { this.hide(); });
-                    // show current
-                    $.viewMap[$(this).val()].show();
-                });
+                // $('#FrequenciaHoras').change(function() {
+                //     // hide all
+                //     $.each($.viewMap, function() { this.hide(); });
+                //     // show current
+                //     $.viewMap[$(this).val()].show();
+                // });
             });
         </script>
 
 
 
         <script type="text/javascript">
-                                               $(document).ready(function () {
-                                                   $('#AG_Remedios').multiselect()
-                                               });
-    </script>
+            $(document).ready(function () {
+                $('#AG_Remedios').multiselect()
+            });
+        </script>
 
         <script>
                 Date.prototype.toDateInputValue = (function() {
@@ -286,12 +286,7 @@
 
     <script type="text/javascript">
         $(function () {
-        //     $('#AG_HoraInicio').datetimepicker({
-        //         use24hours: true,
-        //         interval: 5,
-        //         format: 'HH:mm'
-        //     });
-        // });
+
 
           $('#AG_HoraInicio').timepicker({
                 timeFormat : 'HH:mm',
