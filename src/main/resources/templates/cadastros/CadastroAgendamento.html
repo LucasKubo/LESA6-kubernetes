@@ -120,11 +120,11 @@
 
                                 <div class="form-agendamento form-group">
                                     <label class="input-label margin-top">Frequencia de Horas*</label>
-                                    <select id="FrequenciaHoras" class="formulario-input" onchange="Converter()">
+                                    <select id="FrequenciaHoras" class="formulario-input">
+                                        <option value="24">Uma vez por dia</option>
                                         <option value="6">A cada 6 horas</option>
                                         <option value="8">A cada 8 horas</option>
                                         <option value="12">A cada 12 horas</option>
-                                        <option value="24">Uma vez por dia (24 horas)</option>
                                         <option value="Periodicidade">Personalizado</option>
                                     </select>
 
@@ -211,6 +211,7 @@
         <script>
             $(document).ready(function() {
                 $.viewMap = {
+                    '1' : $([]),
                     '2' : $([]),
                     '5' : $([]),
                     '7' : $([]),
@@ -225,11 +226,30 @@
                     'Periodicidade' : $('#Periodicidade')
                 };
 
+                $('#AG_Periodicidade').val(24);
+                $('#intervaloDias').val(null);
+
                 $('#FrequenciaDias').change(function() {
                     // hide all
                     $.each($.viewMap, function() { this.hide(); });
                     // show current
                     $.viewMap[$(this).val()].show();
+                    var op = $(this).val();
+                    console.log(op)
+                    if (op == '1'){
+                        $('#intervaloDias').val(null);
+                    }
+                    else if (op == '2'){
+                        $('#intervaloDias').val(2);
+                    }
+                    else if (op == '5'){
+                        $('#intervaloDias').val(5);
+                    }
+                    else if (op == '7'){
+                        $('#intervaloDias').val(7);
+                    } else if (op == 'intervalo'){
+                        $('#intervaloDias').val(null);
+                    }
                 });
                 $('#FrequenciaHoras').change(function() {
                     // hide all
@@ -249,35 +269,12 @@
                     }
                     else if ($.op == '24'){
                         $('#AG_Periodicidade').val(24);
+                    } else if ($.op == 'Periodicidade'){
+                        $('#AG_Periodicidade').val(null);
                     }
-                    console.log($('#AG_Periodicidade').val());
-                    console.log($.op);
-
                 });
 
             });
-        </script>
-
-
-        <script>
-            function Converter(){
-                $('#FrequenciaHoras').change(function () {
-                    var op = $(this).val();
-                    if (op == "6"){
-                        $('AG_Periodicidade').val(6);
-                    }
-                    else if (op == '8'){
-                        $('AG_Periodicidade').val(8);
-                    }
-                    else if (op == '12'){
-                        $('AG_Periodicidade').val(12);
-                    }
-                    else if (op == '24'){
-                        $('AG_Periodicidade').val(24);
-                    }
-                    console.log($('AG_Periodicidade'));
-                })
-            }
         </script>
 
         <script type="text/javascript">
