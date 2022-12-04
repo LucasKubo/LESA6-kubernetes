@@ -240,7 +240,7 @@ public class AgendamentoController {
             Agendamento ag = agendamentoRepository.save(agendamento);
             salvarHorariosAgendamentos(ag);
 
-        } else if (intervaloExiste.isPresent() && intervaloDias != null) {
+        } else if (intervaloExiste.isPresent()) {
             IntervaloDias atualizarIntervalo = intervaloExiste.get();
 
             atualizarIntervalo.setId(id);
