@@ -131,7 +131,7 @@
 
 
 
-                                <div id="Periodicidade" class="form-agendamento form-group">
+                                <div id="Periodicidade" class="form-agendamento form-group" style="display: none;">
                                     <label class="input-label margin-top" for="AG_Periodicidade" th:text="#{cadageform.frequency}">Horas</label>
                                     <input th:placeholder="#{cadageform.frequency}"
                                            type="number"
@@ -154,7 +154,7 @@
                                     </select>
                                 </div>
 
-                                    <div id="intervalo" class="input-group">
+                                    <div id="intervalo" class="input-group" style="display: none;">
                                         <label class="input-label" th:text="#{cadageform.intervalofdays}"></label>
                                         <input style="min-width:2px"
                                                th:placeholder="#{cadageform.numberdays}"
@@ -231,7 +231,10 @@
                     '2' : $([]),
                     '5' : $([]),
                     '7' : $([]),
-                    'intervalo' : $('#intervalo'),
+                    'intervalo' : $('#intervalo')
+
+                };
+                $.freqH = {
                     '6' : $([]),
                     '8' : $([]),
                     '12' : $([]),
@@ -239,18 +242,18 @@
                     'Periodicidade' : $('#Periodicidade')
                 };
 
-                $('#FrequenciaDias, #FrequenciaHoras').change(function() {
+                $('#FrequenciaDias').change(function() {
                     // hide all
                     $.each($.viewMap, function() { this.hide(); });
                     // show current
                     $.viewMap[$(this).val()].show();
                 });
-                // $('#FrequenciaHoras').change(function() {
-                //     // hide all
-                //     $.each($.viewMap, function() { this.hide(); });
-                //     // show current
-                //     $.viewMap[$(this).val()].show();
-                // });
+                $('#FrequenciaHoras').change(function() {
+                    // hide all
+                    $.each($.freqH, function() { this.hide(); });
+                    // show current
+                    $.freqH[$(this).val()].show();
+                });
             });
         </script>
 
