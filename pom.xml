@@ -15,6 +15,9 @@
 	<description>Projeto Integrado I</description>
 	<properties>
 		<java.version>1.8</java.version>
+
+		<sonar.coverage.jacoco.xmlReportPaths>../app-it/target/site/jacoco-aggregate/jacoco.xml
+		</sonar.coverage.jacoco.xmlReportPaths>
 	</properties>
 	<dependencies>
 
@@ -166,6 +169,35 @@
 						</exclude>
 					</excludes>
 				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.jacoco</groupId>
+				<artifactId>jacoco-maven-plugin</artifactId>
+				<version>0.8.5</version>
+				<configuration>
+					<excludes>
+						<exclude>MeuRemedio/app/configuration/*</exclude>
+						<exclude>MeuRemedio/app/enums/*</exclude>
+						<exclude>MeuRemedio/app/models/**/*</exclude>
+						<exclude>MeuRemedio/app/repository/*</exclude>
+						<exclude>MeuRemedio/app/security/*</exclude>
+						<exclude>MeuRemedio/app/service/utils/*</exclude>
+					</excludes>
+				</configuration>
+				<executions>
+					<execution>
+						<id>prepare-agent</id>
+						<goals>
+							<goal>prepare-agent</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>report</id>
+						<goals>
+							<goal>report</goal>
+						</goals>
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
 	</build>

@@ -58,15 +58,6 @@ public class EnvioEmail {
         mailSender.send(message);
     }
 
-
-    public void emailCadastroRemedio(Usuario usuario, Remedio remedios) throws MessagingException {
-        String assunto = MensagemEmail.REMEDIO_CADASTRADO.getDescricao();
-        String msg = MensagemEmail.CADASTRO_REMEDIO.getDescricao() + remedios.getRM_Nome() + "''. " +
-                "Fique atento aos horários e siga as restrições médicas !";
-
-        emailService.sendEmail(usuario, assunto, msg);
-    }
-
     public void emailNotificacaoRemedio(Usuario usuario, List<Remedio> remedios, LocalDateTime instanteAgora) throws MessagingException, FirebaseMessagingException {
         String assunto = MensagemEmail.NOTIFICACAO_REMEDIO.getDescricao();
 
