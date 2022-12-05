@@ -94,7 +94,7 @@
                         <div class="form-group">
                             <label class="input-label" for="RM_UnidadeDosagem" th:text="#{cadremplaceholder.dosageunit}"></label>
                             <select id="RM_UnidadeDosagem" class="formulario-input" name="RM_UnidadeDosagem" required="required">
-                                <option value="mg" th:text="#{cadremform.miligram}">)</option>
+                                <option value="mg" th:text="#{cadremform.miligram}"></option>></option>
                                 <option value="g" th:text="#{cadremform.gram}"></option>
                                 <option value="ml" th:text="#{cadremform.mililiter}"></option>
                                 <option value="ui" th:text="#{cadremform.internationalunits}"></option>
@@ -163,35 +163,12 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js" integrity="sha384-QHPBqENOg6UKmsoXiXjrEEu2W4rJZaCHDTqIOI9JqSg6dI3chbQ+0kXAYUQLEDYn" crossorigin="anonymous"></script><script src="/script/bootstrap-multiselect.js"></script></div>
 </div>
 
+<p th:value="${remedio.RM_UnidadeDosagem}"  th:text="${remedio.RM_UnidadeDosagem}" id="thvalor" hidden="hidden"></p>
 <script type="text/javascript">
     $(document).ready(function () {
-        $('#RM_UnidadeDosagem')
-    });
-</script>
-
-<script type="text/javascript">
-    $(function () {
-        var checkbox = $("#exampleCheck1");
-        checkbox.change(function () {
-            if (checkbox.is(':checked')) {
-                $("#AG_DataInicio").prop('required',true); //add required attr
-                $("#AG_HoraInicio").prop('required',true);
-                $("#AG_DataFinal").prop('required',true);
-                $("#AG_Periodicidade").prop('required',true);
-            } else {
-                $("#AG_DataInicio").removeAttr('required'); //add required attr
-                $("#AG_HoraInicio").removeAttr('required');
-                $("#AG_DataFinal").removeAttr('required');
-                $("#AG_Periodicidade").removeAttr('required');
-            }
-        });
-    });
-
-</script>
-
-<script type="text/javascript">
-    $('.datepicker').datepicker({
-        inline: true
+        var selecionado = document.getElementById('thvalor').innerHTML;
+        console.log(selecionado)
+        $("#RM_UnidadeDosagem option[value=" + selecionado + "]").attr("selected","selected");
     });
 </script>
 
@@ -200,20 +177,6 @@
     $(document).ready(function () {
         $('#AG_Remedios').multiselect()
     });
-</script>
-
-
-<script type="text/javascript">
-    function desabilitar(valor) {
-        var status = document.getElementById('intervaloDias').enabled;
-
-        if (valor == 'sim' && status) {
-            document.getElementById('intervaloDias').disabled = false;
-        } else {
-            document.getElementById('intervaloDias').disabled = true;
-            document.getElementById('intervaloDias').value = null;
-        }
-    }
 </script>
 
 <div id="torrent-scanner-popup" style="display: none;">

@@ -129,8 +129,6 @@
 
                             </div>
 
-
-
                             <div id="Periodicidade" class="form-agendamento form-group" style="display: none;">
                                 <label class="input-label margin-top" for="AG_Periodicidade">Horas</label>
                                 <input th:placeholder="#{cadageform.frequency}"
@@ -191,7 +189,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
     <!-- Bootstrap JS -->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
     <script src="/script/cadastroRemedio.jsp"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js" integrity="sha384-QHPBqENOg6UKmsoXiXjrEEu2W4rJZaCHDTqIOI9JqSg6dI3chbQ+0kXAYUQLEDYn" crossorigin="anonymous"></script>
     <script src="/script/bootstrap-multiselect.js"></script>
@@ -249,6 +247,8 @@
         }
     </script>
 
+<p th:value="${agendamento.periodicidade}"  th:text="${agendamento.periodicidade}" id="thvalor" hidden="hidden"></p>
+<p th:value="${intervaloDias?.intervaloDias}" th:text="${intervaloDias?.intervaloDias}" id="thvalor2" hidden="hidden"></p>
     <!-- Script para aparecer a DIV de Periodicidade (de quantas em quantas horas) e intervalo de dias -->
     <script>
         $(document).ready(function() {
@@ -268,8 +268,31 @@
                 'Periodicidade' : $('#Periodicidade')
             };
 
-            $('#AG_Periodicidade').val(24);
-            $('#intervaloDias').val(null);
+            //SETANDO O PERSONALIZADO COMO SELECIONADO POR PADRÃO
+            $("#FrequenciaHoras option[value='Periodicidade']").attr("selected","selected");
+            $("#FrequenciaDias option[value='intervalo']").attr("selected","selected");
+
+            //PEGO OS VALORES DE FATO
+            var selecionadoRemedio = document.getElementById('thvalor').innerHTML;
+            var selecionadoIntervalo = document.getElementById('thvalor2').innerHTML;
+
+            console.log(selecionadoRemedio)
+            console.log(selecionadoIntervalo)
+            if(selecionadoRemedio != '6' && selecionadoRemedio != '8' && selecionadoRemedio != '12' && selecionadoRemedio != '24'){
+                $('#Periodicidade').show()
+            }
+            
+            if(selecionadoIntervalo == ""){
+                $("#FrequenciaDias option[value='1']").attr("selected","selected");
+            } else if(selecionadoIntervalo != null && selecionadoIntervalo != '1' && selecionadoIntervalo != '2' && selecionadoIntervalo != '5' && selecionadoIntervalo != '7'){
+                $('#intervalo').show()
+                $('.line-break').show()
+
+            }
+            //CASO O VALOR DE FATO SEJA UMA DAS OPÇÕES, SETO A OPÇÃO NO LUGAR DO PERSONALIZADO
+            $("#FrequenciaHoras option[value=" + selecionadoRemedio + "]").attr("selected","selected");
+            $("#FrequenciaDias option[value=" + selecionadoIntervalo + "]").attr("selected","selected");
+
 
             $('#FrequenciaDias').change(function() {
                 // hide all
