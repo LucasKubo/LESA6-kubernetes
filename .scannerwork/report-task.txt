@@ -1,0 +1,6 @@
+projectKey=MeuRemedio
+serverUrl=http://localhost:9002
+serverVersion=9.5.0.56709
+dashboardUrl=http://localhost:9002/dashboard?id=MeuRemedio
+ceTaskId=AYTgNSzz2j8GtS6bsjSR
+ceTaskUrl=http://localhost:9002/api/ce/task?id=AYTgNSzz2j8GtS6bsjSR

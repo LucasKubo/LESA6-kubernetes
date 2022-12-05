@@ -14,10 +14,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.ServiceConfigurationError;
+import java.util.stream.Collectors;
 
 @Controller
 public class FinanceiroController {
@@ -46,11 +48,31 @@ public class FinanceiroController {
     }
 
     @GetMapping(value = "/remedios/controle_de_gastos/listar")
-    public String telaDeGastosB (Model model){
+    public String telaDeGastosB (Model model, @RequestParam() String time){
         Usuario usuarioID = new Usuario();
         usuarioID.setId(userSessionService.returnIdUsuarioLogado());
 
-        Iterable<Financeiro> financeiro = controleFinanceiro.findAllByUsuarioID(usuarioID.getId());
+        LocalDate now = LocalDate.now();
+        List<Financeiro> financeiro = controleFinanceiro.findAllByUsuarioID(usuarioID.getId());
+
+        if(time.equals("1")){
+            financeiro = financeiro.stream()
+                    .filter((e) -> LocalDate.parse(e.getData()).getMonth() == now.getMonth() && LocalDate.parse(e.getData()).getYear() == now.getYear())
+                    .collect(Collectors.toList());
+        } else if (time.equals("3")) {
+            financeiro = financeiro.stream()
+                    .filter((e) -> LocalDate.parse(e.getData()).isAfter(now.minusMonths(2)) && LocalDate.parse(e.getData()).isBefore(now))
+                    .collect(Collectors.toList());
+        } else if (time.equals("0")) {
+            financeiro = financeiro.stream()
+                    .filter((e) -> LocalDate.parse(e.getData()).isAfter(now))
+                    .collect(Collectors.toList());
+        } else if (time.equals("99")){
+            financeiro = financeiro.stream()
+                    .filter((e) -> LocalDate.parse(e.getData()).isBefore(now))
+                    .collect(Collectors.toList());
+        }
+
         model.addAttribute("financeiro", financeiro);
 
         return "listas/ListarGastoB";
@@ -94,7 +116,7 @@ public class FinanceiroController {
         if (verificarPorId(id)) {
             controleFinanceiro.deleteById(id);
 
-            return "redirect:/remedios/controle_de_gastos/listar";
+            return "redirect:/remedios/controle_de_gastos/listar?time=1";
         }
         return templateError();
     }
@@ -133,7 +155,7 @@ public class FinanceiroController {
                 financeiro.setRemedio(remedio);
                 controleFinanceiro.save(financeiro);
             }
-            return "redirect:/remedios/controle_de_gastos/listar";
+            return "redirect:/remedios/controle_de_gastos/listar?time=1";
 
         }catch (NullPointerException e){
             return templateError() + e;
@@ -170,7 +192,7 @@ public class FinanceiroController {
         dashBoardsRepository.save(dash);
         controleFinanceiro.save(financeiroMedicamento);
 
-        return "redirect:/remedios/controle_de_gastos/listar";
+        return "redirect:/remedios/controle_de_gastos/listar?time=1";
     }
 
     public boolean verificarPorId (long id ) {

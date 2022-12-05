@@ -14,15 +14,20 @@ import MeuRemedio.app.service.UserSessionService;
 import MeuRemedio.app.service.utils.ValidateAuthentication;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.*;
-
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
+import java.time.LocalDate;
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Controller
 @RequiredArgsConstructor
@@ -54,13 +59,24 @@ public class AgendamentoController {
 
 
     @RequestMapping(value = "/agendamentos", method = RequestMethod.GET)
-    public String viewAgendamentos(ModelMap model) {
+    public String viewAgendamentos(ModelMap model, @RequestParam String ativos) {
         if (!validateAuthentication.auth()) {
             return "Login";
         }
-
+        LocalDate now = LocalDate.now();
         List<Agendamento> agendamentos = agendamentoRepository.findAllByUsuarioID(userSessionService.returnIdUsuarioLogado());
-        model.addAttribute("agendamento", agendamentos);
+        if(ativos.equals("true")){
+            List<Agendamento> agendamentosAtivos = agendamentos.stream()
+                    .filter((e) -> LocalDate.parse(e.getDataFinal()).isAfter(now))
+                    .collect(Collectors.toList());
+
+            model.addAttribute("agendamento", agendamentosAtivos);
+        }else{
+            List<Agendamento> agendamentosFinalizados = agendamentos.stream()
+                    .filter((e) -> LocalDate.parse(e.getDataFinal()).isBefore(now))
+                    .collect(Collectors.toList());
+            model.addAttribute("agendamento", agendamentosFinalizados);
+        }
 
         List<IntervaloDias> intervaloDias = new ArrayList<>();
         for (Agendamento agendamento : agendamentos) {
