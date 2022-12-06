@@ -55,7 +55,7 @@ public class AgendamentoController {
 
     private final CalculaHorariosNotificacao calculaHorariosNotificacao;
 
-    final String REDIRECT = "redirect:/agendamentos";
+    final String REDIRECT = "redirect:/agendamentos?ativos=true";
 
 
     @RequestMapping(value = "/agendamentos", method = RequestMethod.GET)
