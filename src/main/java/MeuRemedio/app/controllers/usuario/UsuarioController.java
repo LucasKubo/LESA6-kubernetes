@@ -181,10 +181,7 @@ public class UsuarioController {
                 dashBoardsRepository.deleteAllByUsuario(usuarioLogado);
                 usuarioRepository_2.deleteById(usuarioLogado.getId());
                 emailCadastro.emailDeletarCadastro(usuarioLogado);
-                HttpSession session= request.getSession();
-                if(session != null) {
-                    session.invalidate();
-                }
+                request.getSession().invalidate();
                 return "redirect:/login?contaExcluida";
             } else {
                 return "redirect:/usuario/edit/deletar_usuario?senhaInvalida";
