@@ -99,38 +99,47 @@ mensagem.innerHTML = ""
 }
 
 function validaDataFinal(){
-const dataFinal = document.getElementById("AG_DataFinal").value;
-const dataInicio = document.getElementById("AG_DataInicio").value;
+    const dataFinal = document.getElementById("AG_DataFinal").value;
+    const dataInicio = document.getElementById("AG_DataInicio").value;
 
-var dataFinalData = new Date(dataFinal + " ")
-var dataInicioData = new Date(dataInicio+ " ")
-var hoje = new Date()
-hoje.setHours(0,0,0,0);
+    var dataFinalData = new Date(dataFinal + " ")
+    var dataInicioData = new Date(dataInicio+ " ")
+    var hoje = new Date()
+    hoje.setHours(0,0,0,0);
 
-let error = document.getElementById("error-date");
-let errorHoje = document.getElementById("error-hoje");
+    let error = document.getElementById("error-date");
+    let errorHoje = document.getElementById("error-hoje");
+    let errorDataLimite = document.getElementById("error-dataLimite");
 
-
-console.log(dataFinalData)
-console.log(dataInicioData)
-console.log(hoje)
-if (dataInicioData > dataFinalData){
-     error.innerHTML = "A data final não pode ser menor que a data inicial";
-     document.querySelector('#confirmar').disabled = true;
-} else {
-    error.innerHTML = "";
-}
-if (dataFinalData < hoje){
-    errorHoje.innerHTML = "Não é possível cadastrar um agendamento já finalizado.";
-    document.querySelector('#confirmar').disabled = true;
-} else {
-    errorHoje.innerHTML = "";
-}
-if(dataInicioData <= dataFinalData && dataFinalData >= hoje){
-    error.innerHTML = "";
-    errorHoje.innerHTML = "";
-    document.querySelector('#confirmar').disabled = false;
-}
+    if(dataFinalData != null && dataInicioData !=null){
+        var diffTempo = dataFinalData - dataInicioData;
+        const diferenca = Math.ceil(diffTempo / (1000 * 60 * 60 * 24)); 
+        console.log(diferenca)
+        if (diferenca > 1825){
+            errorDataLimite.innerHTML = "Não é possível cadastrar agendamentos com prazo maior de 5 anos.";
+            document.querySelector('#confirmar').disabled = false;
+        }
+    }
+    console.log(dataFinalData)
+    console.log(dataInicioData)
+    console.log(hoje)
+    if (dataInicioData > dataFinalData){
+        error.innerHTML = "A data final não pode ser menor que a data inicial";
+        document.querySelector('#confirmar').disabled = true;
+    } else {
+        error.innerHTML = "";
+    }
+    if (dataFinalData < hoje){
+        errorHoje.innerHTML = "Não é possível cadastrar um agendamento já finalizado.";
+        document.querySelector('#confirmar').disabled = true;
+    } else {
+        errorHoje.innerHTML = "";
+    }
+    if(dataInicioData <= dataFinalData && dataFinalData >= hoje){
+        error.innerHTML = "";
+        errorHoje.innerHTML = "";
+        document.querySelector('#confirmar').disabled = false;
+    }
 }
 
 function checarBox(){

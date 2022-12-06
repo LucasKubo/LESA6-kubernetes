@@ -1,0 +1,22 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : 5 de dez de 2022, 22:10:47
+    Author     : User
+*/
+
+.overlay {
+    display: none;
+    position: absolute;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 998;
+    transition: all 0.5s ease-in-out;
+}
+.overlay.active {
+    display: block;
+    background: rgba(0, 0, 0, 0.7);
+}
