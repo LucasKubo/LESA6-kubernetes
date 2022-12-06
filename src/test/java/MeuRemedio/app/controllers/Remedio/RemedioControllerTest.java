@@ -92,7 +92,16 @@ public class RemedioControllerTest {
         Assertions.assertEquals(result, "cadastros/CadastroRemedios");
     }
 
-    @DisplayName("Deve deletar um remedio cadastrado")
+    @DisplayName("Deve retornar falso ao deletar um remedio não cadastrado") // OK
+    @Test
+    public void deletarError(){
+        Remedio remedio = RemedioMock.remedioMock();
+        String del = remedioController.deletarRemedio(99999);
+
+        Assertions.assertFalse(Boolean.parseBoolean(del));
+    }
+
+    @DisplayName("Deve deletar um remedio")
     @Test
     public void deletar(){
         Remedio remedio = RemedioMock.remedioMock();
@@ -101,23 +110,25 @@ public class RemedioControllerTest {
         Mockito.when(controleFinanceiro.findAllByRemedio(remedio)).thenReturn(Collections.singletonList(FinanceiroMock.gastoMock()));
         Mockito.when(agendamentoRepository.findAllByRemedio(remedio)).thenReturn(Collections.singletonList(AgendamentoMock.agendamentoMock()));
         String del = remedioController.deletarRemedio(remedio.getRM_ID());
-        Assertions.assertEquals(del, "redirect:/remedios");
+        Assertions.assertEquals(del, "redirect:/Remedios");
     }
 
-    @DisplayName("Deve retornar erro ao deletar um remedio não cadastrado")
+    @DisplayName("Deve retornar falso ao cadastrar um remedio invalido") // OK
     @Test
-    public void ErroAodeletar(){
-        Remedio remedio = RemedioMock.remedioMock();
-        String del = remedioController.deletarRemedio(remedio.getRM_ID() + 550);
-        Assertions.assertEquals(del, remedioController.templateError());
-    }
-
-    @DisplayName("Deve Cadastrar Remedio com agendamento e gasto ")
-    @Test
-    public void cadastrarAgendamento() throws Exception {
+    public void CadastrarRemediosComDadosInvalidos() throws Exception {
         List<Remedio> remedios = Collections.singletonList(RemedioMock.remedioMock());
         String result = remedioController.CadastroRemedio("Doralgina","10","MG", "True", true,
-                "2022-01-01","00:00","2022-01-01", 24L, 2L, "25,00", 25.00,1L);
+                "2022-01-01","00:00","2021-01-01", 24L, 2L, "25,00", 25.00,1L);
+
+        Assertions.assertFalse(Boolean.parseBoolean(result));
+    }
+
+    @DisplayName("Deve cadastrar um remedio ")
+    @Test
+    public void CadastrarRemedios() throws Exception {
+        List<Remedio> remedios = Collections.singletonList(RemedioMock.remedioMock());
+        String result = remedioController.CadastroRemedio("Doralgina","10","MG", "True", true,
+                "2022-01-01","00:00","2022-01-01", 24L, 2L, "2022-01-01", 25.00,1L);
 
         Assertions.assertEquals(result, "redirect:/remedios/remedios_cadastro");
     }
