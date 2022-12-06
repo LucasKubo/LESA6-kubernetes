@@ -53,6 +53,14 @@
         <main class="container-table text-center">
             <section id="agendamentos">
                 <h2 th:text="#{navbar.schedules}"></h2>
+                <div class="btn-group btn-group-toggle" data-toggle="buttons" style="margin-bottom: 0.5rem">
+                    <label class="btn btn-secondary" th:classappend="${param.ativos[0] == 'true'} ? active" onclick="window.location='/agendamentos?ativos=true';">
+                        <input type="radio" name="options" id="option1" autocomplete="off" th:checked="${param.ativos[0] == 'true'}"> Ativos
+                    </label>
+                    <label class="btn btn-secondary" th:classappend="${param.ativos[0] == 'false'} ? active" onclick="window.location='/agendamentos?ativos=false';">
+                        <input type="radio" name="options" id="option2" autocomplete="off" th:checked="${param.ativos[0] == 'false'}"> Finalizados
+                    </label>
+                </div>
                 <table class="table table-striped " id="data-table">
                     <caption></caption>
                     <thead>
@@ -130,7 +138,7 @@
                    th:text="#{cadremregister.newschedule}">
                 </a>
                 <br>
-                <a id="view-remedy" href="/remedios" class="button new" th:text="#{cadage.visu}">- Visualizar remedios</a>
+                <a id="view-remedy" href="/remedios" class="button new">Visualizar remedios</a>
             </section>
         </main>
 

@@ -9,6 +9,7 @@ import MeuRemedio.app.repository.AgendamentoRepository;
 import MeuRemedio.app.repository.AgendamentosHorariosRepository;
 import MeuRemedio.app.repository.IntervaloDiasRepository;
 import MeuRemedio.app.repository.RemedioRepository;
+import MeuRemedio.app.service.AgendamentoService;
 import MeuRemedio.app.service.CalculaHorariosNotificacao;
 import MeuRemedio.app.service.UserSessionService;
 import MeuRemedio.app.service.utils.ValidateAuthentication;
@@ -53,6 +54,9 @@ public class AgendamentoController {
     @Autowired
     AgendamentosHorariosRepository agendamentosHorariosRepository;
 
+    @Autowired
+    AgendamentoService agendamentoService;
+
     private final CalculaHorariosNotificacao calculaHorariosNotificacao;
 
     final String REDIRECT = "redirect:/agendamentos";
@@ -63,20 +67,10 @@ public class AgendamentoController {
         if (!validateAuthentication.auth()) {
             return "Login";
         }
-        LocalDate now = LocalDate.now();
-        List<Agendamento> agendamentos = agendamentoRepository.findAllByUsuarioID(userSessionService.returnIdUsuarioLogado());
-        if(ativos.equals("true")){
-            List<Agendamento> agendamentosAtivos = agendamentos.stream()
-                    .filter((e) -> LocalDate.parse(e.getDataFinal()).isAfter(now))
-                    .collect(Collectors.toList());
 
-            model.addAttribute("agendamento", agendamentosAtivos);
-        }else{
-            List<Agendamento> agendamentosFinalizados = agendamentos.stream()
-                    .filter((e) -> LocalDate.parse(e.getDataFinal()).isBefore(now))
-                    .collect(Collectors.toList());
-            model.addAttribute("agendamento", agendamentosFinalizados);
-        }
+        List<Agendamento> agendamentos = agendamentoRepository.findAllByUsuarioID(userSessionService.returnIdUsuarioLogado());
+        agendamentos = agendamentoService.filtrarPorStatus(ativos, agendamentos);
+        model.addAttribute("agendamento", agendamentos);
 
         List<IntervaloDias> intervaloDias = new ArrayList<>();
         for (Agendamento agendamento : agendamentos) {
@@ -107,12 +101,13 @@ public class AgendamentoController {
     }
 
     @RequestMapping(value = "/agendamentos/listar", method = RequestMethod.GET)
-    public String viewAgendamentosB(ModelMap model) {
+    public String viewAgendamentosB(ModelMap model,  @RequestParam String ativos) {
         if (!validateAuthentication.auth()) {
             return "Login";
         }
 
         List<Agendamento> agendamentos = agendamentoRepository.findAllByUsuarioID(userSessionService.returnIdUsuarioLogado());
+        agendamentos = agendamentoService.filtrarPorStatus(ativos, agendamentos);
         model.addAttribute("agendamento", agendamentos);
 
         List<IntervaloDias> intervaloDias = new ArrayList<>();
@@ -149,7 +144,7 @@ public class AgendamentoController {
         }
         salvarHorariosAgendamentos(id);
 
-        return "redirect:/agendamentos/listar";
+        return "redirect:/agendamentos/listar?ativos=true";
     }
 
 
@@ -199,7 +194,7 @@ public class AgendamentoController {
         }
         salvarHorariosAgendamentos(id);
 
-        return "redirect:/agendamentos/listar";
+        return "redirect:/agendamentos/listar?ativos=true";
     }
 
     @RequestMapping(value = "/atualizar_agendamento/{id}", method = RequestMethod.GET)

@@ -129,11 +129,6 @@
                    th:text="#{cadremregister.newschedule}">
                 </a>
                 <br>
-                <a th:if="${param.ativos[0] == 'true'}" href="/agendamentos?ativos=false" class="button new">Agendamentos finalizados</a>
-                <br th:if="${param.ativos[0] == 'true'}">
-                <a th:if="${param.ativos[0] == 'false'}" href="/agendamentos?ativos=true" class="button new">Agendamentos ativos</a>
-                <br th:if="${param.ativos[0] == 'false'}">
-                <a id="view-remedy" href="/remedios" class="button new">Visualizar remedios</a>
             </section>
         </main>
 
