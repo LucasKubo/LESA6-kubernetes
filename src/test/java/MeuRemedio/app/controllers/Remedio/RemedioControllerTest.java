@@ -81,6 +81,34 @@ public class RemedioControllerTest {
         Assertions.assertEquals(rm, "cadastros/CadastroRemedios");
     }
 
+    @DisplayName("Deve retornar a tela de listar remedios com Modal")
+    @Test
+    public void verTelaCadastroRemediosModal() {
+        List<Remedio> remedios = Collections.singletonList(RemedioMock.remedioMock());
+
+
+        Mockito.when(validateAuthentication.auth()).thenReturn(true);
+        Mockito.when(userSessionService.returnIdUsuarioLogado()).thenReturn(1L);
+        Mockito.when(remedioRepository.findAllByUsuario(any())).thenReturn(new ArrayList<>());
+
+        String rm = remedioController.telaCadastroRemedioModal(modelMap);
+        Assertions.assertEquals(rm, "listas/ListaRemediosB");
+    }
+
+    @DisplayName("Deve retornar a tela de listar remedios com Modal")
+    @Test
+    public void verTelaListar() {
+        List<Remedio> remedios = Collections.singletonList(RemedioMock.remedioMock());
+
+
+        Mockito.when(validateAuthentication.auth()).thenReturn(true);
+        Mockito.when(userSessionService.returnIdUsuarioLogado()).thenReturn(1L);
+        Mockito.when(remedioRepository.findAllByUsuario(any())).thenReturn(new ArrayList<>());
+
+        String rm = remedioController.listaRemedios(modelMap);
+        Assertions.assertEquals(rm, "listas/ListaRemedios");
+    }
+
     @DisplayName("Deve retornar Cadastrar remedios")
     @Test
     public void viewCadastroAgendamento() {
@@ -93,7 +121,7 @@ public class RemedioControllerTest {
         Assertions.assertEquals(result, "cadastros/CadastroRemedios");
     }
 
-    @DisplayName("Deve retornar falso ao deletar um remedio não cadastrado") // OK
+    @DisplayName("Deve retornar falso ao deletar um remedio não cadastrado")
     @Test
     public void deletarError() {
         Remedio remedio = RemedioMock.remedioMock();
@@ -123,4 +151,3 @@ public class RemedioControllerTest {
         Assertions.assertEquals(result, "redirect:/remedios/remedios_cadastro");
     }
 }
-
