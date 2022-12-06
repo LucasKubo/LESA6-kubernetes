@@ -317,7 +317,7 @@ td.expense{
     background: -moz-linear-gradient(top, #6bffe9, #6bffe9);
     background: -ms-linear-gradient(top, #6bffe9, #6bffe9);
     background: -o-linear-gradient(top, #6bffe9, #6bffe9);
-    padding: 7px 14px;
+    padding: 2px 5px;
     -webkit-border-radius: 14px;
     -moz-border-radius: 14px;
     border-radius: 14px;
