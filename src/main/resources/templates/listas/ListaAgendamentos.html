@@ -129,10 +129,15 @@
                    th:text="#{cadremregister.newschedule}">
                 </a>
                 <br>
-                <a id="view-remedy" href="/remedios" class="button new" th:text="#{cadage.visu}"> Visualizar remedios</a>
+                <a th:if="${param.ativos[0] == 'true'}" href="/agendamentos?ativos=false" class="button new">Agendamentos finalizados</a>
+                <br th:if="${param.ativos[0] == 'true'}">
+                <a th:if="${param.ativos[0] == 'false'}" href="/agendamentos?ativos=true" class="button new">Agendamentos ativos</a>
+                <br th:if="${param.ativos[0] == 'false'}">
+                <a id="view-remedy" href="/remedios" class="button new">Visualizar remedios</a>
             </section>
         </main>
 
+        <div class="overlay"></div>
         <!-- Scripts da página -->
         <script type="module" src="/script/requestPermisionToPushNotificaion.js"></script>
         <!-- jQuery CDN - Slim version (=without AJAX) -->
@@ -157,7 +162,6 @@
         <script src="/script/bootstrap-multiselect.js"></script>
     </div>
 </div>
-<div class="overlay"></div>
 <script src="/script/ordenacao.js"> </script>
 </body>
 </html>

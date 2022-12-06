@@ -79,14 +79,14 @@ class AgendamentoControllerTest {
         Mockito.when(validateAuthentication.auth()).thenReturn(true);
         Mockito.when(agendamentoRepository.findAllByUsuarioID(any())).thenReturn(Collections.singletonList(AgendamentoMock.agendamentoMock()));
         Mockito.when(intervaloDiasRepository.findById(any())).thenReturn(Optional.of(AgendamentoMock.intervaloDias()));
-        String result = agendamentoController.viewAgendamentos(modelMap);
+        String result = agendamentoController.viewAgendamentos(modelMap, "ativos");
         Assertions.assertEquals(result, "listas/ListaAgendamentos");
     }
 
     @DisplayName("Deve retornar Login na Lista Agendamento")
     @Test
     public void viewAgendamentosLogin(){
-        String result = agendamentoController.viewAgendamentos(modelMap);
+        String result = agendamentoController.viewAgendamentos(modelMap, "ativos");
         Assertions.assertEquals(result, "Login");
     }
 

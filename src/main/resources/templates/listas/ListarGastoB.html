@@ -21,6 +21,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
     <!-- Our Custom CSS -->
     <link rel="stylesheet" href="/style/homeStyle.css">
+    <link rel="stylesheet" href="/style/listarGastoStyle.css">
     <!--   <link rel="stylesheet" href="/style/cadastroRemedioStyle.css">-->
 
     <!-- Scrollbar Custom CSS -->
@@ -53,6 +54,20 @@
         <main class="container-table text-center">
             <section id="gasto">
                 <h2 th:text="#{listfin.formtitle}"></h2>
+                <div class="btn-group btn-group-toggle filtro" data-toggle="buttons">
+                    <label class="btn btn-secondary" onclick="window.location='/remedios/controle_de_gastos/listar?time=99';">
+                        <input type="radio" name="options" id="option1" autocomplete="off" th:checked="${param.time[0] == '99'}"> Antigos
+                    </label>
+                    <label class="btn btn-secondary" th:classappend="${param.time} ? active" onclick="window.location='/remedios/controle_de_gastos/listar?time=1';">
+                        <input type="radio" name="options" id="option3" autocomplete="off" th:checked="${param.time[0] == '1'}"> Mês atual
+                    </label>
+                    <label class="btn btn-secondary" th:classappend="${param.time} ? active" onclick="window.location='/remedios/controle_de_gastos/listar?time=0';">
+                        <input type="radio" name="options" id="option4" autocomplete="off" th:checked="${param.time[0] == '0'}"> Futuros
+                    </label>
+                    <label class="btn btn-secondary" th:classappend="${param.time} ? active" onclick="window.location='/remedios/controle_de_gastos/listar?time=all';">
+                        <input type="radio" name="options" id="option5" autocomplete="off" th:checked="${param.time[0] == 'all'}"> Todos
+                    </label>
+                </div>
                 <table class="table table-striped container-table" id = "data-table">
                     <caption> </caption>
                     <thead>

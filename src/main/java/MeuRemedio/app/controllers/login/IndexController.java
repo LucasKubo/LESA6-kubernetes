@@ -158,7 +158,7 @@ public class IndexController {
 
     @RequestMapping(value = "/")
     public String Index(HttpServletRequest request){
-        if (validateAuthentication.auth() != true){
+        if (!validateAuthentication.auth()){
             Cookie[] cookies = request.getCookies();
             if(cookies!=null) {
                 for (Cookie cookie : cookies) {

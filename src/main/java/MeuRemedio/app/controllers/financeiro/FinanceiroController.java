@@ -8,16 +8,19 @@ import MeuRemedio.app.models.usuarios.Usuario;
 import MeuRemedio.app.repository.DashBoardsRepository;
 import MeuRemedio.app.repository.FinanceiroRepository;
 import MeuRemedio.app.repository.RemedioRepository;
+import MeuRemedio.app.service.FinanceiroService;
 import MeuRemedio.app.service.UserSessionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.ServiceConfigurationError;
+import java.util.stream.Collectors;
 
 @Controller
 public class FinanceiroController {
@@ -34,23 +37,28 @@ public class FinanceiroController {
     @Autowired
     UserSessionService userSessionService;
 
+    @Autowired
+    FinanceiroService financeiroService;
+
     @GetMapping(value = "/remedios/controle_de_gastos")
-    public String telaDeGastos (Model model){
+    public String telaDeGastos (Model model, @RequestParam() String time){
         Usuario usuarioID = new Usuario();
         usuarioID.setId(userSessionService.returnIdUsuarioLogado());
 
-        Iterable<Financeiro> financeiro = controleFinanceiro.findAllByUsuarioID(usuarioID.getId());
+        List<Financeiro> financeiro = controleFinanceiro.findAllByUsuarioID(usuarioID.getId());
+        financeiro = financeiroService.filtrarPorTempo(financeiro, time);
         model.addAttribute("financeiro", financeiro);
 
         return "listas/ListarGasto";
     }
 
     @GetMapping(value = "/remedios/controle_de_gastos/listar")
-    public String telaDeGastosB (Model model){
+    public String telaDeGastosB (Model model, @RequestParam() String time){
         Usuario usuarioID = new Usuario();
         usuarioID.setId(userSessionService.returnIdUsuarioLogado());
 
-        Iterable<Financeiro> financeiro = controleFinanceiro.findAllByUsuarioID(usuarioID.getId());
+        List<Financeiro> financeiro = controleFinanceiro.findAllByUsuarioID(usuarioID.getId());
+        financeiro = financeiroService.filtrarPorTempo(financeiro, time);
         model.addAttribute("financeiro", financeiro);
 
         return "listas/ListarGastoB";
@@ -82,7 +90,7 @@ public class FinanceiroController {
             dashBoardsRepository.save(dash);
             controleFinanceiro.save(financeiroMedicamento);
 
-            return "redirect:/remedios/controle_de_gastos";
+            return "redirect:/remedios/controle_de_gastos?time=1";
 
         }catch (ServiceConfigurationError serviceConfigurationError) {
             return templateError();
@@ -94,7 +102,7 @@ public class FinanceiroController {
         if (verificarPorId(id)) {
             controleFinanceiro.deleteById(id);
 
-            return "redirect:/remedios/controle_de_gastos/listar";
+            return "redirect:/remedios/controle_de_gastos/listar?time=1";
         }
         return templateError();
     }
@@ -133,7 +141,7 @@ public class FinanceiroController {
                 financeiro.setRemedio(remedio);
                 controleFinanceiro.save(financeiro);
             }
-            return "redirect:/remedios/controle_de_gastos/listar";
+            return "redirect:/remedios/controle_de_gastos/listar?time=1";
 
         }catch (NullPointerException e){
             return templateError() + e;
@@ -170,7 +178,7 @@ public class FinanceiroController {
         dashBoardsRepository.save(dash);
         controleFinanceiro.save(financeiroMedicamento);
 
-        return "redirect:/remedios/controle_de_gastos/listar";
+        return "redirect:/remedios/controle_de_gastos/listar?time=1";
     }
 
     public boolean verificarPorId (long id ) {
