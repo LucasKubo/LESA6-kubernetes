@@ -48,6 +48,7 @@ class AgendamentoControllerTest {
     UserSessionService userSessionService;
     @Mock
     AgendamentosHorariosRepository agendamentosHorariosRepository;
+
     @Mock
     CalculaHorariosNotificacao calculaHorariosNotificacao;
 
