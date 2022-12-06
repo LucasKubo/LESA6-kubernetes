@@ -2,12 +2,10 @@ package MeuRemedio.app.controllers.Remedio;
 
 import MeuRemedio.app.controllers.remedio.RemedioController;
 import MeuRemedio.app.mocks.AgendamentoMock;
+import MeuRemedio.app.mocks.FinanceiroMock;
 import MeuRemedio.app.mocks.RemedioMock;
 import MeuRemedio.app.models.remedios.Remedio;
-import MeuRemedio.app.repository.AgendamentoRepository;
-import MeuRemedio.app.repository.AgendamentosHorariosRepository;
-import MeuRemedio.app.repository.IntervaloDiasRepository;
-import MeuRemedio.app.repository.RemedioRepository;
+import MeuRemedio.app.repository.*;
 import MeuRemedio.app.service.CalculaHorariosNotificacao;
 import MeuRemedio.app.service.UserSessionService;
 import MeuRemedio.app.service.utils.ValidateAuthentication;
@@ -20,6 +18,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.util.ReflectionTestUtils;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -45,18 +44,25 @@ public class RemedioControllerTest {
     @Mock
     RemedioRepository remedioRepository;
 
-    @Mock
+    @InjectMocks
     RemedioController remedioController;
 
     @Mock
     UserSessionService userSessionService;
+    @Mock
+    FinanceiroRepository controleFinanceiro;
+
+    @Mock
+    AgendamentoRepository agendamentoRepository;
+
 
     @BeforeEach
     public void init(){
-        ReflectionTestUtils.setField(remedioController,"remedioController", remedioController);
         ReflectionTestUtils.setField(remedioController, "validateAuthentication", validateAuthentication);
         ReflectionTestUtils.setField(remedioController, "userSessionService", userSessionService);
         ReflectionTestUtils.setField(remedioController, "remedioRepository", remedioRepository);
+        ReflectionTestUtils.setField(remedioController, "controleFinanceiro", controleFinanceiro);
+        ReflectionTestUtils.setField(remedioController, "agendamentoRepository", agendamentoRepository);
     }
 
 
@@ -90,8 +96,12 @@ public class RemedioControllerTest {
     @Test
     public void deletar(){
         Remedio remedio = RemedioMock.remedioMock();
+        Mockito.when(remedioRepository.existsById(any())).thenReturn(true);
+        Mockito.when(remedioRepository.findById(1l)).thenReturn(remedio);
+        Mockito.when(controleFinanceiro.findAllByRemedio(remedio)).thenReturn(Collections.singletonList(FinanceiroMock.gastoMock()));
+        Mockito.when(agendamentoRepository.findAllByRemedio(remedio)).thenReturn(Collections.singletonList(AgendamentoMock.agendamentoMock()));
         String del = remedioController.deletarRemedio(remedio.getRM_ID());
-        Assertions.assertEquals(del, "redirect:/Remedios");
+        Assertions.assertEquals(del, "redirect:/remedios");
     }
 
     @DisplayName("Deve retornar erro ao deletar um remedio não cadastrado")
