@@ -276,10 +276,6 @@ a.button.new:hover{
     transform: rotate(45deg) translateY(0.5rem);
 }
 
-#agendamentosDoDia{
-    width:120%;
-}
-
 #dashBoards{
     width: 98%;
     margin: 0 auto;
