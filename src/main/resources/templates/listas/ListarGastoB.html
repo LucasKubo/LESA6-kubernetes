@@ -58,9 +58,6 @@
                     <label class="btn btn-secondary" onclick="window.location='/remedios/controle_de_gastos/listar?time=99';">
                         <input type="radio" name="options" id="option1" autocomplete="off" th:checked="${param.time[0] == '99'}"> Antigos
                     </label>
-                    <label class="btn btn-secondary" onclick="window.location='/remedios/controle_de_gastos/listar?time=3';">
-                        <input type="radio" name="options" id="option2" autocomplete="off" th:checked="${param.time[0] == '3'}"> 3 Meses
-                    </label>
                     <label class="btn btn-secondary" th:classappend="${param.time} ? active" onclick="window.location='/remedios/controle_de_gastos/listar?time=1';">
                         <input type="radio" name="options" id="option3" autocomplete="off" th:checked="${param.time[0] == '1'}"> Mês atual
                     </label>

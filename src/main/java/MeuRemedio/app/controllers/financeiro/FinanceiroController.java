@@ -8,6 +8,7 @@ import MeuRemedio.app.models.usuarios.Usuario;
 import MeuRemedio.app.repository.DashBoardsRepository;
 import MeuRemedio.app.repository.FinanceiroRepository;
 import MeuRemedio.app.repository.RemedioRepository;
+import MeuRemedio.app.service.FinanceiroService;
 import MeuRemedio.app.service.UserSessionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -36,12 +37,16 @@ public class FinanceiroController {
     @Autowired
     UserSessionService userSessionService;
 
+    @Autowired
+    FinanceiroService financeiroService;
+
     @GetMapping(value = "/remedios/controle_de_gastos")
-    public String telaDeGastos (Model model){
+    public String telaDeGastos (Model model, @RequestParam() String time){
         Usuario usuarioID = new Usuario();
         usuarioID.setId(userSessionService.returnIdUsuarioLogado());
 
-        Iterable<Financeiro> financeiro = controleFinanceiro.findAllByUsuarioID(usuarioID.getId());
+        List<Financeiro> financeiro = controleFinanceiro.findAllByUsuarioID(usuarioID.getId());
+        financeiro = financeiroService.filtrarPorTempo(financeiro, time);
         model.addAttribute("financeiro", financeiro);
 
         return "listas/ListarGasto";
@@ -52,27 +57,8 @@ public class FinanceiroController {
         Usuario usuarioID = new Usuario();
         usuarioID.setId(userSessionService.returnIdUsuarioLogado());
 
-        LocalDate now = LocalDate.now();
         List<Financeiro> financeiro = controleFinanceiro.findAllByUsuarioID(usuarioID.getId());
-
-        if(time.equals("1")){
-            financeiro = financeiro.stream()
-                    .filter((e) -> LocalDate.parse(e.getData()).getMonth() == now.getMonth() && LocalDate.parse(e.getData()).getYear() == now.getYear())
-                    .collect(Collectors.toList());
-        } else if (time.equals("3")) {
-            financeiro = financeiro.stream()
-                    .filter((e) -> LocalDate.parse(e.getData()).isAfter(now.minusMonths(2)) && LocalDate.parse(e.getData()).isBefore(now))
-                    .collect(Collectors.toList());
-        } else if (time.equals("0")) {
-            financeiro = financeiro.stream()
-                    .filter((e) -> LocalDate.parse(e.getData()).isAfter(now))
-                    .collect(Collectors.toList());
-        } else if (time.equals("99")){
-            financeiro = financeiro.stream()
-                    .filter((e) -> LocalDate.parse(e.getData()).isBefore(now))
-                    .collect(Collectors.toList());
-        }
-
+        financeiro = financeiroService.filtrarPorTempo(financeiro, time);
         model.addAttribute("financeiro", financeiro);
 
         return "listas/ListarGastoB";
@@ -104,7 +90,7 @@ public class FinanceiroController {
             dashBoardsRepository.save(dash);
             controleFinanceiro.save(financeiroMedicamento);
 
-            return "redirect:/remedios/controle_de_gastos";
+            return "redirect:/remedios/controle_de_gastos?time=1";
 
         }catch (ServiceConfigurationError serviceConfigurationError) {
             return templateError();
