@@ -136,8 +136,8 @@
                                     <tbody>
                                     <div class="" th:each="horarios : ${horarios}">
                                         <tr class="horariosExibir">
-                                            <td><p><span
-                                                        th:text="${#strings.substring(horarios.agendamento.remedio, 1, #strings.length(horarios.agendamento.remedio)-1)}"></span>
+                                            <td><p><a th:href="@{/atualizar_agendamento/{id} (id = ${horarios.agendamento.id})}"><span
+                                                        th:text="${#strings.substring(horarios.agendamento.remedio, 1, #strings.length(horarios.agendamento.remedio)-1)}"></span> </a>
                                             </td>
                                             <td><p><span
                                                         th:text="${#temporals.format(horarios.id.horaDataNotificacao, 'HH:mm')}"
@@ -300,9 +300,7 @@
                 var horariosExibir = document.getElementsByClassName("horariosExibir")
                 var currentDate = new Date().toLocaleDateString("pt-BR");
                 dataSelecionar.innerHTML = currentDate;
-                console.log(currentDate)
                 for (i = 0; i< horariosData.length; i++){
-                    console.log(horariosData[i].innerHTML)
                     if (horariosData[i].innerHTML != currentDate){
                         horariosExibir[i].setAttribute("hidden", true)
                     }
@@ -344,7 +342,6 @@
         <script th:inline="javascript">
             $(function () {
                 var linguagem =  [[${#locale.language}]]
-                console.log(linguagem)
                 if (linguagem != 'en'){
                     var gasto = "Gastos "
                     var lista = ["JAN", "FEV", "MAR", "ABR", "MAI", "JUN", "JUL", "AGO", "SET", "OUT", "NOV", "DEZ"]
