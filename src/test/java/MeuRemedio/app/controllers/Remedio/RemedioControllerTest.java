@@ -1,37 +1,25 @@
 package MeuRemedio.app.controllers.Remedio;
 
 import MeuRemedio.app.controllers.remedio.RemedioController;
-import MeuRemedio.app.mocks.AgendamentoMock;
-import MeuRemedio.app.mocks.RemedioMock;
-import MeuRemedio.app.models.remedios.Remedio;
-import MeuRemedio.app.repository.AgendamentoRepository;
-import MeuRemedio.app.repository.AgendamentosHorariosRepository;
-import MeuRemedio.app.repository.IntervaloDiasRepository;
-import MeuRemedio.app.repository.RemedioRepository;
-import MeuRemedio.app.service.CalculaHorariosNotificacao;
-import MeuRemedio.app.service.UserSessionService;
 import MeuRemedio.app.service.utils.ValidateAuthentication;
+import org.springframework.test.util.ReflectionTestUtils;
+import MeuRemedio.app.repository.RemedioRepository;
+import org.mockito.junit.jupiter.MockitoExtension;
+import org.junit.jupiter.api.extension.ExtendWith;
+import MeuRemedio.app.service.UserSessionService;
+import static org.mockito.ArgumentMatchers.any;
+import MeuRemedio.app.models.remedios.Remedio;
+import org.junit.jupiter.api.DisplayName;
+import MeuRemedio.app.mocks.RemedioMock;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.Mockito;
-import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.test.util.ReflectionTestUtils;
-import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
-
-import javax.servlet.http.HttpServletRequest;
-import java.util.ArrayList;
+import org.junit.jupiter.api.Test;
 import java.util.Collections;
+import org.mockito.Mockito;
+import java.util.ArrayList;
+import org.mockito.Mock;
 import java.util.List;
-import java.util.Optional;
-
-import static org.mockito.ArgumentMatchers.any;
-
 
 @ExtendWith(MockitoExtension.class)
 public class RemedioControllerTest {
@@ -59,7 +47,6 @@ public class RemedioControllerTest {
         ReflectionTestUtils.setField(remedioController, "remedioRepository", remedioRepository);
     }
 
-
     @DisplayName("Deve retornar a lista de remedios")
     @Test
     public void verListaRemedios(){
@@ -86,6 +73,7 @@ public class RemedioControllerTest {
         Assertions.assertEquals(result, "cadastros/CadastroRemedios");
     }
 
+
     @DisplayName("Deve retornar falso ao deletar um remedio não cadastrado") // OK
     @Test
     public void deletarError(){
@@ -102,6 +90,7 @@ public class RemedioControllerTest {
         String del = remedioController.deletarRemedio(remedio.getRM_ID());
         Assertions.assertEquals(del, "redirect:/remedios");
     }
+
 
     @DisplayName("Deve retornar falso ao cadastrar um remedio invalido") // OK
     @Test
