@@ -85,10 +85,24 @@
                                        id="AG_DataInicio"
                                        class="formulario-input"
                                        name="AG_DataInicio"
-                                       onblur= "validaDataFinal()"
+                                       onblur= "validaDataFinal(); verificaDiasAgendamento()"
                                        required="required"
                                        th:value="${agendamento.dataInicio}"
                                 >
+                            </div>
+
+                            
+                            <div id="quantidadeDias" class="form-agendamento form-group">
+                                <label class="input-label margin-top">Quantidade de dias</label>
+                                <input placeholder="Quantidade de dias"
+                                       type="number"
+                                       class="formulario-input"
+                                       id="diasAgendamento"
+                                       name="diasAgendamento"
+                                       min="0"
+                                       max="1825"
+                                       onblur="verificaDataFinal()"
+                                       />
                             </div>
 
                             <div class="form-agendamento form-group">
@@ -97,7 +111,7 @@
                                        id="AG_DataFinal"
                                        class="formulario-input"
                                        name="AG_DataFinal"
-                                       onblur= "validaDataFinal()"
+                                       onblur= "validaDataFinal(); verificaDiasAgendamento()"
                                        required=""
                                        th:value="${agendamento.dataFinal}"
                                 >
@@ -204,12 +218,56 @@
 
     <script type="text/javascript">
         $(document).ready(function () {
-            if ([[${intervaloDias?.intervaloDias}]] != null){
-                var botao = document.getElementById("intervalo-check");
-                botao.click();
-            }
+            verificaDiasAgendamento()
         });
     </script>
+
+        <script>
+            function verificaDataFinal(){
+                var quantidadeDias = document.getElementById('diasAgendamento').value
+
+                console.log(quantidadeDias)
+                var dataInicial = document.getElementById('AG_DataInicio').value
+                console.log(dataInicial)
+                if (dataInicial != null){
+                    const [year, month, day] = dataInicial.split('-');
+                    const date = new Date(+year, month - 1, +day);
+                    console.log(date)
+
+                    const dataFinal = new Date();
+
+                    dataFinal.setFullYear(date.getFullYear())
+                    dataFinal.setMonth(date.getMonth())
+                    dataFinal.setDate(date.getDate() + Number(quantidadeDias))
+
+                    console.log(dataFinal)
+                    document.getElementById('AG_DataFinal').value = dataFinal.getFullYear() + '-' + ("0" + (dataFinal.getMonth() + 1)).slice(-2) + '-' + ("0" + dataFinal.getDate()).slice(-2)
+                }
+            }
+        </script>
+
+        <script>
+            function verificaDiasAgendamento(){
+                var dataInicial = document.getElementById('AG_DataInicio').value
+                var dataFinal = document.getElementById('AG_DataFinal').value
+
+                if(dataInicial != null && dataFinal != null){
+                    const [year, month, day] = dataInicial.split('-');
+                    const date = new Date(+year, month - 1, +day);
+                        
+                    const [ano, mes, dia] = dataFinal.split('-');
+                    const dateFinal = new Date(+ano, mes - 1, +dia);
+
+                    const diffTempo = dateFinal - date;
+                    const diffDias = Math.ceil(diffTempo / (1000 * 60 * 60 * 24)); 
+                    if(diffDias < 0){
+                        document.getElementById('diasAgendamento').value = null;
+                    } else {
+                        document.getElementById('diasAgendamento').value = diffDias;
+                    }
+                }
+            }
+        </script>
 
     <script type="text/javascript">
         $(function () {
