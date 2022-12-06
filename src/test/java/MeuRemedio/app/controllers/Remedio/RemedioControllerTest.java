@@ -110,7 +110,7 @@ public class RemedioControllerTest {
         Mockito.when(controleFinanceiro.findAllByRemedio(remedio)).thenReturn(Collections.singletonList(FinanceiroMock.gastoMock()));
         Mockito.when(agendamentoRepository.findAllByRemedio(remedio)).thenReturn(Collections.singletonList(AgendamentoMock.agendamentoMock()));
         String del = remedioController.deletarRemedio(remedio.getRM_ID());
-        Assertions.assertEquals(del, "redirect:/Remedios");
+        Assertions.assertEquals(del, "redirect:/remedios");
     }
 
     @DisplayName("Deve retornar falso ao cadastrar um remedio invalido") // OK
