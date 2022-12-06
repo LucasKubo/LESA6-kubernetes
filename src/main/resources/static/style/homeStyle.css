@@ -274,7 +274,7 @@ a.button.new:hover{
 }
 #agendamentos{
     display: block;
-    width: 110%;
+    width: 100%;
     overflow-x: auto;
     margin-bottom: 6rem;
 }
@@ -290,6 +290,11 @@ a.button.new:hover{
     border-width: 0 0.1em 0.1em 0;
     transform: rotate(45deg) translateY(0.5rem);
 }
+
+#agendamentosDoDia{
+    width:120%;
+}
+
 #dashBoards{
     width: 98%;
     margin: 0 auto;
