@@ -191,7 +191,7 @@ class AgendamentoControllerTest {
         Mockito.when(agendamentoRepository.save(any())).thenReturn(AgendamentoMock.agendamentoMock());
         String result = agendamentoController.atualizarDadosAgendamento(1, remedios,"2022-01-01", "00:00",
                 "2022-01-02", 1L, null);
-        Assertions.assertEquals(result, "redirect:/agendamentos");
+        Assertions.assertEquals(result, "redirect:/agendamentos?ativos=true");
     }
     @DisplayName("Deve Atualizar Dados Agendamento com intervalo")
     @Test
@@ -200,6 +200,6 @@ class AgendamentoControllerTest {
         Mockito.when(agendamentoRepository.existsById(any())).thenReturn(true);
         String result = agendamentoController.atualizarDadosAgendamento(1, remedios,"2022-01-01", "00:00",
                 "2022-01-02", 1L, 1l);
-        Assertions.assertEquals(result, "redirect:/agendamentos");
+        Assertions.assertEquals(result, "redirect:/agendamentos?ativos=true");
     }
 }

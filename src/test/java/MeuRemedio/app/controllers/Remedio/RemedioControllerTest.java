@@ -1,10 +1,12 @@
 
 package MeuRemedio.app.controllers.Remedio;
 
+import MeuRemedio.app.controllers.agendamento.AgendamentoController;
 import MeuRemedio.app.controllers.remedio.RemedioController;
 import MeuRemedio.app.mocks.AgendamentoMock;
 import MeuRemedio.app.mocks.FinanceiroMock;
 import MeuRemedio.app.mocks.RemedioMock;
+import MeuRemedio.app.mocks.UsuarioMock;
 import MeuRemedio.app.models.remedios.Remedio;
 import MeuRemedio.app.repository.*;
 import MeuRemedio.app.service.CalculaHorariosNotificacao;
@@ -56,6 +58,11 @@ public class RemedioControllerTest {
     @Mock
     AgendamentoRepository agendamentoRepository;
 
+    @Mock
+    AgendamentoController agendamentoController;
+    @Mock
+    UsuarioRepository usuarioRepository;
+
 
     @BeforeEach
     public void init() {
@@ -64,6 +71,7 @@ public class RemedioControllerTest {
         ReflectionTestUtils.setField(remedioController, "remedioRepository", remedioRepository);
         ReflectionTestUtils.setField(remedioController, "controleFinanceiro", controleFinanceiro);
         ReflectionTestUtils.setField(remedioController, "agendamentoRepository", agendamentoRepository);
+        ReflectionTestUtils.setField(remedioController, "agendamentoController", agendamentoController);
     }
 
 
@@ -95,7 +103,7 @@ public class RemedioControllerTest {
         Assertions.assertEquals(rm, "listas/ListaRemediosB");
     }
 
-    @DisplayName("Deve retornar a tela de listar remedios com Modal")
+    @DisplayName("Deve retornar a tela de listar remedios")
     @Test
     public void verTelaListar() {
         List<Remedio> remedios = Collections.singletonList(RemedioMock.remedioMock());
@@ -145,6 +153,9 @@ public class RemedioControllerTest {
     @DisplayName("Deve cadastrar um remedio ")
     @Test
     public void CadastrarRemedios() throws Exception {
+        //Mockito.when(agendamentoController.cadastrarAgendamento(any(), any(), any(), any(), any(), any())).thenReturn("string");
+        Mockito.when(userSessionService.returnUsernameUsuario()).thenReturn("1");
+        Mockito.when(usuarioRepository.findByEmail(any())).thenReturn(UsuarioMock.usuarioMock());
         String result = remedioController.CadastroRemedio("Doralgina", "10", "MG", "True", true,
                 "2022-01-01", "00:00", "2022-01-01", 24L, 2L, "2022-01-01", 25.00, 1L);
 
