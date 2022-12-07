@@ -121,7 +121,7 @@ function validaDataFinal(){
         console.log(diferenca)
         if (diferenca > 1825){
             errorDataLimite.innerHTML = "Não é possível cadastrar agendamentos com prazo maior de 5 anos.";
-            document.querySelector('#confirmar').disabled = false;
+            document.querySelector('#confirmar').disabled = true;
         }
     }
     console.log(dataFinalData)

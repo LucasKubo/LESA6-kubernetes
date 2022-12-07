@@ -181,26 +181,32 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js" integrity="sha384-QHPBqENOg6UKmsoXiXjrEEu2W4rJZaCHDTqIOI9JqSg6dI3chbQ+0kXAYUQLEDYn" crossorigin="anonymous"></script>
 
         <script>
-                                        var password = document.getElementById("US_Senha"), password2 = document.getElementById("US_ConfirmSenha")
-                                                , confirm_password = document.getElementById("US_NovaSenha");
+            var password = document.getElementById("US_Senha"), password2 = document.getElementById("US_ConfirmSenha")
+                , confirm_password = document.getElementById("US_NovaSenha");
 
-                                        function validatePassword() {
-
-                                            if (password.value == confirm_password.value) {
-                                                confirm_password.setCustomValidity("A nova senha precisa ser diferente da anterior.");
-
-                                            } else if (password.value != confirm_password.value) {
-
-                                                if (confirm_password.value != password2.value) {
-                                                    password2.setCustomValidity("Senhas diferentes!");
-
-                                                } else {
-                                                    password2.setCustomValidity('');
-                                                }
-                                            }
-                                        }
-                                        password.onchange = validatePassword;
-                                        password2.onkeyup = validatePassword;
+            function validatePassword() {
+                password2.setCustomValidity('');         
+                confirm_password.setCustomValidity('');
+                if(password2.value == null && confirm_password.value == null){
+                    password2.setCustomValidity('');         
+                    confirm_password.setCustomValidity('');
+                } else {
+                    if (confirm_password.value != password2.value) {
+                            password2.setCustomValidity("Senhas diferentes!");
+                    }
+                    if (password.value == password2.value && password.value == confirm_password.value) {
+                        confirm_password.setCustomValidity("A nova senha precisa ser diferente da anterior.");
+                    } 
+                    else if(password.value != password2.value && password.value != confirm_password.value && password2.value == confirm_password.value){
+                            password2.setCustomValidity('');         
+                            confirm_password.setCustomValidity('');
+                    }
+                }
+            }
+            password.onchange = validatePassword;
+            password2.onchange = validatePassword;
+            confirm_password.onchange = validatePassword;
+            password2.onkeyup = validatePassword;
         </script>
         <script>
             var $spnMostrarSenha = $('#spnMostrarSenha');
