@@ -20,7 +20,7 @@
 
     <link rel="icon" href="/static/images/icon.svg"/>
 
-    <title>Sobre nós</title>
+    <title th:text="#{contact.title}">Sobre nós</title>
 
     <!-- Bootstrap CSS CDN -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"
@@ -64,37 +64,32 @@
     <div class="container">
 
         <p>
-            A aplicação 'Meu Remédio' foi inicialmente idealizada e desenvolvida por :
+            <span th:text="#{contact.firstparagraph-firstline}"></span>
             <a target="Any" href="https://github.com/any-gomes"><strong>Any Gomes</strong></a>,
             <a target="Eric" href="https://github.com/EricJSCabral"><strong>Eric Cabral</strong></a>,
             <a target="Guilherme" href="https://github.com/FernandesGuilherme"><strong>Guilherme Lima</strong></a>,
             <a target="Lucas" href="https://github.com/LucasKubo"><strong>Lucas Kubo</strong></a>,
             <a target="Marcus" href="https://github.com/MarcusVini26"><strong>Marcus Vinícius</strong></a> e
             <a target="Pedro" href="https://github.com/PedroHaka"><strong>Pedro Haka</strong></a>.
-            Discentes do Curso de Análise e Desenvolvimento de Sistemas pelo Instituto Federal de São Paulo (SPO).
+            <span th:text="#{contact.firstparagraph-secondline}"></span>
+        </p>
+
+        <p th:text="#{contact.secondparagraph}">
+            
+        </p>
+
+        <p th:text="#{contact.thirdparagraph}">
+            
         </p>
 
         <p>
-            O projeto consiste em auxiliar um devido grupo de usuários que realizam algum tipo de tratamento médico que
-            por sua fez fazem jus ao uso de medicamentos controlados.
-            Auxilia em um controle financeiro, verificação da disponibilidade de medicamentos na rede pública de saúde,
-            controle de horários de uso dos médicos.
+            <span th:text="#{contact.fourthparagraph-firstline}"></span><br>
+            <span th:text="#{contact.fourthparagraph-secondline}"></span>
         </p>
 
         <p>
-            Esse projeto compõe parte do trabalho de conclusão de curso (TCC), orientado pelos professores:
-            José Brás de Araújo e Carlos Henrique Veríssimo, juntamente com Ivan Francolin Martinez como professor
-            convidado para compor a banca.
-        </p>
-
-        <p>
-            Desde já, fica aqui nosso agradecimento a todos os visitantes.<br>
-            Obrigado !
-        </p>
-
-        <p>
-            Atenciosamente, <br>
-            Equipe Meu remédio !
+            <span th:text="#{contact.fifthparagraph-firstline}"></span><br>
+            <span th:text="#{contact.fifthparagraph-secondline}"></span>
         </p>
         <div style="text-align: left">
             <img src="/images/AssMeuRemedio.png" alt="Assinatura">
@@ -103,7 +98,7 @@
         <div class="jumbotron">
             <selection class="jumbotron text-center">
                 <div class="container">
-                    <h3 th:text="#{contact.text}">Entre em contato conosco através dos seguintes canais:</h3>
+                    <h3 th:text="#{contact.footer}"></h3>
                     <h6>
                         E-MAIL: 8balls.integratedproject@gmail.com
                     </h6>
