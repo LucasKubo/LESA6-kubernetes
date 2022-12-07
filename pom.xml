@@ -182,6 +182,7 @@
 						<exclude>MeuRemedio/app/repository/*</exclude>
 						<exclude>MeuRemedio/app/security/*</exclude>
 						<exclude>MeuRemedio/app/service/utils/*</exclude>
+						<exclude>MeuRemedio/app/MeuRemedioApplication.class</exclude>
 					</excludes>
 				</configuration>
 				<executions>

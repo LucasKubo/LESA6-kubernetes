@@ -8,6 +8,7 @@ import MeuRemedio.app.repository.AgendamentoRepository;
 import MeuRemedio.app.repository.AgendamentosHorariosRepository;
 import MeuRemedio.app.repository.IntervaloDiasRepository;
 import MeuRemedio.app.repository.RemedioRepository;
+import MeuRemedio.app.service.AgendamentoService;
 import MeuRemedio.app.service.CalculaHorariosNotificacao;
 import MeuRemedio.app.service.UserSessionService;
 import MeuRemedio.app.service.utils.ValidateAuthentication;
@@ -20,6 +21,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.util.ReflectionTestUtils;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -48,6 +50,7 @@ class AgendamentoControllerTest {
     UserSessionService userSessionService;
     @Mock
     AgendamentosHorariosRepository agendamentosHorariosRepository;
+
     @Mock
     CalculaHorariosNotificacao calculaHorariosNotificacao;
 
@@ -58,6 +61,9 @@ class AgendamentoControllerTest {
 
     @Mock
     HttpServletRequest httpServletRequest;
+
+    @Mock
+    AgendamentoService agendamentoService;
     @InjectMocks
     AgendamentoController agendamentoController;
 
@@ -70,15 +76,28 @@ class AgendamentoControllerTest {
         ReflectionTestUtils.setField(agendamentoController, "remedioRepository", remedioRepository);
         ReflectionTestUtils.setField(agendamentoController, "agendamentosHorariosRepository", agendamentosHorariosRepository);
         ReflectionTestUtils.setField(agendamentoController, "remedioController", remedioController);
+        ReflectionTestUtils.setField(agendamentoController, "agendamentoService", agendamentoService);
     }
 
-    @DisplayName("Deve retornar Lista agendamento")
+    @DisplayName("Deve retornar Lista agendamento antigos")
     @Test
     public void viewAgendamentos(){
         Mockito.when(validateAuthentication.auth()).thenReturn(true);
         Mockito.when(agendamentoRepository.findAllByUsuarioID(any())).thenReturn(Collections.singletonList(AgendamentoMock.agendamentoMock()));
         Mockito.when(intervaloDiasRepository.findById(any())).thenReturn(Optional.of(AgendamentoMock.intervaloDias()));
-        String result = agendamentoController.viewAgendamentos(modelMap, "ativos");
+        Mockito.when(agendamentoService.filtrarPorStatus(any(), any())).thenReturn(Collections.singletonList(AgendamentoMock.agendamentoMock()));
+        String result = agendamentoController.viewAgendamentos(modelMap, "false");
+        Assertions.assertEquals(result, "listas/ListaAgendamentos");
+    }
+
+    @DisplayName("Deve retornar Lista agendamentos ativos")
+    @Test
+    public void viewAgendamentosTrue(){
+        Mockito.when(validateAuthentication.auth()).thenReturn(true);
+        Mockito.when(agendamentoRepository.findAllByUsuarioID(any())).thenReturn(Collections.singletonList(AgendamentoMock.agendamentoMock()));
+        Mockito.when(intervaloDiasRepository.findById(any())).thenReturn(Optional.of(AgendamentoMock.intervaloDias()));
+        Mockito.when(agendamentoService.filtrarPorStatus(any(), any())).thenReturn(Collections.singletonList(AgendamentoMock.agendamentoMock()));
+        String result = agendamentoController.viewAgendamentos(modelMap, "true");
         Assertions.assertEquals(result, "listas/ListaAgendamentos");
     }
 
@@ -95,14 +114,15 @@ class AgendamentoControllerTest {
         Mockito.when(validateAuthentication.auth()).thenReturn(true);
         Mockito.when(agendamentoRepository.findAllByUsuarioID(any())).thenReturn(Collections.singletonList(AgendamentoMock.agendamentoMock()));
         Mockito.when(intervaloDiasRepository.findById(any())).thenReturn(Optional.of(AgendamentoMock.intervaloDias()));
-        String result = agendamentoController.viewAgendamentosB(modelMap);
+        Mockito.when(agendamentoService.filtrarPorStatus(any(),any())).thenReturn(Collections.singletonList(AgendamentoMock.agendamentoMock()));
+        String result = agendamentoController.viewAgendamentosB(modelMap, "ativos");
         Assertions.assertEquals(result, "listas/ListarAg");
     }
 
     @DisplayName("Deve retornar Login na Lista Agendamento")
     @Test
     public void viewAgendamentosLoginB(){
-        String result = agendamentoController.viewAgendamentosB(modelMap);
+        String result = agendamentoController.viewAgendamentosB(modelMap, "ativos");
         Assertions.assertEquals(result, "Login");
     }
 
@@ -143,7 +163,7 @@ class AgendamentoControllerTest {
         List<Remedio> remedios = Collections.singletonList(RemedioMock.remedioMock());
         String result = agendamentoController.cadastrarAgendamento(remedios, "2022-01-01", "00:00",
                 "2022-01-02", 1L, 2L);
-        Assertions.assertEquals(result, "redirect:/agendamentos/listar");
+        Assertions.assertEquals(result, "redirect:/agendamentos/listar?ativos=true");
     }
 
     @DisplayName("Deve Cadastrar agendamento sem intervalo")
@@ -152,7 +172,7 @@ class AgendamentoControllerTest {
         List<Remedio> remedios = Collections.singletonList(RemedioMock.remedioMock());
         String result = agendamentoController.cadastrarAgendamento(remedios, "2022-01-01", "00:00",
                 "2022-01-02", 1L, null);
-        Assertions.assertEquals(result, "redirect:/agendamentos/listar");
+        Assertions.assertEquals(result, "redirect:/agendamentos/listar?ativos=true");
     }
 
     @DisplayName("Deve Cadastrar agendamento pelo Id remedio com intervalo")
@@ -160,7 +180,7 @@ class AgendamentoControllerTest {
     public void cadastrarAgendamentoB(){
         String result = agendamentoController.cadastrarAgendamentoRemedio(1, "2022-01-01", "00:00",
                 "2022-01-02", 1L, 2L);
-        Assertions.assertEquals(result, "redirect:/agendamentos/listar");
+        Assertions.assertEquals(result, "redirect:/agendamentos/listar?ativos=true");
     }
 
     @DisplayName("Deve Cadastrar agendamento pelo Id remedio sem intervalo")
@@ -168,7 +188,7 @@ class AgendamentoControllerTest {
     public void cadastrarAgendamentoSemIntervaloB(){
         String result = agendamentoController.cadastrarAgendamentoRemedio(1, "2022-01-01", "00:00",
                 "2022-01-02", 1L, null);
-        Assertions.assertEquals(result, "redirect:/agendamentos/listar");
+        Assertions.assertEquals(result, "redirect:/agendamentos/listar?ativos=true");
     }
 
     @DisplayName("Deve Atualizar Dados Agendamento sem intervalo")
@@ -180,7 +200,7 @@ class AgendamentoControllerTest {
         Mockito.when(agendamentoRepository.save(any())).thenReturn(AgendamentoMock.agendamentoMock());
         String result = agendamentoController.atualizarDadosAgendamento(1, remedios,"2022-01-01", "00:00",
                 "2022-01-02", 1L, null);
-        Assertions.assertEquals(result, "redirect:/agendamentos");
+        Assertions.assertEquals(result, "redirect:/agendamentos?ativos=true");
     }
     @DisplayName("Deve Atualizar Dados Agendamento com intervalo")
     @Test
@@ -189,6 +209,60 @@ class AgendamentoControllerTest {
         Mockito.when(agendamentoRepository.existsById(any())).thenReturn(true);
         String result = agendamentoController.atualizarDadosAgendamento(1, remedios,"2022-01-01", "00:00",
                 "2022-01-02", 1L, 1l);
-        Assertions.assertEquals(result, "redirect:/agendamentos");
+        Assertions.assertEquals(result, "redirect:/agendamentos?ativos=true");
+    }
+
+    @DisplayName("Deve Atualizar Dados Agendamento adicionando intervalo")
+    @Test
+    public void atualizarDadosAgendamentoAddIntervalo(){
+        List<Remedio> remedios = Collections.singletonList(RemedioMock.remedioMock());
+        Mockito.when(agendamentoRepository.existsById(any())).thenReturn(true);
+        Mockito.when(intervaloDiasRepository.findById(any())).thenReturn(Optional.of(AgendamentoMock.intervaloDias()));
+        String result = agendamentoController.atualizarDadosAgendamento(1, remedios,"2022-01-01", "00:00",
+                "2022-01-02", 1L, null);
+        Assertions.assertEquals(result, "redirect:/agendamentos?ativos=true");
+    }
+
+    @DisplayName("Deve Atualizar Dados Agendamento alterando intervalo")
+    @Test
+    public void atualizarDadosAgendamentoAlterdIntervalo(){
+        List<Remedio> remedios = Collections.singletonList(RemedioMock.remedioMock());
+        Mockito.when(agendamentoRepository.existsById(any())).thenReturn(true);
+        Mockito.when(intervaloDiasRepository.findById(any())).thenReturn(Optional.of(AgendamentoMock.intervaloDias()));
+        String result = agendamentoController.atualizarDadosAgendamento(1, remedios,"2022-01-01", "00:00",
+                "2022-01-02", 1L, 1L);
+        Assertions.assertEquals(result, "redirect:/agendamentos?ativos=true");
+    }
+    @DisplayName("Deve Falhar ao Atualizar Dados Agendamento")
+    @Test
+    public void atualizarDadosAgendamentoFalha(){
+        List<Remedio> remedios = Collections.singletonList(RemedioMock.remedioMock());
+        Mockito.when(remedioController.templateError()).thenReturn("TemplateError");
+        Mockito.when(agendamentoRepository.existsById(any())).thenReturn(false);
+        String result = agendamentoController.atualizarDadosAgendamento(1, remedios,"2022-01-01", "00:00",
+                "2022-01-02", 1L, 1L);
+        Assertions.assertEquals(result, "TemplateError");
+    }
+
+
+    @DisplayName("Deve exibir página atualizar agendamento")
+    @Test
+    public void atualizarRemedio(){
+        List<Remedio> remedios = Collections.singletonList(RemedioMock.remedioMock());
+        Mockito.when(agendamentoRepository.existsById(any())).thenReturn(true);
+        Mockito.when(userSessionService.returnIdUsuarioLogado()).thenReturn(1L);
+        Mockito.when(remedioRepository.findAllByUsuario(any())).thenReturn(remedios);
+        Mockito.when(agendamentoRepository.findById(1)).thenReturn(AgendamentoMock.agendamentoMock());
+        Mockito.when(intervaloDiasRepository.findById(any())).thenReturn(Optional.of(AgendamentoMock.intervaloDias()));
+        String result = agendamentoController.atualizarRemedio(1, model);
+        Assertions.assertEquals(result, "atualizacoes/AtualizarAgendamento");
+    }
+
+    @DisplayName("Deve falhar ao exibir página atualizar agendamento")
+    @Test
+    public void atualizarRemedioFalha(){
+        Mockito.when(agendamentoRepository.existsById(any())).thenReturn(false);
+        String result = agendamentoController.atualizarRemedio(1, model);
+        Assertions.assertEquals(result, "TemplateError");
     }
 }

@@ -53,6 +53,14 @@
         <main class="container-table text-center">
             <section id="agendamentos">
                 <h2 th:text="#{navbar.schedules}"></h2>
+                <div class="btn-group btn-group-toggle" data-toggle="buttons" style="margin-bottom: 0.5rem">
+                    <label class="btn btn-secondary" th:classappend="${param.ativos[0] == 'true'} ? active" onclick="window.location='/agendamentos?ativos=true';">
+                        <input type="radio" name="options" id="option1" autocomplete="off" th:checked="${param.ativos[0] == 'true'}"> Ativos
+                    </label>
+                    <label class="btn btn-secondary" th:classappend="${param.ativos[0] == 'false'} ? active" onclick="window.location='/agendamentos?ativos=false';">
+                        <input type="radio" name="options" id="option2" autocomplete="off" th:checked="${param.ativos[0] == 'false'}"> Finalizados
+                    </label>
+                </div>
                 <table class="table table-striped " id="data-table">
                     <caption></caption>
                     <thead>
@@ -130,11 +138,6 @@
                    th:text="#{cadremregister.newschedule}">
                 </a>
                 <br>
-                <a th:if="${param.ativos[0] == 'true'}" href="/agendamentos?ativos=false" class="button new">Agendamentos finalizados</a>
-                <br th:if="${param.ativos[0] == 'true'}">
-                <a th:if="${param.ativos[0] == 'false'}" href="/agendamentos?ativos=true" class="button new">Agendamentos ativos</a>
-                <br th:if="${param.ativos[0] == 'false'}">
-                <a id="view-remedy" href="/remedios" class="button new">Visualizar remedios</a>
             </section>
         </main>
 
@@ -164,5 +167,33 @@
     </div>
 </div>
 <script src="/script/ordenacao.js"> </script>
+<script>
+    function verificarPT(){
+        var parametro = window.location.search;
+        console.log(parametro)
+        a = document.getElementById('linguagemPT')
+        if(parametro == null){
+            a.setAttribute("href", "?lang=pt_BR");
+        } else {
+            var url = window.location.href
+            var urlSplit = url.split("&")
+            a.setAttribute("href",  urlSplit[0]+ "&lang=pt_BR");
+        }
+    }
+</script>
+<script>
+    function verificarEN(){
+        var parametro = window.location.search;
+        console.log(parametro)
+        a = document.getElementById('linguagemEN')
+        if(parametro == null){
+            a.setAttribute("href", "?lang=en");
+        } else {
+            var url = window.location.href
+            var urlSplit = url.split("&")
+            a.setAttribute("href",  urlSplit[0]+ "&lang=en");
+        }
+    }
+</script>
 </body>
 </html>

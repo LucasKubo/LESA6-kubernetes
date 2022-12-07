@@ -156,5 +156,33 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js" integrity="sha384-QHPBqENOg6UKmsoXiXjrEEu2W4rJZaCHDTqIOI9JqSg6dI3chbQ+0kXAYUQLEDYn" crossorigin="anonymous"></script></div>
     <script src="/script/ordenacao.js"> </script>
 <div class="overlay"></div>
+<script>
+    function verificarPT(){
+        var parametro = window.location.search;
+        console.log(parametro)
+        a = document.getElementById('linguagemPT')
+        if(parametro == null){
+            a.setAttribute("href", "?lang=pt_BR");
+        } else {
+            var url = window.location.href
+            var urlSplit = url.split("&")
+            a.setAttribute("href",  urlSplit[0]+ "&lang=pt_BR");
+        }
+    }
+</script>
+<script>
+    function verificarEN(){
+        var parametro = window.location.search;
+        console.log(parametro)
+        a = document.getElementById('linguagemEN')
+        if(parametro == null){
+            a.setAttribute("href", "?lang=en");
+        } else {
+            var url = window.location.href
+            var urlSplit = url.split("&")
+            a.setAttribute("href",  urlSplit[0]+ "&lang=en");
+        }
+    }
+</script>
 </body>
 </html>

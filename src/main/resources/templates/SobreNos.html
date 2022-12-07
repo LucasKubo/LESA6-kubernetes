@@ -1,5 +1,5 @@
-<!DOCTYPE html>
-<html lang ="pt-br">
+<!DOCTYPE html >
+<html lang ="pt-br" xmlns:th="http://www.w3.org/1999/xhtml">
     <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -65,12 +65,12 @@
 
         <p>
             A aplicação 'Meu Remédio' foi inicialmente idealizada e desenvolvida por :
-            <a target="Any" href="https://github.com/any-gomes"><b>Any Gomes</b></a>,
-            <a target="Eric" href="https://github.com/EricJSCabral"><b>Eric Cabral</b></a>,
-            <a target="Guilherme" href="https://github.com/FernandesGuilherme"><b>Guilherme Lima</b></a>,
-            <a target="Lucas" href="https://github.com/LucasKubo"><b>Lucas Kubo</b></a>,
-            <a target="Marcus" href="https://github.com/MarcusVini26"><b>Marcus Vinícius</b></a> e
-            <a target="Pedro" href="https://github.com/PedroHaka"><b>Pedro Haka</b></a>.
+            <a target="Any" href="https://github.com/any-gomes"><strong>Any Gomes</strong></a>,
+            <a target="Eric" href="https://github.com/EricJSCabral"><strong>Eric Cabral</strong></a>,
+            <a target="Guilherme" href="https://github.com/FernandesGuilherme"><strong>Guilherme Lima</strong></a>,
+            <a target="Lucas" href="https://github.com/LucasKubo"><strong>Lucas Kubo</strong></a>,
+            <a target="Marcus" href="https://github.com/MarcusVini26"><strong>Marcus Vinícius</strong></a> e
+            <a target="Pedro" href="https://github.com/PedroHaka"><strong>Pedro Haka</strong></a>.
             Discentes do Curso de Análise e Desenvolvimento de Sistemas pelo Instituto Federal de São Paulo (SPO).
         </p>
 
@@ -97,7 +97,20 @@
             Equipe Meu remédio !
         </p>
         <div style="text-align: left">
-            <img src="/images/AssMeuRemedio.png">
+            <img src="/images/AssMeuRemedio.png" alt="Assinatura">
+        </div>
+
+        <div class="jumbotron">
+            <selection class="jumbotron text-center">
+                <div class="container">
+                    <h3 th:text="#{contact.text}">Entre em contato conosco através dos seguintes canais:</h3>
+                    <h6>
+                        E-MAIL: 8balls.integratedproject@gmail.com
+                    </h6>
+                </div>
+                <div>
+                </div>
+            </selection>
         </div>
     </div>
 </main>
@@ -113,11 +126,9 @@
                                 .catch(function (err) {
                                     console.warn('service worker failed', err);
                                 });
-                    })
+                        }
+                    )
                 }
-
-
-
     </script>
 
     <!-- jQuery CDN - Slim version (=without AJAX) -->

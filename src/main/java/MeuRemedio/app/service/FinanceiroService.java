@@ -20,11 +20,12 @@ public class FinanceiroService {
                     .collect(Collectors.toList());
         } else if (time.equals("0")) {
             financeiroFiltrado = financeiro.stream()
-                    .filter((e) -> LocalDate.parse(e.getData()).isAfter(now))
+                    .filter((e) -> LocalDate.parse(e.getData()).isAfter(now.minusDays(now.getDayOfMonth()).plusDays(1).plusMonths(1))
+                                    || LocalDate.parse(e.getData()).isEqual(now.minusDays(now.getDayOfMonth()).plusDays(1).plusMonths(1)))
                     .collect(Collectors.toList());
         } else if (time.equals("99")) {
             financeiroFiltrado = financeiro.stream()
-                    .filter((e) -> LocalDate.parse(e.getData()).isBefore(now))
+                    .filter((e) -> LocalDate.parse(e.getData()).isBefore(now.minusDays(now.getDayOfMonth()).plusDays(1)))
                     .collect(Collectors.toList());
         }
         return financeiroFiltrado;
