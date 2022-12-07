@@ -48,6 +48,7 @@ class AgendamentoControllerTest {
     UserSessionService userSessionService;
     @Mock
     AgendamentosHorariosRepository agendamentosHorariosRepository;
+
     @Mock
     CalculaHorariosNotificacao calculaHorariosNotificacao;
 
@@ -72,13 +73,23 @@ class AgendamentoControllerTest {
         ReflectionTestUtils.setField(agendamentoController, "remedioController", remedioController);
     }
 
-    @DisplayName("Deve retornar Lista agendamento")
+    @DisplayName("Deve retornar Lista agendamento antigos")
     @Test
     public void viewAgendamentos(){
         Mockito.when(validateAuthentication.auth()).thenReturn(true);
         Mockito.when(agendamentoRepository.findAllByUsuarioID(any())).thenReturn(Collections.singletonList(AgendamentoMock.agendamentoMock()));
         Mockito.when(intervaloDiasRepository.findById(any())).thenReturn(Optional.of(AgendamentoMock.intervaloDias()));
-        String result = agendamentoController.viewAgendamentos(modelMap, "ativos");
+        String result = agendamentoController.viewAgendamentos(modelMap, "false");
+        Assertions.assertEquals(result, "listas/ListaAgendamentos");
+    }
+
+    @DisplayName("Deve retornar Lista agendamentos ativos")
+    @Test
+    public void viewAgendamentosTrue(){
+        Mockito.when(validateAuthentication.auth()).thenReturn(true);
+        Mockito.when(agendamentoRepository.findAllByUsuarioID(any())).thenReturn(Collections.singletonList(AgendamentoMock.agendamentoMock()));
+        Mockito.when(intervaloDiasRepository.findById(any())).thenReturn(Optional.of(AgendamentoMock.intervaloDias()));
+        String result = agendamentoController.viewAgendamentos(modelMap, "true");
         Assertions.assertEquals(result, "listas/ListaAgendamentos");
     }
 

@@ -3,8 +3,6 @@ package MeuRemedio.app.controllers.remedio;
 
 import MeuRemedio.app.controllers.EnvioEmail;
 import MeuRemedio.app.controllers.agendamento.AgendamentoController;
-import MeuRemedio.app.models.dash.Dash;
-import MeuRemedio.app.models.remedios.ListagemRemedios;
 import MeuRemedio.app.models.remedios.Remedio;
 import MeuRemedio.app.models.usuarios.Financeiro;
 import MeuRemedio.app.models.usuarios.Usuario;
@@ -21,6 +19,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+
 
 import java.util.Collections;
 import java.util.List;

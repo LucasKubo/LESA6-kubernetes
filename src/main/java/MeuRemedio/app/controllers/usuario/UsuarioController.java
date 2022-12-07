@@ -162,7 +162,7 @@ public class UsuarioController {
 
     @PostMapping(value = "/usuario/edit/deletar_usuario") /*Validar como vai ser a chamada front para o metodo*/
     @Transactional
-    public String deletarUsuario (@RequestParam("US_Senha") String senha, HttpServletRequest request) throws MessagingException, UnsupportedEncodingException {
+    public String deletarUsuario (@RequestParam("US_Senha") String senha, HttpServletRequest request, HttpServletResponse response) throws MessagingException, UnsupportedEncodingException {
 
         String EmailUsuarioLogado = userSessionService.returnUsernameUsuario();
         Usuario usuarioLogado = usuarioRepository.findByEmail(EmailUsuarioLogado);
@@ -181,10 +181,11 @@ public class UsuarioController {
                 dashBoardsRepository.deleteAllByUsuario(usuarioLogado);
                 usuarioRepository_2.deleteById(usuarioLogado.getId());
                 emailCadastro.emailDeletarCadastro(usuarioLogado);
-                HttpSession session= request.getSession();
-                if(session != null) {
-                    session.invalidate();
-                }
+                request.getSession().invalidate();
+                Cookie cookie = new Cookie("JSESSIONID", "");
+                cookie.setMaxAge(0);
+                cookie.setPath("/");
+                response.addCookie(cookie);
                 return "redirect:/login?contaExcluida";
             } else {
                 return "redirect:/usuario/edit/deletar_usuario?senhaInvalida";
