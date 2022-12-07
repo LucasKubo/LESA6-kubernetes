@@ -166,7 +166,7 @@ public class UsuarioController {
 
     @PostMapping(value = "/usuario/edit/deletar_usuario") /*Validar como vai ser a chamada front para o metodo*/
     @Transactional
-    public String deletarUsuario (@RequestParam("US_Senha") String senha, HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws MessagingException, IOException, ServletException {
+    public String deletarUsuario (@RequestParam("US_Senha") String senha, HttpServletRequest request, HttpServletResponse response) throws MessagingException, IOException, ServletException {
 
         String EmailUsuarioLogado = userSessionService.returnUsernameUsuario();
         Usuario usuarioLogado = usuarioRepository.findByEmail(EmailUsuarioLogado);
@@ -186,9 +186,7 @@ public class UsuarioController {
                 usuarioNotificationTokenRepository.deleteAllByIdUsuario(usuarioLogado.getId());
                 usuarioRepository_2.deleteById(usuarioLogado.getId());
                 emailCadastro.emailDeletarCadastro(usuarioLogado);
-                request.getSession().invalidate();
-                response.sendRedirect("/logout");
-                return "redirect:/login?contaExcluida";
+                return "redirect:/logout";
             } else {
                 return "redirect:/usuario/edit/deletar_usuario?senhaInvalida";
             }
