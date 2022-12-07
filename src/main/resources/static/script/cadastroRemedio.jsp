@@ -102,8 +102,12 @@ function validaDataFinal(){
     const dataFinal = document.getElementById("AG_DataFinal").value;
     const dataInicio = document.getElementById("AG_DataInicio").value;
 
-    var dataFinalData = new Date(dataFinal + " ")
-    var dataInicioData = new Date(dataInicio+ " ")
+   const [year, month, day] = dataInicio.split('-');
+    const dataInicioData = new Date(+year, month - 1, +day);
+                        
+    const [ano, mes, dia] = dataFinal.split('-')
+    const dataFinalData = new Date(+ano, mes - 1, +dia);
+    
     var hoje = new Date()
     hoje.setHours(0,0,0,0);
 
