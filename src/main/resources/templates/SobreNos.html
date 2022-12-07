@@ -1,5 +1,5 @@
-<!DOCTYPE html>
-<html lang ="pt-br">
+<!DOCTYPE html >
+<html lang ="pt-br" xmlns:th="http://www.w3.org/1999/xhtml">
     <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -99,6 +99,19 @@
         <div style="text-align: left">
             <img src="/images/AssMeuRemedio.png">
         </div>
+
+        <div class="jumbotron">
+            <selection class="jumbotron text-center">
+                <div class="container">
+                    <h3 th:text="#{contact.text}">Entre em contato conosco através dos seguintes canais:</h3>
+                    <h6>
+                        E-MAIL: 8balls.integratedproject@gmail.com
+                    </h6>
+                </div>
+                <div>
+                </div>
+            </selection>
+        </div>
     </div>
 </main>
         <div class="overlay"></div>
@@ -113,11 +126,9 @@
                                 .catch(function (err) {
                                     console.warn('service worker failed', err);
                                 });
-                    })
+                        }
+                    )
                 }
-
-
-
     </script>
 
     <!-- jQuery CDN - Slim version (=without AJAX) -->

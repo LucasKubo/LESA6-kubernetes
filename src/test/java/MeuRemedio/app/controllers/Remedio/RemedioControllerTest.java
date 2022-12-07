@@ -95,7 +95,7 @@ public class RemedioControllerTest {
         Assertions.assertEquals(rm, "listas/ListaRemediosB");
     }
 
-    @DisplayName("Deve retornar a tela de listar remedios com Modal")
+    @DisplayName("Deve retornar a tela de listar remedios")
     @Test
     public void verTelaListar() {
         List<Remedio> remedios = Collections.singletonList(RemedioMock.remedioMock());
