@@ -55,10 +55,10 @@
                 <h2 th:text="#{navbar.schedules}"></h2>
                 <div class="btn-group btn-group-toggle" data-toggle="buttons" style="margin-bottom: 0.5rem">
                     <label class="btn btn-secondary" th:classappend="${param.ativos[0] == 'true'} ? active" onclick="window.location='/agendamentos?ativos=true';">
-                        <input type="radio" name="options" id="option1" autocomplete="off" th:checked="${param.ativos[0] == 'true'}"> Ativos
+                        <input type="radio" name="options" id="option1" autocomplete="off" th:checked="${param.ativos[0] == 'true'}"> <span th:text="#{listage.active}"></span>
                     </label>
                     <label class="btn btn-secondary" th:classappend="${param.ativos[0] == 'false'} ? active" onclick="window.location='/agendamentos?ativos=false';">
-                        <input type="radio" name="options" id="option2" autocomplete="off" th:checked="${param.ativos[0] == 'false'}"> Finalizados
+                        <input type="radio" name="options" id="option2" autocomplete="off" th:checked="${param.ativos[0] == 'false'}"> <span th:text="#{listage.finished}"></span>
                     </label>
                 </div>
                 <table class="table table-striped " id="data-table">

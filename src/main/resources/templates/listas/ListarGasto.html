@@ -57,16 +57,16 @@
                 <h2 th:text="#{listfin.formtitle}"></h2>
                 <div class="btn-group btn-group-toggle filtro" data-toggle="buttons">
                     <label class="btn btn-secondary" onclick="window.location='/remedios/controle_de_gastos/listar?time=99';">
-                        <input type="radio" name="options" id="option1" autocomplete="off" th:checked="${param.time[0] == '99'}"> Antigos
+                        <input type="radio" name="options" id="option1" autocomplete="off" th:checked="${param.time[0] == '99'}"> <span th:text="#{listfin.showprevious}"></span>
                     </label>
                     <label class="btn btn-secondary" th:classappend="${param.time} ? active" onclick="window.location='/remedios/controle_de_gastos/listar?time=1';">
-                        <input type="radio" name="options" id="option3" autocomplete="off" th:checked="${param.time[0] == '1'}"> Mês atual
+                        <input type="radio" name="options" id="option3" autocomplete="off" th:checked="${param.time[0] == '1'}"> <span th:text="#{listfin.showcurrent}"></span>
                     </label>
                     <label class="btn btn-secondary" th:classappend="${param.time} ? active" onclick="window.location='/remedios/controle_de_gastos/listar?time=0';">
-                        <input type="radio" name="options" id="option4" autocomplete="off" th:checked="${param.time[0] == '0'}"> Futuros
+                        <input type="radio" name="options" id="option4" autocomplete="off" th:checked="${param.time[0] == '0'}"> <span th:text="#{listfin.showfuture}"></span>
                     </label>
                     <label class="btn btn-secondary" th:classappend="${param.time} ? active" onclick="window.location='/remedios/controle_de_gastos/listar?time=all';">
-                        <input type="radio" name="options" id="option5" autocomplete="off" th:checked="${param.time[0] == 'all'}"> Todos
+                        <input type="radio" name="options" id="option5" autocomplete="off" th:checked="${param.time[0] == 'all'}"> <span th:text="#{listfin.showall}"></span>
                     </label>
                 </div>
                 <table class="table table-striped container-table" id = "data-table">
@@ -120,23 +120,24 @@
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLongTitle" th:text="#{modal.cad}">Cadastro realizado com sucesso ! </h5>
+                        <h5 class="modal-title" id="exampleModalLongTitle" th:text="#{modal.cad}"></h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <div class="modal-body">
-                        <p th:text="#{modal.newexpense}">Deseja cadastrar um novo gasto? </p>
+                        <p th:text="#{modal.newexpense}"></p>
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" href="/remedios/controle_de_gastos" class="btn btn-danger" name="Modal" data-dismiss="modal" th:text="#{no}">Não</button>
-                        <a href="/remedios/controle_de_gastos/cadastrar"><button type="button" class="btn btn-primary" th:text="#{yes}">Sim</button></a>
+                        <button type="submit" href="/remedios/controle_de_gastos" class="btn btn-danger" name="Modal" data-dismiss="modal" th:text="#{no}"></button>
+                        <a href="/remedios/controle_de_gastos/cadastrar"><button type="button" class="btn btn-primary" th:text="#{yes}"></button></a>
                     </div>
                 </div>
             </div>
         </div>
         
     </div>
+    <div class="overlay"></div>
 
     <script type="text/javascript">
     $(window).on('load',function(){
@@ -155,7 +156,7 @@
     <script src="/script/cadastroRemedio.jsp"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js" integrity="sha384-QHPBqENOg6UKmsoXiXjrEEu2W4rJZaCHDTqIOI9JqSg6dI3chbQ+0kXAYUQLEDYn" crossorigin="anonymous"></script></div>
     <script src="/script/ordenacao.js"> </script>
-<div class="overlay"></div>
+
 <script>
     function verificarPT(){
         var parametro = window.location.search;

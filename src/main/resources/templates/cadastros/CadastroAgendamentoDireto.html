@@ -10,7 +10,7 @@
     <link rel="manifest" href="/config/manifest.json">
     <link rel="apple-touch-icon" href="/images/icon.svg">
     <link rel="canonical" href="https://meuremedioapp.herokuapp.com">
-    <title th:text="#{cadage.title}"></title>
+    <title th:text="#{cadageform.title}"></title>
 
     <!-- Bootstrap CSS CDN -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"
@@ -68,7 +68,7 @@
                     <a href="/home">
                         <img class="formulario-icon" src="/images/icon.svg" alt="Ícone Meu Remédio">
                     </a>
-                    <h2 th:text="#{cadage.title}" class="form-h2"></h2>
+                    <h2 th:text="#{cadageform.title}" class="form-h2"></h2>
                     <form method="post" name="formCadastroAG">
 
                         <div class="form-group">
@@ -129,13 +129,13 @@
                             </div>
 
                             <div class="form-agendamento form-group">
-                                <label class="input-label margin-top">Frequência de Horas*</label>
+                                <label th:text="#{cadremschedule.hoursfrequency}" class="input-label margin-top"></label>
                                 <select id="FrequenciaHoras" class="formulario-input">
-                                    <option value="24">Uma vez por dia</option>
-                                    <option value="6">A cada 6 horas</option>
-                                    <option value="8">A cada 8 horas</option>
-                                    <option value="12">A cada 12 horas</option>
-                                    <option value="Periodicidade">Personalizado</option>
+                                    <option th:text="#{cadremschedule.onceperday}" value="24"></option>
+                                        <option th:text="#{cadremschedule.fourtimesperday}" value="6"></option>
+                                        <option th:text="#{cadremschedule.thriceperday}" value="8"></option>
+                                        <option th:text="#{cadremschedule.twiceperday}" value="12"></option>
+                                        <option th:text="#{cadremschedule.customtimesperday}" value="Periodicidade"></option>
                                 </select>
 
                             </div>
@@ -143,7 +143,7 @@
 
 
                             <div id="Periodicidade" class="form-agendamento form-group" style="display: none;">
-                                <label class="input-label margin-top" for="AG_Periodicidade">Horas</label>
+                                <label th:text="#{cadremschedule.hours}" class="input-label margin-top" for="AG_Periodicidade"></label>
                                 <input th:placeholder="#{cadageform.frequency}"
                                        type="number"
                                        class="formulario-input"
@@ -156,13 +156,13 @@
                             </div>
 
                             <div class="form-agendamento form-group">
-                                <label class="input-label margin-top">Frequência de Dias*</label>
+                                <label th:text="#{cadremschedule.dayfrequency}" class="input-label margin-top"></label>
                                 <select id="FrequenciaDias" class="formulario-input" >
-                                    <option value="1">Todos os dias</option>
-                                    <option value="2">A cada 2 dias</option>
-                                    <option value="5">A cada 5 dias</option>
-                                    <option value="7">A cada 7 dias</option>
-                                    <option value="intervalo">Personalizado</option>
+                                    <option th:text="#{cadremschedule.everyday}" value="1"></option>
+                                        <option th:text="#{cadremschedule.twodays}" value="2"></option>
+                                        <option th:text="#{cadremschedule.fivedays}" value="5"></option>
+                                        <option th:text="#{cadremschedule.sevendays}" value="7"></option>
+                                        <option th:text="#{cadremschedule.customtimesperday}" value="intervalo"></option>
                                 </select>
                             </div>
 
