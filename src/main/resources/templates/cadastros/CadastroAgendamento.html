@@ -374,7 +374,7 @@
 
                 dataFinal.setFullYear(date.getFullYear())
                 dataFinal.setMonth(date.getMonth())
-                dataFinal.setDate(date.getDate() + Number(quantidadeDias))
+                dataFinal.setDate(date.getDate() + Number(quantidadeDias) - 1)
 
                 console.log(dataFinal)
                 document.getElementById('AG_DataFinal').value = dataFinal.getFullYear() + '-' + ("0" + (dataFinal.getMonth() + 1)).slice(-2) + '-' + ("0" + dataFinal.getDate()).slice(-2)
@@ -399,7 +399,7 @@
                 if(diffDias < 0){
                     document.getElementById('diasAgendamento').value = null;
                 } else {
-                    document.getElementById('diasAgendamento').value = diffDias;
+                    document.getElementById('diasAgendamento').value = diffDias + 1;
                 }
             }
         }

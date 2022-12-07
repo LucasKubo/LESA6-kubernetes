@@ -160,6 +160,13 @@ public class AgendamentoController {
         return "redirect:" + url;
     }
 
+    @RequestMapping(value = "/deletar_agendamentoB/{id}")
+    public String deletarAgendamentoB(@PathVariable("id") long id, HttpServletRequest request) {
+        Agendamento agendamento = agendamentoRepository.findById(id);
+        agendamentoRepository.delete(agendamento);
+        return "redirect:/agendamentos?ativos=true";
+    }
+
     @RequestMapping(value = "/agendamento/remedio/{id}", method = RequestMethod.GET)
     public String cadastrarAgendamentoRemedio(@PathVariable("id") long id, Model model) {
         Remedio remedio = remedioRepository.findById(id);
