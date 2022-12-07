@@ -17,9 +17,7 @@ document.addEventListener('DOMContentLoaded', function () {
     var listaAgendamentos = new Array();
 
     for (var i = 0; i < remediosIT.length; i++) {
-        if(intervaloIT[i].innerHTML == 1){
-            break;
-        }
+        console.log(intervaloIT[i].innerHTML)
         var dataFinalDate = new Date(dataFinalIT[i].innerHTML)
         var dataFinalAjustada = new Date();
         dataFinalAjustada.setMonth(dataFinalDate.getMonth())
@@ -37,6 +35,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 "start": dataInicioIntervalo.toLocaleDateString('en-CA'),
                 "end": dataInicioIntervalo.toLocaleDateString('en-CA')
             }
+            console.log(ag)
             listaAgendamentos.push(ag);
             dataInicioIntervalo.setDate(dataInicioIntervalo.getDate() + parseInt(intervaloIT[i].innerHTML));
         }
@@ -61,6 +60,7 @@ document.addEventListener('DOMContentLoaded', function () {
             listaAgendamentos.push(ag);
         }
     }
+    console.log(listaAgendamentos)
     var calendar = new FullCalendar.Calendar(calendarEl, {
         plugins: ['interaction', 'dayGrid'],
         defaultDate: hoje,
