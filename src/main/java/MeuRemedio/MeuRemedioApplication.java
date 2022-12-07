@@ -10,7 +10,6 @@ public class MeuRemedioApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(MeuRemedioApplication.class, args);
-
     }
 }
     

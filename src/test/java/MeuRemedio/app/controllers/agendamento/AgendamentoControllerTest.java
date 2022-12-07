@@ -223,6 +223,28 @@ class AgendamentoControllerTest {
         Assertions.assertEquals(result, "redirect:/agendamentos?ativos=true");
     }
 
+    @DisplayName("Deve Atualizar Dados Agendamento alterando intervalo")
+    @Test
+    public void atualizarDadosAgendamentoAlterdIntervalo(){
+        List<Remedio> remedios = Collections.singletonList(RemedioMock.remedioMock());
+        Mockito.when(agendamentoRepository.existsById(any())).thenReturn(true);
+        Mockito.when(intervaloDiasRepository.findById(any())).thenReturn(Optional.of(AgendamentoMock.intervaloDias()));
+        String result = agendamentoController.atualizarDadosAgendamento(1, remedios,"2022-01-01", "00:00",
+                "2022-01-02", 1L, 1L);
+        Assertions.assertEquals(result, "redirect:/agendamentos?ativos=true");
+    }
+    @DisplayName("Deve Falhar ao Atualizar Dados Agendamento")
+    @Test
+    public void atualizarDadosAgendamentoFalha(){
+        List<Remedio> remedios = Collections.singletonList(RemedioMock.remedioMock());
+        Mockito.when(remedioController.templateError()).thenReturn("TemplateError");
+        Mockito.when(agendamentoRepository.existsById(any())).thenReturn(false);
+        String result = agendamentoController.atualizarDadosAgendamento(1, remedios,"2022-01-01", "00:00",
+                "2022-01-02", 1L, 1L);
+        Assertions.assertEquals(result, "TemplateError");
+    }
+
+
     @DisplayName("Deve exibir página atualizar agendamento")
     @Test
     public void atualizarRemedio(){
