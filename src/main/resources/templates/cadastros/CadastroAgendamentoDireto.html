@@ -113,7 +113,7 @@
                                        class="formulario-input"
                                        id="diasAgendamento"
                                        name="diasAgendamento"
-                                       min="0"
+                                       min="1"
                                        max="1825"
                                        onblur="verificaDataFinal()"
                                        />
@@ -381,10 +381,12 @@
         function verificaDataFinal(){
             var quantidadeDias = document.getElementById('diasAgendamento').value
 
+            if (Number(quantidadeDias) > 0){
+
             console.log(quantidadeDias)
             var dataInicial = document.getElementById('AG_DataInicio').value
             console.log(dataInicial)
-            if (dataInicial != null){
+            if (dataInicial != null) {
                 const [year, month, day] = dataInicial.split('-');
                 const date = new Date(+year, month - 1, +day);
                 console.log(date)
@@ -397,6 +399,9 @@
 
                 console.log(dataFinal)
                 document.getElementById('AG_DataFinal').value = dataFinal.getFullYear() + '-' + ("0" + (dataFinal.getMonth() + 1)).slice(-2) + '-' + ("0" + dataFinal.getDate()).slice(-2)
+            }
+            } else {
+            document.getElementById('AG_DataFinal').value = null
             }
         }
     </script>
