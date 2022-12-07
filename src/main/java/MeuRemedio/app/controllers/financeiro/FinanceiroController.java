@@ -78,8 +78,7 @@ public class FinanceiroController {
 
     @PostMapping(value ="/remedios/controle_de_gastos/cadastrar")
     public String cadastrarGasto (@RequestParam("GA_Valor") double valor, @RequestParam("GA_Data") String data,
-                                  @RequestParam("GA_Parcela") long qtdParcela, @RequestParam(value = "AG_Remedios", required = false) List<Remedio> remedio,
-                                  @RequestParam(value = "RM_Nome", required = false) String RM_Nome){
+                                  @RequestParam("GA_Parcela") long qtdParcela, @RequestParam(value = "AG_Remedios", required = false) List<Remedio> remedio){
         try {
             Usuario usuarioID = new Usuario();
             usuarioID.setId(userSessionService.returnIdUsuarioLogado());
@@ -112,7 +111,7 @@ public class FinanceiroController {
         if (!verificarPorId(id)) {
             return templateError();
         } else {
-            Financeiro financeiro = controleFinanceiro.findById (id);
+            Financeiro financeiro = controleFinanceiro.findById(id);
             model.addAttribute("financeiro", financeiro);
 
             Usuario usuarioID = new Usuario();
