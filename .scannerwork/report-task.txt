@@ -2,5 +2,5 @@ projectKey=MeuRemedio
 serverUrl=http://localhost:9002
 serverVersion=9.5.0.56709
 dashboardUrl=http://localhost:9002/dashboard?id=MeuRemedio
-ceTaskId=AYTqkCbW2j8GtS6bsjSX
-ceTaskUrl=http://localhost:9002/api/ce/task?id=AYTqkCbW2j8GtS6bsjSX
+ceTaskId=AYTqqO_x2j8GtS6bsjSa
+ceTaskUrl=http://localhost:9002/api/ce/task?id=AYTqqO_x2j8GtS6bsjSa
