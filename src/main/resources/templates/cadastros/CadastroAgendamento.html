@@ -89,10 +89,17 @@
                                            value=""
                                            onblur= "validaDataFinal(); verificaDiasAgendamento()"
                                            required="required">
-                                </div> 
+                                </div>
+                            </div>
 
                                 <div id="quantidadeDias" class="form-agendamento form-group">
                                     <label class="input-label margin-top">Quantidade de dias</label>
+                                    <a data-toggle="modal" data-target="#modalQtdDias">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-question-circle" viewBox="0 0 16 16">
+                                            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                            <path d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z"/>
+                                        </svg>
+                                    </a>
                                     <input placeholder="Quantidade de dias"
                                            type="number"
                                            class="formulario-input"
@@ -141,7 +148,7 @@
                                             <path d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z"/>
                                         </svg>
                                     </a>
-<!--                                    <i class="bi bi-info" data-mdb-toggle="modal" data-mdb-target="#exampleModal">   ?</i>-->
+
 
                                     <select id="FrequenciaHoras" class="formulario-input">
                                         <option value="24">Uma vez por dia</option>
@@ -152,7 +159,8 @@
                                     </select>
 
                                 </div>
-                                <!-- Modal Frequência de Horas-->
+
+                                <!--Modal Frequência de Horas-->
                                 <div class="modal fade" id="modalFreqHoras" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                                     <div class="modal-dialog modal-dialog-centered" role="document">
                                         <div class="modal-content">
@@ -163,7 +171,7 @@
                                                 </button>
                                             </div>
                                             <div class="modal-body">
-                                                Frequência de Horas
+                                                Indique a frequência de horas do consumo do remédio. Exemplo: de 8 em 8 horas, sendo 8 a frequência em horas selecionada.
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-danger" data-dismiss="modal">Fechar</button>
@@ -176,7 +184,12 @@
 
                                 <div id="Periodicidade" class="form-agendamento form-group" style="display: none;">
                                     <label class="input-label margin-top" for="AG_Periodicidade">Horas</label>
-                                    <a class="botao-info" data-toggle="modal" data-target="#modalFreqDias">   ?</a>
+                                    <a data-toggle="modal" data-target="#modalPeriodicidade">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-question-circle" viewBox="0 0 16 16">
+                                            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                            <path d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z"/>
+                                        </svg>
+                                    </a>
                                     <input th:placeholder="#{cadageform.frequency}"
                                            type="number"
                                            class="formulario-input"
@@ -208,6 +221,12 @@
 
                                     <div id="intervalo" class="input-group" style="display: none;">
                                         <label class="input-label" th:text="#{cadageform.intervalofdays}"></label>
+                                        <a data-toggle="modal" data-target="#modalIntervDias">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-question-circle" viewBox="0 0 16 16">
+                                                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                                <path d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z"/>
+                                            </svg>
+                                        </a>
                                         <input style="min-width:2px"
                                                th:placeholder="#{cadageform.numberdays}"
                                                class="formulario-input"
@@ -217,6 +236,8 @@
                                                min="1"
                                         />
                                     </div>
+
+
                                 <!-- Modal Frequência de Dias-->
                                 <div class="modal fade" id="modalFreqDias" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                                     <div class="modal-dialog modal-dialog-centered" role="document">
@@ -228,7 +249,7 @@
                                                 </button>
                                             </div>
                                             <div class="modal-body">
-                                                Frequência de Dias
+                                                Indique a frequência de dias do consumo do remédio. Exemplo: a cada 7 dias, uma semana.
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-danger" data-dismiss="modal">Fechar</button>
@@ -237,7 +258,65 @@
                                     </div>
                                 </div>
 
+                                <!-- Modal Quantidade de dias-->
+                                <div class="modal fade" id="modalQtdDias" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLongTitle3">Informação</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                Indique a quantidade de dia(s) que o(s) remédio(s) será(ão) consumido(s). Exemplo: durante 5 dias. Em formato de número.
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-danger" data-dismiss="modal">Fechar</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                            <!-- Modal Periodicidade-->
+                            <div class="modal fade" id="modalPeriodicidade" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLongTitle4">Informação</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            Indique a(s) hora(s) personalizada(s) da frequência de horas. Exemplo: 3, caso a frequência desejada seja de 3 em 3 horas. Em formato de número.                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-danger" data-dismiss="modal">Fechar</button>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
+
+
+                            <!-- Modal Intervalo de dias-->
+                            <div class="modal fade" id="modalIntervDias" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLongTitle5">Informação</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            Indique o intervalo de dias personalizado da frequência de dias. Exemplo: 30, caso a frequência desejada do consumo do remédio seja a cada 30 dias. Em formato de número.                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-danger" data-dismiss="modal">Fechar</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
                             <small><span id="mensagemPeriodocidade" class="help"></span></small>
                             <small><span id="mensagemFimAgendamento" class="help"></span></small>
                             <small><span id="mensagemInicioAgendamento" class="help"></span></small>
@@ -251,7 +330,7 @@
                                 <a th:text="#{cadremform.cancel}" id="cancelar" href="/agendamentos?ativos=true" class="button cancel"></a>
                                 <button th:text="#{cadremform.submit}" name="action" id="confirmar" class="button save" type="submit"></button>
                             </div>
-
+                            </div>
                         </form>
                     </div>
                 </div>
