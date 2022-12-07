@@ -311,6 +311,37 @@
     <!-- Script para aparecer a DIV de Periodicidade (de quantas em quantas horas) e intervalo de dias -->
     <script>
         $(document).ready(function() {
+            //SETANDO O PERSONALIZADO COMO SELECIONADO POR PADRÃO
+            $("#FrequenciaHoras option[value='Periodicidade']").attr("selected","selected");
+            $("#FrequenciaDias option[value='intervalo']").attr("selected","selected");
+
+            //PEGO OS VALORES DE FATO
+            var selecionadoRemedio = document.getElementById('thvalor').innerHTML;
+            var selecionadoIntervalo = document.getElementById('thvalor2').innerHTML;
+
+            console.log(selecionadoRemedio)
+            console.log(selecionadoIntervalo)
+            if(selecionadoRemedio != '6' && selecionadoRemedio != '8' && selecionadoRemedio != '12' && selecionadoRemedio != '24'){
+                $('#Periodicidade').show()
+                console.log(selecionadoRemedio)
+            }
+            
+            console.log(selecionadoRemedio)
+
+            if(selecionadoIntervalo == ""){
+                $("#FrequenciaDias option[value='1']").attr("selected","selected");
+            } else if(selecionadoIntervalo != '1' && selecionadoIntervalo != '2' && selecionadoIntervalo != '5' && selecionadoIntervalo != '7'){
+                $('#intervalo').show()
+                $('.line-break').show()
+            }
+            
+            //CASO O VALOR DE FATO SEJA UMA DAS OPÇÕES, SETO A OPÇÃO NO LUGAR DO PERSONALIZADO
+            $("#FrequenciaHoras option[value=" + selecionadoRemedio + "]").attr("selected","selected");
+            $("#FrequenciaDias option[value=" + selecionadoIntervalo + "]").attr("selected","selected");
+        });
+    </script>
+    <script>
+        $(document).ready(function() {
             $.viewMap = {
                 '1' : $([]),
                 '2' : $([]),
@@ -327,39 +358,11 @@
                 'Periodicidade' : $('#Periodicidade')
             };
 
-            //SETANDO O PERSONALIZADO COMO SELECIONADO POR PADRÃO
-            $("#FrequenciaHoras option[value='Periodicidade']").attr("selected","selected");
-            $("#FrequenciaDias option[value='intervalo']").attr("selected","selected");
-
-            //PEGO OS VALORES DE FATO
-            var selecionadoRemedio = document.getElementById('thvalor').innerHTML;
-            var selecionadoIntervalo = document.getElementById('thvalor2').innerHTML;
-
-            console.log(selecionadoRemedio)
-            console.log(selecionadoIntervalo)
-            if(selecionadoRemedio != '6' && selecionadoRemedio != '8' && selecionadoRemedio != '12' && selecionadoRemedio != '24'){
-                $('#Periodicidade').show()
-            }
-            
-            if(selecionadoIntervalo == ""){
-                $("#FrequenciaDias option[value='1']").attr("selected","selected");
-            } else if(selecionadoIntervalo != null && selecionadoIntervalo != '1' && selecionadoIntervalo != '2' && selecionadoIntervalo != '5' && selecionadoIntervalo != '7'){
-                $('#intervalo').show()
-                $('.line-break').show()
-
-            }
-            //CASO O VALOR DE FATO SEJA UMA DAS OPÇÕES, SETO A OPÇÃO NO LUGAR DO PERSONALIZADO
-            $("#FrequenciaHoras option[value=" + selecionadoRemedio + "]").attr("selected","selected");
-            $("#FrequenciaDias option[value=" + selecionadoIntervalo + "]").attr("selected","selected");
-
-
-            $('#FrequenciaDias').change(function() {
-                // hide all
+        $('#FrequenciaDias').change(function() {
                 $.each($.viewMap, function() { this.hide(); });
                 // show current
                 $.viewMap[$(this).val()].show();
                 var op = $(this).val();
-                console.log(op)
                 if (op == '1'){
                     $('#intervaloDias').val(null);
                 }

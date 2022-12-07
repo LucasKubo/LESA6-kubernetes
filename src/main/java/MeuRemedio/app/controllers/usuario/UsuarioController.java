@@ -1,5 +1,6 @@
 package MeuRemedio.app.controllers.usuario;
 
+import MeuRemedio.app.configuration.CustomLogoutSuccessHandler;
 import MeuRemedio.app.controllers.EnvioEmail;
 import MeuRemedio.app.models.remedios.Remedio;
 import MeuRemedio.app.models.usuarios.Financeiro;
@@ -8,10 +9,10 @@ import MeuRemedio.app.repository.*;
 import MeuRemedio.app.service.UserSessionService;
 import MeuRemedio.app.service.UsuarioService;
 import MeuRemedio.app.service.utils.ValidateAuthentication;
+import lombok.var;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.session.SessionInformation;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.session.SessionRegistry;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -21,12 +22,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.mail.MessagingException;
+import javax.servlet.ServletException;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
-import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -62,8 +63,11 @@ public class UsuarioController {
     SessionRegistry sessionRegistryImpl;
 
     @Autowired
+    UsuarioNotificationTokenRepository usuarioNotificationTokenRepository;
+    @Autowired
     DashBoardsRepository dashBoardsRepository;
     final String REDIRECT = "redirect:/home";
+
 
     @RequestMapping(value = "/cadastro")
     public String telaCadasUsuario() {
@@ -162,7 +166,7 @@ public class UsuarioController {
 
     @PostMapping(value = "/usuario/edit/deletar_usuario") /*Validar como vai ser a chamada front para o metodo*/
     @Transactional
-    public String deletarUsuario (@RequestParam("US_Senha") String senha, HttpServletRequest request, HttpServletResponse response) throws MessagingException, UnsupportedEncodingException {
+    public void deletarUsuario (@RequestParam("US_Senha") String senha, HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws MessagingException, IOException, ServletException {
 
         String EmailUsuarioLogado = userSessionService.returnUsernameUsuario();
         Usuario usuarioLogado = usuarioRepository.findByEmail(EmailUsuarioLogado);
@@ -179,16 +183,13 @@ public class UsuarioController {
                 financeiroRepository.deleteAll(gastos);
                 remedioRepository.deleteAll(remedio);
                 dashBoardsRepository.deleteAllByUsuario(usuarioLogado);
+                usuarioNotificationTokenRepository.deleteAllByIdUsuario(usuarioLogado.getId());
                 usuarioRepository_2.deleteById(usuarioLogado.getId());
                 emailCadastro.emailDeletarCadastro(usuarioLogado);
                 request.getSession().invalidate();
-                Cookie cookie = new Cookie("JSESSIONID", "");
-                cookie.setMaxAge(0);
-                cookie.setPath("/");
-                response.addCookie(cookie);
-                return "redirect:/login?contaExcluida";
+                response.sendRedirect("/login?contaExcluida");
             } else {
-                return "redirect:/usuario/edit/deletar_usuario?senhaInvalida";
+               response.sendRedirect( "redirect:/usuario/edit/deletar_usuario?senhaInvalida");
             }
     }
     public String TemplateError(){

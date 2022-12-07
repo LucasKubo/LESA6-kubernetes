@@ -11,5 +11,6 @@ import java.util.List;
 public interface UsuarioNotificationTokenRepository extends JpaRepository<UsuarioNotificationToken, Long> {
 
     List<UsuarioNotificationToken> findAllByIdUsuario(Long idUsuario);
+    void deleteAllByIdUsuario(Long idUsuario);
     UsuarioNotificationToken findByIdToken(String token);
 }
