@@ -114,6 +114,18 @@
                                            />
                                 </div>
 
+                                <div class="form-agendamento form-group">
+                                    <label class="input-label" for="AG_DataFinal" th:text="#{cadageform.finaldate}"></label>
+                                    <input type="date"
+                                           id="AG_DataFinal"
+                                           class="formulario-input"
+                                           name="AG_DataFinal"
+                                           th:placeholder="#{cadageform.finaldate}"
+                                           onblur="validaDataFinal(); verificaDiasAgendamento()"
+                                           required=""
+                                    >
+                                </div>
+
 
                         <div class="form-agendamento form-group">
                             <label class="input-label timepicker" for="AG_HoraInicio" th:text="#{cadageform.initialhour}"></label>
@@ -314,7 +326,7 @@
 
 
                                     </div>
-
+                                    </div>
                                     <small><span id="mensagemPeriodocidade" class="help"></span></small>
                                     <small><span id="mensagemFimAgendamento" class="help"></span></small>
                                     <small><span id="mensagemInicioAgendamento" class="help"></span></small>
