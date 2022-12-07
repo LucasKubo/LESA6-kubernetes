@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-br" xmlns:th="http://www.w3.org/1999/xhtml">
+
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -20,19 +21,21 @@
         <link rel="stylesheet" href="/style/overlay.css">
         <!--        <link rel="stylesheet" href="/style/cadastroAgendamento.css">-->
 
-        <!-- Bootstrap Multiselect -->
-        <link rel="stylesheet" href="/style/bootstrap-multiselect.css">
-        <!-- Scrollbar Custom CSS -->
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
 
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300&display=swap" rel="stylesheet">
+    <!-- Bootstrap Multiselect -->
+    <link rel="stylesheet" href="/style/bootstrap-multiselect.css">
+    <!-- Scrollbar Custom CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300&display=swap" rel="stylesheet">
 
 
-        <!-- Font Awesome JS -->
-        <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
-        <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
+    <!-- Font Awesome JS -->
+    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
+
 
 
     </head>
@@ -111,32 +114,21 @@
                                            />
                                 </div>
 
-                                <div class="form-agendamento form-group">
-                                    <label class="input-label" for="AG_DataFinal" th:text="#{cadageform.finaldate}"></label>
-                                    <input type="date"
-                                           id="AG_DataFinal"
-                                           class="formulario-input"
-                                           name="AG_DataFinal"
-                                           th:placeholder="#{cadageform.finaldate}"
-                                           onblur= "validaDataFinal(); verificaDiasAgendamento()"
-                                           required=""
-                                           >
-                                </div>
 
-                                <div class="form-agendamento form-group">
-                                    <label class="input-label timepicker" for="AG_HoraInicio" th:text="#{cadageform.initialhour}"></label>
-                                    <input id="AG_HoraInicio"
-                                           type="text"
-                                           class="formulario-input"
-                                           th:placeholder="#{cadageform.initialhour}"
-                                           name="AG_HoraInicio"
-                                           value="00:00"
-                                           step="300"
-                                           pattern="^(0[0-9]|1[0-9]|2[0-3]):[0-5][0,5]$"
-                                           onblur="validarHora()"
-                                           required="required">
+                        <div class="form-agendamento form-group">
+                            <label class="input-label timepicker" for="AG_HoraInicio" th:text="#{cadageform.initialhour}"></label>
+                            <input id="AG_HoraInicio"
+                                   type="text"
+                                   class="formulario-input"
+                                   th:placeholder="#{cadageform.initialhour}"
+                                   name="AG_HoraInicio"
+                                   value="00:00"
+                                   step="300"
+                                   pattern="^(0[0-9]|1[0-9]|2[0-3]):[0-5][0,5]$"
+                                   onblur="validarHora()"
+                                   required="required">
+                        </div>
 
-                                </div>
 
 
 
@@ -318,6 +310,9 @@
                                                 </div>
                                             </div>
                                         </div>
+
+                        
+
                                     </div>
 
                                     <small><span id="mensagemPeriodocidade" class="help"></span></small>
@@ -334,6 +329,7 @@
                                         <button th:text="#{cadremform.submit}" name="action" id="confirmar" class="button save" type="submit"></button>
                                     </div>
                                 </div>
+
                             </form>
                         </div>
                     </div>
@@ -360,27 +356,27 @@
 
 
             <script>
-                                               function verificaDataFinal() {
-                                                   var quantidadeDias = document.getElementById('diasAgendamento').value
+                                       function verificaDataFinal() {
+                                           var quantidadeDias = document.getElementById('diasAgendamento').value
 
-                                                   console.log(quantidadeDias)
-                                                   var dataInicial = document.getElementById('AG_DataInicio').value
-                                                   console.log(dataInicial)
-                                                   if (dataInicial != null) {
-                                                       const [year, month, day] = dataInicial.split('-');
-                                                       const date = new Date(+year, month - 1, +day);
-                                                       console.log(date)
+                                           console.log(quantidadeDias)
+                                           var dataInicial = document.getElementById('AG_DataInicio').value
+                                           console.log(dataInicial)
+                                           if (dataInicial != null) {
+                                               const [year, month, day] = dataInicial.split('-');
+                                               const date = new Date(+year, month - 1, +day);
+                                               console.log(date)
 
-                                                       const dataFinal = new Date();
+                                               const dataFinal = new Date();
 
-                                                       dataFinal.setFullYear(date.getFullYear())
-                                                       dataFinal.setMonth(date.getMonth())
-                                                       dataFinal.setDate(date.getDate() + Number(quantidadeDias))
+                                               dataFinal.setFullYear(date.getFullYear())
+                                               dataFinal.setMonth(date.getMonth())
+                                               dataFinal.setDate(date.getDate() + Number(quantidadeDias))
 
-                                                       console.log(dataFinal)
-                                                       document.getElementById('AG_DataFinal').value = dataFinal.getFullYear() + '-' + ("0" + (dataFinal.getMonth() + 1)).slice(-2) + '-' + ("0" + dataFinal.getDate()).slice(-2)
-                                                   }
-                                               }
+                                               console.log(dataFinal)
+                                               document.getElementById('AG_DataFinal').value = dataFinal.getFullYear() + '-' + ("0" + (dataFinal.getMonth() + 1)).slice(-2) + '-' + ("0" + dataFinal.getDate()).slice(-2)
+                                           }
+                                       }
             </script>
 
             <script>
@@ -509,46 +505,50 @@
                 });
             </script>
 
+
             <script type="text/javascript">
                 $(function () {
 
-
-                    $('#AG_HoraInicio').timepicker({
-                        timeFormat: 'HH:mm',
-                        interval: 5,
-                        defaultTime: '09:00'
+                        
+                                $('#AG_HoraInicio').timepicker({
+                        timeFormat : 'HH:mm',
+                                interval: 5,
+                                defaultTime: '09:00'
                     });
-                });
-            </script>
+                                });
+        </script>
 
 
 
-            <script type="text/javascript">
-                function desabilitar() {
-                    var valor = document.getElementById('intervalo-check')
-                    var status = document.getElementById('intervaloDias').enabled;
+                                <script type="text/javascript">
+                                    function desabilitar() {
+                            var valor = document.getElementById('intervalo-check')
+                            var status = document.getElementById('intervaloDias').enabled;
+                            
 
-                    if (valor.checked && status) {
-                        document.getElementById('intervaloDias').disabled = true;
-                        document.getElementById('intervaloDias').value = null;
+                            if (valor.checked && status) {
+                    document.getElementById('intervaloDias').disabled = true;
+                            document.getElementById('intervaloDias').value = null;
                     } else {
-                        document.getElementById('intervaloDias').disabled = false;
+                    document.getElementById('intervaloDias').disabled = false;
                     }
-                }
-            </script>
+        }
+                                        </script>
 
 
-            <script>
-                function validarHora() {
-                    var valor = document.getElementById('AG_HoraInicio').value
-                    var pattern = /^(0[0-9]|1[0-9]|2[0-3]):[0-5][0,5]$/
 
-                    if (!pattern.test(valor)) {
-                        document.getElementById('AG_HoraInicio').value = "00:00"
+                                        <script>
+                                        function validarHora(){
+                            var valor = document.getElementById('AG_HoraInicio').value
+                            var pattern = /^(0[0-9]|1[0-9]|2[0-3]):[0-5][0,5]$/
+
+                            if (!pattern.test(valor)) {
+                    document.getElementById('AG_HoraInicio').value = "00:00"
                     }
-                }
-            </script>
+                                        }
+                                        </script>
 
-        </div>
-    </body>
+</div>
+</body>
+
 </html>
