@@ -18,7 +18,7 @@ public class DataConfiguration {
 //        try {
 //            DriverManagerDataSource driver = new DriverManagerDataSource();
 //            driver.setDriverClassName("org.postgresql.Driver");
-//            driver.setUrl("jdbc:postgresql://localhost:5432/meuremediobd");
+//            driver.setUrl("jdbc:postgresql://0.0.0.0:5433/meuremediobd");
 //            driver.setUsername("postgres");
 //            driver.setPassword("root");
 //            return driver;
